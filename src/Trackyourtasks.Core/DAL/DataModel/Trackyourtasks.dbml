@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="trackyourtasksdb" Class="TrackYourTasksDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=D:\Development\Projects\trackyourtasks.net\src\trackyourtasks.net\App_Data\trackyourtasksdb.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="Trackyourtasks.Core.Lib.Properties.Settings" SettingsPropertyName="trackyourtasksdbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" AccessModifier="Protected" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SecretPhrase" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" AccessModifier="Protected" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+    </Type>
+  </Table>
+</Database>
