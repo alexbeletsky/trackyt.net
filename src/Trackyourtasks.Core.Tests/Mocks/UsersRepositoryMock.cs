@@ -34,17 +34,12 @@ namespace Trackyourtasks.Core.BLL.Tests.Mocks
             return (from user in _users where user.Email == email select user).SingleOrDefault();
         }
 
-        public void InsertUser(User user)
+        public void SaveUser(User user)
         {
             if (_failOnRegister)
                 throw new Exception();
 
             _users.Add(user);    
-        }
-
-        public void UpdateUser(User user)
-        {
-            throw new NotImplementedException();
         }
 
         public void DeleteUser(User user)

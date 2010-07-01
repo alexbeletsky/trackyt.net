@@ -14,7 +14,7 @@ namespace Trackyourtasks.Core.DAL
 
         public User FindUserById(int id)
         {
-            throw new NotImplementedException();
+            return (from user in _context.Users where user.Id == id select user).SingleOrDefault();
         }
 
         public User FindUserByEmail(string email)
@@ -22,20 +22,19 @@ namespace Trackyourtasks.Core.DAL
             return (from user in _context.Users where user.Email == email select user).SingleOrDefault();
         }
 
-        public void InsertUser(User user)
+        public void SaveUser(User user)
         {
-            _context.Users.InsertOnSubmit(user);
+            if (user.Id == 0)
+            {
+                _context.Users.InsertOnSubmit(user);
+            }
             _context.SubmitChanges();
-        }
-
-        public void UpdateUser(User user)
-        {
-            throw new NotImplementedException();
         }
 
         public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.DeleteOnSubmit(user);
+            _context.SubmitChanges();
         }
 
         #endregion

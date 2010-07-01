@@ -43,7 +43,7 @@ namespace Trackyourtasks.Core.BLL
                     Password = password
                 };
 
-                _repository.InsertUser(user);
+                _repository.SaveUser(user);
                 _view.Success();
             }
             catch (Exception e)

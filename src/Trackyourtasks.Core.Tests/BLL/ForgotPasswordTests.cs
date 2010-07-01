@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using NUnit.Framework.SyntaxHelpers;
 using Trackyourtasks.Core.BLL.Tests.Mocks;
 using Trackyourtasks.Core.DAL.DataModel;
 
@@ -43,7 +42,7 @@ namespace Trackyourtasks.Core.BLL.Tests
             var data = new UsersRepositoryMock();
             var forgot = new ForgotPassword(data);
 
-            data.InsertUser(new User() { Email = "user@a.com", Password = "password", SecretPhrase = "correct secret" });
+            data.SaveUser(new User() { Email = "user@a.com", Password = "password", SecretPhrase = "correct secret" });
 
             //ACT
             var password = forgot.RestorePassword("user@a.com", "wrong secret");
@@ -60,7 +59,7 @@ namespace Trackyourtasks.Core.BLL.Tests
             var forgot = new ForgotPassword(data);
 
             var expectedPassword = "password";
-            data.InsertUser(new User() { Email = "user@a.com", Password = expectedPassword, SecretPhrase = "correct secret" });
+            data.SaveUser(new User() { Email = "user@a.com", Password = expectedPassword, SecretPhrase = "correct secret" });
 
             //ACT
             var password = forgot.RestorePassword("user@a.com", "correct secret");
