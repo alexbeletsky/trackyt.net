@@ -6,6 +6,7 @@ using System.Data;
 using Trackyourtasks.Core.Views;
 using Trackyourtasks.Core.DAL;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.DAL.Repositories;
 
 namespace Trackyourtasks.Core.BLL
 {
@@ -46,9 +47,9 @@ namespace Trackyourtasks.Core.BLL
                 _repository.SaveUser(user);
                 _view.Success();
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                _view.Fail("Sorry, but unexcpected exception happend during operation.");
+                _view.Fail("Sorry, but unexpected exception happened during operation.");
             }
         }
     }

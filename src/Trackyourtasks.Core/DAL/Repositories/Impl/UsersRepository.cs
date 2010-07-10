@@ -4,22 +4,34 @@ using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL.DataModel;
 
-namespace Trackyourtasks.Core.DAL
+namespace Trackyourtasks.Core.DAL.Repositories.Impl
 {
     public class UsersRepository : IUsersRepository
     {
-        TrackYourTasksDataContext _context = new TrackYourTasksDataContext();
+        private TrackYourTasksDataContext _context;
+
+        public UsersRepository()
+            : this(new TrackYourTasksDataContext())
+        {
+
+        }
+
+        //used in unit tests
+        public UsersRepository(TrackYourTasksDataContext  context)
+        {
+            _context = context;
+        }
 
         #region IUsersRepository Members
 
         public User FindUserById(int id)
         {
-            return (from user in _context.Users where user.Id == id select user).SingleOrDefault();
+            return _context.Users.Where(u => u.Id == id).SingleOrDefault();
         }
 
         public User FindUserByEmail(string email)
         {
-            return (from user in _context.Users where user.Email == email select user).SingleOrDefault();
+            return _context.Users.Where(u => u.Email == email).SingleOrDefault();
         }
 
         public void SaveUser(User user)

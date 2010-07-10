@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL;
+using Trackyourtasks.Core.DAL.Repositories;
 
 namespace Trackyourtasks.Core.BLL
 {

@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL.DataModel;
+using System.Transactions;
 
-namespace WebApplication.Tests.Framework
+namespace Trackyourtasks.Core.Tests.Framework
 {
-    public class DbScript : IDisposable
+    public class DbSetup : IDisposable
     {
         private TrackYourTasksDataContext _model = new TrackYourTasksDataContext();
-
-        public DbScript()
+        private TransactionScope _transaction = new TransactionScope();
+ 
+        public DbSetup()
         {
             Init();
         }
+
+        public TrackYourTasksDataContext Context { get { return _model; } }
 
         private void Init()
         {
@@ -37,19 +41,8 @@ namespace WebApplication.Tests.Framework
 
         public void Dispose()
         {
-            Clean();
-        }
-
-        private void Clean()
-        {
-            DeleteTestUsers();
-        }
-
-        private void DeleteTestUsers()
-        {
-            var users = from u in _model.Users where u.Password.StartsWith(@"test") select u;
-            _model.Users.DeleteAllOnSubmit<User>(users);
-            _model.SubmitChanges();
+            _transaction.Dispose();
+            _transaction = null;
         }
 
         #endregion

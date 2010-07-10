@@ -63,7 +63,7 @@ namespace Trackyourtasks.Core.BLL.Tests
 
             //POST
             Assert.That(view.RegisterSuccess, Is.False);
-            Assert.That(view.FailureMessage, Is.EqualTo("Sorry, but unexcpected exception happend during operation."));
+            Assert.That(view.FailureMessage, Is.EqualTo("Sorry, but unexpected exception happened during operation."));
         }
 
         [Test]
@@ -110,5 +110,6 @@ namespace Trackyourtasks.Core.BLL.Tests
             //POST
             Assert.That(view.RegisterSuccess, Is.False);
         }
+
     }
 }

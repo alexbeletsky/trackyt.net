@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using R1UnitTest.HtttpSimulator;
 
-namespace WebApplication.Tests.Framework
+namespace Trackyourtasks.Core.Tests.Framework
 {
-    public class FixtutureInit : IDisposable
+    public class FixtureInit : IDisposable
     {
         private HttpSimulator _simulator;
-        private DbScript _script;
+        private DbSetup _setup;
 
-        public FixtutureInit(string uri)
+        public FixtureInit(string uri)
         {
             _simulator = new HttpSimulator().SimulateRequest(new Uri(uri));
-            _script = new DbScript();
+            _setup = new DbSetup();
         }
 
 
@@ -23,12 +23,17 @@ namespace WebApplication.Tests.Framework
             get { return _simulator; } 
         }
 
+        public DbSetup Setup
+        {
+            get { return _setup; }
+        }
+
         #region IDisposable Members
 
         public void Dispose()
         {
             _simulator.Dispose();
-            _script.Dispose();
+            _setup.Dispose();
         }
 
         #endregion

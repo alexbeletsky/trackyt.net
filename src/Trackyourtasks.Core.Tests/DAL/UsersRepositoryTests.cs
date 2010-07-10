@@ -3,38 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using System.Transactions;
 using System.Data.Linq;
 using Trackyourtasks.Core.DAL;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.Tests.Framework;
+using Trackyourtasks.Core.DAL.Repositories.Impl;
 
-namespace Trackyourtasks.Core.BLL.Tests
+namespace Trackyourtasks.Core.DAL.Tests
 {
     [TestFixture]
     public class UsersRepositoryTests
     {
-        TransactionScope _transaction;
-
-        #region setup code
-
-        [SetUp]
-        public void Setup()
-        {
-            _transaction = new TransactionScope();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (_transaction != null)
-            {
-                _transaction.Dispose();
-                _transaction = null;
-            }
-        }
-
-        #endregion
-
         [Test]
         public void Smoke()
         {
@@ -44,120 +23,135 @@ namespace Trackyourtasks.Core.BLL.Tests
         [Test]
         public void InsertUser()
         {
-            //INIT
-            var register = new UsersRepository();
-
-            //ACT
-            var user = new User()
+            using (var fixture = new FixtureInit("http://localhost"))
             {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                //INIT
+                var register = new UsersRepository(fixture.Setup.Context);
 
-            register.SaveUser(user);
+                //ACT
+                var user = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
 
-            //POST
-            var actual = register.FindUserByEmail("email");
-            Assert.That(actual, Is.Not.Null);
+                register.SaveUser(user);
+
+                //POST
+                var actual = register.FindUserByEmail("email");
+                Assert.That(actual, Is.Not.Null);
+            }
         }
 
         [Test]
         [ExpectedException(typeof(DuplicateKeyException))]
         public void InsertUserTwice()
         {
-            //INIT
-            var register = new UsersRepository();
-
-            //ACT / POST
-            var user = new User()
+            using (var fixture = new FixtureInit("http://localhost"))
             {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                //INIT
+                var register = new UsersRepository(fixture.Setup.Context);
 
-            register.SaveUser(user);
+                //ACT / POST
+                var user = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
 
-            var newUser = new User()
-            {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                register.SaveUser(user);
 
-            register.SaveUser(newUser);
+                var newUser = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
+
+                register.SaveUser(newUser);
+            }
         }
 
         [Test]
         public void FindUserById()
         {
-            //INIT
-            var register = new UsersRepository();
-
-            var user = new User()
+            using (var fixture = new FixtureInit("http://localhost"))
             {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                //INIT
+                var register = new UsersRepository(fixture.Setup.Context);
 
-            register.SaveUser(user);
+                var user = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
 
-            //ACT
-            var foundUser = register.FindUserById(user.Id);
+                register.SaveUser(user);
 
-            //POST
-            Assert.That(foundUser, Is.Not.Null);
-            Assert.That(foundUser.Id, Is.EqualTo(user.Id));
+                //ACT
+                var foundUser = register.FindUserById(user.Id);
+
+                //POST
+                Assert.That(foundUser, Is.Not.Null);
+                Assert.That(foundUser.Id, Is.EqualTo(user.Id));
+            }
         }
 
         [Test]
         public void UpdateUser()
         {
-            //INIT
-            var register = new UsersRepository();
-
-            var user = new User()
+            using (var fixture = new FixtureInit("http://localhost"))
             {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                //INIT
+                var register = new UsersRepository(fixture.Setup.Context);
 
-            register.SaveUser(user);
+                var user = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
 
-            //ACT
-            user.SecretPhrase = "newsec";
-            register.SaveUser(user);
+                register.SaveUser(user);
 
-            //POST
-            var foundUser = register.FindUserById(user.Id);
-            Assert.That(foundUser, Is.Not.Null);
-            Assert.That(foundUser.SecretPhrase, Is.EqualTo("newsec"));
+                //ACT
+                user.SecretPhrase = "newsec";
+                register.SaveUser(user);
+
+                //POST
+                var foundUser = register.FindUserById(user.Id);
+                Assert.That(foundUser, Is.Not.Null);
+                Assert.That(foundUser.SecretPhrase, Is.EqualTo("newsec"));
+            }
         }
 
         [Test]
         public void DeleteUser()
         {
-            //INIT
-            var register = new UsersRepository();
-
-            var user = new User()
+            using (var fixture = new FixtureInit("http://localhost"))
             {
-                Email = "email",
-                SecretPhrase = "sec",
-                Password = "pass"
-            };
+                //INIT
+                var register = new UsersRepository(fixture.Setup.Context);
 
-            register.SaveUser(user);
+                var user = new User()
+                {
+                    Email = "email",
+                    SecretPhrase = "sec",
+                    Password = "pass"
+                };
 
-            //ACT
-            register.DeleteUser(user);
+                register.SaveUser(user);
 
-            //POST
-            var foundUser = register.FindUserById(user.Id);
-            Assert.That(foundUser, Is.Null);
+                //ACT
+                register.DeleteUser(user);
+
+                //POST
+                var foundUser = register.FindUserById(user.Id);
+                Assert.That(foundUser, Is.Null);
+            }
         }
     }
 }
