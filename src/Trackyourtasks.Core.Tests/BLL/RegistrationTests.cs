@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Trackyourtasks.Core.BLL.Tests.Mocks;
+using Trackyourtasks.Core.Tests.Mocks;
+using Trackyourtasks.Core.BLL;
 
-namespace Trackyourtasks.Core.BLL.Tests
+namespace Trackyourtasks.Core.Tests.BLL
 {
     [TestFixture]
     public class RegistrationTests

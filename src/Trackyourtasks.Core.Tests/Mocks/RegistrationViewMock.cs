@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.Views;
 
-namespace Trackyourtasks.Core.BLL.Tests.Mocks
+namespace Trackyourtasks.Core.Tests.Mocks
 {
     class RegistrationViewMock : IRegistrationView
     {

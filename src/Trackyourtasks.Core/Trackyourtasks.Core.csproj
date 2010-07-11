@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BLL\ForgotPassword.cs" />
     <Compile Include="BLL\Registration.cs" />
+    <Compile Include="BLL\Tasks\AddTask.cs" />
     <Compile Include="DAL\DataModel\Trackyourtasks.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

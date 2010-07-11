@@ -6,7 +6,7 @@ using Trackyourtasks.Core.DAL;
 using Trackyourtasks.Core.DAL.DataModel;
 using Trackyourtasks.Core.DAL.Repositories;
 
-namespace Trackyourtasks.Core.BLL.Tests.Mocks
+namespace Trackyourtasks.Core.Tests.Mocks
 {
     class UsersRepositoryMock : IUsersRepository
     {

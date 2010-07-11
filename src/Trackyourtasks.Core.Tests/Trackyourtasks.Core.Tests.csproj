@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AddTaskTests.cs" />
     <Compile Include="BLL\ForgotPasswordTests.cs" />
     <Compile Include="BLL\RegistrationTests.cs" />
     <Compile Include="DAL\TasksRepositoryTests.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="HttpSimulator\ReflectionHelper.cs" />
     <Compile Include="HttpSimulator\SimulatedHttpRequest.cs" />
     <Compile Include="Mocks\RegistrationViewMock.cs" />
+    <Compile Include="Mocks\TasksRepositoryMock.cs" />
     <Compile Include="Mocks\UsersRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
