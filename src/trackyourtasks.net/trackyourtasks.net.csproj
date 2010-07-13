@@ -55,6 +55,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="App_Data\trackyourtasksdb.mdf" />
+    <Content Include="Scripts\tasksgrid.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
