@@ -12,7 +12,7 @@ namespace Trackyourtasks.Core.Tests.Mocks
 
         public DAL.DataModel.Task FindTaskById(int id)
         {
-            throw new NotImplementedException();
+            return _tasksRepository.Where(t => t.Id == id).SingleOrDefault();
         }
 
         public DAL.DataModel.Task FindTaskByUserId(int id)
@@ -27,7 +27,7 @@ namespace Trackyourtasks.Core.Tests.Mocks
 
         public void DeleteTask(DAL.DataModel.Task task)
         {
-            throw new NotImplementedException();
+            _tasksRepository.Remove(task);
         }
     }
 }
