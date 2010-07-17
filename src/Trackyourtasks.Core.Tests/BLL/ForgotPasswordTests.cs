@@ -18,8 +18,11 @@ namespace Trackyourtasks.Core.Tests.BLL
             //INIT
             var data = new UsersRepositoryMock();
 
-            //ACT/POST
+            //ACT
             var c = new ForgotPassword(data);
+
+            //POST
+            Assert.That(c, Is.Not.Null);
         }
 
         [Test]
