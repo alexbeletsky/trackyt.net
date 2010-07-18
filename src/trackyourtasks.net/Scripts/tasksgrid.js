@@ -6,57 +6,58 @@ $.fn.tasksgrid = function() {
         addHeader: function() {
             t.table.append(t.header);
         },
-        currentIndex: 0,
-        startRow: "<tr class=\"visible: false\">",
-        endRow: "</tr>",
+        currentIndex: 1,
         newTaskName: "New task",
         newTaskStatus: "New", 
         newActualWork: "00:00:00", 
-        addTaskButton : "Add new task",
+        addTaskButton : "+",
         aId : function(index) {
             return "addTask_" + index;
         },
+        rowId: function(index) {
+            return "row_" + index;
+        },
         addTask : function() {
-            var row = t.startRow 
-                + t.taskIndex() 
-                + t.taskDescription() 
-                + t.taskStatus()
-                + t.taskActualWork()
-                + t.taskAddButton() 
-                + t.endRow;
-                 
-            t.table.append(row);
+            t.table.append(t.createEmptyRow());
+            var row = $("#" + t.rowId(t.currentIndex));
 
-            var selector = "#" + t.aId(t.currentIndex);
-            $(selector).click(function () { t.addTask(); });
+            row.append(t.taskIndex());
+            row.append(t.taskDescription());
+            row.append(t.taskStatus());
+            row.append(t.taskActualWork());
+            row.append(t.taskAddButton());
+            
+            $("#" + t.aId(t.currentIndex)).click(function () { t.addTask(); });
 
             if (t.currentIndex > 0) {
-                var prevASelector = "#" + t.aId(t.currentIndex - 1);
-                $(prevASelector).remove();
+                $("#" + t.aId(t.currentIndex - 1)).remove();
             }
 
             t.currentIndex++;
+        },
+        createEmptyRow: function() {
+            return "<tr id=\"" + t.rowId(t.currentIndex) +"\"></tr>"
         },
         createTd: function(value) {
             return "<td>" + value + "</td>";
         },
         craeteA: function() {
-            return "<a href=\"#\" id=\"" + t.aId(t.currentIndex) + "\"/a>" + t.addTaskButton;
+            return "<a href=\"#\" id=\"" + t.aId(t.currentIndex) + "\">" + t.addTaskButton + "</a>";
         },
         taskIndex : function() {
-            return t.createTd(t.currentIndex); //"<td> " + (t.currentIndex) + "</td>";       
+            return t.createTd(t.currentIndex); 
         },
         taskDescription: function() {
-            return t.createTd(t.newTaskName); //"<td>" + (t.newTaskName) + "</td>";
+            return t.createTd(t.newTaskName); 
         },
         taskAddButton: function() {
-            return t.createTd(t.craeteA()); //"<td>" + "<a href=\"#\" id=\"" + t.aId(t.currentIndex) + "\"/a>" + t.addTaskButton + "</td>"
+            return t.createTd(t.craeteA()); 
         },
         taskStatus: function() {
-            return t.createTd(t.newTaskStatus); //"<td>" + t.newTaskStatus + "</td>";
+            return t.createTd(t.newTaskStatus); 
         },
         taskActualWork: function() {
-            return t.createTd(t.newActualWork); //"<td>" + t.newActualWork + "</td>";
+            return t.createTd(t.newActualWork);
         }
     }
 
