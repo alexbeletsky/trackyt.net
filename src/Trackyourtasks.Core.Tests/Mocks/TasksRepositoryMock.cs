@@ -29,5 +29,10 @@ namespace Trackyourtasks.Core.Tests.Mocks
         {
             _tasksRepository.Remove(task);
         }
+
+        public IEnumerable<DAL.DataModel.Task> GetAllTasks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

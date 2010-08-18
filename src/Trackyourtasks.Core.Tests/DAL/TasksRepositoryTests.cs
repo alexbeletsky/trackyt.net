@@ -33,7 +33,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                     UserId = 10,
                     Description = "My new task",
                     Status = 0,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
                 //ACT
@@ -50,7 +50,7 @@ namespace Trackyourtasks.Core.DAL.Tests
         [Test]
         public void DeleteTasks()
         {
-            using(var fixture = new FixtureInit("http://localhost"))
+            using (var fixture = new FixtureInit("http://localhost"))
             {
                 //INIT
                 var repository = new TasksRepository(fixture.Setup.Context);
@@ -61,7 +61,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                     UserId = 10,
                     Description = "My new task",
                     Status = 0,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
                 repository.SaveTask(task);
@@ -89,7 +89,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                     UserId = 10,
                     Description = "My new task",
                     Status = 0,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
                 repository.SaveTask(task);
@@ -121,7 +121,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                     UserId = 10,
                     Description = "My new task",
                     Status = 0,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
                 repository.SaveTask(task);
@@ -148,7 +148,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                     UserId = 10,
                     Description = "My new task",
                     Status = 0,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
                 repository.SaveTask(task);
@@ -158,6 +158,32 @@ namespace Trackyourtasks.Core.DAL.Tests
 
                 //POST
                 Assert.That(foundTask, Is.Not.Null);
+            }
+        }
+
+        [Test]
+        public void GetAllTasks()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //INIT
+                var repository = new TasksRepository(fixture.Setup.Context);
+                var tasks = new[] { 
+                    new Task() { Description="test1" } , 
+                    new Task() { Description="test2" }
+                };
+
+                foreach (var task in tasks)
+                {
+                    repository.SaveTask(task);
+                }
+
+                //ACT
+                var foundTasks = repository.GetAllTasks();
+
+                //POST
+                Assert.That(foundTasks, Is.Not.Null);
+                Assert.That(foundTasks.Count(), Is.EqualTo(2));
             }
         }
     }

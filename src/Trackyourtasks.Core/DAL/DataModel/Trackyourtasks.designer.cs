@@ -236,7 +236,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id = default(int);
+		private int _Id;
 		
 		private int _UserId;
 		
@@ -246,7 +246,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 		
 		private int _Status;
 		
-		private System.DateTimeOffset _ActualWork;
+		private int _ActualWork;
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
@@ -254,6 +254,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
     partial void OnNumberChanging(int value);
@@ -262,7 +264,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
     partial void OnDescriptionChanged();
     partial void OnStatusChanging(int value);
     partial void OnStatusChanged();
-    partial void OnActualWorkChanging(System.DateTimeOffset value);
+    partial void OnActualWorkChanging(int value);
     partial void OnActualWorkChanged();
     partial void OnTimestampChanging(System.Data.Linq.Binary value);
     partial void OnTimestampChanged();
@@ -280,9 +282,20 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			{
 				return this._Id;
 			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public int UserId
 		{
 			get
@@ -302,7 +315,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public int Number
 		{
 			get
@@ -322,7 +335,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Description
 		{
 			get
@@ -342,7 +355,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
 		public int Status
 		{
 			get
@@ -362,8 +375,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWork", DbType="DateTimeOffset NOT NULL")]
-		public System.DateTimeOffset ActualWork
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWork", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int ActualWork
 		{
 			get
 			{
@@ -382,8 +395,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timestamp", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true)]
-		protected System.Data.Linq.Binary Timestamp
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timestamp", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Timestamp
 		{
 			get
 			{

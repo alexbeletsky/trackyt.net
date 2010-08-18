@@ -25,7 +25,7 @@ namespace Trackyourtasks.Core.Tests.BLL
                     Number = 0,
                     Description = "Task to be added",
                     UserId = 10,
-                    ActualWork = new DateTimeOffset()
+                    ActualWork = 0
                 };
 
             addTask.Add(task);

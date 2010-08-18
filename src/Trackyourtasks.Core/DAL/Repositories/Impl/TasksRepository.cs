@@ -10,15 +10,26 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
     {
         private TrackYourTasksDataContext _context;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public TasksRepository() : this(new TrackYourTasksDataContext())
         {
 
         }
 
-        //used in unit tests
+        /// <summary>
+        /// Constructor used in unit tests
+        /// </summary>
+        /// <param name="context">Context</param>
         public TasksRepository(TrackYourTasksDataContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Task> GetAllTasks()
+        {
+            return _context.Tasks.Select(t => t);
         }
 
         public Task FindTaskById(int id)

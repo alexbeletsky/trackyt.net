@@ -58,7 +58,6 @@
     <Compile Include="Framework\DbSetup.cs" />
     <Compile Include="Framework\FixtureInit.cs" />
     <Compile Include="HttpSimulator\HttpSimulator.cs" />
-    <Compile Include="HttpSimulator\HttpSimulatorTests.cs" />
     <Compile Include="HttpSimulator\ReflectionHelper.cs" />
     <Compile Include="HttpSimulator\SimulatedHttpRequest.cs" />
     <Compile Include="Mocks\RegistrationViewMock.cs" />

@@ -12,6 +12,12 @@ namespace Trackyourtasks.Core.DAL.Repositories
     public interface ITasksRepository
     {
         /// <summary>
+        /// Gets all tasks
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Task> GetAllTasks();
+
+        /// <summary>
         /// Finds task by Id
         /// </summary>
         /// <param name="id">Task Id</param>
