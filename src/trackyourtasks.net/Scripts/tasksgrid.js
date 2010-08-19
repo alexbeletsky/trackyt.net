@@ -17,16 +17,20 @@
             this.loadData = loadData;
             this.submitData = submitData;
 
+            // load table data
+            $.blockUI();
             this.loadData(onDataLoaded);
 
             function onDataLoaded(data) {
                 createTableRows(data);
                 createTableButtons();
+
+                $.unblockUI();
             }
 
             function createTableRows(data) {
                 table.dataSize = data.length;
-                table.lastRowIndex = data[table.dataSize - 1]["Number"];
+                table.lastRowIndex = data[table.dataSize - 1]['Number'];
 
                 for (var key in data) {
                     table.rows.push(new row(table, data[key], table.rows.length));
@@ -77,13 +81,13 @@
 
         // Submit button
         function submitButton(table, index) {
-            this.id = "submit_" + index;
+            this.id = 'submit_' + index;
 
-            table.tableObj.after("<div>" + createButton(this.id) + "</div>");
-            $("input#" + this.id).click(onSubmit);
+            table.tableObj.after('<div>' + createButton(this.id) + '</div>');
+            $('input#' + this.id).click(onSubmit);
 
             function createButton(id) {
-                return "<input id=\"" + id + "\" type=\"button\" value=\"Submit\"></input>";
+                return '<input id="' + id + '" type="button" value="Submit"></input>';
             }
 
             function onSubmit() {
@@ -94,20 +98,20 @@
         // Table header
         function header(table) {
             this.cells = [];
-            this.head = $("thead");
+            this.head = $('thead');
 
-            this.head.append("<tr></tr>");
-            this.row = $("thead tr");
+            this.head.append('<tr></tr>');
+            this.row = $('thead tr');
 
-            this.cells.push(new textCell(table, this, "#"));
-            this.cells.push(new textCell(table, this, "Description"));
-            this.cells.push(new textCell(table, this, "Status"));
-            this.cells.push(new textCell(table, this, "Work"));
+            this.cells.push(new textCell(table, this, '#'));
+            this.cells.push(new textCell(table, this, 'Description'));
+            this.cells.push(new textCell(table, this, 'Status'));
+            this.cells.push(new textCell(table, this, 'Work'));
         }
 
         // Text cell
         function textCell(table, header, text) {
-            header.row.append("<th>" + text + "</th>");
+            header.row.append('<th>' + text + '</th>');
         }
 
         // Row object
@@ -117,8 +121,8 @@
             this.data = data;
             this.dirty = (data == null ? true : false);
 
-            table.tableObj.append("<tr id=\"" + this.index + "\"></tr>");
-            this.rowObj = $("tr#" + this.index);
+            table.tableObj.append('<tr id=\"' + this.index + '"></tr>');
+            this.rowObj = $('tr#' + this.index);
 
             //cells
             this.cells.push(new indexCell(table, this, this.index, this.cells.length));
@@ -130,7 +134,7 @@
         }
 
         row.prototype.removeCell = function (cellIndex) {
-            $("#" + this.cells[cellIndex].id).remove();
+            $('#' + this.cells[cellIndex].id).remove();
             //this.cells[cellIndex] = null;
         }
 
@@ -149,7 +153,11 @@
         row.prototype.object = function () {
             var object = {};
 
-            object["Id"] = this.data == null ? 0 : this.data["Id"];
+            //set hidden fields
+            object['Id'] = this.data == null ? 0 : this.data['Id'];
+            object['UserId'] = this.data == null ? 0 : this.data['UserId'];
+
+            //set fields from UI
             for (var cell in this.cells) {
                 if (this.cells[cell].isData()) {
                     object[this.cells[cell].property()] = this.cells[cell].value();
@@ -160,8 +168,8 @@
 
         // Index cell
         function indexCell(table, row, rowIndex, cellIndex) {
-            this.index = row.data == null ? (table.lastRowIndex + rowIndex) : row.data[this.property()];
-            row.rowObj.append("<td>" + this.index + "</td>");
+            this.index = row.data == null ? (++table.lastRowIndex) : row.data[this.property()];
+            row.rowObj.append('<td>' + this.index + '</td>');
         }
 
         indexCell.prototype.isData = function () {
@@ -169,7 +177,7 @@
         }
 
         indexCell.prototype.property = function () {
-            return "Number";
+            return 'Number';
         }
 
         indexCell.prototype.value = function () {
@@ -178,14 +186,14 @@
 
         // Description cell
         function descriptionCell(table, row, rowIndex, cellIndex) {
-            this.id = "decription_" + rowIndex;
-            var description = row.data == null ? "Add task description..." : row.data[this.property()];
+            this.id = 'decription_' + rowIndex;
+            var description = row.data == null ? 'Add task description...' : row.data[this.property()];
 
-            row.rowObj.append("<td>" + createInput(this.id, description) + "</td>");
-            $("input#" + this.id).change(onChanged);
+            row.rowObj.append('<td>' + createInput(this.id, description) + '</td>');
+            $('input#' + this.id).change(onChanged);
 
             function createInput(id, txt) {
-                return "<input id=\"" + id + "\" type=\"text\" value=\"" + txt + "\"/>";
+                return '<input id=\"' + id + '" type="text" value="' + txt + '"/>';
             }
 
             function onChanged() {
@@ -198,31 +206,31 @@
         }
 
         descriptionCell.prototype.property = function () {
-            return "Description";
+            return 'Description';
         }
 
         descriptionCell.prototype.value = function () {
-            return $("input#" + this.id).val();
+            return $('input#' + this.id).val();
         }
 
         // Status cell
         function statusCell(table, row, rowIndex, cellIndex) {
-            this.id = "status_" + rowIndex;
-            var status = row.data == null ? "0" : row.data[this.property()];
+            this.id = 'status_' + rowIndex;
+            var status = row.data == null ? '0' : row.data[this.property()];
 
-            row.rowObj.append("<td>" + createSelect(this.id, status) + "</td>");
-            $("select#" + this.id).change(onChanged);
+            row.rowObj.append('<td>' + createSelect(this.id, status) + '</td>');
+            $('select#' + this.id).change(onChanged);
 
             //var option = $("select#" + this.id + " option :value.eq(0)");
             //option.attr("selected", "true");
 
             function createSelect(id, status) {
                 var select =
-                    "<select id=\"" + id + "\">"
-                        + "<option label=\"New\" value=\"0\"></option>"
-                        + "<option label=\"In progress\" value=\"1\"></option>"
-                        + "<option label=\"Done\" value=\"2\"></option>"
-                    + "</select>";
+                    '<select id="' + id + '">'
+                        + '<option label="New" value="0"></option>'
+                        + '<option label="In progress" value="1"></option>'
+                        + '<option label="Done" value="2"></option>'
+                    + '</select>';
                 return select;
             }
 
@@ -236,29 +244,29 @@
         }
 
         statusCell.prototype.property = function () {
-            return "Status";
+            return 'Status';
         }
 
         statusCell.prototype.value = function () {
-            return "0";
+            return '0';
         }
 
 
         // Actual work cell
         function actualWorkCell(table, row, rowIndex, cellIndex) {
-            this.id = "actualWork_" + rowIndex;
+            this.id = 'actualWork_' + rowIndex;
             this.counter = row.data == null ? 0 : row.data[this.property()] + 0;
             this.timerId = null;
             this.period = 1000;
             this.row = row;
 
-            row.rowObj.append("<td id=\"" + this.id + "\">" + this.counter + "</td>");
+            row.rowObj.append('<td id=\"' + this.id + '">' + this.counter + '</td>');
         }
 
         actualWorkCell.prototype.start = function () {
             var obj = this;
             obj.counter++;
-            $("td#" + obj.id).html(obj.counter);
+            $('td#' + obj.id).html(obj.counter);
 
             obj.row.markDirty();
             obj.timerId = setTimeout(function () { obj.start(); }, obj.period);
@@ -273,7 +281,7 @@
         }
 
         actualWorkCell.prototype.property = function () {
-            return "ActualWork";
+            return 'ActualWork';
         }
 
         actualWorkCell.prototype.value = function () {
@@ -282,27 +290,27 @@
 
         // Start task cell
         function startTaskCell(table, row, rowIndex, cellIndex) {
-            this.id = "startTask_" + rowIndex;
+            this.id = 'startTask_' + rowIndex;
             this.started = false;
 
-            row.rowObj.append("<td><a id=\"" + this.id + "\" href=\"#\">Start</a></td>");
-            $("a#" + this.id).click(onClick);
+            row.rowObj.append('<td><a id="' + this.id + '" href="#">Start</a></td>');
+            $('a#' + this.id).click(onClick);
 
             function onClick() {
                 //TODO: correct hardcoded values
                 var actualWorkCell = row.cells[3];
-                var label = "";
+                var label = '';
                 if (this.started) {
                     actualWorkCell.stop();
                     this.started = false;
-                    label = "Start";
+                    label = 'Start';
                 } else {
                     actualWorkCell.start();
                     this.started = true;
-                    label = "Stop";
+                    label = 'Stop';
                 }
 
-                $("a#" + this.id).html(label);
+                $('a#' + this.id).html(label);
             }
         }
 
@@ -312,11 +320,11 @@
 
         // Add task cell
         function addTaskCell(table, row, rowIndex, cellIndex) {
-            this.id = "addTask_" + rowIndex;
+            this.id = 'addTask_' + rowIndex;
 
             if (lastRow()) {
-                row.rowObj.append("<td><a id=\"" + this.id + "\" href=\"#\">+</a></td>");
-                $("a#" + this.id).click(onClick);
+                row.rowObj.append('<td><a id=\"' + this.id + '" href="#">+</a></td>');
+                $('a#' + this.id).click(onClick);
             }
 
             function lastRow() {
