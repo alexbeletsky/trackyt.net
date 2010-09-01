@@ -107,6 +107,10 @@
             this.cells.push(new textCell(table, this, 'Description'));
             this.cells.push(new textCell(table, this, 'Status'));
             this.cells.push(new textCell(table, this, 'Work'));
+
+            function applyStyles() {
+
+            }
         }
 
         // Text cell
@@ -131,11 +135,19 @@
             this.cells.push(new actualWorkCell(table, this, this.index, this.cells.length));
             this.cells.push(new startTaskCell(table, this, this.index, this.cells.length));
             this.cells.push(new addTaskCell(table, this, this.index, this.cells.length));
+
+            function applyStyles(row) {
+                if (index % 2) {
+                    //row.css({ 'background-color': '#dddddd', 'color': '#666666' });
+                    row.addClass('zebra');
+                }
+            }
+
+            applyStyles(this.rowObj);
         }
 
         row.prototype.removeCell = function (cellIndex) {
             $('#' + this.cells[cellIndex].id).remove();
-            //this.cells[cellIndex] = null;
         }
 
         row.prototype.markDirty = function () {
@@ -190,7 +202,7 @@
             var description = row.data == null ? 'Add task description...' : row.data[this.property()];
 
             row.rowObj.append('<td>' + createInput(this.id, description) + '</td>');
-            $('input#' + this.id).change(onChanged);
+            $('input#' + this.id).bind("keypress", onChanged);
 
             function createInput(id, txt) {
                 return '<input id=\"' + id + '" type="text" value="' + txt + '"/>';
@@ -216,15 +228,15 @@
         // Status cell
         function statusCell(table, row, rowIndex, cellIndex) {
             this.id = 'status_' + rowIndex;
-            var status = row.data == null ? '0' : row.data[this.property()];
+            var status = row.data == null ? 0 : row.data[this.property()] + 0;
 
-            row.rowObj.append('<td>' + createSelect(this.id, status) + '</td>');
+            row.rowObj.append('<td>' + createSelect(this.id) + '</td>');
             $('select#' + this.id).change(onChanged);
 
-            //var option = $("select#" + this.id + " option :value.eq(0)");
-            //option.attr("selected", "true");
+            var options = $('select#' + this.id + ' option');
+            $(options[status]).attr('selected', 'true');
 
-            function createSelect(id, status) {
+            function createSelect(id) {
                 var select =
                     '<select id="' + id + '">'
                         + '<option label="New" value="0"></option>'
@@ -248,9 +260,17 @@
         }
 
         statusCell.prototype.value = function () {
-            return '0';
-        }
+            var selected = 0;
+            var options = $('select#' + this.id + ' option');
 
+            for (var index = 0; index < options.length; index++) {
+                if ($(options[index]).attr('selected')) {
+                    selected = index;
+                }
+            }
+
+            return selected;
+        }
 
         // Actual work cell
         function actualWorkCell(table, row, rowIndex, cellIndex) {
@@ -321,10 +341,11 @@
         // Add task cell
         function addTaskCell(table, row, rowIndex, cellIndex) {
             this.id = 'addTask_' + rowIndex;
+            this.linkId = 'addTaskLink_' + rowIndex;
 
             if (lastRow()) {
-                row.rowObj.append('<td><a id=\"' + this.id + '" href="#">+</a></td>');
-                $('a#' + this.id).click(onClick);
+                row.rowObj.append('<td id="' + this.id + '"><a id="' + this.linkId + '" href="#">+</a></td>');
+                $('a#' + this.linkId).click(onClick);
             }
 
             function lastRow() {

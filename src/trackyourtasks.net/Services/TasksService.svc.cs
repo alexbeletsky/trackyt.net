@@ -42,8 +42,6 @@ namespace trackyourtasks.net.Services
                 {
                     repository.SaveTask(task);
                 }
-
-                
             }
         }
     }

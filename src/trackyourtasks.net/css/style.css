@@ -1,0 +1,102 @@
+body {
+  color:#555;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  text-align:left;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 28px;
+  background-color:#fff;
+  margin:0px;
+  padding:0px;
+}
+
+#navigation-container 
+{
+    background-color: #C7E76C;
+    height: 40px;
+    overflow: hidden;
+    width: 100%
+}
+
+#navigation 
+{  
+  width:925px;
+  height:40px;
+  margin:0 auto;
+}
+
+#navigation ul
+{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#navigation ul.left 
+{
+    float: left;
+}
+
+#navigation ul.left li { display: inline; margin-right: 4px; } 
+
+#navigation ul.right 
+{
+    float: right;
+}
+
+#navigation ul.right li { display: inline; margin-right: 4px; }
+
+ul, ol 
+{
+    list-style: none;
+}
+
+#container
+{
+    width: 925px;
+    height: auto;
+    border: 1px dotted black;
+    margin:0 auto;
+}
+
+#add-task
+{
+    width: 80%;
+    margin:0 auto;
+    text-align:center;
+}
+
+#add-task input
+{
+    display: inline;
+    overflow:auto;
+}
+
+#add-task 
+
+#tasks
+{
+    margin-top: 10px;    
+}
+
+#tasks-container
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ 
+.task  
+{
+    border:1px solid #AFAFAF; 
+    background-color: #E8EAE1;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.center { width: 50%; margin: 0 auto; }
+
+
