@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trackyourtasks.net", "trackyourtasks.net\trackyourtasks.net.csproj", "{3963AE0B-E9FE-438A-917E-BE7B0AF906A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trackyourtasks.net", "src\trackyourtasks.net\trackyourtasks.net.csproj", "{3963AE0B-E9FE-438A-917E-BE7B0AF906A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{810A7031-82CC-4EB1-80E4-0A001A858210}"
 EndProject
@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2823E3DE-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FD2C3643-911F-4FC4-A89E-09F5DB8F67E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Core", "Trackyourtasks.Core\Trackyourtasks.Core.csproj", "{631248AA-496F-40D3-9C1B-E30B09219D76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Core", "src\Trackyourtasks.Core\Trackyourtasks.Core.csproj", "{631248AA-496F-40D3-9C1B-E30B09219D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Core.Tests", "Trackyourtasks.Core.Tests\Trackyourtasks.Core.Tests.csproj", "{AB9572AD-F8A7-450F-A753-DF2F9224A7F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Core.Tests", "src\Trackyourtasks.Core.Tests\Trackyourtasks.Core.Tests.csproj", "{AB9572AD-F8A7-450F-A753-DF2F9224A7F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

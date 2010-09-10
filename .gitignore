@@ -7,3 +7,4 @@
 *.vssscc
 *.vsmdi
 *.testsettings
+*lint*
