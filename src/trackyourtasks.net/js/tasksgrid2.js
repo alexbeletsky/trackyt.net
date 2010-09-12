@@ -120,12 +120,12 @@
             this.div = $('#' + this.id);
 
             //div sections
-            this.sections.push(new indexSection(tasksgrid, this, index, this.sections.length));
-            this.sections.push(new descriptionSection(tasksgrid, this, index, this.sections.length));
+            this.sections['index'] = new indexSection(tasksgrid, this, index, this.sections.length);
+            this.sections['description'] = new descriptionSection(tasksgrid, this, index, this.sections.length);
             //this.sections.push(new statusSection(tasksgrid, this, index, this.sections.length));
-            this.sections.push(new deleteSection(tasksgrid, this, index, this.sections.length));
-            this.sections.push(new startSection(tasksgrid, this, index, this.sections.length));
-            this.sections.push(new actualWorkSection(tasksgrid, this, index, this.sections.length));
+            this.sections['delete'] = new deleteSection(tasksgrid, this, index, this.sections.length);
+            this.sections['start'] = new startSection(tasksgrid, this, index, this.sections.length);
+            this.sections['timer'] = new actualWorkSection(tasksgrid, this, index, this.sections.length);
         }
 
         task.prototype.markDirty = function () {
@@ -270,8 +270,18 @@
             $('#' + this.id).html(this.formatValue());
         }
 
-        actualWorkSection.prototype.formatValue = function (val) {
-            return '00:0' + this.counter;
+        actualWorkSection.prototype.formatValue = function () {
+            var minutes = parseInt(this.counter / 60);
+            var seconds = this.counter % 60;
+
+            var formatted = '';
+            if (minutes < 10)
+                formatted += '0';
+            formatted += minutes + ':';
+            if (seconds < 10)
+                formatted += '0';
+            formatted += seconds;
+            return formatted;
         }
 
         actualWorkSection.prototype.stop = function () {
@@ -299,8 +309,7 @@
             }
 
             function onClick() {
-                //TODO: add task getter to get section
-                var actualWork = task.sections[3];
+                var actualWork = task.sections['timer'];
                 var label = '';
                 if (this.started) {
                     actualWork.stop();
