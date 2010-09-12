@@ -74,8 +74,6 @@ ul, ol
     overflow:auto;
 }
 
-#add-task 
-
 #tasks
 {
     margin-top: 10px;    
@@ -95,6 +93,35 @@ ul, ol
     border-radius: 5px;
     margin-top: 5px;
     padding: 5px;
+}
+
+.task .index
+{
+    position: relative;
+    top: -10px;
+    left: 0px;
+    font-size:x-small;
+    font-weight: bold;
+    margin: 4px;
+    float: left;
+}
+
+.task .description
+{
+    padding: 5px;
+}
+
+.task .timer 
+{
+    float:right;
+    padding-right: 40px;
+    font-size: small;
+}
+
+.task .right 
+{
+    padding-right: 4px;
+    float:right;
 }
 
 .center { width: 50%; margin: 0 auto; }

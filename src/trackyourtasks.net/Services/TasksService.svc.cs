@@ -44,5 +44,19 @@ namespace trackyourtasks.net.Services
                 }
             }
         }
+
+        [OperationContract]
+        public void Delete(IList<Task> tasks)
+        {
+            var repository = new TasksRepository();
+            foreach (var task in tasks)
+            {
+                if (task.Id != 0)
+                {
+                    var taskToDelete = repository.FindTaskById(task.Id);
+                    repository.DeleteTask(taskToDelete);
+                }
+            }
+        }
     }
 }

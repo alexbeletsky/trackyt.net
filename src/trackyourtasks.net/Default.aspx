@@ -50,7 +50,7 @@
                                     &nbsp;</div>
                                 <div class="slide-info">
                                     <h2 class="notext txt-solutions">
-                                        solutions</h2>
+                                        Welcome to Tracky.net, Web application that makes you life easier!</h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lorem lacus,
                                         consectetur mattis interdum ac, aliquam nec massa. Cras libero est, con- dimentum
@@ -59,9 +59,6 @@
                                     </p>
                                     <p>
                                         <a href="#" class="more">Read more</a></p>
-                                </div>
-                                <div class="slide-image">
-                                    <img src="css/images/img1.jpg" alt="" />
                                 </div>
                                 <div class="cl">
                                     &nbsp;</div>

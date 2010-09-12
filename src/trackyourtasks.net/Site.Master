@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Free CSS template by ChocoTemplates.com</title>
+    <title>Tracky.net</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="js/jquery.blockUI.js" type="text/javascript"></script>
@@ -42,7 +42,9 @@
         <div id="header">
         </div>
         <div id="content">
+            <form id="mainForm" runat="server">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </form>
         </div>
         <div id="footer">
         </div>
