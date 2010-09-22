@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="Web.Areas.Public.Public" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="Content/public.css" type="text/css" media="all" />
+    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.postJson.js" type="text/javascript"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <title>Tracky.net | Main</title>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="navigation-container">
+        <div id="navigation">
+            <ul class="left">
+                <li><a href="/Public/Home" class="active"><span>home</span></a> </li>
+                <li><a href="#"><span>product tour</span></a> </li>
+                <li><a href="#"><span>blog</span></a> </li>
+                <li><a href="#"><span>about us</span></a> </li>
+            </ul>
+            <ul class="right">
+                <li><a href="/Tracky/Dashboard"><span>my tasks</span></a> </li>
+                <li><a href="#"><span>registration</span></a> </li>
+                <li><a href="#"><span>support</span></a> </li>
+            </ul>
+        </div>
+    </div>
+    <div id="container">
+        <div id="header">
+        </div>
+        <div id="center">
+            <asp:ContentPlaceHolder ID="maincontent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>

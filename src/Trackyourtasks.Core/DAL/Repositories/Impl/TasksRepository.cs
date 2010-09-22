@@ -42,7 +42,7 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
             return _context.Tasks.Where(t => t.UserId == id).SingleOrDefault();
         }
 
-        public void SaveTask(Task task)
+        public void SaveTask(Task task) 
         {
             if (task.Id == 0)
             {

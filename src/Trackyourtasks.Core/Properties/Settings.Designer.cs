@@ -27,8 +27,8 @@ namespace Trackyourtasks.Core.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=D:\\Development\\Projects\\trackyourtasks." +
-            "net\\src\\trackyourtasks.net\\App_Data\\trackyourtasksdb.mdf;Integrated Security=Tru" +
-            "e;User Instance=True")]
+            "net\\src\\Trackyourtasks.Core\\DAL\\DB\\trackyourtasksdb.mdf;Integrated Security=True" +
+            ";User Instance=True")]
         public string trackyourtasksdbConnectionString {
             get {
                 return ((string)(this["trackyourtasksdbConnectionString"]));
