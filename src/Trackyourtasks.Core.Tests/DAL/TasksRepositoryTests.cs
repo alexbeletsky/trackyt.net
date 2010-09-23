@@ -168,6 +168,9 @@ namespace Trackyourtasks.Core.DAL.Tests
             {
                 //INIT
                 var repository = new TasksRepository(fixture.Setup.Context);
+                //TODO: I don't like that kind of tricks in unit tests, have to be corrected..
+                var currentTasksCount = repository.GetAllTasks().Count();
+
                 var tasks = new[] { 
                     new Task() { Description="test1" } , 
                     new Task() { Description="test2" }
@@ -183,7 +186,7 @@ namespace Trackyourtasks.Core.DAL.Tests
 
                 //POST
                 Assert.That(foundTasks, Is.Not.Null);
-                Assert.That(foundTasks.Count(), Is.EqualTo(2));
+                Assert.That(foundTasks.Count(), Is.EqualTo(currentTasksCount + 2));
             }
         }
     }

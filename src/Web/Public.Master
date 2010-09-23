@@ -25,7 +25,7 @@
             </ul>
             <ul class="right">
                 <li><a href="/Tracky/Dashboard"><span>my tasks</span></a> </li>
-                <li><a href="#"><span>registration</span></a> </li>
+                <li><a href="/Public/Registration"><span>registration</span></a> </li>
                 <li><a href="#"><span>support</span></a> </li>
             </ul>
         </div>
