@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FD2C3643
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Core", "src\Trackyourtasks.Core\Trackyourtasks.Core.csproj", "{631248AA-496F-40D3-9C1B-E30B09219D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Tests", "src\Trackyourtasks.Core.Tests\Trackyourtasks.Tests.csproj", "{AB9572AD-F8A7-450F-A753-DF2F9224A7F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyourtasks.Tests", "src\Trackyourtasks.Tests\Trackyourtasks.Tests.csproj", "{AB9572AD-F8A7-450F-A753-DF2F9224A7F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{04404BD2-39FF-411C-9C1E-F3B306C03ED7}"
 EndProject

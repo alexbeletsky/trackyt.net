@@ -55,17 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Public\RegistrationControllerTests.cs" />
-    <Compile Include="DAL\TasksRepositoryTests.cs" />
-    <Compile Include="DAL\UsersRepositoryTests.cs" />
+    <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
+    <Compile Include="Tests\DAL\TasksRepositoryTests.cs" />
+    <Compile Include="Tests\DAL\UsersRepositoryTests.cs" />
     <Compile Include="Framework\DbSetup.cs" />
     <Compile Include="Framework\FixtureInit.cs" />
     <Compile Include="HttpSimulator\HttpSimulator.cs" />
     <Compile Include="HttpSimulator\ReflectionHelper.cs" />
     <Compile Include="HttpSimulator\SimulatedHttpRequest.cs" />
-    <Compile Include="Mocks\RegistrationViewMock.cs" />
-    <Compile Include="Mocks\TasksRepositoryMock.cs" />
-    <Compile Include="Mocks\UsersRepositoryMock.cs" />
+    <Compile Include="Tests\Mocks\RegistrationViewMock.cs" />
+    <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />
+    <Compile Include="Tests\Mocks\UsersRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +79,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Integration\Pages\" />
+    <Folder Include="Tests\Integration\Pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
