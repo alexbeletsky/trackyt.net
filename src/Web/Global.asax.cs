@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Web.Mvc;
+using Web.Infrastructure;
 
 namespace Web
 {
@@ -28,8 +29,9 @@ namespace Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new TrackyControllerFactory());
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
         }
     }

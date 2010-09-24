@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.DataModel;
 using Trackyourtasks.Core.DAL.Repositories;
+using Trackyourtasks.Core.DAL.Extensions;
 
 namespace Web.Areas.Public.Controllers
 {
@@ -12,10 +13,10 @@ namespace Web.Areas.Public.Controllers
     {
         private IUsersRepository _repository;
 
-        //public RegistrationController(IUsersRepository repository)
-        //{
-        //    _repository = repository;
-        //}
+        public RegistrationController(IUsersRepository repository)
+        {
+            _repository = repository;
+        }
 
         public ActionResult Index()
         {
@@ -32,15 +33,41 @@ namespace Web.Areas.Public.Controllers
         [HttpPost]
         public ActionResult Register(Models.RegisterUserModel model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var user = new User()
-            //    {
-            //        Email = model.Email,
-            //        Password = model.Password
-            //    };
-            //}
-            return new EmptyResult();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //check if used already registered
+                    if (_repository.GetUsers().WithEmail(model.Email) != null)
+                    {
+                        ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
+                    }
+                    else
+                    {
+                        var user = new User()
+                        {
+                            Email = model.Email,
+                            Password = model.Password,
+                            SecretPhrase = "not-used"
+                        };
+
+                        _repository.SaveUser(user);
+                        return Redirect("/Tracky/Dashboard");
+                    }
+                }
+                catch (Exception e)
+                {
+                    return View("Fail", e);
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Fail(Exception exception)
+        {
+            return View(exception);
         }
     }
 }

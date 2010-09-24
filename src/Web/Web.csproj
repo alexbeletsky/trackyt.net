@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\tools\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\tools\Ninject\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -75,6 +78,8 @@
     <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
     <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
+    <Compile Include="Infrastructure\TrackyServices.cs" />
     <Compile Include="Public.Master.cs">
       <DependentUpon>Public.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -89,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
+    <Content Include="Areas\Public\Views\Registration\Fail.aspx" />
     <Content Include="Areas\Public\Views\Registration\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Register.aspx" />
     <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
