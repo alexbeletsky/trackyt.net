@@ -10,16 +10,6 @@ namespace Trackyourtasks.Core.Tests.Mocks
     {
         private IList<DAL.DataModel.Task> _tasksRepository = new List<DAL.DataModel.Task>();
 
-        public DAL.DataModel.Task FindTaskById(int id)
-        {
-            return _tasksRepository.Where(t => t.Id == id).SingleOrDefault();
-        }
-
-        public DAL.DataModel.Task FindTaskByUserId(int id)
-        {
-            return _tasksRepository.Where(t => t.UserId == id).SingleOrDefault();
-        }
-
         public void SaveTask(DAL.DataModel.Task task)
         {
             _tasksRepository.Add(task);
@@ -30,9 +20,9 @@ namespace Trackyourtasks.Core.Tests.Mocks
             _tasksRepository.Remove(task);
         }
 
-        public IEnumerable<DAL.DataModel.Task> GetAllTasks()
+        public IQueryable<DAL.DataModel.Task> GetTasks()
         {
-            throw new NotImplementedException();
+            return _tasksRepository.AsQueryable();
         }
     }
 }

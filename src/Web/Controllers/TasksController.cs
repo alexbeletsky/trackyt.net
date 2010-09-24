@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.Repositories.Impl;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.DAL.Extensions;
 
 namespace Web.Controllers
 {
@@ -15,7 +16,7 @@ namespace Web.Controllers
         public JsonResult GetAllTasks()
         {
             var repository = new TasksRepository();
-            return Json(repository.GetAllTasks().ToList());
+            return Json(repository.GetTasks().ToList());
         }
 
         [HttpPost]
@@ -27,7 +28,7 @@ namespace Web.Controllers
             {
                 if (task.Id != 0)
                 {
-                    var taskToUpdate = repository.FindTaskById(task.Id);
+                    var taskToUpdate = repository.GetTasks().WithId(task.Id);
                     taskToUpdate.ActualWork = task.ActualWork;
                     taskToUpdate.Description = task.Description;
                     taskToUpdate.Status = task.Status;
@@ -51,7 +52,7 @@ namespace Web.Controllers
             {
                 if (task.Id != 0)
                 {
-                    var taskToDelete = repository.FindTaskById(task.Id);
+                    var taskToDelete = repository.GetTasks().WithId(task.Id);
                     repository.DeleteTask(taskToDelete);
                 }
             }

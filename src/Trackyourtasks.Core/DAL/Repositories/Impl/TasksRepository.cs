@@ -27,19 +27,9 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
             _context = context;
         }
 
-        public IEnumerable<Task> GetAllTasks()
+        public IQueryable<Task> GetTasks()
         {
-            return _context.Tasks.Select(t => t);
-        }
-
-        public Task FindTaskById(int id)
-        {
-            return _context.Tasks.Where(t => t.Id == id).SingleOrDefault();
-        }
-
-        public Task FindTaskByUserId(int id)
-        {
-            return _context.Tasks.Where(t => t.UserId == id).SingleOrDefault();
+            return _context.Tasks;
         }
 
         public void SaveTask(Task task) 
