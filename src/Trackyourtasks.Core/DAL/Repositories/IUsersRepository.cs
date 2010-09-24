@@ -11,18 +11,10 @@ namespace Trackyourtasks.Core.DAL.Repositories
     public interface IUsersRepository
     {
         /// <summary>
-        /// Find user by Id
+        /// Gets all users from repository
         /// </summary>
-        /// <param name="id">Id</param>
         /// <returns></returns>
-        User FindUserById(int id);
-
-        /// <summary>
-        /// Find user by Email
-        /// </summary>
-        /// <param name="email">User email</param>
-        /// <returns></returns>
-        User FindUserByEmail(string email);
+        IQueryable<User> GetUsers();
 
         /// <summary>
         /// Save user

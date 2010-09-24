@@ -25,14 +25,9 @@ namespace Trackyourtasks.Core.Tests.Mocks
 
         #region IUsersRepository Members
 
-        public User FindUserById(int id)
+        public IQueryable<User> GetUsers()
         {
-            throw new NotImplementedException();
-        }
-
-        public User FindUserByEmail(string email)
-        {
-            return (from user in _users where user.Email == email select user).SingleOrDefault();
+            return _users.AsQueryable();
         }
 
         public void SaveUser(User user)

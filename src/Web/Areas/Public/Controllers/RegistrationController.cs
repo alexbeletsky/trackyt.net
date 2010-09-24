@@ -4,11 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.DAL.Repositories;
 
 namespace Web.Areas.Public.Controllers
 {
     public class RegistrationController : Controller
     {
+        private IUsersRepository _repository;
+
+        //public RegistrationController(IUsersRepository repository)
+        //{
+        //    _repository = repository;
+        //}
+
         public ActionResult Index()
         {
             return View();

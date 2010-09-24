@@ -24,14 +24,9 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 
         #region IUsersRepository Members
 
-        public User FindUserById(int id)
+        public IQueryable<User> GetUsers()
         {
-            return _context.Users.Where(u => u.Id == id).SingleOrDefault();
-        }
-
-        public User FindUserByEmail(string email)
-        {
-            return _context.Users.Where(u => u.Email == email).SingleOrDefault();
+            return _context.Users.AsQueryable();
         }
 
         public void SaveUser(User user)
