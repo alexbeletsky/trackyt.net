@@ -48,6 +48,11 @@ body {
 
 #navigation ul.right li { display: inline; margin-right: 4px; }
 
+validation 
+{
+    color: Red;
+}
+
 ul, ol 
 {
     list-style: none;

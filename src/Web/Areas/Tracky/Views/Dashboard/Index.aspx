@@ -15,7 +15,7 @@
             );
 
             function loadData(callback) {
-                $.post('/Tasks/GetAllTasks', null, callback, 'json');
+                $.post('/Tasks/GetAllTasks/' + $('#userId').val(), null, callback, 'json');
             }
 
             function submitData(data, callback) {
@@ -30,6 +30,8 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
+    <%: Html.TextBox("userId", ViewData["UserId"], new { type = "hidden" }) %>
+
     <div id="submit">
         <a id="submitData" href="#" class="submit">Submit</a>
     </div>

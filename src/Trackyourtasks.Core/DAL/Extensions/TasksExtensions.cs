@@ -13,9 +13,9 @@ namespace Trackyourtasks.Core.DAL.Extensions
             return tasks.Where(t => t.Id == id).SingleOrDefault();
         }
 
-        public static Task WithUserId(this IQueryable<Task> tasks, int id)
+        public static IQueryable<Task> WithUserId(this IQueryable<Task> tasks, int id)
         {
-            return tasks.Where(t => t.UserId == id).SingleOrDefault();
+            return tasks.Where(t => t.UserId == id);
         }
 
     }

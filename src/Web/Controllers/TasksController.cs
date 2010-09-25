@@ -13,10 +13,10 @@ namespace Web.Controllers
     public class TasksController : Controller
     {
         [HttpPost]
-        public JsonResult GetAllTasks()
+        public JsonResult GetAllTasks(string id)
         {
             var repository = new TasksRepository();
-            return Json(repository.GetTasks().ToList());
+            return Json(repository.GetTasks().WithUserId(Convert.ToInt32(id)).ToList());
         }
 
         [HttpPost]

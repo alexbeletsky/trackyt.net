@@ -72,12 +72,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Public\Controllers\LoginController.cs" />
     <Compile Include="Areas\Public\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Public\Models\LoginModel.cs" />
     <Compile Include="Areas\Public\Models\RegisterUserModel.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
     <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Infrastructure\Security\TrackyFormsAuthentication.cs" />
+    <Compile Include="Infrastructure\Security\IFormsAuthentication.cs" />
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
     <Compile Include="Infrastructure\TrackyServices.cs" />
     <Compile Include="Public.Master.cs">
@@ -94,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
+    <Content Include="Areas\Public\Views\Login\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Fail.aspx" />
     <Content Include="Areas\Public\Views\Registration\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Register.aspx" />

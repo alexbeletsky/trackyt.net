@@ -5,6 +5,7 @@ using System.Text;
 using Ninject.Modules;
 using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Repositories.Impl;
+using Web.Infrastructure.Security;
 
 namespace Web.Infrastructure
 {
@@ -13,6 +14,7 @@ namespace Web.Infrastructure
         public override void Load()
         {
             Bind<IUsersRepository>().To<UsersRepository>();
+            Bind<IFormsAuthentication>().To<TrackyFormsAuthentication>();
         }
     }
 }
