@@ -83,7 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\Integration\Pages\" />
+    <Folder Include="Tests\Controllers\API\" />
+    <Folder Include="Tests\Integration\API\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

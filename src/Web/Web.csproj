@@ -79,7 +79,7 @@
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
-    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="API\v1\ApiV1Controller.cs" />
     <Compile Include="Infrastructure\Security\TrackyFormsAuthentication.cs" />
     <Compile Include="Infrastructure\Security\IFormsAuthentication.cs" />
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />

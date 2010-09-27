@@ -18,12 +18,19 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Default map
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            //API v1 map
+            routes.MapRoute(
+                "ApiV1",
+                "API/v1/{action}/{id}",
+                new { controller = "ApiV1", id = UrlParameter.Optional }
+            );
         }
 
         protected void Application_Start()

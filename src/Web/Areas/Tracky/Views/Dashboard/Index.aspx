@@ -15,15 +15,15 @@
             );
 
             function loadData(callback) {
-                $.post('/Tasks/GetAllTasks/' + $('#userId').val(), null, callback, 'json');
+                $.post('/API/v1/GetAllTasks/' + $('#userId').val(), null, callback, 'json');
             }
 
             function submitData(data, callback) {
-                $.postJson('/Tasks/Submit', data, callback);
+                $.postJson('/API/v1/Submit', data, callback);
             }
 
             function deleteData(data, callback) {
-                $.postJson('/Tasks/Delete', data, callback);
+                $.postJson('/API/v1/Delete', data, callback);
             }
         }
         );

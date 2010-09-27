@@ -9,8 +9,10 @@ using Trackyourtasks.Core.DAL.Extensions;
 
 namespace Web.Controllers
 {
-    //TODO: write tests!
-    public class TasksController : Controller
+    //TODO: write tests for TasksController
+    //TODO: write a model class for Task object
+    //TODO: provide an API with registered route
+    public class ApiV1Controller : Controller
     {
         [HttpPost]
         public JsonResult GetAllTasks(string id)
@@ -19,11 +21,11 @@ namespace Web.Controllers
             return Json(repository.GetTasks().WithUserId(Convert.ToInt32(id)).ToList());
         }
 
+        //TODO: fix it, to receive UserId
         [HttpPost]
         public JsonResult Submit(IList<Task> tasks)
         {
             var repository = new TasksRepository();
-
             foreach (var task in tasks)
             {
                 if (task.Id != 0)
@@ -44,6 +46,7 @@ namespace Web.Controllers
             return Json(null);
         }
 
+        //TODO: fix it, to receive UserId
         [HttpPost]
         public JsonResult Delete(IList<Task> tasks)
         {
