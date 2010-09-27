@@ -110,6 +110,7 @@
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
     <Content Include="Scripts\Tracky\tasksgrid2.js" />
+    <Content Include="Scripts\Tracky\trackycontroller.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

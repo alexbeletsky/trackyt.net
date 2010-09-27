@@ -3,31 +3,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Tracky.net | Dashboard</title>
     <script type="text/javascript" src="/Scripts/Tracky/tasksgrid2.js"></script>
-    <script type="text/javascript">
-        $().ready(function () {
-            $('#tasks').tasksgrid(
-                'newTaskName',
-                'createTask',
-                'submitData',
-                loadData,
-                submitData,
-                deleteData
-            );
-
-            function loadData(callback) {
-                $.post('/API/v1/GetAllTasks/' + $('#userId').val(), null, callback, 'json');
-            }
-
-            function submitData(data, callback) {
-                $.postJson('/API/v1/Submit', data, callback);
-            }
-
-            function deleteData(data, callback) {
-                $.postJson('/API/v1/Delete', data, callback);
-            }
-        }
-        );
-    </script>
+    <script type="text/javascript" src="/Scripts/Tracky/trackycontroller.js"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <%: Html.TextBox("userId", ViewData["UserId"], new { type = "hidden" }) %>
