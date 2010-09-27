@@ -29,7 +29,7 @@ namespace Web
             routes.MapRoute(
                 "ApiV1",
                 "API/v1/{action}/{id}",
-                new { controller = "ApiV1", id = UrlParameter.Optional }
+                new { controller = "ApiV1", id = 0 }
             );
         }
 

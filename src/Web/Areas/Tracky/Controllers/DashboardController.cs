@@ -20,6 +20,7 @@ namespace Web.Areas.Tracky.Controllers
             _authentication = authentication;
         }
 
+        //TODO: add unit tests
         [Authorize]
         public ActionResult Index()
         {

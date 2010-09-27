@@ -9,16 +9,19 @@ using Trackyourtasks.Core.DAL.Extensions;
 
 namespace Web.Controllers
 {
+    //TODO: error handling
+    //TODO: authentication (try to unit test)
     //TODO: write tests for TasksController
     //TODO: write a model class for Task object
     //TODO: provide an API with registered route
+    [Authorize]
     public class ApiV1Controller : Controller
     {
         [HttpPost]
-        public JsonResult GetAllTasks(string id)
+        public JsonResult GetAllTasks(int id)
         {
             var repository = new TasksRepository();
-            return Json(repository.GetTasks().WithUserId(Convert.ToInt32(id)).ToList());
+            return Json(repository.GetTasks().WithUserId(id).ToList());
         }
 
         //TODO: fix it, to receive UserId

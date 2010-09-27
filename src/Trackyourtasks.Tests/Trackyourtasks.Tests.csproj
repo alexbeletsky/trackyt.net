@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\Controllers\API\ApiV1ControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
     <Compile Include="Tests\DAL\TasksRepositoryTests.cs" />
@@ -83,7 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\Controllers\API\" />
     <Folder Include="Tests\Integration\API\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

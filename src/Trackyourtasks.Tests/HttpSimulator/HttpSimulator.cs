@@ -490,7 +490,6 @@ namespace R1UnitTest.HtttpSimulator
         /// <returns></returns>
         public HttpSimulator SetFormVariable(string name, string value)
         {
-            //TODO: Change this ordering requirement.
             if (this.workerRequest != null)
                 throw new InvalidOperationException("Cannot set form variables after calling Simulate().");
 
@@ -507,7 +506,6 @@ namespace R1UnitTest.HtttpSimulator
         /// <returns></returns>
         public HttpSimulator SetHeader(string name, string value)
         {
-            //TODO: Change this ordering requirement.
             if (this.workerRequest != null)
                 throw new InvalidOperationException("Cannot set headers after calling Simulate().");
 
