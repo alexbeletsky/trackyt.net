@@ -6,14 +6,14 @@
     }
 
     function submitData(data, callback) {
-        $.postJson('/API/v1/Submit', data, callback);
+        $.postJson('/API/v1/Submit/' + userId, data, callback);
     }
 
     function deleteData(data, callback) {
-        $.postJson('/API/v1/Delete', data, callback);
+        $.postJson('/API/v1/Delete/' + userId, data, callback);
     }
 
-    $('#tasks').tasksgrid(
+    $('#tasks').tracky(
                 'newTaskName',
                 'createTask',
                 'submitData',

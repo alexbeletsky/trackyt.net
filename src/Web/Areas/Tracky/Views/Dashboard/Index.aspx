@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Tracky.net | Dashboard</title>
-    <script type="text/javascript" src="/Scripts/Tracky/tasksgrid2.js"></script>
+    <script type="text/javascript" src="/Scripts/Tracky/tracky.js"></script>
     <script type="text/javascript" src="/Scripts/Tracky/trackycontroller.js"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">

@@ -35,9 +35,9 @@ namespace Web
 
         protected void Application_Start()
         {
+            TrackyMapping.SetupMapping();
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
-
             ControllerBuilder.Current.SetControllerFactory(new TrackyControllerFactory());
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
         }

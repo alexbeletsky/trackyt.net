@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\tools\AutoMapper\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\tools\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
@@ -71,6 +74,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
     <Compile Include="Areas\Public\Controllers\LoginController.cs" />
     <Compile Include="Areas\Public\Controllers\RegistrationController.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Infrastructure\Security\TrackyFormsAuthentication.cs" />
     <Compile Include="Infrastructure\Security\IFormsAuthentication.cs" />
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
+    <Compile Include="Infrastructure\TrackyMapping.cs" />
     <Compile Include="Infrastructure\TrackyServices.cs" />
     <Compile Include="Public.Master.cs">
       <DependentUpon>Public.Master</DependentUpon>
@@ -109,7 +114,7 @@
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
-    <Content Include="Scripts\Tracky\tasksgrid2.js" />
+    <Content Include="Scripts\Tracky\tracky.js" />
     <Content Include="Scripts\Tracky\trackycontroller.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -9,6 +9,7 @@ using Trackyourtasks.Core.DAL.Extensions;
 
 namespace Web.Areas.Public.Controllers
 {
+    //TODO: add functionality for registration of temporary user
     public class RegistrationController : Controller
     {
         private IUsersRepository _repository;

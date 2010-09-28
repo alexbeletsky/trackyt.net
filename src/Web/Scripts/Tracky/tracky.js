@@ -1,9 +1,14 @@
 ﻿(function ($) {
-    $.fn.tasksgrid = function (newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
+    //TODO: BUG - if new task is created, updated, submited.. and deleted then (with no reload) 
+    //  it won't be deleted on server, because Id remains null
+
+    //TODO: optimize - just created and deleted tasks (e.g. id = 0) should not be send for deletion
+
+    $.fn.tracky = function (newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
         // Global config
         $.blockUI.defaults.message = null;
 
-        function tasksgrid(tasksDiv) {
+        function tracky(tasksDiv) {
             var object = this;
 
             this.tasksDiv = tasksDiv;
@@ -47,14 +52,14 @@
             }
         }
 
-        tasksgrid.prototype.submit = function () {
-            var tasksgrid = this;
+        tracky.prototype.submit = function () {
+            var tracky = this;
 
             function getDirtyTasks() {
                 var dirty = [];
-                for (var task in tasksgrid.tasks) {
-                    if (tasksgrid.tasks[task].markedDirty()) {
-                        dirty.push(tasksgrid.tasks[task]);
+                for (var task in tracky.tasks) {
+                    if (tracky.tasks[task].markedDirty()) {
+                        dirty.push(tracky.tasks[task]);
                     }
                 }
                 return dirty;
@@ -76,14 +81,14 @@
             $.blockUI();
 
             if (dataToSubmit.length > 0) {
-                tasksgrid.submitData(dataToSubmit, onDataSubmitted);
+                tracky.submitData(dataToSubmit, onDataSubmitted);
             } else {
                 onDataSubmitted();
             }
 
             function onDataSubmitted() {
                 if (dataToDelete.length > 0) {
-                    tasksgrid.deleteData(dataToDelete, onCompleted);
+                    tracky.deleteData(dataToDelete, onCompleted);
                 } else {
                     onCompleted();
                 }
@@ -98,35 +103,35 @@
             $.unblockUI();
         }
 
-        tasksgrid.prototype.addTask = function (data, desc) {
+        tracky.prototype.addTask = function (data, desc) {
             this.tasks.push(new task(this, data, this.tasks.length, desc));
         }
 
-        tasksgrid.prototype.removeTask = function (task) {
+        tracky.prototype.removeTask = function (task) {
             delete this.tasks[task];
             $('#' + task.id).remove();
         }
 
-        function task(tasksgrid, data, index, desc) {
+        function task(tracky, data, index, desc) {
             this.id = 'taskDiv-' + index;
             this.data = data;
-            this.tasksgrid = tasksgrid;
+            this.tracky = tracky;
             this.sections = [];
             this.description = desc;
             this.dirty = data == null ? true : false;
             this.markedForRemove = false;
 
-            tasksgrid.tasksDiv.append('<div id="' + this.id + '" class="task"></div>');
+            tracky.tasksDiv.append('<div id="' + this.id + '" class="task"></div>');
             this.div = $('#' + this.id);
             this.div.hide();
 
             //div sections
-            this.sections['index'] = new indexSection(tasksgrid, this, index, this.sections.length);
-            this.sections['description'] = new descriptionSection(tasksgrid, this, index, this.sections.length);
-            //this.sections.push(new statusSection(tasksgrid, this, index, this.sections.length));
-            this.sections['delete'] = new deleteSection(tasksgrid, this, index, this.sections.length);
-            this.sections['start'] = new startSection(tasksgrid, this, index, this.sections.length);
-            this.sections['timer'] = new actualWorkSection(tasksgrid, this, index, this.sections.length);
+            this.sections['index'] = new indexSection(tracky, this, index, this.sections.length);
+            this.sections['description'] = new descriptionSection(tracky, this, index, this.sections.length);
+            //this.sections.push(new statusSection(tracky, this, index, this.sections.length));
+            this.sections['delete'] = new deleteSection(tracky, this, index, this.sections.length);
+            this.sections['start'] = new startSection(tracky, this, index, this.sections.length);
+            this.sections['timer'] = new actualWorkSection(tracky, this, index, this.sections.length);
 
             this.div.fadeIn('fast');
         }
@@ -142,9 +147,8 @@
         task.prototype.object = function () {
             var object = {};
 
-            //set hidden fields
+            //set hidden fields (0 - newly created task)
             object['Id'] = this.data == null ? 0 : this.data['Id'];
-            object['UserId'] = this.data == null ? 0 : this.data['UserId'];
 
             //set fields from UI
             for (var section in this.sections) {
@@ -163,14 +167,14 @@
         task.prototype.remove = function () {
             this.markedForRemove = true;
             var task = this;
-            this.div.fadeOut("slow", function () { task.tasksgrid.removeTask(task); });
+            this.div.fadeOut("slow", function () { task.tracky.removeTask(task); });
         }
 
         task.prototype.markedRemove = function () {
             return this.markedForRemove;
         }
 
-        function indexSection(tasksgrid, task, index, position) {
+        function indexSection(tracky, task, index, position) {
             this.id = 'indexSection-' + index;
             this.index = task.data == null ? index : task.data[this.property()];
 
@@ -185,7 +189,7 @@
             return this.index;
         }
 
-        function descriptionSection(tasksgrid, task, index, position) {
+        function descriptionSection(tracky, task, index, position) {
             this.id = 'descriptionSection-' + index;
             this.description = task.data == null ? task.description : task.data[this.property()];
 
@@ -201,7 +205,7 @@
         }
 
 
-        function statusSection(tasksgrid, task, index, position) {
+        function statusSection(tracky, task, index, position) {
             this.id = 'statusSection-' + index;
             var status = task.data == null ? 0 : task.data[this.property()] + 0;
 
@@ -244,7 +248,7 @@
             return selected;
         }
 
-        function actualWorkSection(tasksgrid, task, index, position) {
+        function actualWorkSection(tracky, task, index, position) {
             this.id = 'actualWork-' + index;
             this.counter = task.data == null ? 0 : task.data[this.property()] + 0;
             this.period = 1000;
@@ -301,7 +305,7 @@
             return this.counter;
         }
 
-        function startSection(tasksgrid, task, index, position) {
+        function startSection(tracky, task, index, position) {
             this.id = 'start-' + index;
             this.ref = 'a#' + this.id;
 
@@ -329,7 +333,7 @@
             }
         }
 
-        function deleteSection(tasksgrid, task, index, position) {
+        function deleteSection(tracky, task, index, position) {
             this.id = 'delete-' + index;
 
             task.div.append('<span class="right">' + createButton(this.id) + '</span>');
@@ -347,7 +351,7 @@
 
 
         return this.each(function () {
-            return new tasksgrid($(this));
+            return new tracky($(this));
         });
     }
 })(jQuery);
