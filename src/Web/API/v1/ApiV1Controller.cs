@@ -36,7 +36,6 @@ namespace Web.Controllers
             return Json(tasksQuery.Select(t => _mapper.Map<Task, TaskDto>(t)).ToList());
         }
 
-        //TODO: fix it, to receive UserId
         [HttpPost]
         public JsonResult Submit(int id, IList<TaskDto> tasks)
         {
@@ -54,7 +53,6 @@ namespace Web.Controllers
             return Json(null);
         }
 
-        //TODO: fix it, to receive UserId
         [HttpPost]
         public JsonResult Delete(int id, IList<TaskDto> tasks)
         {

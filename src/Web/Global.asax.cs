@@ -18,6 +18,13 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Global map
+            routes.MapRoute(
+                "Home",
+                "",
+                new { controller = "Home", action = "Index" }
+            );
+
             //Default map
             routes.MapRoute(
                 "Default", // Route name

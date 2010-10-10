@@ -91,5 +91,24 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
             //assert
             Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("The user name or password provided is incorrect."));
         }
+
+        [Test]
+        public void Login_Post_Fail_WrongPassword()
+        {
+            //arrange
+            var auth = new Mock<IFormsAuthentication>();
+            var repository = new Mocks.UsersRepositoryMock();
+            var controller = new LoginController(repository, auth.Object);
+            var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
+
+            repository.SaveUser(new DAL.DataModel.User() { Email = "a@a.com", Password = "yyy" });
+
+            //act
+            var result = controller.Login(model, "somewhere") as ViewResult;
+
+            //assert
+            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("The user name or password provided is incorrect."));
+
+        }
     }
 }
