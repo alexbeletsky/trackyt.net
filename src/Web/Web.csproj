@@ -114,6 +114,7 @@
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
+    <Content Include="Scripts\Tracky\registration-validation.js" />
     <Content Include="Scripts\Tracky\tracky.js" />
     <Content Include="Scripts\Tracky\trackycontroller.js" />
     <Content Include="Web.config" />
@@ -169,12 +170,13 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>33000</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/Tracky</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/Tracky</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

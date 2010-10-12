@@ -5,10 +5,10 @@
 <head runat="server">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="Content/public.css" type="text/css" media="all" />
-    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.blockUI.js" type="text/javascript"></script>
-    <script src="/Scripts/json2.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.postJson.js" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.blockUI.js") %>"  type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/json2.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.postJson.js") %>" type="text/javascript"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
         <title>Tracky.net | Main</title>
@@ -18,14 +18,14 @@
     <div id="navigation-container">
         <div id="navigation">
             <ul class="left">
-                <li><a href="/Public/Home" class="active"><span>home</span></a> </li>
+                <li><%: Html.ActionLink("home", "Index", "Home") %></li>
                 <li><a href="#"><span>product tour</span></a> </li>
                 <li><a href="#"><span>blog</span></a> </li>
                 <li><a href="#"><span>about us</span></a> </li>
             </ul>
             <ul class="right">
-                <li><a href="/Public/Login"><span>login</span></a> </li>
-                <li><a href="/Public/Registration"><span>registration</span></a> </li>
+                <li><%: Html.ActionLink("login", "Index", "Login") %></li>
+                <li><%: Html.ActionLink("home", "Index", "Registration") %> </li>
                 <li><a href="#"><span>support</span></a> </li>
             </ul>
         </div>

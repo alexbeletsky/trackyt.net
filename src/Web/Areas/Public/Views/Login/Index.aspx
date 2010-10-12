@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Public.Master" Inherits="System.Web.Mvc.ViewPage<Web.Areas.Public.Models.LoginModel>" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <title>Tracky.net | Login</title>
-</asp:Content>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <% using (Html.BeginForm(new { action = "Login" }))
        {%>
@@ -18,4 +14,7 @@
         </p>
         <input type="submit" value="Login" />
     <% } %>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>Tracky.net | Login</title>
 </asp:Content>

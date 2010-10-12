@@ -37,7 +37,7 @@ namespace Web.Areas.Public.Controllers
                 if (user != null && user.Password == model.Password)
                 {
                     _authentication.SetAuthCookie(model.Email, false);
-                    return Redirect(returnUrl ?? "/Tracky/Dashboard");
+                    return Redirect(returnUrl ?? "~/Tracky/Dashboard");
                 }
                 else
                 {

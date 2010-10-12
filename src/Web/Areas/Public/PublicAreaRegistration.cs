@@ -15,8 +15,8 @@ namespace Web.Areas.Public
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Public_default",
-                "Public/{controller}/{action}/{id}",
+                "Default",
+                "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

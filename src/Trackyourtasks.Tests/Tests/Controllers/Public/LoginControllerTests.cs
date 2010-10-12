@@ -54,7 +54,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
             
             //assert
             auth.Verify(a => a.SetAuthCookie("a@a.com", false));
-            Assert.That(result.Url, Is.EqualTo("/Tracky/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/Tracky/Dashboard"));
         }
 
         [Test]
@@ -108,7 +108,6 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
 
             //assert
             Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("The user name or password provided is incorrect."));
-
         }
     }
 }

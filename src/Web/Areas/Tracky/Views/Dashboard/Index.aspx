@@ -2,11 +2,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Tracky.net | Dashboard</title>
-    <script type="text/javascript" src="/Scripts/Tracky/tracky.js"></script>
-    <script type="text/javascript" src="/Scripts/Tracky/trackycontroller.js"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky.js") %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/trackycontroller.js") %>"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <%: Html.TextBox("userId", ViewData["UserId"], new { type = "hidden" }) %>
+    <%: Html.TextBox("api", ViewData["Api"], new { type = "hidden" }) %>
 
     <div id="submit">
         <a id="submitData" href="#" class="submit">Submit</a>
