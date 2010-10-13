@@ -7,6 +7,7 @@ using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Repositories.Impl;
 using Web.Infrastructure.Security;
 using AutoMapper;
+using Web.Infrastructure.Helpers;
 
 namespace Web.Infrastructure
 {
@@ -17,6 +18,7 @@ namespace Web.Infrastructure
             Bind<IUsersRepository>().To<UsersRepository>();
             Bind<ITasksRepository>().To<TasksRepository>();
             Bind<IFormsAuthentication>().To<TrackyFormsAuthentication>();
+            Bind<IPathHelper>().To<PathHelper>();
             Bind<IMappingEngine>().ToConstant(Mapper.Engine);
         }
     }

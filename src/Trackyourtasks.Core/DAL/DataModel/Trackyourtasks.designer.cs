@@ -91,7 +91,7 @@ namespace Trackyourtasks.Core.DAL.DataModel
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id = default(int);
+		private int _Id;
 		
 		private string _Email;
 		
@@ -105,6 +105,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
     partial void OnSecretPhraseChanging(string value);
@@ -126,6 +128,17 @@ namespace Trackyourtasks.Core.DAL.DataModel
 			get
 			{
 				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
 			}
 		}
 		
