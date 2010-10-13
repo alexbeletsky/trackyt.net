@@ -17,5 +17,10 @@ namespace Web.Infrastructure.Security
         {
             return HttpContext.Current.User.Identity.Name;
         }
+
+        public string GeneratePassword()
+        {
+            return Membership.GeneratePassword(8, 1);
+        }
     }
 }

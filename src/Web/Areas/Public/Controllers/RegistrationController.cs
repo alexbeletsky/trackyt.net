@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.DataModel;
 using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Extensions;
+using Web.Infrastructure.Security;
 
 namespace Web.Areas.Public.Controllers
 {
@@ -13,10 +14,12 @@ namespace Web.Areas.Public.Controllers
     public class RegistrationController : Controller
     {
         private IUsersRepository _repository;
+        private IFormsAuthentication _forms;
 
-        public RegistrationController(IUsersRepository repository)
+        public RegistrationController(IUsersRepository repository, IFormsAuthentication forms)
         {
             _repository = repository;
+            _forms = forms;
         }
 
         public ActionResult Index()
@@ -45,15 +48,7 @@ namespace Web.Areas.Public.Controllers
                     }
                     else
                     {
-                        var user = new User()
-                        {
-                            Email = model.Email,
-                            Password = model.Password,
-                            SecretPhrase = "not-used"
-                        };
-
-                        _repository.SaveUser(user);
-                        return Redirect("/Tracky/Dashboard");
+                        return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
                     }
                 }
                 catch (Exception e)
@@ -69,6 +64,56 @@ namespace Web.Areas.Public.Controllers
         public ActionResult Fail(Exception exception)
         {
             return View(exception);
+        }
+
+        [HttpGet]
+        public ActionResult QuickStart()
+        {
+            try
+            {
+                var email = GenerateEmail();
+                var password = GeneratePassword();
+
+                return CreateNewUserAndRedirectToDashboard(email, password);
+            }
+            catch (Exception e)
+            {
+                return View("Fail", e);
+            }
+        }
+
+        private string GeneratePassword()
+        {
+            return _forms.GeneratePassword();
+        }
+
+        private string GenerateEmail()
+        {
+            var id = GetLastId();
+            var email = "temp" + id + "@tracky.net";
+            
+            return email;
+        }
+
+        private int GetLastId()
+        {
+            //return new Random(DateTime.Now.Millisecond).Next(10000);
+            return _repository.GetUsers().Count();
+        }
+
+        private RedirectResult CreateNewUserAndRedirectToDashboard(string email, string password)
+        {
+            var user = new User
+            {
+                Email = email,
+                Password = password,
+                SecretPhrase = "not-used"
+            };
+
+            _repository.SaveUser(user);
+            _forms.SetAuthCookie(email, false);
+
+            return Redirect("~/Tracky/Dashboard");
         }
     }
 }

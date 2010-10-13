@@ -20,7 +20,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Tracky.net | Register new user</title>
-    <script src="Scripts/Tracky/registration-validation.js" type="text/javascript">
+    <script src="<%: Url.Content("~/Scripts/Tracky/registration-validation.js") %>" type="text/javascript">
     </script>
 </asp:Content>
 

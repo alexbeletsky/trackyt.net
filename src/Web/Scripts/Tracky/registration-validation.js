@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    alert('ready');
     $("#RegistrationForm").submit(submit);
 }
 );

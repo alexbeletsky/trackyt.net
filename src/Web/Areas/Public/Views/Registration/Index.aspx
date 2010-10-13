@@ -5,7 +5,7 @@
     <div id="registration">
         <p>
         Dear guest, you have several options of Tracky.net usage. You can either proceed to <%: Html.ActionLink("registration", "Register") %> page,
-        or start to use service <%: Html.ActionLink("immediately", "Use") %>. 
+        or start to use service <%: Html.ActionLink("immediately", "QuickStart") %>. 
         </p>
         <p>
         <strong>Please note:</strong> if you are starting up without registration, we create a temporary user for you but all your data will be kept

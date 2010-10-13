@@ -25,7 +25,7 @@
             </ul>
             <ul class="right">
                 <li><%: Html.ActionLink("login", "Index", "Login") %></li>
-                <li><%: Html.ActionLink("home", "Index", "Registration") %> </li>
+                <li><%: Html.ActionLink("registration", "Index", "Registration") %> </li>
                 <li><a href="#"><span>support</span></a> </li>
             </ul>
         </div>
