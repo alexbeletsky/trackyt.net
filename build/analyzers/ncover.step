@@ -19,8 +19,8 @@
   <property name="folder.build_artifacts" value="build_artifacts" overwrite="false" />
   <property name="dirs.build_artifacts" value="${path::get-full-path(dirs.build)}${path.separator}${folder.build_artifacts}" />
   <property name="project.name" value="__SOLUTION_NAME_WITHOUT_SLN_EXTENSION__" overwrite="false" />
-  <property name="test.framework" value="mbunit" overwrite="false" />
-  <property name="microsoft.framework" value="net-3.5" overwrite="false" />
+  <property name="test.framework" value="nunit" overwrite="false" />
+  <property name="microsoft.framework" value="net-4.0" overwrite="false" />
   <property name="number.satisfactory_coverage" value="85" overwrite="false" />
   <property name="fail.if_ncover_fails" value="false" overwrite="false" />
   <property name="folder.references" value="lib" overwrite="false" />

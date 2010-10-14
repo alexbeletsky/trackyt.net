@@ -18,7 +18,7 @@
   <property name="dirs.build.code" value="${dirs.build}${path.separator}${folder.app.drop}" overwrite="false" />
   <property name="folder.references" value="lib" overwrite="false" />
   <property name="dirs.lib" value="${dirs.current}${path.separator}${path.to.toplevel}${path.separator}${folder.references}" overwrite="false" />
-  <property name="microsoft.framework" value="net-3.5" overwrite="false" />
+  <property name="microsoft.framework" value="net-4.0" overwrite="false" />
   <property name="folder.build_artifacts" value="build_artifacts" overwrite="false" />
   <property name="dirs.build_artifacts" value="${path::get-full-path(dirs.build)}${path.separator}${folder.build_artifacts}" />
   <property name="dirs.test_results" value="${dirs.build_artifacts}${path.separator}nunit" overwrite="false" />
@@ -151,6 +151,7 @@
           workingdir="${dirs.build.code}"
           failonerror="true">
         <arg value="${args.test_runner}" />
+        <arg value="/framework=${microsoft.framework}" />
       </exec>
       <property name="tests.ran" value="true" />
     </if>

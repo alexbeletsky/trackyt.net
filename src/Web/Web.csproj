@@ -38,7 +38,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
-      <HintPath>..\tools\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\tools\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\tools\Ninject\Ninject.dll</HintPath>
@@ -74,6 +74,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionVersion.cs">
+      <Link>Properties\SolutionVersion.cs</Link>
+    </Compile>
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
     <Compile Include="Areas\Public\Controllers\LoginController.cs" />
