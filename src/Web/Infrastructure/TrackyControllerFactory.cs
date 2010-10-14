@@ -7,6 +7,7 @@ using Ninject;
 
 namespace Web.Infrastructure
 {
+    [CoverageExcludeAttribute]
     public class TrackyControllerFactory : DefaultControllerFactory
     {
         private IKernel _kernel = new StandardKernel(new TrackyServices());

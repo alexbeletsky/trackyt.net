@@ -7,6 +7,7 @@ using Trackyourtasks.Core.DAL.DataModel;
 
 namespace Web.Infrastructure
 {
+    [CoverageExcludeAttribute]
     public class TrackyMapping 
     {
         public static void SetupMapping()

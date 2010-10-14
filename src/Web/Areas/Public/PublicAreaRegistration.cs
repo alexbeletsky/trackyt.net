@@ -2,6 +2,7 @@
 
 namespace Web.Areas.Public
 {
+    [CoverageExcludeAttribute]
     public class PublicAreaRegistration : AreaRegistration
     {
         public override string AreaName

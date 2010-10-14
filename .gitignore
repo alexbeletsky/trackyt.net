@@ -24,6 +24,7 @@ _ReSharper*
 *.vsmdi
 *.testsettings
 *lint*
+*.log
 
 TestResult.xml
 submit.xml

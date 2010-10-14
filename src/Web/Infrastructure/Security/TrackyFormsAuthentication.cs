@@ -6,6 +6,7 @@ using System.Web.Security;
 
 namespace Web.Infrastructure.Security
 {
+    [CoverageExcludeAttribute]
     public class TrackyFormsAuthentication : IFormsAuthentication
     {
         public void SetAuthCookie(string email, bool persistant)

@@ -2,6 +2,7 @@
 
 namespace Web.Areas.Tracky
 {
+    [CoverageExcludeAttribute]
     public class TrackyAreaRegistration : AreaRegistration
     {
         public override string AreaName

@@ -118,6 +118,7 @@
 
   <target name="ncover" if="${file::exists(app.ncover) and file::exists(app.ncover.tester)}" >
     <echo message="Attempting to run NCover. Creating file at ${file.ncover_results} and logging at ${file.ncover_log}." />
+    <echo message="Assemblies directory: ${dirs.build.code}" />
     <ncover program="${app.ncover}"
         commandLineExe="${app.ncover.tester}"
         commandLineArgs="${args.test_runner}"
@@ -129,11 +130,6 @@
         failonerror="false"
         verbose="true">
       <assemblies basedir="${dirs.build.code}">
-        <exclude name="${dirs.build.code}${path.separator}lib${path.separator}**" />
-        <exclude name="${dirs.build.code}${path.separator}**${path.separator}TestFu.dll" />
-        <exclude name="${dirs.build.code}${path.separator}**${path.separator}*Test*dll" />
-        <exclude name="${dirs.build.code}${path.separator}**${path.separator}*Spec*dll" />
-        <include name="${dirs.build.code}${path.separator}**${path.separator}${project.name}*.dll" />
       </assemblies>
     </ncover>
   </target>

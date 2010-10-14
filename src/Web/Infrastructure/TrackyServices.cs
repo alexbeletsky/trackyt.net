@@ -11,6 +11,7 @@ using Web.Infrastructure.Helpers;
 
 namespace Web.Infrastructure
 {
+    [CoverageExcludeAttribute]
     class TrackyServices : NinjectModule
     {
         public override void Load()
