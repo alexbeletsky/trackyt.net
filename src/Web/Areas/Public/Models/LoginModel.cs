@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Web.Areas.Public.Models
 {
+    //TODO: add validation data notation
     public class LoginModel
     {
         public string Email { get; set; }
