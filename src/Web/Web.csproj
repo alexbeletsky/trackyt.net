@@ -34,14 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
-      <HintPath>..\..\tools\AutoMapper\AutoMapper.dll</HintPath>
+      <HintPath>..\..\lib\AutoMapper\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
-      <HintPath>..\..\tools\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\lib\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
-      <HintPath>..\..\tools\Ninject\Ninject.dll</HintPath>
+      <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
