@@ -44,10 +44,10 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="DAL\DataModel\Trackyourtasks.designer.cs">
+    <Compile Include="DAL\DataModel\Tracky1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Trackyourtasks.dbml</DependentUpon>
+      <DependentUpon>Tracky.dbml</DependentUpon>
     </Compile>
     <Compile Include="DAL\Extensions\TasksExtensions.cs" />
     <Compile Include="DAL\Extensions\UsersExtrensions.cs" />
@@ -66,9 +66,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="DAL\DataModel\Trackyourtasks.dbml">
+    <None Include="DAL\DataModel\Tracky.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Trackyourtasks.designer.cs</LastGenOutput>
+      <LastGenOutput>Tracky1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -79,9 +79,10 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="DAL\DataModel\Trackyourtasks.dbml.layout">
-      <DependentUpon>Trackyourtasks.dbml</DependentUpon>
+    <None Include="DAL\DataModel\Tracky.dbml.layout">
+      <DependentUpon>Tracky.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

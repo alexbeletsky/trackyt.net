@@ -8,7 +8,7 @@
   <property name="server.msmq" value="localhost" />
   <property name="server.database" value="(local)" />
 
-  <property name="database.name" value="__REPLACE__" />
+  <property name="database.name" value="tracky" />
   <property name="log.level" value="DEBUG" />
   <property name="app.user.name" value="__REPLACE__" />
   <property name="app.user.password" value="__REPLACE__" />
@@ -23,7 +23,7 @@
 
   <!-- database deployment -->
   <property name="dirs.db" value="..\..\${folder.database}" />
-  <property name="file.version" value="${project.name}.dll" overwrite="false" />
+  <property name="file.version" value="_BuildInfo.xml" overwrite="false" />
   <property name="restore.from.path" value="..\${database.name}.bak" overwrite="false" />
   
 </project>

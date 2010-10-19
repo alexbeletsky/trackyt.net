@@ -107,7 +107,7 @@ namespace Web.Areas.Public.Controllers
             {
                 Email = email,
                 Password = password,
-                SecretPhrase = "not-used"
+                //SecretPhrase = "not-used"
             };
 
             _repository.SaveUser(user);

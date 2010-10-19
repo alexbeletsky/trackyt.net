@@ -1,9 +1,11 @@
-﻿@echo off
+@echo off
 
-SET DIR=%~d0%~p0%
+SET database.name="${database.name}"
+SET sql.files.directory="%DIR%..\${folder.database}"
+SET server.database="${server.database}"
+SET repository.path="${repository.path}"
+SET version.file="${file.version}"
+SET version.xpath="//buildInfo/version"
+SET environment="${environment}"
 
-SET deploy.settings="%DIR%..\settings\${environment}.settings"
-
-"%DIR%NAnt\nant.exe" /f:"%DIR%scripts\database.deploy" -D:deploy.settings=%deploy.settings%
-
-pause
+"%DIR%rh\rh.exe" /d=%database.name% /f=%sql.files.directory% /s=%server.database% /vf=%version.file% /vx=%version.xpath% /r=%repository.path% /env=%environment% /simple

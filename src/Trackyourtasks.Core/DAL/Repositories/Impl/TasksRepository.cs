@@ -8,12 +8,12 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 {
     public class TasksRepository : ITasksRepository
     {
-        private TrackYourTasksDataContext _context;
+        private TrackyDataContext _context;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public TasksRepository() : this(new TrackYourTasksDataContext())
+        public TasksRepository() : this(new TrackyDataContext())
         {
 
         }
@@ -22,7 +22,7 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
         /// Constructor used in unit tests
         /// </summary>
         /// <param name="context">Context</param>
-        public TasksRepository(TrackYourTasksDataContext context)
+        public TasksRepository(TrackyDataContext context)
         {
             _context = context;
         }

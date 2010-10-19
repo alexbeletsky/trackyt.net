@@ -11,6 +11,7 @@ using Trackyourtasks.Core.DAL.Extensions;
 namespace Trackyourtasks.Core.DAL.Tests
 {
     [TestFixture]
+    [Database]
     public class TasksRepositoryTests
     {
         [Test]

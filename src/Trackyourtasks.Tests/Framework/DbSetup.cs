@@ -9,7 +9,7 @@ namespace Trackyourtasks.Core.Tests.Framework
 {
     public class DbSetup : IDisposable
     {
-        private TrackYourTasksDataContext _model = new TrackYourTasksDataContext();
+        private TrackyDataContext _model = new TrackyDataContext();
         private TransactionScope _transaction = new TransactionScope();
  
         public DbSetup()
@@ -17,7 +17,7 @@ namespace Trackyourtasks.Core.Tests.Framework
             Init();
         }
 
-        public TrackYourTasksDataContext Context { get { return _model; } }
+        public TrackyDataContext Context { get { return _model; } }
 
         private void Init()
         {
@@ -29,7 +29,7 @@ namespace Trackyourtasks.Core.Tests.Framework
             var user = new User()
             {
                 Email = "exists@test.com",
-                SecretPhrase = "bla-bla",
+                //SecretPhrase = "bla-bla",
                 Password = "test_pass2"
             };
 

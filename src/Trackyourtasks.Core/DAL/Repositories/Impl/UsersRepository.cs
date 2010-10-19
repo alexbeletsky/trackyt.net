@@ -8,16 +8,16 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 {
     public class UsersRepository : IUsersRepository
     {
-        private TrackYourTasksDataContext _context;
+        private TrackyDataContext _context;
 
         public UsersRepository()
-            : this(new TrackYourTasksDataContext())
+            : this(new TrackyDataContext())
         {
 
         }
 
         //used in unit tests
-        public UsersRepository(TrackYourTasksDataContext  context)
+        public UsersRepository(TrackyDataContext  context)
         {
             _context = context;
         }

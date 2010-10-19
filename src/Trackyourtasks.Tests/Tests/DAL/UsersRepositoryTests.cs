@@ -13,6 +13,7 @@ using Trackyourtasks.Core.Tests.Framework;
 namespace Trackyourtasks.Core.DAL.Tests
 {
     [TestFixture]
+    [Database]
     public class UsersRepositoryTests
     {
         [Test]
@@ -34,7 +35,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var user = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
@@ -59,7 +60,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var user = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
@@ -68,7 +69,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var newUser = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
@@ -87,7 +88,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var user = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
@@ -113,20 +114,20 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var user = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
                 register.SaveUser(user);
 
                 //ACT
-                user.SecretPhrase = "newsec";
+                user.Email = "newsec";
                 register.SaveUser(user);
 
                 //POST
                 var foundUser = register.GetUsers().WithId(user.Id);
                 Assert.That(foundUser, Is.Not.Null);
-                Assert.That(foundUser.SecretPhrase, Is.EqualTo("newsec"));
+                Assert.That(foundUser.Email, Is.EqualTo("newsec"));
             }
         }
 
@@ -141,7 +142,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var user = new User()
                 {
                     Email = "email",
-                    SecretPhrase = "sec",
+                    //SecretPhrase = "sec",
                     Password = "pass"
                 };
 
