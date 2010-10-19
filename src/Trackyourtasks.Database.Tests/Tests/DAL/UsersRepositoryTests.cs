@@ -13,7 +13,6 @@ using Trackyourtasks.Core.Tests.Framework;
 namespace Trackyourtasks.Core.DAL.Tests
 {
     [TestFixture]
-    [Database]
     public class UsersRepositoryTests
     {
         [Test]
