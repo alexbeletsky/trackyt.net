@@ -1,0 +1,1 @@
+INSERT INTO Users (Email, [Password]) VALUES ('tracky@tracky.net', '111111');
