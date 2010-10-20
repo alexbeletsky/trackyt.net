@@ -78,6 +78,8 @@
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="API\v1\Model\TaskDto.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
     <Compile Include="Areas\Public\Controllers\LoginController.cs" />
     <Compile Include="Areas\Public\Controllers\RegistrationController.cs" />
@@ -95,13 +97,6 @@
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
     <Compile Include="Infrastructure\TrackyMapping.cs" />
     <Compile Include="Infrastructure\TrackyServices.cs" />
-    <Compile Include="Public.Master.cs">
-      <DependentUpon>Public.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Public.Master.designer.cs">
-      <DependentUpon>Public.Master</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -123,7 +118,9 @@
     <Content Include="Scripts\Tracky\registration-validation.js" />
     <Content Include="Scripts\Tracky\tracky.js" />
     <Content Include="Scripts\Tracky\trackycontroller.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -144,7 +141,12 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Public\Views\Shared\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Blog\Controllers\" />
+    <Folder Include="Areas\Blog\Models\" />
+    <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\Tracky\Models\" />
     <Folder Include="Areas\Tracky\Views\Shared\" />
   </ItemGroup>
@@ -155,13 +157,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Public.Master" />
+    <Content Include="Areas\Public\Views\Shared\Public.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Tracky\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Blog\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
