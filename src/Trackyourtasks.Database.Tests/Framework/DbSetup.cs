@@ -26,16 +26,17 @@ namespace Trackyourtasks.Core.Tests.Framework
 
         private void AddTestUser()
         {
-            var user = new User()
+            User = new User()
             {
                 Email = "exists@test.com",
-                //SecretPhrase = "bla-bla",
                 Password = "test_pass2"
             };
 
-            _model.Users.InsertOnSubmit(user);
+            _model.Users.InsertOnSubmit(User);
             _model.SubmitChanges();
         }
+
+        public User User { get; private set; }
 
         #region IDisposable Members
 

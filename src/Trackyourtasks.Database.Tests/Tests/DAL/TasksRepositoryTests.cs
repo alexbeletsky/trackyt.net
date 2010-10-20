@@ -31,7 +31,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var task = new Task()
                 {
                     Number = 0,
-                    UserId = 10,
+                    UserId = fixture.Setup.User.Id,
                     Description = "My new task",
                     Status = 0,
                     ActualWork = 0
@@ -43,7 +43,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 //POST
                 var foundTask = repository.GetTasks().WithId(task.Id);
                 Assert.That(foundTask, Is.Not.Null);
-                Assert.That(foundTask.UserId, Is.EqualTo(10));
+                Assert.That(foundTask.UserId, Is.EqualTo(fixture.Setup.User.Id));
                 Assert.That(foundTask.Description, Is.EqualTo("My new task"));
             }
         }
@@ -59,7 +59,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var task = new Task()
                 {
                     Number = 0,
-                    UserId = 10,
+                    UserId = fixture.Setup.User.Id,
                     Description = "My new task",
                     Status = 0,
                     ActualWork = 0
@@ -87,7 +87,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var task = new Task()
                 {
                     Number = 0,
-                    UserId = 10,
+                    UserId = fixture.Setup.User.Id,
                     Description = "My new task",
                     Status = 0,
                     ActualWork = 0
@@ -119,7 +119,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var task = new Task()
                 {
                     Number = 0,
-                    UserId = 10,
+                    UserId = fixture.Setup.User.Id,
                     Description = "My new task",
                     Status = 0,
                     ActualWork = 0
@@ -146,7 +146,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var task = new Task()
                 {
                     Number = 0,
-                    UserId = 10,
+                    UserId = fixture.Setup.User.Id,
                     Description = "My new task",
                     Status = 0,
                     ActualWork = 0
@@ -155,10 +155,11 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.SaveTask(task);
 
                 //ACT
-                var foundTask = repository.GetTasks().WithUserId(10);
+                var foundTask = repository.GetTasks().WithUserId(fixture.Setup.User.Id);
 
                 //POST
                 Assert.That(foundTask, Is.Not.Null);
+                Assert.That(foundTask.Count(), Is.EqualTo(1));
             }
         }
 
@@ -173,8 +174,8 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var currentTasksCount = repository.GetTasks().Count();
 
                 var tasks = new[] { 
-                    new Task() { Description="test1" } , 
-                    new Task() { Description="test2" }
+                    new Task() { UserId = fixture.Setup.User.Id, Description="test1" } , 
+                    new Task() { UserId = fixture.Setup.User.Id, Description="test2" }
                 };
 
                 foreach (var task in tasks)

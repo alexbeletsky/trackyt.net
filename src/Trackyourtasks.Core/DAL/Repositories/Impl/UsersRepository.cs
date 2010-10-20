@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.DAL.Extensions;
+using System.Data.Linq;
 
 namespace Trackyourtasks.Core.DAL.Repositories.Impl
 {
@@ -31,6 +33,9 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 
         public void SaveUser(User user)
         {
+            if (GetUsers().WithEmail(user.Email) != null)
+                throw new DuplicateKeyException(user);
+
             if (user.Id == 0)
             {
                 _context.Users.InsertOnSubmit(user);
