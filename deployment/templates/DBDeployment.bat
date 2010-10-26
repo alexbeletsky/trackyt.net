@@ -1,7 +1,7 @@
 @echo off
 
 SET database.name="${database.name}"
-SET sql.files.directory="%DIR%..\${folder.database}"
+SET sql.files.directory="${dirs.db}"
 SET server.database="${server.database}"
 SET repository.path="${repository.path}"
 SET version.file="${file.version}"

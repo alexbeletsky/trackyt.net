@@ -25,6 +25,7 @@ _ReSharper*
 *.testsettings
 *lint*
 *.log
+*.cache
 
 TestResult.xml
 submit.xml

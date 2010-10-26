@@ -6,7 +6,7 @@
   <property name="server.app" value="127.0.0.1" />
   <property name="server.file" value="127.0.0.1" />
   <property name="server.msmq" value="localhost" />
-  <property name="server.database" value="(local)" />
+  <property name="server.database" value=".\SQLEXPRESS" />
 
   <property name="database.name" value="tracky" />
   <property name="log.level" value="DEBUG" />

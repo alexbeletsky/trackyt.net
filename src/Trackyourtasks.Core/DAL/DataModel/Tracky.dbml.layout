@@ -1,25 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="tracky">
-  <DataContextMoniker Name="/trackyDataContext" />
+  <DataContextMoniker Name="/TrackyDataContext" />
   <nestedChildShapes>
     <classShape Id="3b3826ef-5425-4111-ab71-72e67d7f036a" absoluteBounds="4, 0.5, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/trackyDataContext/Task" />
+      <DataClassMoniker Name="/TrackyDataContext/Task" />
       <nestedChildShapes>
         <elementListCompartment Id="62568f26-a4c7-4b34-9717-57af9b542cbd" absoluteBounds="4.015, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="8f24f863-2c4b-4f23-9c48-33eac5323e59" absoluteBounds="1, 0.5, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/trackyDataContext/User" />
+      <DataClassMoniker Name="/TrackyDataContext/User" />
       <nestedChildShapes>
         <elementListCompartment Id="acf125e5-d166-4efb-bb87-31e3f7624562" absoluteBounds="1.0149999999999997, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 1.38544840494792); (4 : 1.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/trackyDataContext/User/User_Task" />
+    <associationConnector edgePoints="[(3 : 1.38544840494792); (4 : 1.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrackyDataContext/User/User_Task" />
       <nodes>
         <classShapeMoniker Id="8f24f863-2c4b-4f23-9c48-33eac5323e59" />
         <classShapeMoniker Id="3b3826ef-5425-4111-ab71-72e67d7f036a" />
       </nodes>
     </associationConnector>
+    <classShape Id="ba6d85eb-d146-426c-9ee9-7e1951d55307" absoluteBounds="4, 3, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TrackyDataContext/BlogPost" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b660aebd-9731-4f49-8813-265f7ccb68b0" absoluteBounds="4.015, 3.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
