@@ -49,9 +49,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Tracky.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Extensions\BlogPostsExtensions.cs" />
     <Compile Include="DAL\Extensions\TasksExtensions.cs" />
     <Compile Include="DAL\Extensions\UsersExtrensions.cs" />
     <Compile Include="DAL\Repositories\IBlogPostsRepository.cs" />
+    <Compile Include="DAL\Repositories\Impl\BlogPostsRepository.cs" />
     <Compile Include="DAL\Repositories\Impl\TasksRepository.cs" />
     <Compile Include="DAL\Repositories\Impl\UsersRepository.cs" />
     <Compile Include="DAL\Repositories\ITasksRepository.cs" />

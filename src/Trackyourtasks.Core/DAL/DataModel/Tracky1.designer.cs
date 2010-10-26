@@ -543,6 +543,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
 		
 		private string _Body;
 		
+		private System.DateTime _CreatedDate;
+		
 		private System.Data.Linq.Binary _Timestamp;
 		
     #region Extensibility Method Definitions
@@ -557,6 +559,8 @@ namespace Trackyourtasks.Core.DAL.DataModel
     partial void OnTitleChanged();
     partial void OnBodyChanging(string value);
     partial void OnBodyChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
     partial void OnTimestampChanging(System.Data.Linq.Binary value);
     partial void OnTimestampChanged();
     #endregion
@@ -642,6 +646,26 @@ namespace Trackyourtasks.Core.DAL.DataModel
 					this._Body = value;
 					this.SendPropertyChanged("Body");
 					this.OnBodyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
 				}
 			}
 		}

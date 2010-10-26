@@ -55,6 +55,7 @@
     <Compile Include="HttpSimulator\ReflectionHelper.cs" />
     <Compile Include="HttpSimulator\SimulatedHttpRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\DAL\BlogPostsRepositoryTests.cs" />
     <Compile Include="Tests\DAL\TasksRepositoryTests.cs" />
     <Compile Include="Tests\DAL\UsersRepositoryTests.cs" />
   </ItemGroup>
