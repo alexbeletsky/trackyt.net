@@ -25,9 +25,12 @@ namespace Trackyourtasks.Core.Tests.Mocks
 
         #region IUsersRepository Members
 
-        public IQueryable<User> GetUsers()
+        public IQueryable<User> Users
         {
-            return _users.AsQueryable();
+            get
+            {
+                return _users.AsQueryable();
+            }
         }
 
         public void SaveUser(User user)

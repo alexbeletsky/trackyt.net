@@ -73,7 +73,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             var result = controller.Register(model) as RedirectToRouteResult;
 
             //assert (repository)
-            var user = repository.GetUsers().WithEmail("a@a.com");
+            var user = repository.Users.WithEmail("a@a.com");
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Password, Is.EqualTo(model.Password));
         }
@@ -158,7 +158,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             var resuts = controller.QuickStart() as RedirectResult;
 
             //post
-            var users = repository.GetUsers();
+            var users = repository.Users;
             Assert.That(users.Count(), Is.EqualTo(1), "new temporary user have to be added on quick registration");
         }
 
@@ -175,7 +175,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             controller.QuickStart();
 
             //post
-            var users = repository.GetUsers();
+            var users = repository.Users;
             var email = users.First().Email;
             var unique = users.All(u => u.Email == email);
 
@@ -195,7 +195,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             controller.QuickStart();
 
             //post
-            var users = repository.GetUsers();
+            var users = repository.Users;
             var pass = users.First().Password;
             var unique = users.All(u => u.Password == pass);
 

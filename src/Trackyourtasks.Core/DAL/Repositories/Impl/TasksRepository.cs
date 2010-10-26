@@ -27,9 +27,12 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
             _context = context;
         }
 
-        public IQueryable<Task> GetTasks()
+        public IQueryable<Task> Tasks
         {
-            return _context.Tasks;
+            get
+            {
+                return _context.Tasks;
+            }
         }
 
         public void SaveTask(Task task) 

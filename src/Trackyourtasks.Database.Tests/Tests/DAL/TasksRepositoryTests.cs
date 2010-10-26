@@ -41,7 +41,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.SaveTask(task);
 
                 //POST
-                var foundTask = repository.GetTasks().WithId(task.Id);
+                var foundTask = repository.Tasks.WithId(task.Id);
                 Assert.That(foundTask, Is.Not.Null);
                 Assert.That(foundTask.UserId, Is.EqualTo(fixture.Setup.User.Id));
                 Assert.That(foundTask.Description, Is.EqualTo("My new task"));
@@ -71,7 +71,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.DeleteTask(task);
 
                 //POST
-                var foundTask = repository.GetTasks().WithId(task.Id);
+                var foundTask = repository.Tasks.WithId(task.Id);
                 Assert.That(foundTask, Is.Null);
             }
         }
@@ -100,7 +100,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.SaveTask(task);
 
                 //POST
-                var foundTask = repository.GetTasks().WithId(task.Id);
+                var foundTask = repository.Tasks.WithId(task.Id);
                 Assert.That(foundTask, Is.Not.Null);
                 Assert.That(foundTask.Description, Is.EqualTo("My new task (update)"));
             }
@@ -128,7 +128,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.SaveTask(task);
 
                 //ACT
-                var foundTask = repository.GetTasks().WithId(task.Id);
+                var foundTask = repository.Tasks.WithId(task.Id);
 
                 //POST
                 Assert.That(foundTask, Is.Not.Null);
@@ -155,7 +155,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 repository.SaveTask(task);
 
                 //ACT
-                var foundTask = repository.GetTasks().WithUserId(fixture.Setup.User.Id);
+                var foundTask = repository.Tasks.WithUserId(fixture.Setup.User.Id);
 
                 //POST
                 Assert.That(foundTask, Is.Not.Null);
@@ -171,7 +171,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 //INIT
                 var repository = new TasksRepository(fixture.Setup.Context);
                 //TODO: I don't like that kind of tricks in unit tests, have to be corrected..
-                var currentTasksCount = repository.GetTasks().Count();
+                var currentTasksCount = repository.Tasks.Count();
 
                 var tasks = new[] { 
                     new Task() { UserId = fixture.Setup.User.Id, Description="test1" } , 
@@ -184,7 +184,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 }
 
                 //ACT
-                var foundTasks = repository.GetTasks();
+                var foundTasks = repository.Tasks;
 
                 //POST
                 Assert.That(foundTasks, Is.Not.Null);

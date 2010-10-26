@@ -33,7 +33,7 @@ namespace Web.Areas.Public.Controllers
         {
             if(ModelState.IsValid) 
             {
-                var user = _repository.GetUsers().WithEmail(model.Email);  
+                var user = _repository.Users.WithEmail(model.Email);  
                 if (user != null && user.Password == model.Password)
                 {
                     _authentication.SetAuthCookie(model.Email, false);

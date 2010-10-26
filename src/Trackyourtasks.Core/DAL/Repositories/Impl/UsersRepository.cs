@@ -26,14 +26,17 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 
         #region IUsersRepository Members
 
-        public IQueryable<User> GetUsers()
+        public IQueryable<User> Users
         {
-            return _context.Users.AsQueryable();
+            get
+            {
+                return _context.Users.AsQueryable();
+            }
         }
 
         public void SaveUser(User user)
         {
-            if (GetUsers().WithEmail(user.Email) != null)
+            if (Users.WithEmail(user.Email) != null)
                 throw new DuplicateKeyException(user);
 
             if (user.Id == 0)

@@ -15,7 +15,7 @@ namespace Trackyourtasks.Core.DAL.Repositories
         /// Gets all tasks
         /// </summary>
         /// <returns></returns>
-        IQueryable<Task> GetTasks();
+        IQueryable<Task> Tasks { get; }
 
         /// <summary>
         /// Saves or updates task

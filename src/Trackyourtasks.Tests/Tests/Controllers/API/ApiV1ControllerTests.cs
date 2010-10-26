@@ -32,7 +32,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.API
         private static Mock<ITasksRepository> SetupMockRepository(int userId)
         {
             var repository = new Mock<ITasksRepository>();
-            repository.Setup(f => f.GetTasks()).Returns(new List<Task>()
+            repository.Setup(f => f.Tasks).Returns(new List<Task>()
                 {
                     new Task { Id = 1, Description = "Task1", ActualWork = 0, Number = 1, UserId = userId },
                     new Task { Id = 2, Description = "Task2", ActualWork = 15, Number = 2, UserId = userId },

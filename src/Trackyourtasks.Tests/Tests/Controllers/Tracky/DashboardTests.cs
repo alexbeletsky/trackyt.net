@@ -38,7 +38,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Tracky
             var path = new Mock<IPathHelper>();
 
             forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
-            users.Setup(u => u.GetUsers()).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
+            users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
 
             var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
 
@@ -58,7 +58,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Tracky
             var path = new Mock<IPathHelper>();
 
             forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
-            users.Setup(u => u.GetUsers()).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
+            users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
             path.Setup(p => p.VirtualToAbsolute(It.IsAny<string>())).Returns((string v) => v);
 
             var dashboard = new DashboardController(users.Object, forms.Object, path.Object);

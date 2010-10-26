@@ -42,7 +42,7 @@ namespace Web.Areas.Public.Controllers
                 try
                 {
                     //check if used already registered
-                    if (_repository.GetUsers().WithEmail(model.Email) != null)
+                    if (_repository.Users.WithEmail(model.Email) != null)
                     {
                         ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
                     }
@@ -98,7 +98,7 @@ namespace Web.Areas.Public.Controllers
         private int GetLastId()
         {
             //return new Random(DateTime.Now.Millisecond).Next(10000);
-            return _repository.GetUsers().Count();
+            return _repository.Users.Count();
         }
 
         private RedirectResult CreateNewUserAndRedirectToDashboard(string email, string password)

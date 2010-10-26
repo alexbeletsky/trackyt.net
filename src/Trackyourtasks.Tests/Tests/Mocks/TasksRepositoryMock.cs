@@ -20,9 +20,12 @@ namespace Trackyourtasks.Core.Tests.Mocks
             _tasksRepository.Remove(task);
         }
 
-        public IQueryable<DAL.DataModel.Task> GetTasks()
+        public IQueryable<DAL.DataModel.Task> Tasks
         {
-            return _tasksRepository.AsQueryable();
+            get
+            {
+                return _tasksRepository.AsQueryable();
+            }
         }
     }
 }

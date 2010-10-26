@@ -32,7 +32,7 @@ namespace Web.Controllers
         [HttpPost]
         public JsonResult GetAllTasks(int id)
         {
-            var tasksQuery = _repository.GetTasks().WithUserId(id);
+            var tasksQuery = _repository.Tasks.WithUserId(id);
             return Json(tasksQuery.Select(t => _mapper.Map<Task, TaskDto>(t)).ToList());
         }
 
@@ -41,7 +41,7 @@ namespace Web.Controllers
         {
             foreach (var taskData in tasks)
             {
-                var task = taskData.Id == 0 ? new Task() : _repository.GetTasks().WithId(taskData.Id);
+                var task = taskData.Id == 0 ? new Task() : _repository.Tasks.WithId(taskData.Id);
                 task.UserId = id;
                 task.Number = taskData.Number;
                 task.Description = taskData.Description;
@@ -60,7 +60,7 @@ namespace Web.Controllers
             {
                 if (taskData.Id != 0)
                 {
-                    var taskToDelete = _repository.GetTasks().WithId(taskData.Id);
+                    var taskToDelete = _repository.Tasks.WithId(taskData.Id);
                     _repository.DeleteTask(taskToDelete);
                 }
             }

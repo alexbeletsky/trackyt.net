@@ -41,7 +41,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 register.SaveUser(user);
 
                 //POST
-                var actual = register.GetUsers().WithEmail("email");
+                var actual = register.Users.WithEmail("email");
                 Assert.That(actual, Is.Not.Null);
             }
         }
@@ -94,7 +94,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 register.SaveUser(user);
 
                 //ACT
-                var foundUser = register.GetUsers().WithId(user.Id);
+                var foundUser = register.Users.WithId(user.Id);
 
                 //POST
                 Assert.That(foundUser, Is.Not.Null);
@@ -124,7 +124,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 register.SaveUser(user);
 
                 //POST
-                var foundUser = register.GetUsers().WithId(user.Id);
+                var foundUser = register.Users.WithId(user.Id);
                 Assert.That(foundUser, Is.Not.Null);
                 Assert.That(foundUser.Email, Is.EqualTo("newsec"));
             }
@@ -151,7 +151,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 register.DeleteUser(user);
 
                 //POST
-                var foundUser = register.GetUsers().WithId(user.Id);
+                var foundUser = register.Users.WithId(user.Id);
                 Assert.That(foundUser, Is.Null);
             }
         }

@@ -14,7 +14,7 @@ namespace Trackyourtasks.Core.DAL.Repositories
         /// Gets all users from repository
         /// </summary>
         /// <returns></returns>
-        IQueryable<User> GetUsers();
+        IQueryable<User> Users { get; }
 
         /// <summary>
         /// Creates new record and initialize Id for new objects and update exiting objects
