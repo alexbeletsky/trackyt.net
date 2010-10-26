@@ -17,7 +17,6 @@ namespace Trackyourtasks.Core.DAL.Repositories
         IQueryable<User> GetUsers();
 
         /// <summary>
-        /// Save user
         /// Creates new record and initialize Id for new objects and update exiting objects
         /// </summary>
         /// <param name="user">User object</param>
