@@ -18,14 +18,14 @@
     <div id="navigation-container">
         <div id="navigation">
             <ul class="left">
-                <li><%: Html.ActionLink("home", "Index", "Home") %></li>
-                <li><a href="#"><span>product tour</span></a> </li>
-                <li><a href="#"><span>blog</span></a> </li>
-                <li><a href="#"><span>about us</span></a> </li>
+                <li><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
+                <li><a href="#"><span>about us</span></a></li>
+                <li><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Blog" }) %></a> </li>
+                <li><a href="#"><span>about us</span></a></li>
             </ul>
             <ul class="right">
-                <li><%: Html.ActionLink("login", "Index", "Login") %></li>
-                <li><%: Html.ActionLink("registration", "Index", "Registration") %> </li>
+                <li><%: Html.ActionLink("login", "Index", new { area = "Public", controller = "Login" })%></li>
+                <li><%: Html.ActionLink("registration", "Index", new { area = "Public", controller = "Registration" })%> </li>
                 <li><a href="#"><span>support</span></a> </li>
             </ul>
         </div>
