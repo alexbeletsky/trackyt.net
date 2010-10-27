@@ -12,5 +12,10 @@ namespace Trackyourtasks.Core.DAL.Extensions
         {
             return posts.Where(p => p.Id == id).SingleOrDefault();
         }
+
+        public static IQueryable<BlogPost> Page(this IQueryable<BlogPost> posts, int page, int pageSize)
+        {
+            return posts.Skip(page * pageSize).Take(pageSize);
+        }
     }
 }

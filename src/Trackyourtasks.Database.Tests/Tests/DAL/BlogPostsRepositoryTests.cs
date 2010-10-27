@@ -13,6 +13,27 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
     [TestFixture]
     public class BlogPostsRepositoryTests
     {
+
+        #region test data
+        
+        private static void SubmitTenBlogpostsToRepository(BlogPostsRepository repository)
+        {
+            for (var blog = 0; blog < 10; blog++)
+            {
+                var post = new BlogPost
+                {
+                    Url = "Url-" + blog,
+                    Title = "Some new post: " + blog,
+                    Body = "<p>This is new post in blog</p>",
+                    CreatedDate = DateTime.Now
+                };
+
+                repository.SaveBlogPost(post);
+            }
+        }
+
+        #endregion
+
         [Test]
         public void Smoke()
         {
@@ -72,6 +93,65 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 //assert
                 var foundTask = repository.BlogPosts.WithId(post.Id);
                 Assert.That(foundTask, Is.Null);
+            }
+        }
+
+        [Test]
+        public void PagingGetFirstPage()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                SubmitTenBlogpostsToRepository(repository);
+
+                //act
+                var page = repository.BlogPosts.Page(0, 5);
+
+                //assert
+                Assert.That(page, Is.Not.Null);
+                Assert.That(page.Count(), Is.EqualTo(5));
+                Assert.That(page.First().Url, Is.EqualTo("Url-0"));
+            }
+        }
+
+        [Test]
+        public void PagingGetSecondPage()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                SubmitTenBlogpostsToRepository(repository);
+
+                //act
+                var page = repository.BlogPosts.Page(1, 5);
+
+                //assert
+                Assert.That(page, Is.Not.Null);
+                Assert.That(page.Count(), Is.EqualTo(5));
+                Assert.That(page.First().Url, Is.EqualTo("Url-5"));
+            }
+        }
+
+        [Test]
+        public void PagingGetNonExistingPage()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                SubmitTenBlogpostsToRepository(repository);
+
+                //act
+                var page = repository.BlogPosts.Page(2, 5);
+
+                //assert
+                Assert.That(page, Is.Not.Null);
+                Assert.That(page.Count(), Is.EqualTo(0));
             }
         }
     }
