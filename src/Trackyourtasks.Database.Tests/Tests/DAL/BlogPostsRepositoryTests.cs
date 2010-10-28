@@ -25,7 +25,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                     Url = "Url-" + blog,
                     Title = "Some new post: " + blog,
                     Body = "<p>This is new post in blog</p>",
-                    CreatedDate = DateTime.Now
+                    CreatedDate = (DateTime.Now.AddDays(blog))
                 };
 
                 repository.SaveBlogPost(post);
@@ -153,6 +153,28 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 Assert.That(page, Is.Not.Null);
                 Assert.That(page.Count(), Is.EqualTo(0));
             }
+        }
+
+        [Test]
+        public void BlogPostsSortedByDate()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                SubmitTenBlogpostsToRepository(repository);
+
+                //act
+                var posts = repository.BlogPosts.ToArray();
+
+                //post
+                Assert.That(posts, Is.Not.Null);
+                Assert.That(posts[0].CreatedDate, Is.GreaterThan(posts[1].CreatedDate));
+                Assert.That(posts[1].CreatedDate, Is.GreaterThan(posts[2].CreatedDate));
+                Assert.That(posts[2].CreatedDate, Is.GreaterThan(posts[3].CreatedDate));
+            }
+
         }
     }
 }

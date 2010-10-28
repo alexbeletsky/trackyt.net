@@ -31,7 +31,7 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
         {
             get 
             {
-                return _context.BlogPosts;
+                return _context.BlogPosts.OrderByDescending(p => p.CreatedDate);
             }
         }
 

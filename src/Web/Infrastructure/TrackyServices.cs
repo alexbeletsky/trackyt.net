@@ -21,6 +21,7 @@ namespace Web.Infrastructure
             Bind<IFormsAuthentication>().To<TrackyFormsAuthentication>();
             Bind<IPathHelper>().To<PathHelper>();
             Bind<IMappingEngine>().ToConstant(Mapper.Engine);
+            Bind<IBlogPostsRepository>().To<BlogPostsRepository>();
         }
     }
 }
