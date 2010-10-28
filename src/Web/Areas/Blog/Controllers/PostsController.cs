@@ -8,13 +8,13 @@ using Trackyourtasks.Core.DAL.Repositories;
 
 namespace Web.Areas.Blog.Controllers
 {
-    public class BlogController : Controller
+    public class PostsController : Controller
     {
         private static readonly int PageSize = 5;
 
         private IBlogPostsRepository _repository;
 
-        public BlogController(IBlogPostsRepository postsRepository)
+        public PostsController(IBlogPostsRepository postsRepository)
         {
             _repository = postsRepository;
         }

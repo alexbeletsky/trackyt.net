@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
 {
     [TestFixture]
-    public class BlogControllerTests
+    public class PostsControllerTests
     {
         #region test data
 
@@ -46,7 +46,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
         {
             //arrange
             var blogRepositoryMock = CreateRepositoryMock();
-            var controller = new BlogController(blogRepositoryMock.Object);
+            var controller = new PostsController(blogRepositoryMock.Object);
 
             //act / assert
             Assert.That(controller, Is.Not.Null);
@@ -57,7 +57,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
         {
             //arrange
             var blogRepositoryMock = CreateRepositoryMock();
-            var controller = new BlogController(blogRepositoryMock.Object);
+            var controller = new PostsController(blogRepositoryMock.Object);
 
             //act
             var result = controller.Index() as ViewResult;
@@ -72,7 +72,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
         {
             //arrange
             var blogRepositoryMock = CreateRepositoryMock();
-            var controller = new BlogController(blogRepositoryMock.Object);
+            var controller = new PostsController(blogRepositoryMock.Object);
 
             //act
             var result = controller.Index() as ViewResult;

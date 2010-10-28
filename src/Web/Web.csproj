@@ -80,7 +80,7 @@
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
-    <Compile Include="Areas\Blog\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />
     <Compile Include="Areas\Public\Controllers\HomeController.cs" />
     <Compile Include="Areas\Public\Controllers\LoginController.cs" />
@@ -105,7 +105,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Blog\Views\Blog\Index.aspx" />
+    <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
     <Content Include="Areas\Public\Views\Login\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Fail.aspx" />
