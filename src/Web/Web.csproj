@@ -91,6 +91,8 @@
     <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
     <Compile Include="API\v1\ApiV1Controller.cs" />
+    <Compile Include="Helpers\Extensions\PagerBuilder.cs" />
+    <Compile Include="Helpers\Extensions\PagerHtmlExtension.cs" />
     <Compile Include="Infrastructure\CoverageExcludeAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\IPathHelper.cs" />
     <Compile Include="Infrastructure\Helpers\PathHelper.cs" />
@@ -106,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
+    <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
     <Content Include="Areas\Public\Views\Login\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Fail.aspx" />

@@ -5,28 +5,37 @@ using System.Web;
 using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.Extensions;
 using Trackyourtasks.Core.DAL.Repositories;
+using Web.Areas.Blog.Models;
+using Web.Helpers.Extensions;
 
 namespace Web.Areas.Blog.Controllers
 {
     public class PostsController : Controller
     {
-        private static readonly int PageSize = 5;
+        private static readonly int PostsOnPageCount = 5;
 
         private IBlogPostsRepository _repository;
+        private int _totalPosts;
 
         public PostsController(IBlogPostsRepository postsRepository)
         {
             _repository = postsRepository;
+            _totalPosts = _repository.BlogPosts.Count();
         }
-
-        //
-        // GET: /Blog/Blog/
 
         public ActionResult Index()
         {
-            var posts = _repository.BlogPosts.Page(0, PageSize);
+            var currentPage = 1;
+            var posts = _repository.BlogPosts.Page(currentPage, PostsOnPageCount);
 
-            return View(posts.ToList());
+            var model = new BlogPosts(currentPage, TotalPages(), posts.ToList());
+
+            return View(model);
+        }
+
+        private int TotalPages()
+        {
+            return _totalPosts / PostsOnPageCount + 1;
         }
 
     }

@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Public/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<IList<Trackyourtasks.Core.DAL.DataModel.BlogPost>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Public/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<Web.Areas.Blog.Models.BlogPosts>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Blog content</h2>
 
-    <% foreach (var blogPost in Model)
+    <%: Html.Partial("Pager") %>
+
+    <% foreach (var blogPost in Model.Content)
        { %>
             <div class="blogpost">
                 <div class="header">
@@ -12,16 +14,24 @@
                         <%: blogPost.Title %>
                     </div>
                     <div class="date">
-                        Published: <%: blogPost.CreatedDate.ToShortDateString() %>
+                        Published on: <%: blogPost.CreatedDate.ToShortDateString() %>
+                    </div>
+                    <div class="createdby">
+                        By: <%: blogPost.CreatedBy %>
                     </div>
                 </div>
                 <div class="body">
-                    <%: blogPost.Body %>
+                    <%: MvcHtmlString.Create(blogPost.Body) %>
                 </div>
                 <div class="footer">
                 </div>
             </div> 
     <% } %>
+
+    <%: Html.Partial("Pager") %>
+
+
+
 
 
 </asp:Content>

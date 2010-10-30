@@ -15,7 +15,7 @@ namespace Trackyourtasks.Core.DAL.Extensions
 
         public static IQueryable<BlogPost> Page(this IQueryable<BlogPost> posts, int page, int pageSize)
         {
-            return posts.Skip(page * pageSize).Take(pageSize);
+            return posts.Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

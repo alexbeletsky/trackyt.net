@@ -5,6 +5,7 @@ CREATE TABLE BlogPosts
 	[Title] Nvarchar(MAX) not NULL,
 	[Body] Nvarchar(MAX) not NULL,
 	[CreatedDate] DATETIME not NULL,
+	[CreatedBy] Nvarchar(MAX) not NULL,
 	[Timestamp] Timestamp 
 		
 )

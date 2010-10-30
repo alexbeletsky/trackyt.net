@@ -21,10 +21,10 @@
         <classShapeMoniker Id="3b3826ef-5425-4111-ab71-72e67d7f036a" />
       </nodes>
     </associationConnector>
-    <classShape Id="a1b75ee7-432a-48de-8980-542fafd1530a" absoluteBounds="4, 3.125, 2, 1.9631982421875">
+    <classShape Id="f653a0af-52e0-428a-b379-df42f1173375" absoluteBounds="4, 3, 2, 2.1554996744791666">
       <DataClassMoniker Name="/TrackyDataContext/BlogPost" />
       <nestedChildShapes>
-        <elementListCompartment Id="88b42846-df2a-4ddf-9f70-e993f496a3d2" absoluteBounds="4.015, 3.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ef385ce7-4cb6-4d56-81e7-26d552c0eb20" absoluteBounds="4.015, 3.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

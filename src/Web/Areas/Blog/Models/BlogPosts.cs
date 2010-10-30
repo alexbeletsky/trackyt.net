@@ -6,15 +6,17 @@ using Trackyourtasks.Core.DAL.DataModel;
 
 namespace Web.Areas.Blog.Models
 {
-    //public class Page
-    //{
-    //    public Page(int index, IList<BlogPost> content)
-    //    {
-    //        Index = index;
-    //        Content = content;
-    //    }
+    public class BlogPosts
+    {
+        public BlogPosts(int currentPage, int totalPages, IList<BlogPost> content)
+        {
+            CurrentPage = currentPage;
+            Content = content;
+            TotalPages = totalPages;
+        }
 
-    //    public int Index { get; private set; }
-    //    public IList<BlogPost> Content { get; private set; }
-    //}
+        public int TotalPages { get; private set; }
+        public int CurrentPage { get; private set; }
+        public IList<BlogPost> Content { get; private set; }
+    }
 }
