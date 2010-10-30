@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL.DataModel;
 using System.Transactions;
+using System.Configuration;
 
 namespace Trackyourtasks.Core.Tests.Framework
 {
     public class DbSetup : IDisposable
     {
-        private TrackyDataContext _model = new TrackyDataContext();
+        private TrackyDataContext _model = new TrackyDataContext(ConfigurationManager.ConnectionStrings["testdb"].ConnectionString);
         private TransactionScope _transaction = new TransactionScope();
  
         public DbSetup()
         {
+            
             Init();
         }
 

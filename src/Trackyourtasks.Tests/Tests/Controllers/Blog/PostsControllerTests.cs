@@ -8,6 +8,7 @@ using Moq;
 using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.DataModel;
 using System.Web.Mvc;
+using Web.Areas.Blog.Models;
 
 namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
 {
@@ -16,12 +17,12 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
     {
         #region test data
 
-        private static Mock<IBlogPostsRepository> CreateRepositoryMock()
+        private static Mock<IBlogPostsRepository> CreateRepositoryMock(int blogPostsCount = 10)
         {
             var blogRepositoryMock = new Mock<IBlogPostsRepository>();
 
             var posts = new List<BlogPost>();
-            for (var blog = 0; blog < 10; blog++)
+            for (var blog = 0; blog < blogPostsCount; blog++)
             {
                 var post = new BlogPost
                 {
@@ -63,7 +64,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
             var result = controller.Index() as ViewResult;
 
             //assert
-            var model = result.ViewData.Model as IList<BlogPost>;
+            var model = result.ViewData.Model as BlogPosts;
             Assert.That(model, Is.Not.Null);
         }
 
@@ -78,8 +79,70 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
             var result = controller.Index() as ViewResult;
 
             //assert
-            var model = result.ViewData.Model as IList<BlogPost>;
-            Assert.That(model.Count, Is.EqualTo(5));
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.Content.Count, Is.EqualTo(5));
         }
+
+        [Test]
+        public void GetIndexReturnsFirstPage()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock();
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.CurrentPage, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetIndexTotalPagesIsCorreclyCalculated_TenPosts_MakesTwoPages()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock();
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.TotalPages, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GetIndexTotalPagesIsCorreclyCalculated_FivePosts_MakesOnePage()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(5);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.TotalPages, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetIndexTotalPagesIsCorreclyCalculated_OnePost_MakesOnePage()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(1);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.TotalPages, Is.EqualTo(1));
+        }
+
+
     }
 }

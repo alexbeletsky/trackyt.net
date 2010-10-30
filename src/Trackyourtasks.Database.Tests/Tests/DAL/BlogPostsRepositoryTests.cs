@@ -25,6 +25,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                     Url = "Url-" + blog,
                     Title = "Some new post: " + blog,
                     Body = "<p>This is new post in blog</p>",
+                    CreatedBy = "AlexanderB",
                     CreatedDate = (DateTime.Now.AddDays(blog))
                 };
 
@@ -59,6 +60,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                     Url = "Some-new-post",
                     Title = "Some new post",
                     Body = "<p>This is new post in blog</p>",
+                    CreatedBy = "AlexanderB",
                     CreatedDate = DateTime.Now
                 };
 
@@ -82,6 +84,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                     Url = "Some-new-post",
                     Title = "Some new post",
                     Body = "<p>This is new post in blog</p>",
+                    CreatedBy = "AlexanderB",
                     CreatedDate = DateTime.Now
                 };
 
@@ -107,12 +110,12 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 SubmitTenBlogpostsToRepository(repository);
 
                 //act
-                var page = repository.BlogPosts.Page(0, 5);
+                var page = repository.BlogPosts.Page(1, 5);
 
                 //assert
                 Assert.That(page, Is.Not.Null);
                 Assert.That(page.Count(), Is.EqualTo(5));
-                Assert.That(page.First().Url, Is.EqualTo("Url-0"));
+                Assert.That(page.First().Url, Is.EqualTo("Url-9"));
             }
         }
 
@@ -127,12 +130,12 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 SubmitTenBlogpostsToRepository(repository);
 
                 //act
-                var page = repository.BlogPosts.Page(1, 5);
+                var page = repository.BlogPosts.Page(2, 5);
 
                 //assert
                 Assert.That(page, Is.Not.Null);
                 Assert.That(page.Count(), Is.EqualTo(5));
-                Assert.That(page.First().Url, Is.EqualTo("Url-5"));
+                Assert.That(page.First().Url, Is.EqualTo("Url-4"));
             }
         }
 
@@ -147,7 +150,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 SubmitTenBlogpostsToRepository(repository);
 
                 //act
-                var page = repository.BlogPosts.Page(2, 5);
+                var page = repository.BlogPosts.Page(3, 5);
 
                 //assert
                 Assert.That(page, Is.Not.Null);

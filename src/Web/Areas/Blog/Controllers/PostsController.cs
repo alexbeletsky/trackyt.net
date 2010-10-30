@@ -35,7 +35,13 @@ namespace Web.Areas.Blog.Controllers
 
         private int TotalPages()
         {
-            return _totalPosts / PostsOnPageCount + 1;
+            var pages =  _totalPosts / PostsOnPageCount;
+            if (pages == 0)
+            {
+                pages = 1;
+            }
+
+            return pages;
         }
 
     }

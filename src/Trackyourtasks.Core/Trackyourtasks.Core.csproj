@@ -66,9 +66,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="DAL\DataModel\Tracky.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Tracky1.designer.cs</LastGenOutput>
