@@ -21,7 +21,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Helpers
         public void Smoke()
         {
             //arrange/act
-            var pager = PagerHtmlExtension.Pager(null, 1, 0);
+            var pager = PagerHtmlExtension.Pager(null, "/Posts/Page/{0}", 1, 0);
 
             //assert
             Assert.That(pager, Is.Not.Null);
@@ -31,7 +31,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Helpers
         public void CreateOnePagePager_FirstIsCurrent_PagerIsEmpty()
         {
             //arrange/act
-            var pager = PagerHtmlExtension.Pager(null, 1, 0);
+            var pager = PagerHtmlExtension.Pager(null, "/Posts/Page/{0}", 1, 0);
 
             //assert
             var expected = @"<div class=""pager""></div>";
@@ -42,7 +42,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Helpers
         public void CreateTwoPagePages_FirstIsCurrent_PagerWithTwoPages()
         {
             //arrange/act
-            var pager = PagerHtmlExtension.Pager(null, 2, 1);
+            var pager = PagerHtmlExtension.Pager(null, "/Posts/Page/{0}", 2, 1);
             
             //assert
             var expected = @"<div class=""pager""><div class=""disabled"">« Previous</div>"
@@ -57,7 +57,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Helpers
         public void CreateTwoPagePages_SecondIsCurrent_PreviousEnabled_NextDisabled()
         {
             //arrange/act
-            var pager = PagerHtmlExtension.Pager(null, 2, 2);
+            var pager = PagerHtmlExtension.Pager(null, "/Posts/Page/{0}", 2, 2);
 
             //assert
             var expected = @"<div class=""pager"">"
@@ -74,7 +74,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Helpers
         public void CreateTenPages_FiveIsCurrent_Range()
         {
             //arrage/act
-            var pager = PagerHtmlExtension.Pager(null, 10, 5);
+            var pager = PagerHtmlExtension.Pager(null, "/Posts/Page/{0}", 10, 5);
 
             //assert
             var expected = @"<div class=""pager"">"

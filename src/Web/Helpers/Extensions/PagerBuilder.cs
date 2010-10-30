@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text;
 using System.Web.Mvc;
+using System.Security.Policy;
 
 namespace Web.Helpers.Extensions
 {
@@ -11,40 +12,43 @@ namespace Web.Helpers.Extensions
     //http://weblogs.asp.net/gunnarpeipman/archive/2010/02/21/simple-pager-for-asp-net-mvc.aspx?CommentPosted=true#commentmessage
     //
 
-    public class Page
-    {
-        private int _index;
-        private bool _current;
-
-        public Page(int index, bool current)
-        {
-            _index = index;
-            _current = current;
-        }
-
-        public override string ToString()
-        {
-            var page = new StringBuilder();
-
-            if (_current)
-            {
-                page.Append(@"<span class=""current"">" + _index + "</span>");
-            }
-            else
-            {
-                page.Append(@"<span><a href=""/Posts/Page/" + _index + @""">" + _index + "</a></span>");
-            }
-
-            return page.ToString();
-        }
-    }
-
     public class PagerBuilder
     {
         private IList<Page> _pages = new List<Page>();
         private int _totalPages;
         private int _currentPage;
         private int _pagerSize;
+        private string _url;
+
+        internal class Page
+        {
+            private int _index;
+            private bool _current;
+            private PagerBuilder _builder;
+
+            public Page(PagerBuilder builder, int index, bool current)
+            {
+                _index = index;
+                _current = current;
+                _builder = builder;
+            }
+
+            public override string ToString()
+            {
+                var page = new StringBuilder();
+
+                if (_current)
+                {
+                    page.Append(@"<span class=""current"">" + _index + "</span>");
+                }
+                else
+                {
+                    page.Append(@"<span><a href=""" + _builder.PageUrl(_index) + @""">" + _index + "</a></span>");
+                }
+
+                return page.ToString();
+            }
+        }
 
         internal class PrevControl
         {
@@ -65,7 +69,7 @@ namespace Web.Helpers.Extensions
                 }
                 else
                 {
-                    prevControl.Append(@"<span><a href=""/Posts/Page/" + (_builder._currentPage - 1) + @""" class=""prev"">« Previous</a></span>");
+                    prevControl.Append(@"<span><a href=""" + _builder.PageUrl(_builder._currentPage - 1) + @""" class=""prev"">« Previous</a></span>");
                 }
 
                 return prevControl.ToString();
@@ -92,23 +96,24 @@ namespace Web.Helpers.Extensions
                 }
                 else
                 {
-                    nextControl.Append(@"<a href=""/Posts/Page/" + (_builder._currentPage + 1) + @""" class=""next"">Next »</a>");
+                    nextControl.Append(@"<a href=""" + _builder.PageUrl(_builder._currentPage + 1) + @""" class=""next"">Next »</a>");
                 }
 
                 return nextControl.ToString();
             }
         }
 
-        public PagerBuilder(int totalPages, int currentPage, int pagerSize)
+        public PagerBuilder(string url, int totalPages, int currentPage, int pagerSize)
         {
             _totalPages = totalPages;
             _currentPage = currentPage;
             _pagerSize = pagerSize;
-        }
+            _url = url;
 
-        public void AddPage(Page page)
-        {
-            _pages.Add(page);
+            for (var index = 1; index < totalPages + 1; index++)
+            {
+                AddPage(new Page(this, index, index == currentPage));
+            }
         }
 
         public MvcHtmlString ToMvcHtmlString()
@@ -135,6 +140,16 @@ namespace Web.Helpers.Extensions
             pager.Append(@"</div>");
 
             return MvcHtmlString.Create(pager.ToString());
+        }
+
+        private string PageUrl(int page)
+        {
+            return String.Format(_url, page);
+        }
+
+        private void AddPage(Page page)
+        {
+            _pages.Add(page);
         }
 
         private void AddNext(StringBuilder pager)

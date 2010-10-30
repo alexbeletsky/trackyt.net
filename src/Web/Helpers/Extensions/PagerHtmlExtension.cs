@@ -17,14 +17,14 @@ namespace Web.Helpers.Extensions
         /// <param name="currentPage">Current page</param>
         /// <param name="pagerSize">Pager size (default is 5)</param>
         /// <returns></returns>
-        public static MvcHtmlString Pager(this HtmlHelper helper, int totalPages, int currentPage, int pagerSize = 5)
+        public static MvcHtmlString Pager(this HtmlHelper helper, string url, int totalPages, int currentPage, int pagerSize = 5)
         {
-            var pageBuilder = new PagerBuilder(totalPages, currentPage, pagerSize);
+            var pageBuilder = new PagerBuilder(HttpUtility.UrlDecode(url), totalPages, currentPage, pagerSize);
 
-            for (var index = 1; index < totalPages + 1; index++)
-            {
-                pageBuilder.AddPage(new Page(index, index == currentPage));
-            }
+            //for (var index = 1; index < totalPages + 1; index++)
+            //{
+            //    pageBuilder.AddPage(new Page(index, index == currentPage));
+            //}
 
             return pageBuilder.ToMvcHtmlString();
         }
