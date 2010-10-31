@@ -177,7 +177,26 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 Assert.That(posts[1].CreatedDate, Is.GreaterThan(posts[2].CreatedDate));
                 Assert.That(posts[2].CreatedDate, Is.GreaterThan(posts[3].CreatedDate));
             }
+        }
 
+        [Test]
+        public void GetBlogPostByUrl()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                SubmitTenBlogpostsToRepository(repository);
+
+                //act
+                var post = repository.BlogPosts.WithUrl("Url-0");
+
+                //assert
+                Assert.That(post, Is.Not.Null);
+                Assert.That(post.Url, Is.EqualTo("Url-0"));
+            }
         }
     }
 }

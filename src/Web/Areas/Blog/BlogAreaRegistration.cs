@@ -15,10 +15,17 @@ namespace Web.Areas.Blog
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Blog_PostByUrl",
+                "Blog/Posts/{url}",
+                new { controller = "Posts", action = "PostByUrl" }
+            );
+
+            context.MapRoute(
                 "Blog_default",
                 "Blog/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

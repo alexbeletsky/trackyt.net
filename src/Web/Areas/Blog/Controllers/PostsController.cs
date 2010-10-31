@@ -7,6 +7,7 @@ using Trackyourtasks.Core.DAL.Extensions;
 using Trackyourtasks.Core.DAL.Repositories;
 using Web.Areas.Blog.Models;
 using Web.Helpers.Extensions;
+using Trackyourtasks.Core.DAL.DataModel;
 
 namespace Web.Areas.Blog.Controllers
 {
@@ -25,19 +26,31 @@ namespace Web.Areas.Blog.Controllers
 
         public ActionResult Index()
         {
-            var model = GetPostsForPage(1);
+            var model = GetPostsByPage(1);
 
             return View(model);
         }
 
         public ActionResult Page(int id)
         {
-            var model = GetPostsForPage(id);
+            var model = GetPostsByPage(id);
 
             return View("Index", model);
         }
 
-        private BlogPosts GetPostsForPage(int currentPage)
+        public ActionResult PostByUrl(string url)
+        {
+            var model = GetPostByUrl(url);
+
+            return View(model);
+        }
+
+        private BlogPost GetPostByUrl(string url)
+        {
+            return _repository.BlogPosts.WithUrl(url);            
+        }
+
+        private BlogPosts GetPostsByPage(int currentPage)
         {
             var posts = _repository.BlogPosts.Page(currentPage, PostsOnPageCount);
             var model = new BlogPosts(currentPage, TotalPages(), posts.ToList());

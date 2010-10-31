@@ -109,6 +109,7 @@
   <ItemGroup>
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
+    <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
     <Content Include="Areas\Public\Views\Login\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Fail.aspx" />

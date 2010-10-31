@@ -205,5 +205,19 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
             Assert.That(model.Content.Count, Is.EqualTo(0));
         }
 
+        [Test]
+        public void GetPostByUrl_ReturnsBlogPost()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(10);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.PostByUrl("Url-0") as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPost;
+            Assert.That(model, Is.Not.Null);
+        }
     }
 }
