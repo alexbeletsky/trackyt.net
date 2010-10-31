@@ -25,12 +25,23 @@ namespace Web.Areas.Blog.Controllers
 
         public ActionResult Index()
         {
-            var currentPage = 1;
-            var posts = _repository.BlogPosts.Page(currentPage, PostsOnPageCount);
-
-            var model = new BlogPosts(currentPage, TotalPages(), posts.ToList());
+            var model = GetPostsForPage(1);
 
             return View(model);
+        }
+
+        public ActionResult Page(int id)
+        {
+            var model = GetPostsForPage(id);
+
+            return View("Index", model);
+        }
+
+        private BlogPosts GetPostsForPage(int currentPage)
+        {
+            var posts = _repository.BlogPosts.Page(currentPage, PostsOnPageCount);
+            var model = new BlogPosts(currentPage, TotalPages(), posts.ToList());
+            return model;
         }
 
         private int TotalPages()

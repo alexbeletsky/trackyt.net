@@ -143,6 +143,67 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
             Assert.That(model.TotalPages, Is.EqualTo(1));
         }
 
+        [Test]
+        public void GetPages_ViewIsIndex()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(10);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Page(1) as ViewResult;
+
+            //assert
+            Assert.That(result.ViewName, Is.EqualTo("Index"));
+        }
+
+        [Test]
+        public void GetPages_First_ReturnFivePosts()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(10);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Page(1) as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.CurrentPage, Is.EqualTo(1));
+            Assert.That(model.Content.Count, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void GetPages_Second_ReturnsFivePosts()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(10);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Page(2) as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.CurrentPage, Is.EqualTo(2));
+            Assert.That(model.Content.Count, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void GetPages_Third_ReturnsZeroPosts()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(10);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Page(3) as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.CurrentPage, Is.EqualTo(3));
+            Assert.That(model.Content.Count, Is.EqualTo(0));
+        }
 
     }
 }
