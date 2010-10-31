@@ -79,6 +79,9 @@
     </Compile>
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminLogin.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Infrastructure\CoverageExcludeAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\IPathHelper.cs" />
     <Compile Include="Infrastructure\Helpers\PathHelper.cs" />
+    <Compile Include="Infrastructure\Security\TrackyAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\Security\TrackyFormsAuthentication.cs" />
     <Compile Include="Infrastructure\Security\IFormsAuthentication.cs" />
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
@@ -107,6 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\AdminLogin\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
@@ -148,8 +153,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\Tracky\Models\" />
