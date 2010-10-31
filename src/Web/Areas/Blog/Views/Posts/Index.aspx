@@ -4,7 +4,13 @@
 
     <h2>Blog content</h2>
 
-    <%: Html.Partial("Pager") %>
+    <% if (Model.CurrentPage != 1)
+       {
+           %>
+           <%: Html.Partial("Pager") %>
+           <%
+       } 
+    %>
 
     <% foreach (var blogPost in Model.Content)
        { %>
