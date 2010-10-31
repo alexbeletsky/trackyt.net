@@ -10,6 +10,7 @@ using Web.Infrastructure.Helpers;
 
 namespace Web.Areas.Tracky.Controllers
 {
+    [TrackyAuthorizeAttribute(LoginController = "Login")]
     public class DashboardController : Controller
     {
         private IUsersRepository _repository;
@@ -23,7 +24,7 @@ namespace Web.Areas.Tracky.Controllers
             _path = path;
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             var userEmail = _authentication.GetLoggedUser();

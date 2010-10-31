@@ -9,6 +9,7 @@ using Trackyourtasks.Core.DAL.Extensions;
 using Trackyourtasks.Core.DAL.Repositories;
 using AutoMapper;
 using Web.API.v1.Model;
+using Web.Infrastructure.Security;
 
 namespace Web.Controllers
 {
@@ -17,7 +18,8 @@ namespace Web.Controllers
 
     //TODO: error handling
     //TODO: authentication (try to unit test)
-    [Authorize]
+    //[Authorize]
+    [TrackyAuthorizeAttribute(LoginController = "Login")]
     public class ApiV1Controller : Controller
     {
         private ITasksRepository _repository;

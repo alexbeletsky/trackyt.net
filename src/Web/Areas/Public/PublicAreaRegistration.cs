@@ -16,10 +16,17 @@ namespace Web.Areas.Public
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Public",
+                "Public/{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }
