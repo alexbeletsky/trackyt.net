@@ -1,0 +1,71 @@
+﻿body {
+  color:#555;
+  font-family:Tahoma;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  text-align:left;
+  text-transform: normal;
+  letter-spacing: normal;
+  background-color:#fff;
+  margin:0px;
+  padding:0px;
+}
+
+#navigation-container 
+{
+    display: block;
+    background-color: #000000;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px auto;
+
+    -webkit-box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;
+    -moz-box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;
+    box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;	
+}
+
+#navigation-container #logo
+{
+    float:left;
+    position: relative;
+    color: #FFFFF0;
+    font-weight:bold;
+    padding: 0;
+    margin: 1em 1em 0 1em;
+    width: auto;
+}
+
+#navigation-container #navigation
+{
+    float: right;
+    position: relative;
+    padding: 0;
+    margin: 0 2em;
+    width: auto;
+}
+
+#navigation-container #navigation a
+{
+    color: #FFFFF0;    
+}
+
+#navigation-container #navigation ul
+{
+}
+
+#navigation-container #navigation ul li
+{ 
+    display: inline; 
+    margin-right: 10px; 
+}
+
+ul, ol 
+{
+    list-style: none;
+}
+ 
+
+
+

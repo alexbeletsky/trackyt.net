@@ -8,9 +8,10 @@ using Web.Infrastructure.Security;
 
 namespace Web.Areas.Admin.Controllers
 {
+    //TODO: store password into database
     public class AdminLoginController : Controller
     {
-        private static readonly string AdminPassword = "trk$adm9cls!22";
+        private static readonly string AdminPassword = "trackyadm";
         private IFormsAuthentication _authentication;
 
         public AdminLoginController(IFormsAuthentication auth)

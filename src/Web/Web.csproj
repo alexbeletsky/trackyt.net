@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AdminLogin\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
@@ -121,6 +122,7 @@
     <Content Include="Areas\Public\Views\Registration\Index.aspx" />
     <Content Include="Areas\Public\Views\Registration\Register.aspx" />
     <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
+    <Content Include="Content\admin.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\public.css" />
@@ -153,7 +155,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\Tracky\Models\" />
     <Folder Include="Areas\Tracky\Views\Shared\" />
@@ -178,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Blog\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Admin.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

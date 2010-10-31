@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Admin login</title>
+    <link href="../../../../Content/admin-login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="admin-login">
