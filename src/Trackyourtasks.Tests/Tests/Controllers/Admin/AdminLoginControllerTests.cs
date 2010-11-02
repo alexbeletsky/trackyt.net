@@ -47,7 +47,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
             var controller = new AdminLoginController(auth.Object);
             var model = new AdminLogin
             {
-                Password = "trk$adm9cls!22"
+                Password = "trackyadm"
             };
             
             //act
@@ -56,7 +56,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
             //assert
             auth.Verify(a => a.SetAuthCookie("TrackyAdmin", false));
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Admin/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/Admin/AdminDashboard"));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
 
             //assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Admin/AdminLogin"));
+            Assert.That(result.Url, Is.EqualTo("~/Admin"));
         }
 
 

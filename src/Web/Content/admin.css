@@ -1,7 +1,7 @@
 ﻿body {
   color:#555;
   font-family:Tahoma;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: normal;
   text-align:left;
@@ -16,14 +16,14 @@
 {
     display: block;
     background-color: #000000;
-    height: 40px;
+    height: 55px;
     overflow: hidden;
     width: 100%;
     padding: 5px auto;
 
-    -webkit-box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;
-    -moz-box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;
-    box-shadow: rgba(0,0,0,0.2) 1px 3px 6px;	
+    -webkit-box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;
+    -moz-box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;
+    box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;	
 }
 
 #navigation-container #logo

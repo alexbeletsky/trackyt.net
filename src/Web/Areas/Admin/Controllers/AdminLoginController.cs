@@ -33,7 +33,7 @@ namespace Web.Areas.Admin.Controllers
                 if (password == AdminPassword)
                 {
                     _authentication.SetAuthCookie("TrackyAdmin", false);
-                    return Redirect("~/Admin/Dashboard");
+                    return Redirect("~/Admin/AdminDashboard");
                 }   
                 else
                 {
