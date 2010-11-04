@@ -65,7 +65,37 @@ ul, ol
 {
     list-style: none;
 }
+
+#submenu-container
+{
+    display: block;
+    height: 80px;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px auto;    
+}
+
+#submenu-container #submenu
+{
+    float: right;
+    position: relative;
+    padding: 20px 20px 5px 20px;
+    font-size: 20px;
+    display: block;
+}
  
+#submenu-container #submenu ul li
+{
+    display: inline;
+    margin-right: 40px;
+}
 
+#submenu-container #submenu a
+{
+    color: Gray;
+}
 
-
+#content
+{
+    padding-left: 20px;
+}

@@ -5,5 +5,5 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
-    <title>Admin dashboard</title>
+    <title>Admin | Admin Dashboard</title>
 </asp:Content>

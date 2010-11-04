@@ -15,7 +15,7 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
     {
 
         #region test data
-        
+
         private static void SubmitTenBlogpostsToRepository(BlogPostsRepository repository)
         {
             for (var blog = 0; blog < 10; blog++)
