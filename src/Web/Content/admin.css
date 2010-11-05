@@ -111,3 +111,25 @@ span .red
     color: Red;
     font-weight: bolder;
 }
+
+#table-container table
+{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 1.2em;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+#table-container table td, #table-container table th 
+{
+    border: solid 1px black;
+    padding: 15px;
+}
+
+
+#table-container table tr:nth-of-type(odd) {
+  background-color:#ccc;
+}

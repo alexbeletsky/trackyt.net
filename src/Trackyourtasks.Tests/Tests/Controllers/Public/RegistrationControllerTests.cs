@@ -160,6 +160,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             //post
             var users = repository.Users;
             Assert.That(users.Count(), Is.EqualTo(1), "new temporary user have to be added on quick registration");
+            Assert.That(users.First().Temp, Is.True, "temp flag must be true for temporary users");
         }
 
         [Test]

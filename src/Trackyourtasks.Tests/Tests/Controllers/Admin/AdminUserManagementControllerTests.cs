@@ -65,5 +65,30 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
             Assert.That(model.TotalRegisteredUsers, Is.EqualTo(4));
             Assert.That(model.TempUsers, Is.EqualTo(1));
         }
+
+        [Test]
+        public void GetTable_ReturnsAllUsersList()
+        {
+            //arrange 
+            var repository = new Mock<IUsersRepository>();
+            var usersList = new List<User>
+            {
+                new User { Email = "1@a.com" },
+                new User { Email = "2@a.com" },
+                new User { Email = "3@a.com" },
+                new User { Email = "4@a.com", Temp = true }
+            };
+            repository.Setup(r => r.Users).Returns(usersList.AsQueryable());
+
+            var userManagement = new AdminUserManagementController(repository.Object);
+
+            //act
+            var result = userManagement.Table() as ViewResult;
+
+            //post
+            var model = result.ViewData.Model as List<User>;
+            Assert.That(model, Is.Not.Null);
+            Assert.That(model.Count, Is.EqualTo(4));
+        }
     }
 }

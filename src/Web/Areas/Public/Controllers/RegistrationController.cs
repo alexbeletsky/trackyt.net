@@ -74,7 +74,7 @@ namespace Web.Areas.Public.Controllers
                 var email = GenerateEmail();
                 var password = GeneratePassword();
 
-                return CreateNewUserAndRedirectToDashboard(email, password);
+                return CreateNewUserAndRedirectToDashboard(email, password, true);
             }
             catch (Exception e)
             {
@@ -101,13 +101,13 @@ namespace Web.Areas.Public.Controllers
             return _repository.Users.Count();
         }
 
-        private RedirectResult CreateNewUserAndRedirectToDashboard(string email, string password)
+        private RedirectResult CreateNewUserAndRedirectToDashboard(string email, string password, bool temp = false)
         {
             var user = new User
             {
                 Email = email,
                 Password = password,
-                //SecretPhrase = "not-used"
+                Temp = temp
             };
 
             _repository.SaveUser(user);

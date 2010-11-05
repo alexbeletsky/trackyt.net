@@ -33,7 +33,7 @@ namespace Web.Areas.Admin.Controllers
 
         public ActionResult Table()
         {
-            return View();
+            return View(_usersRepository.Users.ToList());
         }
 
     }

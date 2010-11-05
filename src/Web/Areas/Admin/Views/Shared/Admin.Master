@@ -16,7 +16,7 @@
             </div>
             <div id="navigation">
                 <ul>
-                    <li><%: Html.ActionLink("User management", "Index", new { area="Admin", controller="AdminUserManagement" }) %></li>
+                    <li><%: Html.ActionLink("User management", "Summary", new { area="Admin", controller="AdminUserManagement" }) %></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div>

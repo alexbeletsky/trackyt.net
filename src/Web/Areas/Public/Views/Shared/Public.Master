@@ -20,7 +20,7 @@
             <ul class="left">
                 <li><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
                 <li><a href="#"><span>about us</span></a></li>
-                <li><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></a> </li>
+                <li><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
                 <li><a href="#"><span>about us</span></a></li>
             </ul>
             <ul class="right">
