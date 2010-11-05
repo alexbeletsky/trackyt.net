@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Trackyourtasks.Core.DAL.DataModel;
+using Trackyourtasks.Core.DAL.Extensions;
+using System.Data.Linq;
 
 namespace Trackyourtasks.Core.DAL.Repositories.Impl
 {
@@ -37,6 +39,11 @@ namespace Trackyourtasks.Core.DAL.Repositories.Impl
 
         public void SaveBlogPost(BlogPost blogPost)
         {
+            if (_context.BlogPosts.WithUrl(blogPost.Url) != null)
+            {
+                throw new DuplicateKeyException(blogPost, "Blog post with the same URL already exists. Please correct blog post title.");
+            }
+
             if (blogPost.Id == 0)
             {
                 _context.BlogPosts.InsertOnSubmit(blogPost);

@@ -36,10 +36,6 @@
 
     <%: Html.Partial("Pager") %>
 
-
-
-
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">

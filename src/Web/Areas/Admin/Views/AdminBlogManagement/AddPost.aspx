@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/AdminBlogManagement.Master" Inherits="System.Web.Mvc.ViewPage<Trackyourtasks.Core.DAL.DataModel.BlogPost>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/AdminBlogManagement.Master" Inherits="System.Web.Mvc.ViewPage<Trackyourtasks.Core.DAL.DataModel.BlogPost>" validateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,7 +6,14 @@
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
-
+        <% if (Model != null && Model.Id != 0)
+           { %>
+                <div id="summary-container">
+                    <span>Congratulations! New blog post has been <span class="green">successfully</span> created. 
+                    <%: Html.ActionLink("View post", "PostByUrl", new { area = "Blog", controller = "Posts", url = Model.Url })%>
+                    </span>
+                </div>
+        <% }%>
         <fieldset>
             <legend>Post details</legend>
                         
@@ -25,15 +32,7 @@
                 <%: Html.TextAreaFor(model => model.Body) %>
                 <%: Html.ValidationMessageFor(model => model.Body) %>
             </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.CreatedDate) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.EditorFor(model => model.CreatedDate) %>
-                <%: Html.ValidationMessageFor(model => model.CreatedDate) %>
-            </div>
-            
+                        
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.CreatedBy) %>
             </div>

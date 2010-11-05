@@ -21,6 +21,24 @@ h2
     text-transform: normal;    
 }
 
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: Red;
+}
+
+.editor-field #Title
+{
+    width: 440px;
+}
+
+.editor-field #Body
+{
+    width: 800px;
+    height: 180px;
+}
+
+
 #navigation-container 
 {
     display: block;

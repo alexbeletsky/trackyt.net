@@ -16,12 +16,10 @@ namespace Web.Areas.Blog.Controllers
         private static readonly int PostsOnPageCount = 5;
 
         private IBlogPostsRepository _repository;
-        private int _totalPosts;
 
         public PostsController(IBlogPostsRepository postsRepository)
         {
             _repository = postsRepository;
-            _totalPosts = _repository.BlogPosts.Count();
         }
 
         public ActionResult Index()
@@ -59,13 +57,10 @@ namespace Web.Areas.Blog.Controllers
 
         private int TotalPages()
         {
-            var pages =  _totalPosts / PostsOnPageCount;
-            if (pages == 0)
-            {
-                pages = 1;
-            }
+            var postsCount = _repository.BlogPosts.Count();
+            var delta = (postsCount % PostsOnPageCount) == 0 ? 0 : 1; 
 
-            return pages;
+            return (postsCount / PostsOnPageCount) + delta;
         }
 
     }

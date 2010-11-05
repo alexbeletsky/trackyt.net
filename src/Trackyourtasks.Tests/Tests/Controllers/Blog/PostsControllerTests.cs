@@ -143,6 +143,38 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Blog
             Assert.That(model.TotalPages, Is.EqualTo(1));
         }
 
+
+        [Test]
+        public void GetIndexTotalPagesIsCorreclyCalculated_EightPost_MakesTwoPage()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(8);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.TotalPages, Is.EqualTo(2));
+        }
+
+
+        [Test]
+        public void GetIndexTotalPagesIsCorreclyCalculated_ElevenPost_MakesThreePage()
+        {
+            //arrange
+            var blogRepositoryMock = CreateRepositoryMock(11);
+            var controller = new PostsController(blogRepositoryMock.Object);
+
+            //act
+            var result = controller.Index() as ViewResult;
+
+            //assert
+            var model = result.ViewData.Model as BlogPosts;
+            Assert.That(model.TotalPages, Is.EqualTo(3));
+        }
+
         [Test]
         public void GetPages_ViewIsIndex()
         {

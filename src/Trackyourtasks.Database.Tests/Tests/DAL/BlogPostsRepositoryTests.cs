@@ -7,6 +7,7 @@ using Trackyourtasks.Core.Tests.Framework;
 using Trackyourtasks.Core.DAL.Repositories.Impl;
 using Trackyourtasks.Core.DAL.DataModel;
 using Trackyourtasks.Core.DAL.Extensions;
+using System.Data.Linq;
 
 namespace Trackyourtasks.Database.Tests.Tests.DAL
 {
@@ -196,6 +197,22 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
                 Assert.That(post, Is.Not.Null);
                 Assert.That(post.Url, Is.EqualTo("Url-0"));
             }
+        }
+
+        [Test]
+        [ExpectedException(typeof(DuplicateKeyException))]
+        public void SubmitBlogPostWithSameUrl()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+
+                //act / post
+                repository.SaveBlogPost(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
+                repository.SaveBlogPost(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
+            }
+
         }
     }
 }

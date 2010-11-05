@@ -79,5 +79,80 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
             //post
             Assert.That(result, Is.Not.Null);
         }
+
+        [Test]
+        public void AddPost_Post_UrlForPost_Is_Created()
+        {
+            //arrange
+            var blogRepository = new Mock<IBlogPostsRepository>();
+            var submittedPosts = new List<BlogPost>();
+            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>())).Callback((BlogPost p) => submittedPosts.Add(p));
+
+            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var model = new BlogPost { Title = "Hey Joe" };
+            //act
+            var result = blogManagement.AddPost(model) as ViewResult;
+
+            //post
+            var post = submittedPosts.First();
+            Assert.That(model.Url, Is.EqualTo("hey-joe"));
+        }
+
+        [Test]
+        public void AddPost_Post_NotAddPost_With_SameUrl()
+        {
+            //arrange
+            var blogRepository = new Mock<IBlogPostsRepository>();
+            var submittedPosts = new List<BlogPost>();
+            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+                .Callback((BlogPost p) => 
+                {
+                    if (submittedPosts.Find(x => x.Url == p.Url) != null)
+                    {
+                        throw new Exception();
+                    }
+                    submittedPosts.Add(p); 
+                }
+                );
+
+            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var model = new BlogPost { Title = "Hey Joe" };
+            
+            //act
+            var result = blogManagement.AddPost(model) as ViewResult;
+            result = blogManagement.AddPost(model) as ViewResult;
+
+            //post
+            Assert.That(blogManagement.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("Post could not be added. Exception of type 'System.Exception' was thrown."));
+        }
+
+        [Test]
+        public void AddPost_Post_CreatedDate_Contains_HourMinutesSeconds()
+        {
+            //arrange
+            var blogRepository = new Mock<IBlogPostsRepository>();
+            var submittedPosts = new List<BlogPost>();
+            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+                .Callback((BlogPost p) =>
+                {
+                    if (submittedPosts.Find(x => x.Url == p.Url) != null)
+                    {
+                        throw new Exception();
+                    }
+                    submittedPosts.Add(p);
+                }
+                );
+
+            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var model = new BlogPost { Title = "Hey Joe" };
+
+            //act
+            var result = blogManagement.AddPost(model) as ViewResult;
+
+            //post
+            var post = submittedPosts.First();
+            Assert.That(post.CreatedDate, Is.Not.Null);
+            Assert.That(post.CreatedDate.ToLongTimeString(), Is.Not.EqualTo("00:00:00"));
+        }
     }
 }

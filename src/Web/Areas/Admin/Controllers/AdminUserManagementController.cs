@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Extensions;
 using Web.Areas.Admin.Models;
+using Web.Infrastructure.Security;
 
 namespace Web.Areas.Admin.Controllers
 {
+    [TrackyAuthorizeAttribute(Users = "TrackyAdmin", LoginArea = "Admin", LoginController = "AdminLogin")]
     public class AdminUserManagementController : Controller
     {
         private IUsersRepository _usersRepository;
