@@ -8,10 +8,10 @@
 2. Admin Area
 	2.1 Logon view - done
 	2.2 Master page for Admin - done
-	2.3 Sections: Users, Blog
-		2.3.1 Users
-			2.3.1.1 Simple statistics - Total users: X, Temp users: Y
-				2.3.1.1.1 - Users grids (click on user count, grid is opened). Edit/save users
+	2.3 Sections: Users, Blog	- done
+		2.3.1 Users	- partially done
+			2.3.1.1 Simple statistics - Total users: X, Temp users: Y - done
+				2.3.1.1.1 - Users grids (click on user count, grid is opened). Edit/save users 
 				2.3.1.1.2 - Temp users grids (same)
 		2.3.2 Blog
 			2.3.2 Edit blog post page
