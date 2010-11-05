@@ -184,7 +184,6 @@ namespace Trackyourtasks.Database.Tests.Tests.DAL
         {
             using (var fixture = new FixtureInit("http://localhost"))
             {
-
                 //arrange
                 var repository = new BlogPostsRepository(fixture.Setup.Context);
 

@@ -83,6 +83,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminDashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminUserManagementController.cs" />
     <Compile Include="Areas\Admin\Models\AdminLogin.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUserSummary.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />

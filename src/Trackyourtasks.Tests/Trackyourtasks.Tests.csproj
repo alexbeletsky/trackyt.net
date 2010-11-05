@@ -66,6 +66,7 @@
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
     <Compile Include="Tests\Controllers\Admin\AdminLoginControllerTests.cs" />
+    <Compile Include="Tests\Controllers\Admin\AdminUserManagementControllerTests.cs" />
     <Compile Include="Tests\Controllers\API\ApiV1ControllerTests.cs" />
     <Compile Include="Tests\Controllers\Blog\PostsControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />

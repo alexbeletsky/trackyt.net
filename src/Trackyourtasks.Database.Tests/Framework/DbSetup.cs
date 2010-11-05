@@ -15,7 +15,6 @@ namespace Trackyourtasks.Core.Tests.Framework
  
         public DbSetup()
         {
-            
             Init();
         }
 

@@ -17,5 +17,10 @@ namespace Trackyourtasks.Core.DAL.Extensions
         {
             return users.Where(u => u.Id == id).SingleOrDefault();
         }
+
+        public static IQueryable<User> WithTemp(this IQueryable<User> users, bool flag)
+        {
+            return users.Where(u => u.Temp == flag);
+        }
     }
 }

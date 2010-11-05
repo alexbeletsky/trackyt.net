@@ -15,6 +15,23 @@ namespace Trackyourtasks.Core.DAL.Tests
     [TestFixture]
     public class UsersRepositoryTests
     {
+        #region test data
+
+        private void SubmitUsersToRepository(UsersRepository register, int usersCount, int tempUsers)
+        {
+            for (int users = 0; users < usersCount; users++)
+            {
+                register.SaveUser(new User { Email = users + "@a.com", Password = "pass", Temp = false });
+            }
+
+            for (int temp = 0; temp < tempUsers; temp++)
+            {
+                register.SaveUser(new User { Email = "temp" + temp + "@a.com", Password = "pass", Temp = true });
+            }
+        }
+
+        #endregion
+
         [Test]
         public void Smoke()
         {
@@ -153,6 +170,25 @@ namespace Trackyourtasks.Core.DAL.Tests
                 //POST
                 var foundUser = register.Users.WithId(user.Id);
                 Assert.That(foundUser, Is.Null);
+            }
+        }
+
+        [Test]
+        public void WithTempExtension()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var register = new UsersRepository(fixture.Setup.Context);
+                SubmitUsersToRepository(register, 5, 1);
+
+                //act
+                var usersCount = register.Users.WithTemp(false).Count();
+                var tempCount = register.Users.WithTemp(true).Count();
+
+                //post
+                Assert.That(usersCount, Is.EqualTo(6 + 1)); // + 1, because 1 user added in DbSetup
+                Assert.That(tempCount, Is.EqualTo(1));
             }
         }
     }

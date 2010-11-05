@@ -99,3 +99,15 @@ ul, ol
 {
     padding-left: 20px;
 }
+
+span .green
+{
+    color: Green;
+    font-weight: bolder;
+}
+
+span .red
+{
+    color: Red;
+    font-weight: bolder;
+}
