@@ -79,9 +79,11 @@
     </Compile>
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminBlogManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminDashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminUserManagementController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminBlogSummary.cs" />
     <Compile Include="Areas\Admin\Models\AdminLogin.cs" />
     <Compile Include="Areas\Admin\Models\AdminUserSummary.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
@@ -113,11 +115,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Summary.aspx" />
     <Content Include="Areas\Admin\Views\AdminLogin\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminDashboard\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminUserManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminUserManagement\Summary.aspx" />
     <Content Include="Areas\Admin\Views\AdminUserManagement\Table.aspx" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
@@ -191,6 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\AdminUserManagement.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\AdminBlogManagement.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

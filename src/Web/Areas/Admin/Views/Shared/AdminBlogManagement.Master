@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="submenu-container">
+        <div id="submenu">
+            <ul>
+                <li>
+                    <%: Html.ActionLink("Summary", "Summary") %></li>
+                <li>
+                    <%: Html.ActionLink("Add post", "AddPost") %></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</asp:Content>
