@@ -1,0 +1,163 @@
+﻿body 
+{
+    background-image: url('Images/body-backround.jpg');
+    margin: 0px;
+    padding: 0px;
+}
+
+#navigation-container
+{
+    background-image: url('Images/header-backround.png');
+    background-repeat: repeat-x;
+    width: auto;
+    height: 50px;
+    overflow: hidden;
+}
+
+#navigation 
+{  
+      position:relative;
+      width:1075px;
+      height:50px;
+      margin:0 auto;
+}
+
+#navigation ul 
+{
+    margin: 0px;
+    list-style:none outside none;
+}
+
+#navigation ul.left { float:left; }
+
+#navigation ul.right { float:right; }
+
+#navigation > ul li { float:left; height:50px; }
+
+/* Navigation button images */
+
+#navigation ul li.home
+{
+    background: transparent url('Images/home-button.jpg') no-repeat;
+}
+
+#navigation ul li.product-tour
+{
+    background: transparent url('Images/product-tour-button.jpg') no-repeat;
+}
+
+#navigation ul li.blog
+{
+    background: transparent url('Images/blog-button.jpg') no-repeat;
+}
+
+#navigation ul li.about-us
+{
+    background: transparent url('Images/about-us-button.jpg') no-repeat;
+}
+
+#navigation ul li.login
+{
+    background: transparent url('Images/login-button.jpg') no-repeat;
+}
+
+#navigation ul li.registration
+{
+    background: transparent url('Images/registration-button.jpg') no-repeat;
+}
+
+#navigation ul li.support
+{
+    background: transparent url('Images/support-button.jpg') no-repeat;
+}
+
+/* Navigation button size */
+
+#navigation ul li.home a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 79px;
+}
+
+#navigation ul li.product-tour a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 148px;
+}
+
+#navigation ul li.blog a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 68px;
+}
+
+#navigation ul li.about-us a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 109px;
+}
+
+
+#navigation ul li.login a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 79px;
+}
+
+#navigation ul li.registration a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 138px;
+}
+
+#navigation ul li.support a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 89px;
+}
+
+/* Main container */
+
+#main-container
+{
+    width: 925px;
+    height: auto;
+    margin:0 auto;
+    height: 700px;
+    background-color: #F2F2F2;
+    
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+     -webkit-box-shadow: rgba(0,0,0,0.1) 8px 0px 6px;
+     -moz-box-shadow: rgba(0,0,0,0.1) 8px 0px 6px;
+     box-shadow: rgba(0,0,0,0.1) 8px 10px 6px;     
+}
+
+#footer
+{
+    width: auto;
+    height: 160px;
+    background-color: #192832;
+    background-image: url('Images/footer-backround.png');
+    background-position:center;
+    background-repeat: no-repeat;
+}
