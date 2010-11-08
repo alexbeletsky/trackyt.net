@@ -1,0 +1,190 @@
+﻿body 
+{
+  color:#DEDEDE;
+  /* D8D8D8 FFF9DA */
+  background-color: #f5f5f5;
+  font-family:Tahoma;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  text-align:left;
+  text-transform: normal;
+  letter-spacing: normal;
+  margin:0px;
+  padding:0px;
+}
+
+
+#dashboard-header
+{
+    display: block;
+    height: auto;
+    overflow: hidden;
+}
+
+#dashboard-header #info-container
+{
+    background-color: #272727;
+    height: 45px;
+    overflow: hidden;
+    width: 100%;
+}
+
+#dashboard-header #logo
+{
+    float:left;
+    font-size: 12px;
+    color: #FFFFF0;
+    margin: 15px 0px 0px 20px;
+    width: auto;
+}
+
+#dashboard-header #welcome
+{
+    float: right;
+    font-size: 14px;
+    color: #FFFFF0;
+    margin: 15px 20px auto;
+    width: auto;    
+}
+
+#dashboard-header #menu-container 
+{
+    height: 30px;
+    float: right;
+    display: inline;
+}
+
+
+#dashboard-header #menu-container #corner
+{
+    background-image: url('Images/corner.png');
+    width: 69px;
+    height: 33px;
+    display: inherit;
+    float: inherit;
+    margin-top: -3px;
+}
+
+#dashboard-header #menu-container #menu
+{
+    font-size: 12px;
+    height: 30px;
+    width: auto;
+    background-color: #272727;
+    display: inherit;
+    float: inherit;
+}
+
+#dashboard-header #menu-container #menu ul
+{
+    position: relative;
+    list-style: none;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+#dashboard-header #menu-container #menu a
+{
+    color: inherit;
+}
+
+#dashboard-header #menu-container #menu ul li
+{
+    display: inline; 
+    margin-right: 10px; 
+}
+
+.clear
+{
+    clear: both;
+}
+
+#dashboard-body
+{
+    display: block;
+    color: #585858;
+    padding-left: 280px;
+    padding-right: 280px;
+    min-height: 100%;
+}
+
+#tasks-control
+{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+#input-box
+{
+    /* ffef00 */
+    position: relative;
+    height: 100px;
+    width: 620px;
+    float: left;
+    background-color: #3be441;
+    
+    border-radius: 0px 30px 0px 0px;
+    -moz-border-radius: 0px 30px 0px 0px;
+    -webkit-border-top-right-radius: 30px;
+}
+
+#add-task
+{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#add-task input
+{
+    height: 35px;
+}
+
+#task-description
+{
+    float: left;
+    width: 80%;
+}
+
+#add-task-button
+{
+    float: right;
+    width: 90px;
+}
+
+#controls
+{
+    position: absolute;
+    width: 460px;
+    height: 30px;    
+    float: right;
+    bottom: 0px;
+    right: 0px;
+}
+
+#tasks-outer-box
+{
+    /* ffef00 */
+    height: 100%;
+    background-color: #3be441;
+    padding: 40px;    
+
+    border-radius: 0px 30px 0px 0px;
+    -moz-border-radius: 0px 30px 0px 0px;
+    -webkit-border-top-right-radius: 30px;
+}
+
+#tasks-inner-box
+{
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #272727;
+    
+    border-radius: 0px 30px 0px 0px;
+    -moz-border-radius: 0px 30px 0px 0px;
+    -webkit-border-top-right-radius: 30px;    
+}
