@@ -1,0 +1,106 @@
+﻿body 
+{
+    /* 5e6c78 */ 
+    background-color: #5a748a;
+    background-image: url('Images/back.png');
+    margin: 0;
+    padding: 0;
+}
+
+#top
+{
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 75px;
+    width: 100%;
+    background-color: #252628;
+    
+    color: #1cbcff;
+    font-family: Verdana, Serif;
+    font-size: 12px;
+}
+
+#logo
+{
+    display: inline;
+    float: left;
+}
+
+#navigation-container
+{
+    display: inline;
+    float: right;  
+    margin-top: 10px;
+    margin-right: 20px;  
+}
+
+#container
+{
+    position: relative;
+    width: 985px;
+    height: auto;
+    margin:0 auto;
+    margin-top: -40px;
+    height: 700px;
+    padding-top: 40px;
+    background-color: #e7e6de;
+        
+     -webkit-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     -moz-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;        
+}
+
+#new-task-control
+{
+    width: 760px;
+    height: 120px;
+    margin:0 auto;
+    /* 3d4a59 */
+    background-color: #425565;
+    opacity: 0.7;
+    
+    border: 1px solid #2f3439;
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;    
+}
+
+#new-task-container
+{
+    display: block;
+    position: relative;
+    width: 600px;
+    height: 35px;
+    margin:0 auto;
+    margin-top: 25px;
+}
+
+#new-task-container input
+{
+    height: 100%;
+    margin-right: 5px;
+}
+
+#task-description
+{
+    width: 500px;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+}
+
+#operation-controls
+{
+    color: #1cbcff;
+    width: 400px;
+    height: 50px;
+    margin:0 auto;
+    margin-top: 20px;
+}
