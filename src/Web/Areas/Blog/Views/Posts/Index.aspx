@@ -2,39 +2,38 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Blog content</h2>
+    <div id="blogpost-container">
 
-    <% if (Model.CurrentPage != 1)
+        <% if (Model.CurrentPage != 1)
        {
            %>
            <%: Html.Partial("Pager") %>
            <%
        } 
-    %>
+         %>
 
-    <% foreach (var blogPost in Model.Content)
-       { %>
-            <div class="blogpost">
-                <div class="header">
-                    <div class="title">
-                        <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url }) %>
+        <% foreach (var blogPost in Model.Content)
+           { %>
+                <div class="blogpost">
+                    <div class="header">
+                        <div class="title">
+                            <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url }) %>
+                        </div>
+                        <div class="posted-on">
+                            Published on: <%: blogPost.CreatedDate.ToShortDateString() %> By: <%: blogPost.CreatedBy %>
+                        </div>
                     </div>
-                    <div class="date">
-                        Published on: <%: blogPost.CreatedDate.ToShortDateString() %>
+                    <div class="body">
+                        <%: MvcHtmlString.Create(blogPost.Body) %>
                     </div>
-                    <div class="createdby">
-                        By: <%: blogPost.CreatedBy %>
+                    <div class="footer">
                     </div>
-                </div>
-                <div class="body">
-                    <%: MvcHtmlString.Create(blogPost.Body) %>
-                </div>
-                <div class="footer">
-                </div>
-            </div> 
-    <% } %>
+                </div> 
+        <% } %>
 
-    <%: Html.Partial("Pager") %>
+        <%: Html.Partial("Pager") %>
+
+    </div>
 
 </asp:Content>
 

@@ -13,25 +13,23 @@
        else
        {
            %>
-
-            <div class="blogpost">
-                <div class="header">
-                    <div class="title">
-                        <%: Model.Title %>
+           <div id="blogpost-container">
+                <div class="blogpost">
+                    <div class="header">
+                        <div class="title">
+                            <%: Model.Title %>
+                        </div>
+                        <div class="posted-on">
+                            Published on: <%: Model.CreatedDate.ToShortDateString()%> By: <%: Model.CreatedBy%>
+                        </div>
                     </div>
-                    <div class="date">
-                        Published on: <%: Model.CreatedDate.ToShortDateString()%>
+                    <div class="body">
+                        <%: MvcHtmlString.Create(Model.Body)%>
                     </div>
-                    <div class="createdby">
-                        By: <%: Model.CreatedBy%>
+                    <div class="footer">
                     </div>
-                </div>
-                <div class="body">
-                    <%: MvcHtmlString.Create(Model.Body)%>
-                </div>
-                <div class="footer">
-                </div>
-            </div> 
+                </div> 
+            </div>
 
            <%
        }

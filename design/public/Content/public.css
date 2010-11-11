@@ -1,13 +1,13 @@
 ﻿body 
 {
-    background-image: url('Images/body-backround.jpg');
+    background-image: url('Images/public/body-backround.jpg');
     margin: 0px;
     padding: 0px;
 }
 
 #navigation-container
 {
-    background-image: url('Images/header-backround.png');
+    background-image: url('Images/public/header-backround.png');
     background-repeat: repeat-x;
     width: auto;
     height: 50px;
@@ -38,37 +38,37 @@
 
 #navigation ul li.home
 {
-    background: transparent url('Images/home-button.jpg') no-repeat;
+    background: transparent url('Images/public/home-button.jpg') no-repeat;
 }
 
 #navigation ul li.product-tour
 {
-    background: transparent url('Images/product-tour-button.jpg') no-repeat;
+    background: transparent url('Images/public/product-tour-button.jpg') no-repeat;
 }
 
 #navigation ul li.blog
 {
-    background: transparent url('Images/blog-button.jpg') no-repeat;
+    background: transparent url('Images/public/blog-button.jpg') no-repeat;
 }
 
 #navigation ul li.about-us
 {
-    background: transparent url('Images/about-us-button.jpg') no-repeat;
+    background: transparent url('Images/public/about-us-button.jpg') no-repeat;
 }
 
 #navigation ul li.login
 {
-    background: transparent url('Images/login-button.jpg') no-repeat;
+    background: transparent url('Images/public/login-button.jpg') no-repeat;
 }
 
 #navigation ul li.registration
 {
-    background: transparent url('Images/registration-button.jpg') no-repeat;
+    background: transparent url('Images/public/registration-button.jpg') no-repeat;
 }
 
 #navigation ul li.support
 {
-    background: transparent url('Images/support-button.jpg') no-repeat;
+    background: transparent url('Images/public/support-button.jpg') no-repeat;
 }
 
 /* Navigation button size */
@@ -138,7 +138,7 @@
     width: 985px;
     height: auto;
     margin:0 auto;
-    height: 700px;
+    min-height: 300px;
     background-color: #F2F2F2;
     
     -webkit-border-bottom-right-radius: 20px;
@@ -161,7 +161,7 @@
     width: auto;
     height: 180px;
     background-color: #192832;
-    background-image: url('Images/footer-backround.png');
+    background-image: url('Images/public/footer-backround.png');
     background-position:center;
     background-repeat: no-repeat;
     margin-top: -30px;

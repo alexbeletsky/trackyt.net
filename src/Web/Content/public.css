@@ -1,134 +1,254 @@
-body {
-  color:#555;
-  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: normal;
-  text-align:left;
-  text-transform: normal;
-  letter-spacing: normal;
-  line-height: 28px;
-  background-color:#fff;
-  margin:0px;
-  padding:0px;
+﻿body 
+{
+    background-image: url('Images/public/body-backround.jpg');
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Georgia, Serif;
+    color: #424242;
 }
 
-#navigation-container 
+a
 {
-    background-color: #C7E76C;
-    height: 40px;
+    color: #3e7143;
+}
+
+/* Master page */
+
+#navigation-container
+{
+    background-image: url('Images/public/header-backround.png');
+    background-repeat: repeat-x;
+    width: auto;
+    height: 50px;
     overflow: hidden;
-    width: 100%
 }
 
 #navigation 
 {  
-  width:925px;
-  height:40px;
-  margin:0 auto;
+    position:relative;
+    width:1235px;
+    height:50px;
+    margin:0 auto;
 }
 
-#navigation ul
+#navigation a
+{
+    text-indent: -9999px;  
+}
+
+#navigation ul 
+{
+    margin: 0px;
+    list-style: none outside none;
+}
+
+#navigation ul.left { float:left; }
+
+#navigation ul.right { float:right; }
+
+#navigation > ul li { float:left; height:50px; }
+
+/* Navigation button images */
+
+#navigation ul li.home
+{
+    background: transparent url('Images/public/home-button.jpg') no-repeat;
+}
+
+#navigation ul li.product-tour
+{
+    background: transparent url('Images/public/product-tour-button.jpg') no-repeat;
+}
+
+#navigation ul li.blog
+{
+    background: transparent url('Images/public/blog-button.jpg') no-repeat;
+}
+
+#navigation ul li.about-us
+{
+    background: transparent url('Images/public/about-us-button.jpg') no-repeat;
+}
+
+#navigation ul li.login
+{
+    background: transparent url('Images/public/login-button.jpg') no-repeat;
+}
+
+#navigation ul li.registration
+{
+    background: transparent url('Images/public/registration-button.jpg') no-repeat;
+}
+
+#navigation ul li.support
+{
+    background: transparent url('Images/public/support-button.jpg') no-repeat;
+}
+
+/* Navigation button size */
+
+#navigation ul li.home a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 79px;
+}
+
+#navigation ul li.product-tour a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 148px;
+}
+
+#navigation ul li.blog a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 68px;
+}
+
+#navigation ul li.about-us a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 109px;
+}
+
+
+#navigation ul li.login a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 79px;
+}
+
+#navigation ul li.registration a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 138px;
+}
+
+#navigation ul li.support a
+{
+    display:block;
+    background: none;
+    height: 50px;
+    width: 89px;
+}
+
+/* Main container */
+
+#main-container
 {
     position: relative;
-    margin-bottom: 10px;
-}
-
-#navigation ul.left 
-{
-    float: left;
-}
-
-#navigation ul.left li { display: inline; margin-right: 4px; } 
-
-#navigation ul.right 
-{
-    float: right;
-}
-
-#navigation ul.right li { display: inline; margin-right: 4px; }
-
-validation 
-{
-    color: Red;
-}
-
-ul, ol 
-{
-    list-style: none;
-}
-
-#container
-{
-    width: 925px;
+    width: 985px;
     height: auto;
-    border: 1px dotted black;
+    min-height: 500px;
+    
     margin:0 auto;
+    background-color: #F2F2F2;
+    
+    -webkit-border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+     -webkit-box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
+     -moz-box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
+     box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
+     
+     z-index: 5;     
 }
 
-#add-task
+/* Footer */
+
+#footer
 {
-    width: 80%;
-    margin:0 auto;
+    position: relative;
+    width: auto;
+    height: 180px;
+    background-color: #192832;
+    background-image: url('Images/public/footer-backround.png');
+    background-position:center;
+    background-repeat: no-repeat;
+    margin-top: -30px;
+    z-index: -5;
+}
+
+/* Blog */
+
+#blogpost-container
+{
+    width: auto;
+    height: auto;
+    padding: 20px 40px 20px 40px;
+}
+
+.blogpost
+{
+    margin:0 0 60px;
+    text-align: justify;
+}
+
+.blogpost .header
+{
+    padding-bottom: 20px;
+}
+
+.blogpost .header .title
+{
+    font-family: Georgia, Serif;
+    font-size: 42px;
+    font-weight: 400;
+    color:#277622;    
+}
+
+.blogpost .header .title a, .blogpost .header .title a:visited 
+{
+    /* 428848 */
+    color:#3e7143;        
+    text-decoration:none;
+}
+
+.blogpost .header .posted-on
+{
+    margin-top: 5px;
+    margin-left: 10px;
+    color: #797878;
+    
+    font-size:10px;
+}
+
+.pager
+{
+    display: block;
+    height: 40px;
+    width: auto;
+    margin: 0 auto;
     text-align:center;
 }
 
-#add-task input
+.pager span
+{
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.pager .disabled
 {
     display: inline;
-    overflow:auto;
 }
 
-#tasks
-{
-    margin-top: 10px;    
+.pager .current {
+    font-weight:bold;
 }
-
-#tasks-container
-{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
- 
-.task  
-{
-    border:1px solid #AFAFAF; 
-    background-color: #E8EAE1;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin-top: 5px;
-    padding: 5px;
-}
-
-.task .index
-{
-    position: relative;
-    top: -10px;
-    left: 0px;
-    font-size:x-small;
-    font-weight: bold;
-    margin: 4px;
-    float: left;
-}
-
-.task .description
-{
-    padding: 5px;
-}
-
-.task .timer 
-{
-    float:right;
-    padding-right: 40px;
-    font-size: small;
-}
-
-.task .right 
-{
-    padding-right: 4px;
-    float:right;
-}
-
-.center { width: 50%; margin: 0 auto; }
-
-
