@@ -188,12 +188,12 @@ http://ryanfait.com/
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -180px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -160px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .push
 {
-    height: 150px;    
+    height: 130px;    
 }
 
 /* Footer */
@@ -202,12 +202,68 @@ http://ryanfait.com/
 {
     position: relative;
     width: auto;
-    height: 180px;
+    height: 160px;
     background-color: #192832;
     background-image: url('Images/public/footer-backround.png');
     background-position:center;
     background-repeat: no-repeat;
     margin-top: -30px;
+    padding-top: 16px;
+    overflow: hidden;
+    
+    color: #eeeeee;
+    font-size: 10px;    
+}
+
+#footer a
+{
+    text-decoration:none;    
+    color: #eeeeee;
+}
+
+.navigation-footer
+{
+    position: relative;
+    display: block;
+    float: left;
+    margin: 20px 0px 5px 10px;
+    font-size: 12px;    
+}
+
+.navigation-footer ul
+{
+    margin: 0px;
+    list-style: none outside none;
+}
+
+.navigation-footer li
+{
+    margin: 4px;
+}
+
+.navigation-footer .register, .navigation-footer .home, .navigation-footer .api 
+{
+    font-weight:bold;
+}
+
+#copyright
+{
+    width: auto;
+    margin: 10 auto;
+    text-align: center;
+    vertical-align: bottom;    
+    padding: 2px;
+}
+
+#information
+{
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: bottom;    
+    font-size: 9px;
+    color: #999999; 
+    padding: 3px;   
 }
 
 /* Blog */
