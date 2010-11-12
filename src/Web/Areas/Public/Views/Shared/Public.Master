@@ -15,27 +15,31 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div id="navigation-container">
-        <div id="navigation">
-            <ul class="left">
-                <li class="home"><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
-                <li class="product-tour"><a href="#"></a></li>
-                <li class="blog"><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
-                <li class="about-us"><a href="#"></a></li>
-            </ul>
-            <ul class="right">
-                <li class="login"><%: Html.ActionLink("login", "Index", new { area = "Public", controller = "Login" })%></li>
-                <li class="registration"><%: Html.ActionLink("registration", "Index", new { area = "Public", controller = "Registration" })%></li>
-                <li class="support"><a href="#"></a></li>
-            </ul>
+    <div class="wrapper">
+        <div id="navigation-container">
+            <div id="navigation">
+                <ul class="left">
+                    <li class="home"><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
+                    <li class="product-tour"><a href="#"></a></li>
+                    <li class="blog"><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
+                    <li class="about-us"><a href="#"></a></li>
+                </ul>
+                <ul class="right">
+                    <li class="login"><%: Html.ActionLink("login", "Index", new { area = "Public", controller = "Login" })%></li>
+                    <li class="registration"><%: Html.ActionLink("registration", "Index", new { area = "Public", controller = "Registration" })%></li>
+                    <li class="support"><a href="#"></a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div id="main-container">
-        <asp:ContentPlaceHolder ID="maincontent" runat="server">
-        </asp:ContentPlaceHolder>
+        <div id="main-container">
+            <asp:ContentPlaceHolder ID="maincontent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="push"></div>
     </div>
     <div id="footer">
     </div>
+
 
 <%--    <div id="navigation-container">
         <div id="navigation">

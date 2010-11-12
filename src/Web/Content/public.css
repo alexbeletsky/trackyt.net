@@ -1,10 +1,14 @@
-﻿body 
+﻿*
+{
+    margin: 0;
+}
+
+html, body 
 {
     background-image: url('Images/public/body-backround.jpg');
-    margin: 0px;
-    padding: 0px;
     font-family: Verdana, Georgia, Serif;
     color: #424242;
+    height: 100%;
 }
 
 a
@@ -16,19 +20,19 @@ a
 
 #navigation-container
 {
+    display: block;
+    position: relative;
     background-image: url('Images/public/header-backround.png');
-    background-repeat: repeat-x;
-    width: auto;
+    width: 100%;
     height: 50px;
     overflow: hidden;
+    z-index: 5000;
 }
 
 #navigation 
 {  
-    position:relative;
-    width:1235px;
-    height:50px;
-    margin:0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
 #navigation a
@@ -148,16 +152,16 @@ a
 
 #main-container
 {
-    position: relative;
-    width: 985px;
-    height: auto;
-    min-height: 500px;
+    position: relative;    
     
-    margin:0 auto;
-    /*
-    background-color: #F2F2F2;
-    */
+    width: 985px;
     background-color: #FFFFFF;
+    padding: 20px 40px 20px 40px;
+
+    margin: 0 auto;
+    height: 100%;
+    min-height: 100%;
+    
     -webkit-border-bottom-right-radius: 20px;
     -webkit-border-bottom-left-radius: 20px;
     -moz-border-radius-bottomright: 20px;
@@ -169,7 +173,27 @@ a
      -moz-box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
      box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
      
-     z-index: 5;     
+     z-index: 500;
+}
+
+
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -180px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.push
+{
+    height: 150px;    
 }
 
 /* Footer */
@@ -184,7 +208,6 @@ a
     background-position:center;
     background-repeat: no-repeat;
     margin-top: -30px;
-    z-index: -5;
 }
 
 /* Blog */
@@ -193,7 +216,6 @@ a
 {
     width: auto;
     height: auto;
-    padding: 20px 40px 20px 40px;
 }
 
 .blogpost
@@ -253,4 +275,9 @@ a
 
 .pager .current {
     font-weight:bold;
+}
+
+.clear
+{
+    clear: both;
 }
