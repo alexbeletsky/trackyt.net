@@ -1,26 +1,31 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Public/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Tracky/Views/Shared/Dashboard.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <title>Tracky.net | Dashboard</title>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky.js") %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/trackycontroller.js") %>"></script>
-</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <%: Html.TextBox("userId", ViewData["UserId"], new { type = "hidden" }) %>
     <%: Html.TextBox("api", ViewData["Api"], new { type = "hidden" }) %>
 
-    <div id="submit">
-        <a id="submitData" href="#" class="submit">Submit</a>
-    </div>
-    <div class="center">
-        <div id="tasks-container">
-            <div id="add-task">
-                <input id="newTaskName" type="text" />
-                <input id="createTask" type="button" value="New task" />
+    <div id="container">
+        <div id="new-task-control">
+            <div id="new-task-container">
+                <input id="task-description" type="text" />
+                <input id="add-task" type="button" value="Add task" />
             </div>
-            <div style="clear: both;" />
-            <div id="tasks">
-            </div>
+            <div id="operation-controls">
+<%--                Start All   |   Stop All    |   Submit --%>
+                <input id="start" type="button" value="Start All"/>
+                |
+                <input id="stop" type="button" value="Stop All"/>
+                |
+                <input id="submit" type="button" value="Submit"/>
+            </div>        
+        </div>
+        <div id="tasks">
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>Tracky.net | Dashboard</title>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky.js") %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky-controller.js") %>"></script>
 </asp:Content>

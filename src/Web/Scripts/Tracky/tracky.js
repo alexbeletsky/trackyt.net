@@ -14,9 +14,11 @@
             this.tasksDiv = tasksDiv;
             this.tasks = [];
 
+            this.submitDataButton = submitDataButton;
+
             //handle events
-            $('#' + submitTaskButton).click(onSubmitTaskClicked);
-            $('#' + submitDataButton).click(onSubmitDataClicked);
+            submitTaskButton.click(onSubmitTaskClicked);
+            submitDataButton.click(onSubmitDataClicked);
 
             // handlers
             this.loadData = loadData;
@@ -40,10 +42,10 @@
             }
 
             function onSubmitTaskClicked() {
-                var taskDescription = $('#' + newTaskDescription).val();
+                var taskDescription = newTaskDescription.val();
                 if (taskDescription) {
                     object.addTask(null, taskDescription);
-                    $('#' + newTaskDescription).val('');
+                    newTaskDescription.val('');
                 }
             }
 
@@ -98,9 +100,9 @@
                 for (var task in dirtyTasks) {
                     dirtyTasks[task].resetDirty();
                 }
-            }
 
-            $.unblockUI();
+                $.unblockUI();
+            }
         }
 
         tracky.prototype.addTask = function (data, desc) {
@@ -110,6 +112,15 @@
         tracky.prototype.removeTask = function (task) {
             delete this.tasks[task];
             $('#' + task.id).remove();
+        }
+
+        tracky.prototype.onMarkedDirty = function (task, set) {
+            if (set) {
+                this.submitDataButton.addClass('light');
+            }
+            else {
+                this.submitDataButton.removeClass('light');
+            }
         }
 
         function task(tracky, data, index, desc) {
@@ -138,6 +149,7 @@
 
         task.prototype.markDirty = function () {
             this.dirty = true;
+            this.tracky.onMarkedDirty(this, true);
         }
 
         task.prototype.markedDirty = function () {
@@ -162,6 +174,7 @@
 
         task.prototype.resetDirty = function () {
             this.dirty = false;
+            this.tracky.onMarkedDirty(this, false);
         }
 
         task.prototype.remove = function () {
@@ -268,7 +281,10 @@
             obj.counter++;
             obj.updateTimer();
 
-            obj.task.markDirty();
+            if (!obj.task.markedDirty()) {
+                obj.task.markDirty();
+            }
+
             if (obj.timerId == null) {
                 obj.timerId = setInterval(function () { obj.start(); }, obj.period);
             }

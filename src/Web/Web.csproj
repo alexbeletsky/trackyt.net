@@ -136,6 +136,7 @@
     <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\Images\public\about-us-button.jpg" />
     <Content Include="Content\Images\public\blog-button.jpg" />
     <Content Include="Content\Images\public\body-backround.jpg" />
@@ -155,7 +156,7 @@
     <Content Include="Scripts\jquery.postJson.js" />
     <Content Include="Scripts\Tracky\registration-validation.js" />
     <Content Include="Scripts\Tracky\tracky.js" />
-    <Content Include="Scripts\Tracky\trackycontroller.js" />
+    <Content Include="Scripts\Tracky\tracky-controller.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -181,7 +182,6 @@
   <ItemGroup>
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\Tracky\Models\" />
-    <Folder Include="Areas\Tracky\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyourtasks.Core\Trackyourtasks.Core.csproj">
@@ -212,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\AdminBlogManagement.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Tracky\Views\Shared\Dashboard.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -15,13 +15,12 @@
     }
 
     $('#tasks').tracky(
-                'newTaskName',
-                'createTask',
-                'submitData',
+                $('#task-description'),
+                $('#add-task'),
+                $('#submit'),
                 loadData,
                 submitData,
                 deleteData
             );
-
 }
 );

@@ -8,7 +8,7 @@
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(data),
                 dataType: 'json',
-                completed: callback
+                complete: callback
             });
     }
 })(jQuery);
