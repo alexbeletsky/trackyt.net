@@ -1,4 +1,5 @@
-﻿/* Login page */
+﻿/* Login and registration styles */
+
 body
 {
     font-family: Verdana, Georgia, Serif;
@@ -20,7 +21,7 @@ p
     font-size: 10px;
 }
 
-#login-container
+#container
 {
     margin: 100px auto;    
     width: 460px;

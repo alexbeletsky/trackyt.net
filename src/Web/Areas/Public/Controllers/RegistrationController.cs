@@ -10,7 +10,6 @@ using Web.Infrastructure.Security;
 
 namespace Web.Areas.Public.Controllers
 {
-    //TODO: add functionality for registration of temporary user
     public class RegistrationController : Controller
     {
         private IUsersRepository _repository;
@@ -28,11 +27,13 @@ namespace Web.Areas.Public.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
+
+        // Actions
 
         [HttpPost]
         public ActionResult Register(Models.RegisterUserModel model)
@@ -81,6 +82,8 @@ namespace Web.Areas.Public.Controllers
                 return View("Fail", e);
             }
         }
+
+        // Helpers
 
         private string GeneratePassword()
         {

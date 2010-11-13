@@ -7,7 +7,7 @@
     <link href="../../../../Content/public-login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="login-container">
+    <div id="container">
         <div id="content">
         <h1 class="left">Log In</h1>
         <span id="else" class="left"> or <%: Html.ActionLink("Register", "Index", "Registration") %></span>

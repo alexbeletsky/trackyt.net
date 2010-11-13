@@ -41,19 +41,19 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
             Assert.That(result, Is.Not.Null);
         }
 
-        [Test]
-        public void Register_Get_ReturnsView()
-        {
-            //arrange
-            var forms = new Mock<IFormsAuthentication>();
-            var controller = new RegistrationController(new Mocks.UsersRepositoryMock(), forms.Object);
+        //[Test]
+        //public void Register_Get_ReturnsView()
+        //{
+        //    //arrange
+        //    var forms = new Mock<IFormsAuthentication>();
+        //    var controller = new RegistrationController(new Mocks.UsersRepositoryMock(), forms.Object);
 
-            //act
-            var result = controller.Register();
+        //    //act
+        //    var result = controller.Register();
 
-            //assert
-            Assert.That(result, Is.Not.Null);
-        }
+        //    //assert
+        //    Assert.That(result, Is.Not.Null);
+        //}
 
         [Test]
         public void Register_Post_Success_User_Added_To_Repository()
