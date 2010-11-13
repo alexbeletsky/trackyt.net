@@ -17,11 +17,28 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div id="account-details">
+        <fieldset>
+            <div id="email">
+                <label for="email-value">Email:</label>
+                <span id="email-value"><%: ViewData["Email"] %></span>
+            </div>
+            <div id="password">
+                <label for="password-value">Password:</label>
+                <span id="password-value"><%: ViewData["Password"] %></span>
+            </div>
+        </fieldset>
+        <div class="clear"></div>
+        <a id="close-account-details" href="#">[x] Close</a>
+    </div>
     <div id="top">
         <div id="logo">
         </div>
         <div id="navigation-container">
-            Account | Log Off
+            <%--Account | Log Off--%>
+            <a id="show-account-details" href="#">Account</a>
+            <span> | </span>
+            <%: Html.ActionLink("Log Off", "Index", new { area = "Public", controller = "Home" }) %>
         </div>
     </div>
     <div id="content">

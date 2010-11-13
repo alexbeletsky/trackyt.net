@@ -28,9 +28,11 @@ namespace Web.Areas.Tracky.Controllers
         public ActionResult Index()
         {
             var userEmail = _authentication.GetLoggedUser();
-            var userId = _repository.Users.WithEmail(userEmail).Id;
-            ViewData["UserId"] = userId;
+            var user = _repository.Users.WithEmail(userEmail);
+            ViewData["UserId"] = user.Id;;
             ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1");
+            ViewData["Email"] = userEmail;
+            ViewData["Password"] = user.Password; 
 
             return View();
         }

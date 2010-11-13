@@ -187,12 +187,12 @@ http://ryanfait.com/
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -160px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -130px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .push
 {
-    height: 130px;    
+    height: 100px;    
 }
 
 /* Footer */
@@ -201,7 +201,7 @@ http://ryanfait.com/
 {
     position: relative;
     width: auto;
-    height: 160px;
+    height: 130px;
     background-color: #192832;
     background-image: url('Images/public/footer-backround.png');
     background-position:center;
@@ -248,7 +248,7 @@ http://ryanfait.com/
 #copyright
 {
     width: auto;
-    margin: 10 auto;
+    margin: 20px auto;
     text-align: center;
     vertical-align: bottom;    
     padding: 2px;

@@ -1,17 +1,21 @@
 ﻿/* Login and registration styles */
 
-html, body
+html
 {
-    font-family: Verdana, Georgia, Serif;
-    font-size: 12px;    
-    color: #192832;
-    height: 100%;
     min-height: 100%;
     background: #FAF9D8; /* old browsers */
     background: -moz-linear-gradient(top, #FAF9D8 0%, #eeeeee 58%, #eeeeee 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAF9D8), color-stop(58%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FAF9D8', endColorstr='#eeeeee',GradientType=0 ); /* ie */
     background-repeat:no-repeat;
+}
+
+body
+{
+    font-family: Verdana, Georgia, Serif;
+    font-size: 12px;    
+    color: #192832;
+    height: 100%;
 }
 
 a

@@ -129,7 +129,8 @@
             this.tracky = tracky;
             this.sections = [];
             this.description = desc;
-            this.dirty = data == null ? true : false;
+            //this.dirty = data == null ? true : false;
+            this.dirty = false;
             this.markedForRemove = false;
 
             tracky.tasksDiv.append('<div id="' + this.id + '" class="task"></div>');
@@ -143,6 +144,11 @@
             this.sections['delete'] = new deleteSection(tracky, this, index, this.sections.length);
             this.sections['start'] = new startSection(tracky, this, index, this.sections.length);
             this.sections['timer'] = new actualWorkSection(tracky, this, index, this.sections.length);
+
+            // in case if new task added, it should be marked dirty
+            if (!data) {
+                this.markDirty();
+            }
 
             this.div.fadeIn('fast');
         }

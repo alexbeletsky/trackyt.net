@@ -11,11 +11,10 @@
                 <input id="add-task" type="button" value="Add task" />
             </div>
             <div id="operation-controls">
-<%--                Start All   |   Stop All    |   Submit --%>
                 <input id="start" type="button" value="Start All"/>
-                |
+                <span>|</span>
                 <input id="stop" type="button" value="Stop All"/>
-                |
+                <span>|</span>                
                 <input id="submit" type="button" value="Submit"/>
             </div>        
         </div>
