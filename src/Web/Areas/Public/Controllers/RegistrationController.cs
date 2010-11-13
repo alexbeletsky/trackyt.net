@@ -40,47 +40,27 @@ namespace Web.Areas.Public.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                //check if used already registered
+                if (_repository.Users.WithEmail(model.Email) != null)
                 {
-                    //check if used already registered
-                    if (_repository.Users.WithEmail(model.Email) != null)
-                    {
-                        ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
-                    }
-                    else
-                    {
-                        return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
-                    }
+                    ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
                 }
-                catch (Exception e)
+                else
                 {
-                    return View("Fail", e);
+                    return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
                 }
             }
 
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Fail(Exception exception)
-        {
-            return View(exception);
+            return View("Index", model);
         }
 
         [HttpGet]
         public ActionResult QuickStart()
         {
-            try
-            {
-                var email = GenerateEmail();
-                var password = GeneratePassword();
+            var email = GenerateEmail();
+            var password = GeneratePassword();
 
-                return CreateNewUserAndRedirectToDashboard(email, password, true);
-            }
-            catch (Exception e)
-            {
-                return View("Fail", e);
-            }
+            return CreateNewUserAndRedirectToDashboard(email, password, true);
         }
 
         // Helpers

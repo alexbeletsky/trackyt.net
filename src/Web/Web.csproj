@@ -130,9 +130,7 @@
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
     <Content Include="Areas\Public\Views\Login\Index.aspx" />
-    <Content Include="Areas\Public\Views\Registration\Fail.aspx" />
     <Content Include="Areas\Public\Views\Registration\Index.aspx" />
-    <Content Include="Areas\Public\Views\Registration\Register.aspx" />
     <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
