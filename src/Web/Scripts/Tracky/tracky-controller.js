@@ -17,27 +17,53 @@
         $.postJson(api + '/Delete/' + userId, data, callback);
     }
 
-    $('#tasks').tracky(
-                $('#task-description'),
-                $('#add-task'),
-                $('#submit'),
-                loadData,
-                submitData,
-                deleteData
-            );
+    var tracky = create_tracky(
+        $('#tasks'),
+        $('#task-description'),
+        $('#add-task'),
+        $('#submit'),
+        loadData,
+        submitData,
+        deleteData
+    );
+
+    // Start All / Stop All initialization
+
+    $('#start-all').click(startAll);
+    $('#stop-all').click(stopAll);
+
+    function startAll() {
+        tracky.startAll();
+    }
+
+    function stopAll() {
+        tracky.stopAll();
+    }
 
     // Account details window initialization
 
+    var detailsShown = false;
     $('#account-details').hide();
     $('#show-account-details').click(showAccountDetails);
-    $('#close-account-details').click(closeAccountDetails);
 
     function showAccountDetails() {
-        $('#account-details').slideDown('fast');
+        if (!detailsShown) {
+            detailsShown = true;
+            $('#account-details').slideDown('fast');
+        } else {
+            detailsShown = false;
+            $('#account-details').slideUp('fast');
+        }
     }
 
-    function closeAccountDetails() {
-        $('#account-details').slideUp('fast');    
+    // Window close
+
+    $(window).unload(windowUnload);
+
+    function windowUnload() {
+        // silently submit all tasks
+        tracky.submit();
     }
+
 }
 );

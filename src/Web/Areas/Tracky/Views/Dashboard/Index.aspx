@@ -11,9 +11,9 @@
                 <input id="add-task" type="button" value="Add task" />
             </div>
             <div id="operation-controls">
-                <input id="start" type="button" value="Start All"/>
+                <input id="start-all" type="button" value="Start All"/>
                 <span>|</span>
-                <input id="stop" type="button" value="Stop All"/>
+                <input id="stop-all" type="button" value="Stop All"/>
                 <span>|</span>                
                 <input id="submit" type="button" value="Submit"/>
             </div>        
