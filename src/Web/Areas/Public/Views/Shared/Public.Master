@@ -28,6 +28,7 @@
                 </ul>
             </div>
         </div>
+        <div class="clear"></div>
         <div id="main-container">
             <asp:ContentPlaceHolder ID="maincontent" runat="server">
             </asp:ContentPlaceHolder>
