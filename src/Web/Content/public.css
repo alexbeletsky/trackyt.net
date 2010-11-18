@@ -23,6 +23,16 @@ p
     margin: 8px;
 }
 
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
 /* Master page */
 
 #navigation-container
@@ -235,27 +245,32 @@ http://ryanfait.com/
     color: #eeeeee;
 }
 
-.navigation-footer
+#navigation-footer
 {
     position: relative;
     display: block;
-    float: left;
-    margin: 40px 0px 5px 10px;
+    margin: 30px auto;
+    width: 95%;
+}
+
+.navigation-footer-block
+{
     font-size: 12px;    
 }
 
-.navigation-footer ul
+.navigation-footer-block ul
 {
-    margin: 0px;
+    padding: 5px;
+    margin-right: 16px;
     list-style: none outside none;
 }
 
-.navigation-footer li
+.navigation-footer-block li
 {
     margin: 4px;
 }
 
-.navigation-footer .register, .navigation-footer .home, .navigation-footer .api 
+.navigation-footer-block .bold
 {
     font-weight:bold;
 }
