@@ -226,7 +226,7 @@ http://ryanfait.com/
 #footer
 {
     position: relative;
-    width: auto;
+    width: 100%;
     height: 130px;
     background-color: #192832;
     background-image: url('Images/public/footer-backround.png');
@@ -489,8 +489,11 @@ http://ryanfait.com/
     float: left;
     width: 273px;
     min-height: 100%;
-    padding: 1px;
+    padding: 4px;
     margin: 0px auto;
+    font-size: 12px;
+    line-height: 20px;
+    color: #6a6a6a;
 }
 
 .out-box
@@ -528,4 +531,13 @@ http://ryanfait.com/
         rgb(237,237,237) 87%,
         rgb(226,226,226) 95%,
         rgb(201,201,201) 99%);
+}
+
+.signature
+{
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 10px;
+    font-style: italic;
+    float: right;
 }
