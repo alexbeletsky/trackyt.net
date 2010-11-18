@@ -1,4 +1,5 @@
-﻿*
+﻿
+*
 {
     margin: 0;
 }
@@ -7,6 +8,7 @@ html, body
 {
     background-image: url('Images/public/body-backround.jpg');
     font-family: Verdana, Georgia, Serif;
+    font-size: 14px;
     color: #424242;
     height: 100%;
 }
@@ -18,7 +20,7 @@ a
 
 p
 {
-    margin: 4px;
+    margin: 8px;
 }
 
 /* Master page */
@@ -159,15 +161,11 @@ p
 #main-container
 {
     position: relative;    
-    display: block;
     width: 885px;
-    background-color: #FFFFFF;
-    padding: 1px;
+    background-color: #f6f6f6;
     
     margin: 0 auto;
-    height: 100%;
-    min-height: 100%;
-    
+
     -webkit-border-bottom-right-radius: 20px;
     -webkit-border-bottom-left-radius: 20px;
     -moz-border-radius-bottomright: 20px;
@@ -175,9 +173,9 @@ p
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
 
-     -webkit-box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
-     -moz-box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
-     box-shadow: rgba(10,10,10,0.2) 0px 0px 30px;
+     -webkit-box-shadow: rgba(5,5,5,0.4) 0px 0px 20px;
+     -moz-box-shadow: rgba(5,5,5,0.4) 0px 0px 20px;
+     box-shadow: rgba(5,5,5,0.4) 0px 0px 20px;
      
      z-index: 500;
 }
@@ -185,10 +183,14 @@ p
 .content
 {
     height: auto;
-    min-height: 100%;
-    padding: 20px 40px 20px 40px;
+    padding: 20px 30px 20px 30px;
+    margin: 0 auto;
 }
 
+.content p
+{
+    
+}
 
 /*
 
@@ -355,6 +357,7 @@ http://ryanfait.com/
 #screenshot
 {
     position: relative;
+    margin-bottom: 10px;
     padding: 1px;    
     width: 883px;
     height: 300px;
@@ -367,13 +370,13 @@ http://ryanfait.com/
 #slogan 
 {
     padding: 1px;
-    margin-left: 32px;
+    margin-left: 16px;
     /* #bfdb6c */
     color: #bfdb6c;
     font-family: Meiryo;
     font-size: 56px;
     
-    text-shadow: 2px 2px 8px #424c25;
+    text-shadow: 1px 1px 4px #424c25;
     filter: dropshadow(color=#424c25, offx=1, offy=1); 
 }
 
@@ -382,9 +385,22 @@ http://ryanfait.com/
     margin-top: 35px;
     padding-left: 15px;
     height: 180px;
-    width: 260px;
+    width: 280px;
     text-align: left;
+    /*
     color: #71765e;
+    */
+}
+
+.dark
+{
+    color: #192832 !important;
+}
+
+.big
+{
+    font-size: 22px;
+    line-height: 28px;
 }
 
 .green-button
@@ -400,8 +416,14 @@ http://ryanfait.com/
     background:#4db605;
     background:-webkit-gradient(linear,left bottom,left top,color-stop(0.15,#3daa03),color-stop(0.95,#61c508));
     background:-moz-linear-gradient(15% 95% 90deg,#3daa03,#61c508);
-    border-radius:8px;
 
+/*
+    background:#4db605;
+    background:-webkit-gradient(linear,left bottom,left top,color-stop(0.15,#f18912),color-stop(0.95,#d47101));
+    background:-moz-linear-gradient(15% 95% 90deg,#f18912,#d47101);
+*/
+  
+    border-radius:8px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
     text-decoration:none;
@@ -421,8 +443,8 @@ http://ryanfait.com/
 
 .green-button p
 {
-    font-size:14px;
-    line-height: 25px;
+    font-size:14px !important;
+    line-height: 25px !important;
     text-align: center;    
     color:#FFFFFF;
 }
@@ -431,4 +453,64 @@ http://ryanfait.com/
 {
     position: absolute;
     bottom: 0px;
+}
+
+.trackyt
+{
+    font-weight: bold;
+}
+
+.border
+{
+    width: 825px;
+    margin: 0px auto;
+    height:10px;
+    border-bottom:2px solid #b2b2b2;
+}
+
+.column
+{
+    display: block;
+    float: left;
+    width: 273px;
+    min-height: 100%;
+    padding: 1px;
+    margin: 0px auto;
+}
+
+.out-box
+{
+    margin: 0px -30px;
+}
+
+.grey-gradient
+{
+    display: block;
+    position: relative;
+	padding: 20px 20px 50px 20px;
+    overflow:auto;
+    
+    background: #dedede;
+	border-top: 1px solid #b2b2b2;
+	border-bottom: 1px solid #b2b2b2;
+	background: 
+	    -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(201,201,201)),
+        color-stop(0.04, rgb(219,219,219)),
+        color-stop(0.12, rgb(237,237,237)),
+        color-stop(0.87, rgb(237,237,237)),
+        color-stop(0.95, rgb(226,226,226)),
+        color-stop(0.99, rgb(201,201,201)));
+    background: 
+	    -moz-linear-gradient(
+        center bottom,
+        rgb(201,201,201) 0%,
+        rgb(219,219,219) 4%,
+        rgb(237,237,237) 12%,
+        rgb(237,237,237) 87%,
+        rgb(226,226,226) 95%,
+        rgb(201,201,201) 99%);
 }
