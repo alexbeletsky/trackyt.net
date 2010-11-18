@@ -541,3 +541,34 @@ http://ryanfait.com/
     font-style: italic;
     float: right;
 }
+
+.list li
+{
+    list-style-type: disc !important; 
+    margin: 0px !important;
+}
+
+.faq-list
+{
+    margin-top: 28px;
+    margin-bottom: 56px;
+}
+
+.faq-ans
+{
+    margin-top: 28px;
+    margin-bottom: 28px;
+    
+    margin-left: -10px;
+}
+
+.faq-ans li 
+{
+    list-style: none;
+    margin: 16px 0px;
+}
+
+.faq-ans strong
+{
+    color: #3e7143;
+}

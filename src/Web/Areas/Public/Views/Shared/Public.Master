@@ -56,7 +56,7 @@
             <ul>
                 <li class="api bold"><a href="#">api</a></li>
                 <li class="opensource"><a href="#">open source</a></li>
-                <li class="faq"><a href="#">faq</a></li>
+                <li class="faq"><%: Html.ActionLink("faq", "Faq", new { area = "Public", controller = "Home" }) %></li>
             </ul>
         </div>
         <div class="navigation-footer-block right">

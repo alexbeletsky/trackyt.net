@@ -8,13 +8,14 @@ namespace Web.Areas.Public.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Public/Home/
-
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Faq()
+        {
+            return View();
+        }
     }
 }
