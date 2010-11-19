@@ -77,6 +77,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
+    <Compile Include="API\ApiRegistration.cs" />
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBlogManagementController.cs" />
@@ -128,6 +129,7 @@
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
+    <Content Include="Areas\Public\Views\Home\Api.aspx" />
     <Content Include="Areas\Public\Views\Home\Faq.aspx" />
     <Content Include="Areas\Public\Views\Home\Index.aspx" />
     <Content Include="Areas\Public\Views\Login\Index.aspx" />

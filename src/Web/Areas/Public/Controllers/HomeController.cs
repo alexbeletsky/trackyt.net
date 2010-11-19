@@ -17,5 +17,10 @@ namespace Web.Areas.Public.Controllers
         {
             return View();
         }
+
+        public ActionResult Api()
+        {
+            return View();
+        }
     }
 }
