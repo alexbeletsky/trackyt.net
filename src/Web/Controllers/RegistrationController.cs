@@ -8,7 +8,7 @@ using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Extensions;
 using Web.Infrastructure.Security;
 
-namespace Web.Areas.Public.Controllers
+namespace Web.Controllers
 {
     public class RegistrationController : Controller
     {

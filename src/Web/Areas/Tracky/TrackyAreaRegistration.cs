@@ -18,7 +18,7 @@ namespace Web.Areas.Tracky
             context.MapRoute(
                 "Tracky_default",
                 "Tracky/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

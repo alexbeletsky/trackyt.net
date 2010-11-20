@@ -19,35 +19,28 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            ////Default map
-            //routes.MapRoute(
-            //    "Default", // Route name
-            //    "{controller}/{action}/{id}", // URL with parameters
-            //    new { action="Index", id = UrlParameter.Optional } // Parameter defaults
-            //);
-
-            //Global map
             routes.MapRoute(
-                "Root",
-                "",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-
-            //API v1 map
-            routes.MapRoute(
-                "ApiV1",
-                "API/v1/{action}/{id}",
-                new { controller = "ApiV1", id = 0 }
+                "Default", // Route name
+                "{controller}/{action}/{id}", // URL with parameters
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
         }
 
         protected void Application_Start()
         {
-            TrackyMapping.SetupMapping();
+            // Routing
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
+
+            // Dependency injection
             ControllerBuilder.Current.SetControllerFactory(new TrackyControllerFactory());
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
+
+            // Auto-mapper
+            TrackyMapping.SetupMapping();
+
+            // RouteDebugger
+            //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
         }
     }
 }

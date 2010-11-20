@@ -43,6 +43,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebug">
+      <HintPath>..\..\lib\RouteDebug\RouteDebug.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -77,7 +80,7 @@
     <Compile Include="..\SolutionVersion.cs">
       <Link>Properties\SolutionVersion.cs</Link>
     </Compile>
-    <Compile Include="API\ApiRegistration.cs" />
+    <Compile Include="API\v1\ApiV1Registration.cs" />
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBlogManagementController.cs" />
@@ -90,15 +93,14 @@
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />
-    <Compile Include="Areas\Public\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Public\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Public\Controllers\RegistrationController.cs" />
-    <Compile Include="Areas\Public\Models\LoginModel.cs" />
-    <Compile Include="Areas\Public\Models\RegisterUserModel.cs" />
-    <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
-    <Compile Include="API\v1\ApiV1Controller.cs" />
+    <Compile Include="API\v1\Controllers\ApiV1Controller.cs" />
     <Compile Include="Helpers\Extensions\PagerBuilder.cs" />
     <Compile Include="Helpers\Extensions\PagerHtmlExtension.cs" />
     <Compile Include="Infrastructure\CoverageExcludeAttribute.cs" />
@@ -129,11 +131,11 @@
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
-    <Content Include="Areas\Public\Views\Home\Api.aspx" />
-    <Content Include="Areas\Public\Views\Home\Faq.aspx" />
-    <Content Include="Areas\Public\Views\Home\Index.aspx" />
-    <Content Include="Areas\Public\Views\Login\Index.aspx" />
-    <Content Include="Areas\Public\Views\Registration\Index.aspx" />
+    <Content Include="Views\Home\Api.aspx" />
+    <Content Include="Views\Home\Faq.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Login\Index.aspx" />
+    <Content Include="Views\Registration\Index.aspx" />
     <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
@@ -153,7 +155,6 @@
     <Content Include="Content\Images\public\screenshot.png" />
     <Content Include="Content\Images\public\support-button.jpg" />
     <Content Include="Content\public-login.css" />
-    <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\public.css" />
     <Content Include="Scripts\jquery.blockUI.js" />
@@ -195,10 +196,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Public\Views\Shared\Public.Master" />
+    <Content Include="Views\Shared\Public.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Public\Views\Web.config" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Tracky\Views\Web.config" />

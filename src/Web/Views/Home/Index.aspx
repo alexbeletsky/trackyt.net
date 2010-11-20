@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Public/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <div id="screenshot">
@@ -10,7 +10,7 @@
                 Simple.Small.Smart.
             </p>
             <div class="green-button bottom">
-                <%: Html.ActionLink("Sign up for free", "Index", new { area = "Public", controller = "Registration" })%>
+                <%: Html.ActionLink("Sign up for free", "Index", new { controller = "Registration" })%>
                 <p>
                     No registration needed
                 </p>

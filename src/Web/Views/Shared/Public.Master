@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="../../../../Content/public.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../../Content/public.css" type="text/css" media="all" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -16,14 +16,14 @@
         <div id="navigation-container">
             <div id="navigation">
                 <ul class="left">
-                    <li class="home"><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
+                    <li class="home"><%: Html.ActionLink("home", "Index", new { area = "", controller = "Home" })%></li>
                     <li class="product-tour"><a href="#"></a></li>
                     <li class="blog"><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
                 <%--    <li class="about-us"><a href="#"></a></li>--%>
                 </ul>
                 <ul class="right">
-                    <li class="login"><%: Html.ActionLink("login", "Index", new { area = "Public", controller = "Login" })%></li>
-                    <li class="registration"><%: Html.ActionLink("registration", "Index", new { area = "Public", controller = "Registration" })%></li>
+                    <li class="login"><%: Html.ActionLink("login", "Index", new { area = "", controller = "Login" })%></li>
+                    <li class="registration"><%: Html.ActionLink("registration", "Index", new { area = "", controller = "Registration" })%></li>
                    <%-- <li class="support"><a href="#"></a></li>--%>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
         <div id="navigation-footer">
         <div class="navigation-footer-block left">
             <ul>
-                <li class="home"><%: Html.ActionLink("home", "Index", new { area = "Public", controller = "Home" })%></li>
+                <li class="home"><%: Html.ActionLink("home", "Index", new { area = "", controller = "Home" })%></li>
                 <li class="product-tour"><a href="#">product tour</a></li>
                 <li class="blog"><%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
 <%--                <li class="about-us"><a href="#">about us</a></li>--%>
@@ -47,16 +47,16 @@
         </div>
         <div class="navigation-footer-block left">
             <ul>
-                <li class="register bold"><%: Html.ActionLink("register now!", "Index", new { area = "Public", controller = "Registration" })%></li>
-                <li class="login"><%: Html.ActionLink("login", "Index", new { area = "Public", controller = "Login" })%></li>
+                <li class="register bold"><%: Html.ActionLink("register now!", "Index", new { area = "", controller = "Registration" })%></li>
+                <li class="login"><%: Html.ActionLink("login", "Index", new { area = "", controller = "Login" })%></li>
                 <%--<li class="support"><a href="#">support</a></li>--%>
             </ul>
         </div>
         <div class="navigation-footer-block left">
             <ul>
-                <li class="api bold"><a href="#"><%: Html.ActionLink("api", "Api", new { area = "Public", controller = "Home" }) %></a></li>
-                <li class="opensource"><a href="<%: Url.Action("Faq", new { area="Public", controller="Home"}) %>#OpenSource" >open source</a></li>
-                <li class="faq"><%: Html.ActionLink("faq", "Faq", new { area = "Public", controller = "Home" }) %></li>
+                <li class="api bold"><a href="#"><%: Html.ActionLink("api", "Api", new { area = "", controller = "Home" })%></a></li>
+                <li class="opensource"><a href="<%: Url.Action("Faq", new { area="", controller="Home"}) %>#OpenSource" >open source</a></li>
+                <li class="faq"><%: Html.ActionLink("faq", "Faq", new { area = "", controller = "Home" })%></li>
             </ul>
         </div>
         <div class="navigation-footer-block right">

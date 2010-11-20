@@ -25,7 +25,7 @@ namespace Web.Infrastructure.Security
                     filterContext.Result = new RedirectToRouteResult(
                         new RouteValueDictionary
                         {
-                            { "area", LoginArea ?? "Public" },
+                            { "area", LoginArea ?? "" },
                             { "controller", LoginController },
                             { "ReturnUrl", filterContext.HttpContext.Request.RawUrl }
                         }

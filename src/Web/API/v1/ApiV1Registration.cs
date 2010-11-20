@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace Web.API.v1
+{
+    public class ApiV1Registration : AreaRegistration
+    {
+        public override string AreaName
+        {
+            get { return "API"; }
+        }
+
+        public override void RegisterArea(AreaRegistrationContext context)
+        {
+            //API v1 map
+            context.MapRoute(
+                "ApiV1",
+                "API/v1/{action}/{id}",
+                new { controller = "ApiV1", id = UrlParameter.Optional }
+            );
+        }
+    }
+}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Web.Controllers;
+using Web.API.v1.Controllers;
 using Moq;
 using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.DataModel;
@@ -46,7 +46,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.API
             var index = 222;
             _submittedTasks.Clear();
             _deletedTasks.Clear();
-            repository.Setup(f => f.SaveTask(It.IsAny<Task>())).Callback((Task t) => 
+            repository.Setup(f => f.SaveTask(It.IsAny<Task>())).Callback((Task t) =>
                 {
                     //assign id for new tasks
                     if (t.Id == 0)
@@ -122,7 +122,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.API
                 new TaskDto { Id = 0, ActualWork = 14, Description = "new task 1", Number = 12 },
                 new TaskDto { Id = 0, ActualWork = 177, Description = "new task 2", Number = 13 }
             };
-         
+
             //act
             api.Submit(userId, submit);
 

@@ -38,7 +38,7 @@
             <%--Account | Log Off--%>
             <a id="show-account-details" href="#">Account</a>
             <span> | </span>
-            <%: Html.ActionLink("Log Off", "Index", new { area = "Public", controller = "Home" }) %>
+            <%: Html.ActionLink("Log Off", "Index", new { area = "", controller = "Home" }) %>
         </div>
     </div>
     <div id="content">

@@ -11,7 +11,7 @@ using AutoMapper;
 using Web.API.v1.Model;
 using Web.Infrastructure.Security;
 
-namespace Web.Controllers
+namespace Web.API.v1.Controllers
 {
     //Used AutoMapper, good example found here:
     //http://richarddingwall.name/2009/08/18/asp-net-mvc-tdd-and-automapper/
@@ -19,7 +19,7 @@ namespace Web.Controllers
     //TODO: error handling
     //TODO: authentication (try to unit test)
     //[Authorize]
-    [TrackyAuthorizeAttribute(LoginController = "Login")]
+    //[TrackyAuthorizeAttribute(LoginController = "Login")]
     public class ApiV1Controller : Controller
     {
         private ITasksRepository _repository;
@@ -29,6 +29,12 @@ namespace Web.Controllers
         {
             _repository = repository;
             _mapper = mapper;
+        }
+
+        [HttpPost]
+        public JsonResult Authenticate(string email, string password)
+        {
+            return Json(null);
         }
 
         [HttpPost]

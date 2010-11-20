@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Trackyourtasks.Core.DAL.Repositories;
-using Web.Areas.Public.Models;
+using Web.Models;
 using Trackyourtasks.Core.DAL.Extensions;
 using System.Web.Security;
 using Web.Infrastructure.Security;
 
-namespace Web.Areas.Public.Controllers
+namespace Web.Controllers
 {
     public class LoginController : Controller
     {

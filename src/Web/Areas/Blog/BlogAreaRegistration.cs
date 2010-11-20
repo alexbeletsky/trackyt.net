@@ -23,7 +23,7 @@ namespace Web.Areas.Blog
             context.MapRoute(
                 "Blog_default",
                 "Blog/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Posts", id = UrlParameter.Optional }
             );
 
         }
