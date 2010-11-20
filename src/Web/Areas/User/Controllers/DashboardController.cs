@@ -8,7 +8,7 @@ using Trackyourtasks.Core.DAL.Repositories;
 using Trackyourtasks.Core.DAL.Extensions;
 using Web.Infrastructure.Helpers;
 
-namespace Web.Areas.Tracky.Controllers
+namespace Web.Areas.User.Controllers
 {
     [TrackyAuthorizeAttribute(LoginController = "Login")]
     public class DashboardController : Controller

@@ -72,7 +72,7 @@
     <Compile Include="Tests\Controllers\Blog\PostsControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
-    <Compile Include="Tests\Controllers\Tracky\DashboardTests.cs" />
+    <Compile Include="Tests\Controllers\User\DashboardTests.cs" />
     <Compile Include="Tests\Helpers\PagerHtmlExtensionTests.cs" />
     <Compile Include="Tests\Mocks\RegistrationViewMock.cs" />
     <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Web.Areas.Tracky.Controllers;
+using Web.Areas.User.Controllers;
 using Moq;
 using Trackyourtasks.Core.DAL.Repositories;
 using Web.Infrastructure.Security;

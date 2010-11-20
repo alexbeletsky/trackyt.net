@@ -98,8 +98,8 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
-    <Compile Include="Areas\Tracky\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Tracky\TrackyAreaRegistration.cs" />
+    <Compile Include="Areas\User\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="API\v1\Controllers\ApiV1Controller.cs" />
     <Compile Include="Helpers\Extensions\PagerBuilder.cs" />
     <Compile Include="Helpers\Extensions\PagerHtmlExtension.cs" />
@@ -136,7 +136,7 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Registration\Index.aspx" />
-    <Content Include="Areas\Tracky\Views\Dashboard\Index.aspx" />
+    <Content Include="Areas\User\Views\Dashboard\Index.aspx" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\dashboard.css" />
@@ -187,7 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Blog\Views\Shared\" />
-    <Folder Include="Areas\Tracky\Models\" />
+    <Folder Include="Areas\User\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyourtasks.Core\Trackyourtasks.Core.csproj">
@@ -202,7 +202,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Tracky\Views\Web.config" />
+    <Content Include="Areas\User\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
@@ -220,7 +220,7 @@
     <Content Include="Areas\Admin\Views\Shared\AdminBlogManagement.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Tracky\Views\Shared\Dashboard.Master" />
+    <Content Include="Areas\User\Views\Shared\Dashboard.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

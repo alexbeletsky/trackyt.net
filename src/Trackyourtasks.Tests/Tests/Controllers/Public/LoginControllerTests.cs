@@ -54,7 +54,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
             
             //assert
             auth.Verify(a => a.SetAuthCookie("a@a.com", false));
-            Assert.That(result.Url, Is.EqualTo("~/Tracky/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
         }
 
         [Test]
