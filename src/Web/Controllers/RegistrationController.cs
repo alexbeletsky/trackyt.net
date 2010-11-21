@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Trackyourtasks.Core.DAL.DataModel;
-using Trackyourtasks.Core.DAL.Repositories;
-using Trackyourtasks.Core.DAL.Extensions;
+using Trackyt.Core.DAL.DataModel;
+using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.DAL.Extensions;
 using Web.Infrastructure.Security;
 
 namespace Web.Controllers
@@ -65,7 +65,7 @@ namespace Web.Controllers
         private string GenerateEmail()
         {
             var id = GetLastId();
-            var email = "temp" + id + "@tracky.net";
+            var email = "temp" + id + "@trackyt.net";
             
             return email;
         }

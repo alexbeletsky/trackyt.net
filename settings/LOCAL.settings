@@ -8,7 +8,7 @@
   <property name="server.msmq" value="localhost" />
   <property name="server.database" value=".\SQLEXPRESS" />
 
-  <property name="database.name" value="tracky" />
+  <property name="database.name" value="trackyt" />
   <property name="log.level" value="DEBUG" />
   <property name="app.user.name" value="__REPLACE__" />
   <property name="app.user.password" value="__REPLACE__" />
@@ -16,10 +16,10 @@
   <property name="error.emails.to" value="__REPLACE__" />
 
   <!-- base settings -->
-  <property name="project.name" value="__REPLACE__" overwrite="false" />
-  <property name="repository.path" value="__REPLACE__" />
+  <property name="project.name" value="trackyt.net" overwrite="false" />
+  <property name="repository.path" value="git://github.com/alexanderbeletsky/Trackyourtasks.net" />
   <property name="folder.app.drop" value="${project.name}" overwrite="false" />
-  <property name="folder.database" value="__REPLACE__" overwrite="false" />
+  <property name="folder.database" value="db" overwrite="false" />
 
   <!-- database deployment -->
   <property name="dirs.db" value="..\..\${folder.database}" />

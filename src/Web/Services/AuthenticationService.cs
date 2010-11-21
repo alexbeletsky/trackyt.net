@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Web.Infrastructure.Security;
-using Trackyourtasks.Core.DAL.Repositories;
-using Trackyourtasks.Core.DAL.Extensions;
+using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.DAL.Extensions;
 
 namespace Web.Services
 {

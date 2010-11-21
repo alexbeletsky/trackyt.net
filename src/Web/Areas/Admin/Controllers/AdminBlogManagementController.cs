@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Trackyourtasks.Core.DAL.Repositories;
+using Trackyt.Core.DAL.Repositories;
 using Web.Areas.Admin.Models;
-using Trackyourtasks.Core.DAL.DataModel;
+using Trackyt.Core.DAL.DataModel;
 using Web.Infrastructure.Security;
 
 namespace Web.Areas.Admin.Controllers

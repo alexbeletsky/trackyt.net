@@ -192,9 +192,9 @@
     <Folder Include="Areas\User\Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trackyourtasks.Core\Trackyourtasks.Core.csproj">
+    <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">
       <Project>{631248AA-496F-40D3-9C1B-E30B09219D76}</Project>
-      <Name>Trackyourtasks.Core</Name>
+      <Name>Trackyt.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

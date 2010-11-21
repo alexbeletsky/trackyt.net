@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Infrastructure.Security;
-using Trackyourtasks.Core.DAL.Repositories;
-using Trackyourtasks.Core.DAL.Extensions;
+using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.DAL.Extensions;
 using Web.Infrastructure.Helpers;
 
 namespace Web.Areas.User.Controllers

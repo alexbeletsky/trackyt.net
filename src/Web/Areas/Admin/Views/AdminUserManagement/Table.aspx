@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/AdminUserManagement.Master" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.List<User>>" %>
-<%@ Import Namespace="Trackyourtasks.Core.DAL.DataModel" %>
+<%@ Import Namespace="Trackyt.Core.DAL.DataModel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="table-container">
