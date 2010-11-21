@@ -20,7 +20,8 @@ a
 
 p
 {
-    margin: 8px;
+    margin: 10px;
+    line-height: 20px;
 }
 
 .left
@@ -498,7 +499,7 @@ http://ryanfait.com/
     padding: 4px;
     margin: 0px auto;
     font-size: 12px;
-    line-height: 20px;
+    line-height: 24px;
     color: #6a6a6a;
 }
 
@@ -577,4 +578,23 @@ http://ryanfait.com/
 .faq-ans strong
 {
     color: #3e7143;
+}
+
+/* API */
+
+.api code 
+{
+    position: relative;
+    font-family:monospace;
+    font-size: larger;
+    text-align: left;
+}
+
+.api pre 
+{
+    border:1px solid gray;
+    display:block;
+    margin: 0px;
+    padding 10px;
+    overflow: scroll;
 }
