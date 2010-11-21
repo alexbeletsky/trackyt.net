@@ -79,5 +79,39 @@ namespace Trackyourtasks.Core.Tests.Tests.Services
             //post
             Assert.That(auth, Is.False);
         }
+
+        [Test]
+        public void GetUserId()
+        {
+            //arrange
+            var users = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var service = new AuthenticationService(users.Object, forms.Object);
+
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+
+            //act
+            var id = service.GetUserId("ok@a.com");
+
+            //assert
+            Assert.That(id, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetUserId_WrongUser()
+        {
+            //arrange
+            var users = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var service = new AuthenticationService(users.Object, forms.Object);
+
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+
+            //act
+            var id = service.GetUserId("notok@a.com");
+
+            //assert
+            Assert.That(id, Is.EqualTo(0));
+        }
     }
 }

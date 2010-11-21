@@ -31,8 +31,10 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         $.blockUI();
         this.loadData(onDataLoaded);
 
-        function onDataLoaded(data) {
-            createTasks(data);
+        function onDataLoaded(response) {
+            if (response.success) {
+                createTasks(response.data.tasks);
+            }
 
             $.unblockUI();
         }

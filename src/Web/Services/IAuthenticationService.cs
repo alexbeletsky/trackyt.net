@@ -8,5 +8,6 @@ namespace Web.Services
     public interface IAuthenticationService
     {
         bool Authenticate(string email, string password);
+        int GetUserId(string email);
     }
 }

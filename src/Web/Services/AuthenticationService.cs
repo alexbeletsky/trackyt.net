@@ -30,5 +30,12 @@ namespace Web.Services
 
             return false;
         }
+
+
+        public int GetUserId(string email)
+        {
+            var user = _users.Users.WithEmail(email);
+            return (user == null ? 0 : user.Id);  
+        }
     }
 }
