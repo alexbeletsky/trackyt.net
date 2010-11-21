@@ -8,20 +8,18 @@ using Web.Models;
 using Trackyourtasks.Core.DAL.Extensions;
 using System.Web.Security;
 using Web.Infrastructure.Security;
+using Web.Services;
 
 namespace Web.Controllers
 {
     public class LoginController : Controller
     {
-        private IUsersRepository _repository;
-        private IFormsAuthentication _authentication;
+        private IAuthenticationService _authentication;
 
-        public LoginController(IUsersRepository repository, IFormsAuthentication auth)
+        public LoginController(IAuthenticationService authentication)
         {
-            _repository = repository;
-            _authentication = auth;
+            _authentication = authentication;
         }
-
 
         public ActionResult Index()
         {
@@ -33,10 +31,8 @@ namespace Web.Controllers
         {
             if(ModelState.IsValid) 
             {
-                var user = _repository.Users.WithEmail(model.Email);  
-                if (user != null && user.Password == model.Password)
+                if (_authentication.Authenticate(model.Email, model.Password))
                 {
-                    _authentication.SetAuthCookie(model.Email, false);
                     return Redirect(returnUrl ?? "~/User/Dashboard");
                 }
                 else

@@ -97,7 +97,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
 
             //assert (result)
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Tracky/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
         }
 
         [Test]
@@ -226,7 +226,7 @@ namespace Trackyourtasks.Core.Tests.Controllers.Public
 
             //post
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Tracky/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
         }
 
         [Test]

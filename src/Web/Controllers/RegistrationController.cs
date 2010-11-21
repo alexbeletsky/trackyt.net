@@ -10,6 +10,7 @@ using Web.Infrastructure.Security;
 
 namespace Web.Controllers
 {
+    //TODO: refactor to use IAuthenticateService, instead of IUsersRepository/IFormsAuthentication
     public class RegistrationController : Controller
     {
         private IUsersRepository _repository;
@@ -25,15 +26,6 @@ namespace Web.Controllers
         {
             return View();
         }
-
-
-        //[HttpGet]
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        // Actions
 
         [HttpPost]
         public ActionResult Register(Models.RegisterUserModel model)
@@ -80,7 +72,6 @@ namespace Web.Controllers
 
         private int GetLastId()
         {
-            //return new Random(DateTime.Now.Millisecond).Next(10000);
             return _repository.Users.Count();
         }
 
@@ -96,7 +87,7 @@ namespace Web.Controllers
             _repository.SaveUser(user);
             _forms.SetAuthCookie(email, false);
 
-            return Redirect("~/Tracky/Dashboard");
+            return Redirect("~/User/Dashboard");
         }
     }
 }

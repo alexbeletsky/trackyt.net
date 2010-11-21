@@ -78,6 +78,7 @@
     <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />
     <Compile Include="Tests\Mocks\UsersRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\Services\AuthenticationServicesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyourtasks.Core\Trackyourtasks.Core.csproj">

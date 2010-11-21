@@ -16,10 +16,18 @@ namespace Web.API.v1.Controllers
     //Used AutoMapper, good example found here:
     //http://richarddingwall.name/2009/08/18/asp-net-mvc-tdd-and-automapper/
 
+    // Used JSON and APS.net MVC
+    // http://haacked.com/archive/2010/04/15/sending-json-to-an-asp-net-mvc-action-method-argument.aspx
+
+    // Information used, how to unit test JSON response
+    // http://www.heartysoft.com/post/2010/05/25/ASPNET-MVC-Unit-Testing-JsonResult-Returning-Anonymous-Types.aspx
+
     //TODO: error handling
-    //TODO: authentication (try to unit test)
-    //[Authorize]
-    //[TrackyAuthorizeAttribute(LoginController = "Login")]
+    //TODO: HandleError have to be added here (perfaps, this not only class to have it)
+    // Information
+    // http://forums.asp.net/p/1471123/3407713.aspx
+    // http://weblogs.asp.net/scottgu/archive/2008/07/14/asp-net-mvc-preview-4-release-part-1.aspx
+
     public class ApiV1Controller : Controller
     {
         private ITasksRepository _repository;
@@ -38,6 +46,7 @@ namespace Web.API.v1.Controllers
         }
 
         [HttpPost]
+        [TrackyAuthorizeAttribute(LoginController = "Login")]
         public JsonResult GetAllTasks(int id)
         {
             var tasksQuery = _repository.Tasks.WithUserId(id);
@@ -45,6 +54,7 @@ namespace Web.API.v1.Controllers
         }
 
         [HttpPost]
+        [TrackyAuthorizeAttribute(LoginController = "Login")]
         public JsonResult Submit(int id, IList<TaskDto> tasks)
         {
             foreach (var taskData in tasks)
@@ -62,6 +72,7 @@ namespace Web.API.v1.Controllers
         }
 
         [HttpPost]
+        [TrackyAuthorizeAttribute(LoginController = "Login")]
         public JsonResult Delete(int id, IList<TaskDto> tasks)
         {
             foreach (var taskData in tasks)

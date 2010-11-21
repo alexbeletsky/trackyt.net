@@ -8,6 +8,7 @@ using Web.Models;
 using System.Web.Mvc;
 using Moq;
 using Web.Infrastructure.Security;
+using Web.Services;
 
 namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
 {
@@ -18,18 +19,20 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
         public void Smoke()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>().Object;
-            var controller = new LoginController(new Mocks.UsersRepositoryMock(), auth);
+            var service = new Mock<IAuthenticationService>(); 
+            var controller = new LoginController(service.Object);
+
             //act/post
             Assert.That(controller, Is.Not.Null);
         }
+
 
         [Test]
         public void Login_Index_View()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>().Object;
-            var controller = new LoginController(new Mocks.UsersRepositoryMock(), auth);
+            var service = new Mock<IAuthenticationService>();
+            var controller = new LoginController(service.Object);
 
             //act
             var result = controller.Index();
@@ -42,18 +45,16 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
         public void Login_Post_Success()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new LoginController(repository, auth.Object);
+            var service = new Mock<IAuthenticationService>();
+            var controller = new LoginController(service.Object);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
-            repository.SaveUser(new DAL.DataModel.User() { Email = "a@a.com", Password = "xxx" });
-
+            service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(true);
+            
             //act
             var result = controller.Login(model, null) as RedirectResult;
-            
+
             //assert
-            auth.Verify(a => a.SetAuthCookie("a@a.com", false));
             Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
         }
 
@@ -61,18 +62,16 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
         public void Login_Post_Success_With_ReturnUrl()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new LoginController(repository, auth.Object);
+            var service = new Mock<IAuthenticationService>();
+            var controller = new LoginController(service.Object);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
-            repository.SaveUser(new DAL.DataModel.User() { Email = "a@a.com", Password = "xxx" });
+            service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(true);
 
             //act
             var result = controller.Login(model, "somewhere") as RedirectResult;
 
             //assert
-            auth.Verify(a => a.SetAuthCookie("a@a.com", false));
             Assert.That(result.Url, Is.EqualTo("somewhere"));
         }
 
@@ -80,28 +79,11 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Public
         public void Login_Post_Fail()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new LoginController(repository, auth.Object);
+            var service = new Mock<IAuthenticationService>();
+            var controller = new LoginController(service.Object);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
-            //act
-            var result = controller.Login(model, "somewhere") as ViewResult;
-
-            //assert
-            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("The user name or password provided is incorrect."));
-        }
-
-        [Test]
-        public void Login_Post_Fail_WrongPassword()
-        {
-            //arrange
-            var auth = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new LoginController(repository, auth.Object);
-            var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
-
-            repository.SaveUser(new DAL.DataModel.User() { Email = "a@a.com", Password = "yyy" });
+            service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(false);
 
             //act
             var result = controller.Login(model, "somewhere") as ViewResult;

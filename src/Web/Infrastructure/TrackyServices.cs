@@ -8,6 +8,7 @@ using Trackyourtasks.Core.DAL.Repositories.Impl;
 using Web.Infrastructure.Security;
 using AutoMapper;
 using Web.Infrastructure.Helpers;
+using Web.Services;
 
 namespace Web.Infrastructure
 {
@@ -22,6 +23,7 @@ namespace Web.Infrastructure
             Bind<IPathHelper>().To<PathHelper>();
             Bind<IMappingEngine>().ToConstant(Mapper.Engine);
             Bind<IBlogPostsRepository>().To<BlogPostsRepository>();
+            Bind<IAuthenticationService>().To<AuthenticationService>();
         }
     }
 }
