@@ -5,16 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Areas.Admin.Models;
 using Web.Infrastructure.Security;
+using Web.Services;
 
 namespace Web.Areas.Admin.Controllers
 {
-    //TODO: store password into database
     public class AdminLoginController : Controller
     {
-        private static readonly string AdminPassword = "trackyadm";
-        private IFormsAuthentication _authentication;
+        private IAuthenticationService _authentication;
 
-        public AdminLoginController(IFormsAuthentication auth)
+        public AdminLoginController(IAuthenticationService auth)
         {
             _authentication = auth;
         }
@@ -29,10 +28,8 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var password = model.Password;
-                if (password == AdminPassword)
+                if (_authentication.Authenticate("Admin", model.Password))
                 {
-                    _authentication.SetAuthCookie("TrackyAdmin", false);
                     return Redirect("~/Admin/AdminDashboard");
                 }   
                 else

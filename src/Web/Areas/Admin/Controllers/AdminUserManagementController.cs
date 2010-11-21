@@ -10,7 +10,7 @@ using Web.Infrastructure.Security;
 
 namespace Web.Areas.Admin.Controllers
 {
-    [TrackyAuthorizeAttribute(Users = "TrackyAdmin", LoginArea = "Admin", LoginController = "AdminLogin")]
+    [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
     public class AdminUserManagementController : Controller
     {
         private IUsersRepository _usersRepository;

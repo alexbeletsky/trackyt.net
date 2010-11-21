@@ -187,7 +187,7 @@ namespace Trackyourtasks.Core.DAL.Tests
                 var tempCount = register.Users.WithTemp(true).Count();
 
                 //post
-                Assert.That(usersCount, Is.EqualTo(6 + 1)); // + 1, because 1 user added in DbSetup
+                Assert.That(usersCount, Is.EqualTo(6)); 
                 Assert.That(tempCount, Is.EqualTo(1));
             }
         }

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Web.Areas.Admin.Models;
 using Moq;
 using Web.Infrastructure.Security;
+using Web.Services;
 
 namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
 {
@@ -18,7 +19,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
         public void Smoke()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>();
+            var auth = new Mock<IAuthenticationService>();
             var controller = new AdminLoginController(auth.Object);
 
             //act/assert
@@ -29,7 +30,7 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
         public void GetIndex()
         {
             //arrange
-            var auth = new Mock<IFormsAuthentication>();
+            var auth = new Mock<IAuthenticationService>();
             var controller = new AdminLoginController(auth.Object);
 
             //act
@@ -38,46 +39,5 @@ namespace Trackyourtasks.Core.Tests.Tests.Controllers.Admin
             //post
             Assert.That(result, Is.Not.Null);
         }
-
-        [Test]
-        public void GetAdminLogin_Success()
-        {
-            //arrange
-            var auth = new Mock<IFormsAuthentication>();            
-            var controller = new AdminLoginController(auth.Object);
-            var model = new AdminLogin
-            {
-                Password = "trackyadm"
-            };
-            
-            //act
-            var result = controller.Login(model) as RedirectResult;
-
-            //assert
-            auth.Verify(a => a.SetAuthCookie("TrackyAdmin", false));
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Admin/AdminDashboard"));
-        }
-
-        [Test]
-        public void GetAdminLogin_Fail()
-        {
-            //arrange
-            var auth = new Mock<IFormsAuthentication>();
-            var controller = new AdminLoginController(auth.Object);
-            var model = new AdminLogin
-            {
-                Password = "wrong"
-            };
-
-            //act
-            var result = controller.Login(model) as RedirectResult;
-
-            //assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/Admin"));
-        }
-
-
     }
 }
