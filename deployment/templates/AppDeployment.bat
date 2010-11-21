@@ -2,8 +2,8 @@
 
 SET DIR=%~d0%~p0%
 
-SET file.settings="%DIR%..\settings\${environment}.settings"
+SET web.deploy.folder="${web.deploy.folder}"
 
-::your deployment settings here
-
-pause
+rmdir /s /q %web.deploy.folder%
+xcopy /E /F /H /R ..\_PublishedWebSites\Web %web.deploy.folder%\web\
+xcopy ..\build_artifacts\_BuildInfo.xml %web.deploy.folder%\version\
