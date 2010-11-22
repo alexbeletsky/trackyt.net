@@ -201,14 +201,19 @@
     background: none;
     color: inherit;
     cursor: pointer;
+    width: 70px;
+    height: 40px;
 }
 
 .light
 {
+    /*
     background-color: #e0d036 !important;
     -webkit-box-shadow:0 0 35px #e0d036; 
     -moz-box-shadow: 0 0 35px #e0d036; 
     box-shadow:0 0 35px #e0d036; 
+    */
+    background-image: url('Images/dashboard/glow.png') !important;
 }
 
 input#task-description
