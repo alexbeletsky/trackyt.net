@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <project name="Settings">
   <!-- environment settings -->
-  <property name="environment" value="LOCAL" />
+  <property name="environment" value="PRODUCTION" />
   <!-- servers -->
   <property name="server.app" value="127.0.0.1" />
   <property name="server.file" value="127.0.0.1" />
@@ -23,7 +23,7 @@
   <property name="folder.database" value="db" overwrite="false" />
 
   <!-- database deployment -->
-  <property name="dirs.db" value="..\..\${folder.database}" />
+  <property name="dirs.db" value="..\${folder.database}" />
   <property name="file.version" value="_BuildInfo.xml" overwrite="false" />
   <property name="restore.from.path" value="..\${database.name}.bak" overwrite="false" />
   
