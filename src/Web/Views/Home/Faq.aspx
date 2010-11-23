@@ -39,7 +39,7 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                 <li id="TempReg">
                     <strong>What is temporary registration?</strong>
                     <p>
-                    Is a just a simple way for you to try application. By choosing 'Start now' during registration, we will create new account for you. Email and password would be generated automatically, so it is very important to save them during first login. Account information is available on dashboard by clicking on 'Account' link. Please not, that we will just keep you data for 30 days, after that you should create permanent account.
+                    Is a just a simple way for you to try application. By choosing 'Start now' during registration, we will create new account for you. Email and password would be generated automatically, so it is very important to save them during first login. Account information is available on dashboard by clicking on 'Account' link. Please note, that we will just keep you data for 30 days, after that you should create permanent account.
                     </p>
                 </li>
                 <li id="Api">
@@ -69,13 +69,13 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                 <li id="OpenSource">
                     <strong>Are you open source?</strong>
                     <p>
-                    Yes. The sources of Trackyt.net is fully available on <a href="http://github.com">github</a> in our <a href= "https://github.com/alexanderbeletsky/Trackyt.net">repository</a>. We are happy if you fork repository, educate, fix a bug, add wiki page or do any contribution you can. Having a source code make you available to build the application and host it on local server for internal usage. In the same time, we will not be happy to see the same site (exact design and/or functionality) somewhere in internet.
+                    Yes. The sources of Trackyt.net is fully available on <a href="http://github.com">github</a> in our <a href= "https://github.com/alexanderbeletsky/trackyourtasks.net">repository</a>. We are happy if you fork repository, learn, fix a bug, add wiki page or do any contribution you can. Having a source code make you available to build the application and host it on local server for internal usage. In the same time, we will not be happy to see the same site (exact design and/or functionality) somewhere in internet.
                     </p>
                 </li>
                 <li id="Help">
                     <strong>I want to help this project, what can I do?</strong>
                     <p>
-                    You can do a not! We are glad for any help you can do for this project. Users are free to submit issues and feature request to project <a href="https://github.com/alexanderbeletsky/Trackyt.net/issues">issue tracking</a> system. Developers could for the <a href= "https://github.com/alexanderbeletsky/Trackyt.net">repository</a> fix the bugs or make own enhancements. Having open API you can integrate your own application with Trackyt.net or implement application for mobile device. Please contact to this <a href="mailto:alexander.beletsky@gmail.com">email</a> this any questions and propositions you might have.  
+                    You can do a not! We are glad for any help you can do for this project. Users are free to submit issues and feature request to project <a href="https://github.com/alexanderbeletsky/Trackyt.net/issues">issue tracking</a> system. Developers could for the <a href= "https://github.com/alexanderbeletsky/trackyourtasks.net">repository</a> fix the bugs or make own enhancements. Having open API you can integrate your own application with Trackyt.net or implement application for mobile device. Please contact to this <a href="mailto:alexander.beletsky@gmail.com">email</a> this any questions and propositions you might have.  
                     </p>
                 </li>
             </ul>

@@ -15,8 +15,7 @@
             <span id="else" class="left"> or <%: Html.ActionLink("Start now", "QuickStart", "Registration") %></span>
             <div class="clear"></div>
             <p>
-            If you are just in hurry or have doubts you are free to skip regisration. You can start using application
-            with temp account created for you
+            If you are just in hurry or have doubts you are free to skip regisration. You can start using application with <a href = "<%: Url.Action("Faq", new { area="", controller="Home"})%>#TempReg">temporary account</a> created for you
             </p>    
             <% using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { id="signup_form" })) { %>
                 <div id="PasswordValidationMessage" class="validation-summary-errors"></div>

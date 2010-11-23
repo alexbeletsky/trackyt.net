@@ -7,9 +7,9 @@
   <property name="server.file" value="127.0.0.1" />
   <property name="server.msmq" value="localhost" />
   <property name="server.database" value=".\SQLEXPRESS" />
-  <property name="web.deploy.folder" value="c:\trackyt.net\web" />
+  <property name="web.deploy.folder" value="c:\trackyt.net\stage" />
 
-  <property name="database.name" value="trackytdb" />
+  <property name="database.name" value="trackytdbstage" />
   <property name="log.level" value="DEBUG" />
   <property name="app.user.name" value="alexander.beletsky" />
   <property name="app.user.password" value="__REPLACE__" />

@@ -20,13 +20,13 @@
 
     <div class="content">
         <p>
-            <strong>trackyt.net</strong> is a simple, small and smart web application. Its primary goal is to provide you with a convenient tools for tasks and time management. Now, it is individual solution that helps you create, prioritize and track how much do you spend on every task you need to work on. It is perfect for freelances, organizations employees and anyone who cares about planning and self-organization.
+            <strong>trackyt.net</strong> is a simple, small and smart web application. Its primary goal is to provide you with a convenient tools for tasks and time management. Now, it is individual solution that helps you create, prioritize and track how much do you spend on every task you need to work on. It is perfect for anyone who cares about planning and self-organization.
         </p>
         <div class="grey-gradient out-box">    
         <div class="column">
             <h2>Why to use it?</h2>
             <p>
-                As it said in our slogan, we tried to build simple, small and smart tool to you. Simplicity is our primary criteria for building software - you don't have to crawl thought documentation, instead you just run and use! We want to stay small, meaning to create exactly what you need. Our goal is to collect as much more feedbacks as we can and return it as features for product. We want to make smart things that also helps you to solve your problems.
+                As it said in our slogan, we've tried to build simple, small and smart tool for you. Simplicity is our primary criteria for building software - you don't have to crawl thought documentation, instead you just run and use! We want to stay small, meaning to create exactly what you need. Our goal is to collect as much more feedbacks as we can and return it as features for product. We want to make smart things that also helps you to solve your problems.
             </p>
         </div>
         <div class="column">
@@ -38,7 +38,7 @@
         <div class="column">
             <h2>Anything more?</h2>
             <p>
-                Product is build using <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> architecture and we really much care about extensibilty. We work on API that allows any third-party vendors to integrate. It also provides abilities to build new applications that uses existing functionality created for trackyt.net. This is a big area for improvements for mobile applications. 
+                Product is build using <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> architecture and we really much care about extensibilty. We work on <%: Html.ActionLink("API", "Api", new { area = "", controller = "Home" }) %> that allows any third-party vendors to integrate. It also provides abilities to build new applications that uses existing functionality created for trackyt.net. This is a big area for improvements for mobile applications. 
             </p>
         </div>
         </div>
