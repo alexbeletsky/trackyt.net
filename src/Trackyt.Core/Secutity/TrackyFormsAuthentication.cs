@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace Web.Infrastructure.Security
+namespace Trackyt.Core.Security
 {
     [CoverageExcludeAttribute]
     public class TrackyFormsAuthentication : IFormsAuthentication

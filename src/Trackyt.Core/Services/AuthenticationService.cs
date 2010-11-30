@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Web.Infrastructure.Security;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.Extensions;
+using Trackyt.Core.Security;
 
-namespace Web.Services
+namespace Trackyt.Core.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -30,7 +30,6 @@ namespace Web.Services
 
             return false;
         }
-
 
         public int GetUserId(string email)
         {

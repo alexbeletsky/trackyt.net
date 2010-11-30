@@ -10,7 +10,7 @@ using Trackyt.Core.DAL.Repositories;
 using AutoMapper;
 using Web.API.v1.Model;
 using Web.Infrastructure.Security;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Web.API.v1.Controllers
 {

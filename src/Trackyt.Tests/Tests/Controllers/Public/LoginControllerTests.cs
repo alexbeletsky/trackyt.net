@@ -8,7 +8,7 @@ using Web.Models;
 using System.Web.Mvc;
 using Moq;
 using Web.Infrastructure.Security;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Public
 {

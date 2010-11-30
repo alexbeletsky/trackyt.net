@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Areas.Admin.Models;
 using Web.Infrastructure.Security;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Web.Areas.Admin.Controllers
 {

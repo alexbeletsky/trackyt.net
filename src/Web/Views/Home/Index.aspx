@@ -32,7 +32,7 @@
         <div class="column">
             <h2>What's your plans?</h2>
             <p>
-                We are continuously improve the product. We have a long term product plans and you could familiarize with current version of <a href="https://github.com/alexanderbeletsky/Trackyt.net/wiki/Project-Roadmap-2010---2011">Product Roadmap</a>. Roadmap shows major releases we are going to do thought the year. We work in short iterations to always deliver something, so product just is about to grow.
+                We are continuously improve the product. We have a long term product plans and you could familiarize with current version of <a href="https://github.com/alexanderbeletsky/Trackyourtasks.net/wiki/Project-Roadmap-2010---2011">Product Roadmap</a>. Roadmap shows major releases we are going to do thought the year. We work in short iterations to always deliver something, so product just is about to grow.
             </p>            
         </div>
         <div class="column">

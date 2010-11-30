@@ -11,7 +11,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Web.API.v1.Model;
 using Web.Infrastructure;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.API
 {

@@ -8,7 +8,7 @@ using Web.Models;
 using Trackyt.Core.DAL.Extensions;
 using System.Web.Security;
 using Web.Infrastructure.Security;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Web.Controllers
 {

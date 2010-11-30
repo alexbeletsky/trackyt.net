@@ -104,12 +104,9 @@
     <Compile Include="API\v1\Controllers\ApiV1Controller.cs" />
     <Compile Include="Helpers\Extensions\PagerBuilder.cs" />
     <Compile Include="Helpers\Extensions\PagerHtmlExtension.cs" />
-    <Compile Include="Infrastructure\CoverageExcludeAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\IPathHelper.cs" />
     <Compile Include="Infrastructure\Helpers\PathHelper.cs" />
     <Compile Include="Infrastructure\Security\TrackyAuthorizeAttribute.cs" />
-    <Compile Include="Infrastructure\Security\TrackyFormsAuthentication.cs" />
-    <Compile Include="Infrastructure\Security\IFormsAuthentication.cs" />
     <Compile Include="Infrastructure\TrackyControllerFactory.cs" />
     <Compile Include="Infrastructure\TrackyMapping.cs" />
     <Compile Include="Infrastructure\TrackyServices.cs" />
@@ -117,8 +114,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\IAuthenticationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />

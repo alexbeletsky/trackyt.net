@@ -10,6 +10,7 @@ using Web.Infrastructure.Security;
 using Trackyt.Core.DAL.DataModel;
 using System.Web.Mvc;
 using Web.Infrastructure.Helpers;
+using Trackyt.Core.Security;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
 {

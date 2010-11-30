@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Web.Areas.Admin.Models;
 using Moq;
 using Web.Infrastructure.Security;
-using Web.Services;
+using Trackyt.Core.Services;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 {

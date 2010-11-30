@@ -10,10 +10,12 @@ using System.Web.Routing;
 using Trackyt.Core.DAL.Extensions;
 using Web.Infrastructure.Security;
 using Moq;
+using Trackyt.Core.Security;
+using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.DAL.DataModel;
 
 namespace Trackyt.Core.Tests.Controllers.Public
 {
-    //TODO: correct tests, to use Moq instead manually created Mocks
     [TestFixture]
     public class RegistrationControllerTests
     {
@@ -22,7 +24,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var controller = new RegistrationController(new Mocks.UsersRepositoryMock(), forms.Object);
+            var users = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(users.Object, forms.Object);
             //act/assert
             Assert.That(controller, Is.Not.Null);
         }
@@ -32,7 +35,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var controller = new RegistrationController(new Mocks.UsersRepositoryMock(), forms.Object);
+            var users = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(users.Object, forms.Object);
                     
             //act
             var result = controller.Index();
@@ -41,27 +45,13 @@ namespace Trackyt.Core.Tests.Controllers.Public
             Assert.That(result, Is.Not.Null);
         }
 
-        //[Test]
-        //public void Register_Get_ReturnsView()
-        //{
-        //    //arrange
-        //    var forms = new Mock<IFormsAuthentication>();
-        //    var controller = new RegistrationController(new Mocks.UsersRepositoryMock(), forms.Object);
-
-        //    //act
-        //    var result = controller.Register();
-
-        //    //assert
-        //    Assert.That(result, Is.Not.Null);
-        //}
-
         [Test]
         public void Register_Post_Success_User_Added_To_Repository()
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -69,11 +59,14 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            var users = new List<User>();
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u)); 
+
             //act
             var result = controller.Register(model) as RedirectToRouteResult;
 
             //assert (repository)
-            var user = repository.Users.WithEmail("a@a.com");
+            var user = users.Find(u => u.Email == "a@a.com");
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Password, Is.EqualTo(model.Password));
         }
@@ -83,8 +76,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -105,14 +98,18 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
                 Password = "password",
                 ConfirmPassword = "password"
             };
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
 
             //act
             controller.Register(model);
@@ -130,8 +127,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock(true);
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -139,13 +136,10 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            usersRepository.Setup(u => u.Users).Throws(new Exception());
+
             //act / post
             var result = controller.Register(model) as ViewResult;
-
-            ////post
-            //Assert.That(result, Is.Not.Null);
-            //Assert.That(result.ViewName, Is.EqualTo("Fail"));
-            //Assert.That(result.ViewData.Model, Is.TypeOf<Exception>()); 
         }
 
         [Test]
@@ -153,15 +147,18 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
 
             //act
             var resuts = controller.QuickStart() as RedirectResult;
 
             //post
-            var users = repository.Users;
-            Assert.That(users.Count(), Is.EqualTo(1), "new temporary user have to be added on quick registration");
+            Assert.That(users.Count, Is.EqualTo(1), "new temporary user have to be added on quick registration");
             Assert.That(users.First().Temp, Is.True, "temp flag must be true for temporary users");
         }
 
@@ -170,15 +167,18 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
 
             //act
             controller.QuickStart();
             controller.QuickStart();
 
             //post
-            var users = repository.Users;
             var email = users.First().Email;
             var unique = users.All(u => u.Email == email);
 
@@ -190,8 +190,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
 
             //act
             var result = controller.QuickStart() as RedirectResult;
@@ -206,15 +206,14 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             forms.Setup(f => f.GeneratePassword()).Returns("aaa111");
 
             //act
             var result = controller.QuickStart() as RedirectResult;
 
             //post
-            Assert.That(result, Is.Not.Null);
             forms.Verify(f => f.SetAuthCookie(It.IsAny<string>(), false));
         }
 
@@ -223,8 +222,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
         {
             //arrange
             var forms = new Mock<IFormsAuthentication>();
-            var repository = new Mocks.UsersRepositoryMock();
-            var controller = new RegistrationController(repository, forms.Object);
+            var usersRepository = new Mock<IUsersRepository>();
+            var controller = new RegistrationController(usersRepository.Object, forms.Object);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -236,7 +235,6 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var result = controller.Register(model) as RedirectResult;
 
             //assert 
-            Assert.That(result, Is.Not.Null);
             forms.Verify(f => f.SetAuthCookie(It.IsAny<string>(), false));
         }
 

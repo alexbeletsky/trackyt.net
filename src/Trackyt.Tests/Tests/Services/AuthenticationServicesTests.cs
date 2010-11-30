@@ -6,8 +6,9 @@ using NUnit.Framework;
 using Moq;
 using Trackyt.Core.DAL.Repositories;
 using Web.Infrastructure.Security;
-using Web.Services;
 using Trackyt.Core.DAL.DataModel;
+using Trackyt.Core.Security;
+using Trackyt.Core.Services;
 
 namespace Trackyt.Core.Tests.Tests.Services
 {

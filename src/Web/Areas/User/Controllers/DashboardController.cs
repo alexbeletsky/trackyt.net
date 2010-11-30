@@ -7,6 +7,7 @@ using Web.Infrastructure.Security;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.Extensions;
 using Web.Infrastructure.Helpers;
+using Trackyt.Core.Security;
 
 namespace Web.Areas.User.Controllers
 {

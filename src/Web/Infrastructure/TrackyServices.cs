@@ -8,7 +8,8 @@ using Trackyt.Core.DAL.Repositories.Impl;
 using Web.Infrastructure.Security;
 using AutoMapper;
 using Web.Infrastructure.Helpers;
-using Web.Services;
+using Trackyt.Core.Security;
+using Trackyt.Core.Services;
 
 namespace Web.Infrastructure
 {

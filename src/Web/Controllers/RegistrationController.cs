@@ -7,10 +7,10 @@ using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.Extensions;
 using Web.Infrastructure.Security;
+using Trackyt.Core.Security;
 
 namespace Web.Controllers
 {
-    //TODO: refactor to use IAuthenticateService, instead of IUsersRepository/IFormsAuthentication
     public class RegistrationController : Controller
     {
         private IUsersRepository _repository;
@@ -33,14 +33,13 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
                 //check if used already registered
-                if (_repository.Users.WithEmail(model.Email) != null)
+                if (IsAlreadyRegistered(model))
                 {
                     ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
+                    return View("Index", model);                    
                 }
-                else
-                {
-                    return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
-                }
+
+                return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
             }
 
             return View("Index", model);
@@ -56,6 +55,11 @@ namespace Web.Controllers
         }
 
         // Helpers
+
+        private bool IsAlreadyRegistered(Models.RegisterUserModel model)
+        {
+            return _repository.Users.WithEmail(model.Email) != null;
+        }
 
         private string GeneratePassword()
         {

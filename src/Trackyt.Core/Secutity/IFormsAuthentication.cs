@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Web.Infrastructure.Security
+namespace Trackyt.Core.Security
 {
     public interface IFormsAuthentication
     {
