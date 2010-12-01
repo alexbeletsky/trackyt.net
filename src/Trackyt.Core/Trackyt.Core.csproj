@@ -73,7 +73,6 @@
     <Compile Include="Secutity\TrackyFormsAuthentication.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="DAL\DataModel\Trackyt.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Trackyt.designer.cs</LastGenOutput>

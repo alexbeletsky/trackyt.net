@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Web.Infrastructure.Security;
-using Trackyt.Core.DAL.Repositories;
+﻿using System.Web.Mvc;
 using Trackyt.Core.DAL.Extensions;
-using Web.Infrastructure.Helpers;
+using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Security;
+using Web.Infrastructure.Helpers;
+using Web.Infrastructure.Security;
 
 namespace Web.Areas.User.Controllers
 {
