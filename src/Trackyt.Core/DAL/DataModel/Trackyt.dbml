@@ -33,4 +33,12 @@
       <Association Name="User_Task" Member="Tasks" ThisKey="Id" OtherKey="UserId" Type="Task" />
     </Type>
   </Table>
+  <Table Name="dbo.Credentials" Member="Credentials">
+    <Type Name="Credential">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

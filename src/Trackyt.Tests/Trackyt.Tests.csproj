@@ -79,6 +79,7 @@
     <Compile Include="Tests\Mocks\UsersRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Services\AuthenticationServicesTests.cs" />
+    <Compile Include="Tests\Services\CredentialServicesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">
