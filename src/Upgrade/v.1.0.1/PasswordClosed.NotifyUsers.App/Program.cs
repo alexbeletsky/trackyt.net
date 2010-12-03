@@ -51,6 +51,7 @@ namespace PasswordClosed.NotifyUsers.App
                     catch (Exception e)
                     {
                         Console.WriteLine("Failed to send email for {0}", user.Email);
+                        Console.WriteLine("\tDetails: {0}", e.Message);
                         continue;
                     }
 
@@ -63,7 +64,7 @@ namespace PasswordClosed.NotifyUsers.App
         private static EmailMessage CreateEmailMessageForUser(User user)
         {
             var message = String.Format(
-                    "<h2>Dear {0}</h2>," +
+                    "<p>Dear {0},</p>" +
                     "<p>" +
                         "Thank you very much for your registration on <a href=\"http://trackyt.net\">Trackyt.net</a>." + 
                     "</p>" +
