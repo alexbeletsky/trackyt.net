@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v.1.0.1", "v.1.0.1", "{0EC8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordClosed.NotifyUsers.App", "Upgrade\v.1.0.1\PasswordClosed.NotifyUsers.App\PasswordClosed.NotifyUsers.App.csproj", "{95CE2C5F-3311-4D1C-B4A7-97EC7A512948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordClosed.HashPaswords.App", "Upgrade\v.1.0.1\PasswordClosed.HashPaswords.App\PasswordClosed.HashPaswords.App.csproj", "{8BF5FA5E-2F56-4ACC-865A-076385ED685B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,16 @@ Global
 		{95CE2C5F-3311-4D1C-B4A7-97EC7A512948}.Release|Mixed Platforms.Build.0 = Release|x86
 		{95CE2C5F-3311-4D1C-B4A7-97EC7A512948}.Release|x86.ActiveCfg = Release|x86
 		{95CE2C5F-3311-4D1C-B4A7-97EC7A512948}.Release|x86.Build.0 = Release|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Debug|x86.ActiveCfg = Debug|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Debug|x86.Build.0 = Debug|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Release|Any CPU.ActiveCfg = Release|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Release|x86.ActiveCfg = Release|x86
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +109,6 @@ Global
 		{486CFA8B-9C56-482C-BA2D-7304634A4BC9} = {FD2C3643-911F-4FC4-A89E-09F5DB8F67E8}
 		{0EC8BCEE-9CE9-4B9C-8F80-C338F14166EC} = {1A405510-C6D4-4BF5-BBA7-5AD8CABDA05F}
 		{95CE2C5F-3311-4D1C-B4A7-97EC7A512948} = {0EC8BCEE-9CE9-4B9C-8F80-C338F14166EC}
+		{8BF5FA5E-2F56-4ACC-865A-076385ED685B} = {0EC8BCEE-9CE9-4B9C-8F80-C338F14166EC}
 	EndGlobalSection
 EndGlobal

@@ -72,11 +72,13 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\CredentialsService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Secutity\IFormsAuthentication.cs" />
     <Compile Include="Secutity\TrackyFormsAuthentication.cs" />
     <Compile Include="Services\ICredentialsService.cs" />
     <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\IHashService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DAL\DataModel\Trackyt.dbml">
