@@ -21,7 +21,8 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
             //act / post
             Assert.That(service, Is.Not.Null);
@@ -33,9 +34,10 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
-            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
 
             //act
             var auth = service.Authenticate("ok@a.com", "111");
@@ -51,9 +53,10 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
-            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
             forms.Setup(f => f.SetAuthCookie("", false)).Throws(new Exception("SetAuthCookie must not be called for failed authentication"));
             
             //act
@@ -69,9 +72,10 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
-            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
             forms.Setup(f => f.SetAuthCookie("", false)).Throws(new Exception("SetAuthCookie must not be called for failed authentication"));
 
             //act
@@ -87,9 +91,10 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
-            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
 
             //act
             var id = service.GetUserId("ok@a.com");
@@ -104,15 +109,101 @@ namespace Trackyt.Core.Tests.Tests.Services
             //arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
-            var service = new AuthenticationService(users.Object, forms.Object);
+            var hash = new HashService();
+            var service = new AuthenticationService(users.Object, forms.Object, hash);
 
-            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", Password = "111", Id = 1, Temp = false } }.AsQueryable());
+            users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
 
             //act
             var id = service.GetUserId("notok@a.com");
 
             //assert
             Assert.That(id, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CreateNewUser_User_Added_To_Database()
+        {
+            // arrange
+            var usersRepository = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var hash = new HashService();
+            var service = new AuthenticationService(usersRepository.Object, forms.Object, hash);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+
+            // act
+            service.CreateUser("test@trackyt.net", "mypass", false);
+
+            // assert
+            Assert.That(users.Count, Is.GreaterThan(0));
+            Assert.That(users.Find((u) => u.Email == "test@trackyt.net"), Is.Not.Null);
+        }
+
+        [Test]
+        public void CreateNewUser_User_Hash_Created()
+        {
+            // arrange
+            var usersRepository = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var hash = new HashService();
+            var service = new AuthenticationService(usersRepository.Object, forms.Object, hash);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+
+            // act
+            service.CreateUser("test@trackyt.net", "mypass", false);
+
+            // assert
+            Assert.That(users.Count, Is.GreaterThan(0));
+            var found = users.Find((u) => u.Email == "test@trackyt.net");
+            Assert.That(found.PasswordHash.Length, Is.EqualTo(32));
+        }
+
+        [Test]
+        public void CreateNewUser_User_Immediately_Auhtenticated()
+        {
+            //arrange
+            var usersRepository = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var hash = new HashService();
+            var service = new AuthenticationService(usersRepository.Object, forms.Object, hash);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+
+            // act
+            service.CreateUser("test@trackyt.net", "mypass", false);
+
+            // assert
+            Assert.That(users.Count, Is.GreaterThan(0));
+            forms.Verify(f => f.SetAuthCookie("test@trackyt.net", false));
+        }
+
+        [Test]
+        public void CreateNewUser_Returns_False_If_User_Exists()
+        {
+            // arrange
+            var usersRepository = new Mock<IUsersRepository>();
+            var forms = new Mock<IFormsAuthentication>();
+            var hash = new HashService();
+            var service = new AuthenticationService(usersRepository.Object, forms.Object, hash);
+
+            var users = new List<User>();
+            usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
+            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+
+            // act
+            service.CreateUser("test@trackyt.net", "mypass", false);
+            var result = service.CreateUser("test@trackyt.net", "mypass", false);
+
+            // assert
+            Assert.That(result, Is.False);
         }
     }
 }

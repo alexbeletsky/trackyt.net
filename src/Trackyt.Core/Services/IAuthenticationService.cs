@@ -9,5 +9,6 @@ namespace Trackyt.Core.Services
     {
         bool Authenticate(string email, string password);
         int GetUserId(string email);
+        bool CreateUser(string email, string password, bool temp);
     }
 }

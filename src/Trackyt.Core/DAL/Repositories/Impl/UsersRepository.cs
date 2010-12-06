@@ -37,13 +37,14 @@ namespace Trackyt.Core.DAL.Repositories.Impl
 
         public void SaveUser(User user)
         {
-            if (Users.WithEmail(user.Email) != null)
-                throw new DuplicateKeyException(user);
-
             if (user.Id == 0)
             {
+                if (Users.WithEmail(user.Email) != null)
+                    throw new DuplicateKeyException(user);
+
                 _context.Users.InsertOnSubmit(user);
             }
+
             _context.SubmitChanges();
         }
 

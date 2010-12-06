@@ -6,11 +6,11 @@ namespace Web.Controllers
 {
     public class LoginController : Controller
     {
-        private IAuthenticationService _authentication;
+        private IAuthenticationService _auth;
 
         public LoginController(IAuthenticationService authentication)
         {
-            _authentication = authentication;
+            _auth = authentication;
         }
 
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace Web.Controllers
         {
             if(ModelState.IsValid) 
             {
-                if (_authentication.Authenticate(model.Email, model.Password))
+                if (_auth.Authenticate(model.Email, model.Password))
                 {
                     return Redirect(returnUrl ?? "~/User/Dashboard");
                 }

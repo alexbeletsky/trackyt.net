@@ -23,10 +23,6 @@
                 <label for="email-value">Email:</label>
                 <span id="email-value"><%: ViewData["Email"] %></span>
             </div>
-            <div id="password">
-                <label for="password-value">Password:</label>
-                <span id="password-value"><%: ViewData["Password"] %></span>
-            </div>
         </fieldset>
         <div class="clear"></div>
 <%--        <a id="close-account-details" href="#">[x] Close</a>--%>

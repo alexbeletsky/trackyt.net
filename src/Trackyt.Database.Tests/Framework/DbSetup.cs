@@ -30,7 +30,7 @@ namespace Trackyt.Core.Tests.Framework
             User = new User()
             {
                 Email = "exists@test.com",
-                Password = "test_pass2"
+                //Password = "test_pass2"
             };
 
             _model.Users.InsertOnSubmit(User);

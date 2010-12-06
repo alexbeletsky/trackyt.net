@@ -21,7 +21,6 @@ namespace Web.Areas.User.Controllers
             _path = path;
         }
 
-        //[Authorize]
         public ActionResult Index()
         {
             var userEmail = _authentication.GetLoggedUser();
@@ -29,7 +28,6 @@ namespace Web.Areas.User.Controllers
             ViewData["UserId"] = user.Id;;
             ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1");
             ViewData["Email"] = userEmail;
-            ViewData["Password"] = user.Password; 
 
             return View();
         }

@@ -4,18 +4,18 @@ using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.DAL.Extensions;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Security;
+using Trackyt.Core.Services;
+using System;
 
 namespace Web.Controllers
 {
     public class RegistrationController : Controller
     {
-        private IUsersRepository _repository;
-        private IFormsAuthentication _forms;
+        private IAuthenticationService _auth;
 
-        public RegistrationController(IUsersRepository repository, IFormsAuthentication forms)
+        public RegistrationController(IAuthenticationService auth)
         {
-            _repository = repository;
-            _forms = forms;
+            _auth = auth;
         }
 
         public ActionResult Index()
@@ -29,13 +29,14 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
                 //check if used already registered
-                if (IsAlreadyRegistered(model))
+                if (_auth.CreateUser(model.Email, model.Password, false))
+                {
+                    return Redirect("~/User/Dashboard");
+                }
+                else
                 {
                     ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
-                    return View("Index", model);                    
                 }
-
-                return CreateNewUserAndRedirectToDashboard(model.Email, model.Password);
             }
 
             return View("Index", model);
@@ -44,48 +45,11 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult QuickStart()
         {
-            var email = GenerateEmail();
-            var password = GeneratePassword();
+            var postfix = DateTime.Now.ToFileTimeUtc().ToString().Substring(12);
+            var email = "temp" + postfix + "@trackyt.net";
+            var password = email;
 
-            return CreateNewUserAndRedirectToDashboard(email, password, true);
-        }
-
-        // Helpers
-
-        private bool IsAlreadyRegistered(Models.RegisterUserModel model)
-        {
-            return _repository.Users.WithEmail(model.Email) != null;
-        }
-
-        private string GeneratePassword()
-        {
-            return _forms.GeneratePassword();
-        }
-
-        private string GenerateEmail()
-        {
-            var id = GetLastId();
-            var email = "temp" + id + "@trackyt.net";
-            
-            return email;
-        }
-
-        private int GetLastId()
-        {
-            return _repository.Users.Count();
-        }
-
-        private RedirectResult CreateNewUserAndRedirectToDashboard(string email, string password, bool temp = false)
-        {
-            var user = new User
-            {
-                Email = email,
-                Password = password,
-                Temp = temp
-            };
-
-            _repository.SaveUser(user);
-            _forms.SetAuthCookie(email, false);
+            _auth.CreateUser(email, password, true);
 
             return Redirect("~/User/Dashboard");
         }

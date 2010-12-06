@@ -5,3 +5,6 @@ CREATE TABLE Credentials
 	[Email] nvarchar(MAX),
 	[Password] nvarchar(MAX),
 );
+
+ALTER TABLE [Users]
+ADD PasswordHash nvarchar(32)

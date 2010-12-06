@@ -21,12 +21,12 @@ namespace Trackyt.Core.DAL.Tests
         {
             for (int users = 0; users < usersCount; users++)
             {
-                register.SaveUser(new User { Email = users + "@a.com", Password = "pass", Temp = false });
+                register.SaveUser(new User { Email = users + "@a.com", Temp = false });
             }
 
             for (int temp = 0; temp < tempUsers; temp++)
             {
-                register.SaveUser(new User { Email = "temp" + temp + "@a.com", Password = "pass", Temp = true });
+                register.SaveUser(new User { Email = "temp" + temp + "@a.com", Temp = true });
             }
         }
 
@@ -45,7 +45,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(user);
@@ -70,7 +70,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(user);
@@ -79,7 +79,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(newUser);
@@ -98,7 +98,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(user);
@@ -124,7 +124,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(user);
@@ -152,7 +152,7 @@ namespace Trackyt.Core.DAL.Tests
                 {
                     Email = "email",
                     //SecretPhrase = "sec",
-                    Password = "pass"
+                    //Password = "pass"
                 };
 
                 register.SaveUser(user);

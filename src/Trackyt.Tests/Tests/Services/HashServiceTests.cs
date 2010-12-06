@@ -61,5 +61,47 @@ namespace Trackyt.Core.Tests.Tests.Services
             Assert.That(result, Is.False);
         }
 
+        // here goes some paranoid tests of mine..
+
+        [Test]
+        public void ValidateHash_Length_1()
+        {
+            // arrange
+            var service = new HashService();
+
+            // act
+            var hash = service.CreateMD5Hash("password");
+
+            // assert
+            Assert.That(hash.Length, Is.EqualTo(32));
+        }
+
+        [Test]
+        public void ValidateHash_Length_2()
+        {
+            // arrange
+            var service = new HashService();
+
+            // act
+            var hash = service.CreateMD5Hash("passwordaasa");
+
+            // assert
+            Assert.That(hash.Length, Is.EqualTo(32));
+        }
+
+        [Test]
+        public void ValidateHash_Length_3()
+        {
+            // arrange
+            var service = new HashService();
+
+            // act
+            var hash = service.CreateMD5Hash("password----");
+
+            // assert
+            Assert.That(hash.Length, Is.EqualTo(32));
+        }
+
+
     }
 }

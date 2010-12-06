@@ -20,6 +20,7 @@ namespace Web.Infrastructure
             Bind<IMappingEngine>().ToConstant(Mapper.Engine);
             Bind<IBlogPostsRepository>().To<BlogPostsRepository>();
             Bind<IAuthenticationService>().To<AuthenticationService>();
+            Bind<IHashService>().To<HashService>();
         }
     }
 }
