@@ -38,4 +38,5 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>Trackyt.net | Product blog</title>
 </asp:Content>

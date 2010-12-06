@@ -134,5 +134,5 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <title>Trackyt.net | API</title>
+    <title>Trackyt.net | API documentation</title>
 </asp:Content>
