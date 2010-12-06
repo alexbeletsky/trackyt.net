@@ -63,15 +63,17 @@
                 <li class="faq"><%: Html.ActionLink("faq", "Faq", new { area = "", controller = "Home" })%></li>
             </ul>
         </div>
+        <!--
         <div class="navigation-footer-block right">
             <ul>
-                <li class="twitter"><a href="http://twitter.com/#!/alexbeletsky">@twitter</a></li>
+                <li class="twitter"><a href="http://twitter.com/#!/alexbeletsky">@alexbeletsky</a></li>
             </ul>
         </div>
+        -->
         </div>
         <div class="clear"></div>
         <div id="copyright">
-            Copyright © 2010 www.trackyt.net all rights reserved
+            Copyright © 2010 www.trackyt.net all rights reserved <a href="http://twitter.com/#!/alexbeletsky">@alexbeletsky</a>
         </div>
 <%--        <div id="information">
             trackyt.net is web-based application used for time/project management that provides functionality to help you with tracking your tasks
