@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../Content/public.css" type="text/css" media="all" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/ga.js") %>" type="text/javascript"></script>
-    <a href="../../Content/Images/favicon.ico">../../Content/Images/favicon.ico</a>
 
     <link rel="shortcut icon"href="../../Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="../../Content/Images/favicon.ico" type="image/ico" />
