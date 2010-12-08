@@ -129,6 +129,7 @@
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
+    <Content Include="Content\Images\favicon.ico" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Views\Error\GenericError.aspx" />
     <Content Include="Views\Home\Api.aspx" />
