@@ -102,6 +102,20 @@ namespace Trackyt.Core.Tests.Tests.Services
             Assert.That(hash.Length, Is.EqualTo(32));
         }
 
+        // one more paranoic, I had to add while switch to another MD5 implementation
+        [Test]
+        public void HashValue()
+        {
+            // arrange
+            var service = new HashService();
+
+            // act
+            var hash = service.CreateMD5Hash("password");
+
+            // assert
+            Assert.That(hash, Is.EqualTo("5f4dcc3b5aa765d61d8327deb882cf99"));
+        }
+
 
     }
 }
