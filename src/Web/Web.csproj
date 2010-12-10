@@ -116,6 +116,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Acceptance.Tests\tests\index.html" />
+    <Content Include="Acceptance.Tests\tests\tests.home.js" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />
