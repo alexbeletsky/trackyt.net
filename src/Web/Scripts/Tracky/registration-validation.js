@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    $("#signup_form").submit(submit);
+    $("#signup_form").submit(signup_submit);
 }
 );
 
-function submit() {
+function signup_submit() {
     var validateEmail = /^.+@.+\..{2,3}$/;
     var result = true;
     var errors = [];

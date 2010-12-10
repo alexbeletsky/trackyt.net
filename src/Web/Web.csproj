@@ -131,6 +131,12 @@
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Scripts\ga.js" />
+    <Content Include="Scripts\Tests\index.html" />
+    <Content Include="Scripts\Tests\qunit\qunit.css" />
+    <Content Include="Scripts\Tests\qunit\qunit.js" />
+    <Content Include="Scripts\Tests\tests.registration-validation.js" />
+    <Content Include="Scripts\Tests\tests.tracky-controller.js" />
+    <Content Include="Scripts\Tests\tests.trackyt.js" />
     <Content Include="Views\Error\GenericError.aspx" />
     <Content Include="Views\Home\Api.aspx" />
     <Content Include="Views\Home\Faq.aspx" />
