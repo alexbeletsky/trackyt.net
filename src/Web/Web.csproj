@@ -116,8 +116,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Acceptance.Tests\tests\index.html" />
-    <Content Include="Acceptance.Tests\tests\tests.home.js" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />
@@ -133,12 +131,25 @@
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Scripts\ga.js" />
-    <Content Include="Scripts\Tests\index.html" />
-    <Content Include="Scripts\Tests\qunit\qunit.css" />
-    <Content Include="Scripts\Tests\qunit\qunit.js" />
-    <Content Include="Scripts\Tests\tests.registration-validation.js" />
-    <Content Include="Scripts\Tests\tests.tracky-controller.js" />
-    <Content Include="Scripts\Tests\tests.trackyt.js" />
+    <Content Include="Scripts\Tests\acceptance\index.html" />
+    <Content Include="Scripts\Tests\acceptance\tests.home.js" />
+    <Content Include="Scripts\Tests\acceptance\tests.signup.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\funcunit.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\qunit.css" />
+    <Content Include="Scripts\Tests\framework\funcunit\selenium\env.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\selenium\js.jar" />
+    <Content Include="Scripts\Tests\framework\funcunit\selenium\run.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\selenium\selenium-java-client-driver.jar" />
+    <Content Include="Scripts\Tests\framework\funcunit\selenium\selenium-server.jar" />
+    <Content Include="Scripts\Tests\framework\funcunit\settings.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\syn.js" />
+    <Content Include="Scripts\Tests\framework\funcunit\template.html" />
+    <Content Include="Scripts\Tests\framework\qunit\qunit.css" />
+    <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
+    <Content Include="Scripts\Tests\unit\index.html" />
+    <Content Include="Scripts\Tests\unit\tests.registration-validation.js" />
+    <Content Include="Scripts\Tests\unit\tests.tracky-controller.js" />
+    <Content Include="Scripts\Tests\unit\tests.trackyt.js" />
     <Content Include="Views\Error\GenericError.aspx" />
     <Content Include="Views\Home\Api.aspx" />
     <Content Include="Views\Home\Faq.aspx" />
@@ -231,6 +242,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\User\Views\Shared\Dashboard.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Tests\framework\funcunit\envjs" />
+    <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
+    <None Include="Scripts\Tests\framework\funcunit\README" />
+    <None Include="Scripts\Tests\framework\funcunit\run.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

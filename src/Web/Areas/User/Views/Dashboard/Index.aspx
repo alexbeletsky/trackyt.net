@@ -17,10 +17,10 @@
                 <span>|</span>      
                 <input id="submit" type="button" value="Submit"/>
             </div>        
-        </div>
+        </div>  
         <div id="tasks">
         </div>
-    </div>
+</div>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
