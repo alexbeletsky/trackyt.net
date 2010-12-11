@@ -133,6 +133,7 @@
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\Tests\acceptance\index.html" />
+    <Content Include="Scripts\Tests\acceptance\tests.bugs.js" />
     <Content Include="Scripts\Tests\acceptance\tests.home.js" />
     <Content Include="Scripts\Tests\acceptance\tests.signup.js" />
     <Content Include="Scripts\Tests\framework\funcunit\funcunit.js" />
