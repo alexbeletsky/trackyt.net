@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Trackyt.net | Register" Language="C#" Inherits="System.Web.Mvc.ViewPage<Web.Models.RegisterUserModel>" %>
+﻿<%@ Page Title="Trackyt.net | Sign Up" Language="C#" Inherits="System.Web.Mvc.ViewPage<Web.Models.RegisterUserModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <link href="../../Content/public-login.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/public-login.css?ver=101" rel="stylesheet" type="text/css" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/Tracky/registration-validation.js") %>" type="text/javascript"></script>
 

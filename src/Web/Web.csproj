@@ -163,17 +163,7 @@
     <Content Include="Content\Images\dashboard\back.png" />
     <Content Include="Content\Images\dashboard\glow.png" />
     <Content Include="Content\Images\login\back.png" />
-    <Content Include="Content\Images\public\about-us-button.jpg" />
-    <Content Include="Content\Images\public\blog-button.jpg" />
-    <Content Include="Content\Images\public\body-backround.jpg" />
-    <Content Include="Content\Images\public\footer-backround.png" />
-    <Content Include="Content\Images\public\header-backround.png" />
-    <Content Include="Content\Images\public\home-button.jpg" />
-    <Content Include="Content\Images\public\login-button.jpg" />
-    <Content Include="Content\Images\public\product-tour-button.jpg" />
-    <Content Include="Content\Images\public\registration-button.jpg" />
     <Content Include="Content\Images\public\screenshot.png" />
-    <Content Include="Content\Images\public\support-button.jpg" />
     <Content Include="Content\public-login.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\public.css" />
