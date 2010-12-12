@@ -32,7 +32,7 @@
   <property name="version.minor" value="0" overwrite="false" />
   <property name="version.build" value="0" overwrite="false" />
   <property name="version.revision" value="0" overwrite="false" />
-  <property name="assembly.version.full" value="${version.major}.${version.minor}.${version.build}.${version.revision}" />
+  <property name="assembly.version.full" value="${version.major}.${version.minor}.${version.patch}.${version.revision}" />
   <property name="file.gems.version" value="${dirs.drop.gems}${path.separator}VERSION" />
   
   

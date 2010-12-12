@@ -24,6 +24,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky.js") %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky-controller.js") %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky.js") + "?ver=101" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/tracky-controller.js") + "?ver=101" %>"></script>
 </asp:Content>

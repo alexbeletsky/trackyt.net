@@ -34,7 +34,7 @@
   <property name="version.patch" value="0" overwrite="false" />
   <property name="version.build" value="0" overwrite="false" />
   <property name="version.revision" value="0" overwrite="false" />
-  <property name="assembly.version.full" value="${version.major}.${version.minor}.${version.build}.${version.revision}" />
+  <property name="assembly.version.full" value="${version.major}.${version.minor}.${version.patch}.${version.revision}" />
   <property name="assembly.version.full" value="${version.major}.${version.minor}.${version.patch}.0"  if="${version.use_semanticversioning}" />
   <property name="version.gem.suffix" value="" overwrite="false" />
   <property name="use.gem.build_date" value="false" overwrite="false" />

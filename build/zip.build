@@ -101,7 +101,7 @@
     <call target="get_revision" />
     <call target="shorten_hash" />
     <call target="get_build_number" />
-    <property name="version" value="${version.major}.${version.minor}.${version.build}.${version.hash}" />
+    <property name="version" value="${version.major}.${version.minor}.${version.patch}.${version.hash}" />
     <property name="version" value="${version.major}.${version.minor}.${version.patch}.0" if="${version.use_semanticversioning}" />
     <property name="zip.file.rename" value="${dirs.drop}${path.separator}${project.name}.v${version}.zip" />
   </target>
