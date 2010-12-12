@@ -13,7 +13,9 @@
             <li> <a href="#Api">Do you have an API?</a></li>
             <li> <a href="#TechBehind">What technologies behind Trackyt.net?</a></li>
             <li> <a href="#OpenSource">Are you open source?</a></li>
+            <li> <a href="#IE">Do you support IE?</a></li>
             <li> <a href="#Help">I want to help this project, what can I do?</a></li>
+            <li> <a href="#Support">How can I contact with support?</a></li>
         </ul>
 
         <div class="grey-gradient out-box">
@@ -64,6 +66,7 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                         <li><a href="http://www.json.org/js.html">Json2</a></li>
                         <li><a href="http://jquery.com/">jQuery</a></li>
                         <li><a href="http://msdn.microsoft.com/en-us/library/bb425822.aspx">Linq To Sql</a></li>
+                        <li><a href="http://funcunit.com/">FuncUnit</a></li>
                     </ul>
                 </li>
                 <li id="OpenSource">
@@ -72,10 +75,22 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                     Yes. The sources of Trackyt.net is fully available on <a href="http://github.com">github</a> in our <a href= "https://github.com/alexanderbeletsky/trackyourtasks.net">repository</a>. We are happy if you fork repository, learn, fix a bug, add wiki page or do any contribution you can. Having a source code make you available to build the application and host it on local server for internal usage. In the same time, we will not be happy to see the same site (exact design and/or functionality) somewhere in internet.
                     </p>
                 </li>
+                <li id="IE">
+                    <strong>Do you support Internet Explorer?</strong>
+                    <p>
+                    No, we don't. We do testing and provide best support for Firefox and Chrome. Currently we do not want to spend to much time to find workaround of numerous IE bugs and violations of standards. If you think that support of IE is vital for you, please contact us <a href="mailto:support@trackyt.net">support@trackyt.net</a>.
+                    </p>
+                </li>
                 <li id="Help">
                     <strong>I want to help this project, what can I do?</strong>
                     <p>
                     You can do a not! We are glad for any help you can do for this project. Users are free to submit issues and feature request to project <a href="https://github.com/alexanderbeletsky/Trackyt.net/issues">issue tracking</a> system. Developers could for the <a href= "https://github.com/alexanderbeletsky/trackyourtasks.net">repository</a> fix the bugs or make own enhancements. Having open API you can integrate your own application with Trackyt.net or implement application for mobile device. Please contact to this <a href="mailto:alexander.beletsky@gmail.com">email</a> this any questions and propositions you might have.  
+                    </p>
+                </li>
+                <li id="Support">
+                    <strong>How can I contact with support?</strong>
+                    <p>
+                    Just throw us a letter <a href="mailto:support@trackyt.net">support@trackyt.net</a>. Later on we will add a small form, so you can always ask questions just from site.
                     </p>
                 </li>
             </ul>
