@@ -161,6 +161,8 @@
 .task span a
 {
     color: #0069EA;
+    text-indent: -50000px;    
+    text-decoration: none;
 }
 
 .task .index
@@ -192,6 +194,16 @@
 {
     padding-right: 4px;
     float:right;
+}
+
+.task .start
+{
+    /*
+    background-image: url('Images/dashboard/start.png');
+    background-position: center;
+    width: 65px;
+    height: 35px; 
+    */
 }
 
 #operation-controls input

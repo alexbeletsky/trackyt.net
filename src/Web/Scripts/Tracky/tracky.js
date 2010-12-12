@@ -376,7 +376,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         this.id = 'start-' + index;
         this.ref = 'a#' + this.id;
 
-        task.div.append('<span class="right">' + createButton(this.id) + '</span>');
+        task.div.append('<span class="start right">' + createButton(this.id) + '</span>');
         $(this.ref).click(onClick);
 
         function createButton(id) {
@@ -399,7 +399,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
     function deleteSection(tracky, task, index, position) {
         this.id = 'delete-' + index;
 
-        task.div.append('<span class="right">' + createButton(this.id) + '</span>');
+        task.div.append('<span class="delete right">' + createButton(this.id) + '</span>');
         $('a#' + this.id).click(onClick);
 
         function createButton(id) {
