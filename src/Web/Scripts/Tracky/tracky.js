@@ -221,11 +221,21 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
     task.prototype.start = function () {
         this.started = true;
         this.sections['timer'].start();
+        this.sections['start'].onStarted();
     }
 
     task.prototype.stop = function () {
         this.started = false;
         this.sections['timer'].stop();
+        this.sections['start'].onStoped();
+    }
+
+    task.prototype.startOrStop = function () {
+        if (!this.started) {
+            this.start();
+        } else {
+            this.stop();
+        }
     }
 
     function indexSection(tracky, task, index, position) {
@@ -374,30 +384,16 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         }
 
         function onClick() {
-            //                var actualWork = task.sections['timer'];
-            //                var label = '';
-            //                if (this.started) {
-            //                    actualWork.stop();
-            //                    this.started = false;
-            //                    label = 'Start';
-            //                } else {
-            //                    actualWork.start();
-            //                    this.started = true;
-            //                    label = 'Stop';
-            //                }
-
-            var label = '';
-            if (task.isStarted()) {
-                label = 'Start';
-                task.stop();
-            }
-            else {
-                label = 'Stop';
-                task.start();
-            }
-
-            $('#' + this.id).html(label);
+            task.startOrStop();
         }
+    }
+
+    startSection.prototype.onStarted = function () {
+        $('#' + this.id).html('Stop');
+    }
+
+    startSection.prototype.onStoped = function () {
+        $('#' + this.id).html('Start');
     }
 
     function deleteSection(tracky, task, index, position) {

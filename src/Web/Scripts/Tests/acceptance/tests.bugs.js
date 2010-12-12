@@ -1,6 +1,6 @@
 ﻿module("bugs verification", {
     setup: function () {
-        S.open("../../../Login");
+        //S.open("../../../Login");
     }
 });
 
@@ -8,7 +8,9 @@
 // https://github.com/alexanderbeletsky/Trackyourtasks.net/issues#issue/1
 test("After submit task stopped, but start button is not available", function () {
 
-    // arrage
+    // go to login page
+    S.open("../../../Login");
+
     // login as user
     S('#Email').type("tracky@tracky.net");
     S('#Password').type("mypass");
@@ -47,6 +49,52 @@ test("After submit task stopped, but start button is not available", function ()
                         });
                     });
                 });
+            });
+        });
+    });
+});
+
+
+// https://github.com/alexanderbeletsky/Trackyourtasks.net/issues/#issue/20
+test("tasks are disappeared", function () {
+    // go to sign up page
+    S.open("../../../Registration");
+
+    // create new account
+    var email = "test_bugs" + new Date().getSeconds() + new Date().getMilliseconds() + "@trackyt.net";
+    S('#Email').type(email);
+    S('#Password').type(email);
+    S('#ConfirmPassword').type(email);
+
+    S('#submit-button').click(function () {
+        S('#tasks').exists(function () {
+            // create several tasks
+            S('#task-description').click().type("fix issue 20");
+            S('#add-task').click();
+            S.wait(500);
+
+            S('#task-description').click().type("fix issue 20 2");
+            S('#add-task').click();
+            S.wait(500);
+
+            // and log off of dashboard
+            S('#sign-out').click();
+        });
+    });
+
+    // now sign in with same account
+    S.open("../../../Login");
+    S('#Email').type(email);
+    S('#Password').type(email);
+    S('#submit-button').click(function () {
+
+        // wait till tasks are ready
+        S('#tasks').exists(function () {
+            S.wait(function () {
+                var tasks = S('.task').size();
+
+                // tasks created before must exist
+                ok(tasks == 2, "tasks created before must exist");
             });
         });
     });
