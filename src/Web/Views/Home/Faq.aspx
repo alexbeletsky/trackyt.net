@@ -41,7 +41,7 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                 <li id="TempReg">
                     <strong>What is temporary registration?</strong>
                     <p>
-                    Is a just a simple way for you to try application. By choosing 'Start now' during registration, we will create new account for you. Email and password would be generated automatically, so it is very important to save them during first login. Account information is available on dashboard by clicking on 'Account' link. Please note, that we will just keep you data for 30 days, after that you should create permanent account.
+                    Is a just a simple way for you to try application. By choosing 'Start now' during registration, we will create new account for you. Email is generated automatically, password is equal to email. It is very important to save them during first login, cause we won't be able to remind credentials to you. Account information is available on dashboard by clicking on 'Account' link. Please note, that we will just keep you data for 30 days, after that you should create permanent account.
                     </p>
                 </li>
                 <li id="Api">

@@ -107,4 +107,38 @@ test("successful registration", function () {
     });
 });
 
+// I as user could select temporary registration, email would be generated for me, my password would be same as email
+test("temporary registration", function () {
+
+    // to start use application I just click "start now" link
+    S('#start-now').click();
+
+    // I would be redirected to dashboard
+    S('div #tasks').exists(function () {
+
+        // I need to check out my password, so I click to "Account" link
+        S('#show-account-details').click();
+
+        // and wait till account details are visible
+        S('#account-details').visible(function () {
+
+            // I'm ready to grab my email
+            var email = S('#email-value').html();
+
+            // now, I go to sign in page again and try to login with my account
+            S.open("../../../Login", function () {
+
+                S('#Email').type(email);
+                S('#Password').type(email);
+                S('#submit-button').click();
+
+                // and check that I'm able to proceed dashboard
+                S('div #tasks').exists(function () {
+                    ok(true, "I'm able to login as temp user");
+                });
+            });
+        });
+    });
+});
+
 
