@@ -1,6 +1,6 @@
 module("home page tests", {
     setup: function () {
-        S.open("../../../Home");
+        S.open("Home");
     }
 });
 

@@ -3,8 +3,8 @@ FuncUnit = {
 	browsers: ["*firefox"],
 	
 	// the root for all paths in the tests, defaults to filesystem
-	jmvcRoot: "localhost/trackyt/", // "http://localhost:8000/",
+	jmvcRoot: null,//"localhost/trackyt/", // "http://localhost:8000/",
 	
 	// the number of milliseconds between Selenium commands, "slow" is 500 ms
-	speed: null, //"slow"
+	speed: "slow"
 }

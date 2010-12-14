@@ -132,7 +132,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Scripts\ga.js" />
-    <Content Include="Scripts\Tests\acceptance\index.html" />
+    <Content Include="FunctionalTests.html" />
     <Content Include="Scripts\Tests\acceptance\tests.bugs.js" />
     <Content Include="Scripts\Tests\acceptance\tests.home.js" />
     <Content Include="Scripts\Tests\acceptance\tests.signup.js" />
@@ -148,7 +148,7 @@
     <Content Include="Scripts\Tests\framework\funcunit\template.html" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.css" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
-    <Content Include="Scripts\Tests\unit\index.html" />
+    <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.registration-validation.js" />
     <Content Include="Scripts\Tests\unit\tests.tracky-controller.js" />
     <Content Include="Scripts\Tests\unit\tests.trackyt.js" />

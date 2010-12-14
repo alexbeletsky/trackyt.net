@@ -8,28 +8,51 @@
 // https://github.com/alexanderbeletsky/Trackyourtasks.net/issues#issue/1
 test("After submit task stopped, but start button is not available", function () {
 
-    // go to login page
-    S.open("../../../Login");
+    // go to sign up page
+    S.open("Registration");
 
-    // login as user
-    S('#Email').type("tracky@tracky.net");
-    S('#Password').type("mypass");
-    S('#submit-button').click();
+    // create new account
+    var email = "test_bugs" + new Date().getSeconds() + new Date().getMilliseconds() + "@trackyt.net";
+    S('#Email').type(email);
+    S('#Password').type(email);
+    S('#ConfirmPassword').type(email);
 
-    // wait till tasks are ready
-    S('#tasks').exists(function () {
+    S('#submit-button').click(function () {
+        S('#tasks').exists(function () {
+            // create several tasks
+            S('#task-description').click().type("fix issue 1");
+            S('#add-task').click();
+            S.wait(500);
+
+            S('#task-description').click().type("fix issue 1 2");
+            S('#add-task').click();
+            S.wait(500);
+
+            // and log off of dashboard
+            S('#sign-out').click();
+        });
+    });
+
+    // now sign in with same account
+    S.open("Login");
+    S('#Email').type(email);
+    S('#Password').type(email);
+    S('#submit-button').click(function () {
 
         // wait till ajax call finished
         S.wait(function () {
 
             // add new task
-            S('#task-description').click().type("fix issue 1");
+            S('#task-description').click().type("fix issue 1 3");
             S('#add-task').click();
 
             // wait till task appeared
             S.wait(function () {
                 // get last added task and press start
-                var startButton = '#start-' + (S('.task').size() - 1);
+                var index = S('.task').size() - 1;
+                ok(index > 0, "index is < 0, task has not been added");
+
+                var startButton = '#start-' + index;
                 ok(S(startButton).html() == "Start", "task is not started yet, ready to start");
 
                 // now I click start button, so task begins
@@ -58,7 +81,7 @@ test("After submit task stopped, but start button is not available", function ()
 // https://github.com/alexanderbeletsky/Trackyourtasks.net/issues/#issue/20
 test("tasks are disappeared", function () {
     // go to sign up page
-    S.open("../../../Registration");
+    S.open("Registration");
 
     // create new account
     var email = "test_bugs" + new Date().getSeconds() + new Date().getMilliseconds() + "@trackyt.net";
@@ -83,7 +106,7 @@ test("tasks are disappeared", function () {
     });
 
     // now sign in with same account
-    S.open("../../../Login");
+    S.open("Login");
     S('#Email').type(email);
     S('#Password').type(email);
     S('#submit-button').click(function () {
