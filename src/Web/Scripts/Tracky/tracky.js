@@ -1,8 +1,5 @@
-﻿    //TODO: BUG - if new task is created, updated, submited.. and deleted then (with no reload) 
-    //  it won't be deleted on server, because Id remains null
-
-    //TODO: optimize - just created and deleted tasks (e.g. id = 0) should not be send for deletion
-
+﻿
+   //TODO: optimize - just created and deleted tasks (e.g. id = 0) should not be send for deletion
    // $.fn.tracky = function (newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
 
 function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
@@ -14,7 +11,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         var object = this;
 
         this.tasksDiv = tasksDiv;
-        this.tasks = [];
+        this.tasks = null;
 
         this.submitDataButton = submitDataButton;
 
@@ -28,22 +25,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         this.deleteData = deleteData;
 
         // load table data
-        $.blockUI();
-        this.loadData(onDataLoaded);
-
-        function onDataLoaded(response) {
-            if (response.success) {
-                createTasks(response.data.tasks);
-            }
-
-            $.unblockUI();
-        }
-
-        function createTasks(data) {
-            for (var key in data) {
-                object.addTask(data[key]);
-            }
-        }
+        this.loadTableData();
 
         function onSubmitTaskClicked() {
             var taskDescription = newTaskDescription.val();
@@ -56,6 +38,36 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
 
         function onSubmitDataClicked() {
             object.submit();
+        }
+    }
+
+    tracky.prototype.loadTableData = function () {
+        $.blockUI();
+        this.loadData(onDataLoaded);
+
+        var obj = this;
+
+        function onDataLoaded(response) {
+            if (response.success) {
+                obj.createTasks(response.data.tasks);
+            }
+
+            obj.onMarkedDirty(false);
+
+            $.unblockUI();
+        }
+    }
+
+    tracky.prototype.createTasks = function (data) {
+        tasksDiv.empty();
+        if (this.tasks) {
+            delete this.tasks;
+        }
+
+        this.tasks = [];
+
+        for (var key in data) {
+            this.addTask(data[key]);
         }
     }
 
@@ -105,10 +117,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         }
 
         function onCompleted() {
-            for (var task in dirtyTasks) {
-                dirtyTasks[task].resetDirty();
-            }
-
+            tracky.loadTableData();
             $.unblockUI();
         }
     }
@@ -122,7 +131,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         $('#' + task.id).remove();
     }
 
-    tracky.prototype.onMarkedDirty = function (task, set) {
+    tracky.prototype.onMarkedDirty = function (set) {
         if (set) {
             this.submitDataButton.addClass('light');
         }
@@ -176,7 +185,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
 
     task.prototype.markDirty = function () {
         this.dirty = true;
-        this.tracky.onMarkedDirty(this, true);
+        this.tracky.onMarkedDirty(true);
     }
 
     task.prototype.markedDirty = function () {
@@ -201,11 +210,12 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
 
     task.prototype.resetDirty = function () {
         this.dirty = false;
-        this.tracky.onMarkedDirty(this, false);
+        this.tracky.onMarkedDirty(false);
     }
 
     task.prototype.remove = function () {
         this.markedForRemove = true;
+
         var task = this;
         this.div.fadeOut("slow", function () { task.tracky.removeTask(task); });
     }
@@ -329,7 +339,6 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
 
     actualWorkSection.prototype.start = function () {
         var obj = this;
-        obj.counter++;
         obj.updateTimer();
 
         if (!obj.task.markedDirty()) {
@@ -337,7 +346,7 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
         }
 
         if (obj.timerId == null) {
-            obj.timerId = setInterval(function () { obj.start(); }, obj.period);
+            obj.timerId = setInterval(function () { obj.counter++; obj.start(); }, obj.period);
         }
     }
 
