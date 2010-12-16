@@ -131,6 +131,9 @@ test("temporary registration", function () {
 
             // now, I go to sign in page again and try to login with my account
             S.open("Login", function () {
+                
+                // wait for open
+                S.wait(1000);
 
                 S('#Email').type(email);
                 S('#Password').type(email);

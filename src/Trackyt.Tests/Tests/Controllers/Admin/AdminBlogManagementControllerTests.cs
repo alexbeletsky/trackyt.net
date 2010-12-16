@@ -154,5 +154,33 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             Assert.That(post.CreatedDate, Is.Not.Null);
             Assert.That(post.CreatedDate.ToLongTimeString(), Is.Not.EqualTo("00:00:00"));
         }
+
+        [Test]
+        public void AddPost_Post_Url_Contains_No_Punctuation()
+        {
+            //arrange
+            var blogRepository = new Mock<IBlogPostsRepository>();
+            var submittedPosts = new List<BlogPost>();
+            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+                .Callback((BlogPost p) =>
+                {
+                    if (submittedPosts.Find(x => x.Url == p.Url) != null)
+                    {
+                        throw new Exception();
+                    }
+                    submittedPosts.Add(p);
+                }
+                );
+
+            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var model = new BlogPost { Title = "Hey, Joe.!:;" };
+
+            //act
+            var result = blogManagement.AddPost(model) as ViewResult;
+
+            //post
+            var post = submittedPosts.First();
+            Assert.That(model.Url, Is.EqualTo("hey-joe"));
+        }
     }
 }

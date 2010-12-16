@@ -45,7 +45,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    post.Url = post.Title.ToLower().Trim().Replace(" ", "-");                    
+                    post.Url = CreatePostUrl(post.Title);                    
                     post.CreatedDate = DateTime.Now; 
 
                     _blogRepository.SaveBlogPost(post);
@@ -57,6 +57,12 @@ namespace Web.Areas.Admin.Controllers
             }
 
             return View(post);
+        }
+
+        private string CreatePostUrl(string title)
+        {
+            var titleWithoutPunctuation = new string(title.Where(c => !char.IsPunctuation(c)).ToArray());
+            return titleWithoutPunctuation.ToLower().Trim().Replace(" ", "-");
         }
 
     }
