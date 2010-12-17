@@ -1,6 +1,7 @@
-﻿
-   //TODO: optimize - just created and deleted tasks (e.g. id = 0) should not be send for deletion
-   // $.fn.tracky = function (newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
+﻿//TODO: this code stinks.. it must be rewritten in TDD way
+    
+//TODO: optimize - just created and deleted tasks (e.g. id = 0) should not be send for deletion
+// $.fn.tracky = function (newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
 
 function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDataButton, loadData, submitData, deleteData) {
     // Global config
@@ -59,16 +60,23 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
     }
 
     tracky.prototype.createTasks = function (data) {
-        tasksDiv.empty();
-        if (this.tasks) {
-            delete this.tasks;
-        }
+        var obj = this;
 
-        this.tasks = [];
+        tasksDiv.fadeOut('fast', function() { 
 
-        for (var key in data) {
-            this.addTask(data[key]);
-        }
+            tasksDiv.empty();
+            if (obj.tasks) {
+                delete obj.tasks;
+            }
+
+            obj.tasks = [];
+
+            for (var key in data) {
+                obj.addTask(data[key]);
+            }
+
+            tasksDiv.fadeIn('fast');
+        });
     }
 
     tracky.prototype.submit = function () {
