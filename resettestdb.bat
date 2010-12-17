@@ -2,7 +2,7 @@
 
 SET DIR=%~d0%~p0%
 
-SET database.name="trackyttestdb"
+SET database.name="trackyttestdb_patchv102"
 SET sql.files.directory="%DIR%\db"
 SET server.database=".\SQLEXPRESS"
 SET version.file="build_output\_BuildInfo.xml"
