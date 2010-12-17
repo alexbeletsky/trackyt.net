@@ -259,10 +259,10 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>33000</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Tracky</IISUrl>
+          <IISUrl>http://localhost/master</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>http://localhost/tracky</CustomServerUrl>
+          <CustomServerUrl>http://localhost/master</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
