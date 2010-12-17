@@ -2,6 +2,8 @@ Tracky.net
 
 Web application for time/task tracking.
 
+Branch: patch/v.1.0.2
+
 History
 
 - [2010-10-14] started to use uppercut for builds
