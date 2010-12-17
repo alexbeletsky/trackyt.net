@@ -22,7 +22,7 @@ namespace Trackyt.Core.DAL.DataModel
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdb")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdb_patchv102")]
 	public partial class TrackytDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -45,7 +45,7 @@ namespace Trackyt.Core.DAL.DataModel
     #endregion
 		
 		public TrackytDataContext() : 
-				base(global::Trackyt.Core.Properties.Settings.Default.trackytdbConnectionString, mappingSource)
+				base(global::Trackyt.Core.Properties.Settings.Default.trackytdb_patchv102ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -704,8 +704,6 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private string _Email;
 		
-		private string _Password;
-		
 		private bool _Temp;
 		
 		private System.Data.Linq.Binary _Timestamp;
@@ -722,8 +720,6 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnIdChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
     partial void OnTempChanging(bool value);
     partial void OnTempChanged();
     partial void OnTimestampChanging(System.Data.Linq.Binary value);
@@ -774,26 +770,6 @@ namespace Trackyt.Core.DAL.DataModel
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
 				}
 			}
 		}
