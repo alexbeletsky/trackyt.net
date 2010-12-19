@@ -44,12 +44,13 @@ function create_tracky(tasksDiv, newTaskDescription, submitTaskButton, submitDat
 
     tracky.prototype.loadTableData = function () {
         $.blockUI();
-        this.loadData(onDataLoaded);
 
         var obj = this;
 
+        this.loadData(onDataLoaded);
+
         function onDataLoaded(response) {
-            if (response.success) {
+            if (response != null  && response.success) {
                 obj.createTasks(response.data.tasks);
             }
 

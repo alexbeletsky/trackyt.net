@@ -26,15 +26,17 @@ namespace Web.API.v1.Controllers
     // http://forums.asp.net/p/1471123/3407713.aspx
     // http://weblogs.asp.net/scottgu/archive/2008/07/14/asp-net-mvc-preview-4-release-part-1.aspx
 
+    // TODO: code start to stink and need to be refactored..
+
     public class ApiV1Controller : Controller
     {
-        private IAuthenticationService _auth;
+        private IApiService _api;
         private ITasksRepository _repository;
         private IMappingEngine _mapper;
 
-        public ApiV1Controller(IAuthenticationService auth, ITasksRepository repository, IMappingEngine mapper)
+        public ApiV1Controller(IApiService auth, ITasksRepository repository, IMappingEngine mapper)
         {
-            _auth = auth;
+            _api = auth;
             _repository = repository;
             _mapper = mapper;
         }
@@ -42,27 +44,41 @@ namespace Web.API.v1.Controllers
         [HttpPost]
         public JsonResult Authenticate(string email, string password)
         {
-            var success = false;
-            var userId = 0;
+            var success = true;
+            var apiToken = _api.GetApiToken(email, password);
 
-            if (_auth.Authenticate(email, password))
+            if (apiToken == null)
             {
-                success = true;
-                userId = _auth.GetUserId(email);
+                success = false;
             }
 
             return Json(
-                new { success = success, 
-                    data = new { userId = (userId > 0 ? userId.ToString() : (string)null) } 
+                new
+                {
+                    success = success,
+                    data = new { apiToken = apiToken}
                 });
         }
 
         [HttpPost]
         [TrackyAuthorizeAttribute(LoginController = "Login")]
-        public JsonResult GetAllTasks(int id)
+        public JsonResult GetAllTasks(string apiToken)
         {
-            var tasksQuery = _repository.Tasks.WithUserId(id);
-            
+            var userId = _api.Authenticate(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+
+            var tasksQuery = _repository.Tasks.WithUserId(userId);
+
             return Json(
                 new
                 {
@@ -73,10 +89,22 @@ namespace Web.API.v1.Controllers
 
         [HttpPost]
         [TrackyAuthorizeAttribute(LoginController = "Login")]
-        public JsonResult Submit(int id, IList<TaskDto> tasks)
+        public JsonResult Submit(string apiToken, IList<TaskDto> tasks)
         {
             var newTasks = 0;
             var updateTasks = 0;
+
+            var userId = _api.Authenticate(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
 
             foreach (var taskData in tasks)
             {
@@ -91,8 +119,8 @@ namespace Web.API.v1.Controllers
                     updateTasks++;
                     task = _repository.Tasks.WithId(taskData.Id);
                 }
-                
-                task.UserId = id;
+
+                task.UserId = userId;
                 task.Number = taskData.Number;
                 task.Description = taskData.Description;
                 task.ActualWork = taskData.ActualWork;
@@ -106,14 +134,27 @@ namespace Web.API.v1.Controllers
                     success = true,
                     data = new { newTasks = newTasks, updatedTasks = updateTasks, deletedTasks = 0 }
                 });
-                    
+
         }
 
         [HttpPost]
         [TrackyAuthorizeAttribute(LoginController = "Login")]
-        public JsonResult Delete(int id, IList<TaskDto> tasks)
+        public JsonResult Delete(string apiToken, IList<TaskDto> tasks)
         {
             var deletedTasks = 0;
+
+            var userId = _api.Authenticate(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
             foreach (var taskData in tasks)
             {
                 if (taskData.Id != 0)

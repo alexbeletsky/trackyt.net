@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Web.API.v1.Controllers;
-using Moq;
-using Trackyt.Core.DAL.Repositories;
-using Trackyt.Core.DAL.DataModel;
 using System.Web.Mvc;
 using AutoMapper;
-using Web.API.v1.Model;
-using Web.Infrastructure;
+using Moq;
+using NUnit.Framework;
+using Trackyt.Core.DAL.DataModel;
+using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Services;
+using Web.API.v1.Controllers;
+using Web.Infrastructure;
+using Web.API.v1.Model;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.API
 {
@@ -71,57 +69,58 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Smoke()
         {
-            //arrange
+            // arrange
             var repository = new Mock<ITasksRepository>();
             var mapper = new Mock<IMappingEngine>();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
             var api = new ApiV1Controller(service.Object, repository.Object, mapper.Object);
-            //act/assert
+
+            // act/assert
             Assert.That(api, Is.Not.Null);
         }
 
         [Test]
         public void Authenticate_Success()
         {
-            //arrange
+            // arrange
             var repository = new Mock<ITasksRepository>();
             var mapper = new Mock<IMappingEngine>();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
+
             var api = new ApiV1Controller(service.Object, repository.Object, mapper.Object);
 
-            service.Setup(s => s.Authenticate("a@a.com", "111")).Returns(true);
-            service.Setup(s => s.GetUserId("a@a.com")).Returns(1);
+            service.Setup(s => s.GetApiToken("a@a.com", "111")).Returns("api_token");
 
-            //act
+            // act
             var result = api.Authenticate("a@a.com", "111") as JsonResult;
             dynamic data = result.Data;
 
-            //post
+            // post
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.True);
-            Assert.That((string)data.data.userId, Is.Not.Null);
+            Assert.That((string)data.data.apiToken, Is.EqualTo("api_token"));
         }
 
         [Test]
-        public void Authenticate_False()
+        public void Authenticate_Fail()
         {
-            //arrange
+            // arrange
             var repository = new Mock<ITasksRepository>();
             var mapper = new Mock<IMappingEngine>();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
+
             var api = new ApiV1Controller(service.Object, repository.Object, mapper.Object);
 
-            service.Setup(s => s.Authenticate("a@a.com", "111")).Returns(true);
-            service.Setup(s => s.GetUserId("a@a.com")).Returns(1);
+            service.Setup(s => s.GetApiToken("a@a.com", "111")).Returns("api_token");
 
-            //act
-            var result = api.Authenticate("aaaa@a.com", "111") as JsonResult;
+            // act
+            var result = api.Authenticate("aaa@a.com", "111") as JsonResult;
             dynamic data = result.Data;
 
-            //post
+            // post
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.False);
-            Assert.That((string)data.data.userId, Is.Null);
+            Assert.That((string)data.data.apiToken, Is.Null);
         }
 
         [Test]
@@ -131,18 +130,20 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+
             //act
-            var result = api.GetAllTasks(userId) as JsonResult;
+            var result = api.GetAllTasks("api_token") as JsonResult;
             dynamic data = result.Data;
 
             //post
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.True);
-            
+
             var tasks = data.data.tasks as IList<TaskDto>;
             Assert.That(tasks.Count, Is.EqualTo(3));
 
@@ -165,23 +166,25 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Submit_New_Task()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 0, ActualWork = 14, Description = "new task 1", Number = 12 },
                 new TaskDto { Id = 0, ActualWork = 177, Description = "new task 2", Number = 13 }
             };
 
-            //act
-            api.Submit(userId, submit);
+            // act
+            api.Submit("api_token", submit);
 
-            //assert
+            // assert
             Assert.That(_submittedTasks.Count, Is.EqualTo(2));
 
             Assert.That(_submittedTasks[0].Id, Is.EqualTo(222));
@@ -201,24 +204,26 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Submit_Update_Result()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 0, ActualWork = 14, Description = "new task 1", Number = 12 },
                 new TaskDto { Id = 0, ActualWork = 177, Description = "new task 2", Number = 13 }
             };
 
-            //act
-            var result = api.Submit(userId, submit) as JsonResult;
+            // act
+            var result = api.Submit("api_token", submit) as JsonResult;
             dynamic data = result.Data;
 
-            //assert
+            // assert
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.True);
             Assert.That(data.data.newTasks, Is.EqualTo(2));
@@ -229,22 +234,24 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Submit_Update_Task()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
             };
 
-            //act
-            api.Submit(userId, submit);
+            // act
+            api.Submit("api_token", submit);
 
-            //assert
+            // assert
             Assert.That(_submittedTasks.Count, Is.EqualTo(1));
 
             Assert.That(_submittedTasks[0].Id, Is.EqualTo(1), "id of object could not be changed");
@@ -257,23 +264,25 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Submit_Update_Task_Result()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
             };
 
-            //act
-            var result = api.Submit(userId, submit) as JsonResult;
+            // act
+            var result = api.Submit("api_token", submit) as JsonResult;
             dynamic data = result.Data;
 
-            //assert
+            // assert
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.True);
             Assert.That(data.data.newTasks, Is.EqualTo(0));
@@ -284,22 +293,24 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Delete()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var delete = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
             };
 
-            //act
-            api.Delete(userId, delete);
+            // act
+            api.Delete("api_token", delete);
 
-            //post
+            // post
             Assert.That(_deletedTasks.Count, Is.EqualTo(1));
             Assert.That(_deletedTasks[0].Id, Is.EqualTo(1));
         }
@@ -307,23 +318,25 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         [Test]
         public void Delete_Result()
         {
-            //arrange
+            // arrange
             var userId = 100;
             var repository = SetupMockRepository(userId);
             var mapper = SetupMapper();
-            var service = new Mock<IAuthenticationService>();
+            var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
+
+            service.Setup(s => s.Authenticate("api_token")).Returns(100);
 
             var delete = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
             };
 
-            //act
-            var result = api.Delete(userId, delete) as JsonResult;
+            // act
+            var result = api.Delete("api_token", delete) as JsonResult;
             dynamic data = result.Data;
 
-            //assert
+            // assert
             Assert.That(data, Is.Not.Null);
             Assert.That(data.success, Is.True);
             Assert.That(data.data.newTasks, Is.EqualTo(0));

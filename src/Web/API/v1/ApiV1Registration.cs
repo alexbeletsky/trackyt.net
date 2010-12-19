@@ -14,8 +14,8 @@ namespace Web.API.v1
             //API v1 map
             context.MapRoute(
                 "ApiV1",
-                "API/v1/{action}/{id}",
-                new { controller = "ApiV1", id = UrlParameter.Optional }
+                "API/v1/{action}/{apiToken}",
+                new { controller = "ApiV1" }
             );
         }
     }

@@ -30,24 +30,45 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             Assert.That(dashboard, Is.Not.Null);
         }
 
+        // UserId is no longer API parameter
+        //[Test]
+        //public void Index_Get_Initialize_UserId()
+        //{
+        //    //arrange
+        //    var users = new Mock<IUsersRepository>();
+        //    var forms = new Mock<IFormsAuthentication>();
+        //    var path = new Mock<IPathHelper>();
+
+        //    forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
+        //    users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
+
+        //    var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
+
+        //    //act
+        //    var result = dashboard.Index() as ViewResult;
+
+        //    //post
+        //    Assert.That(result.ViewData["UserId"], Is.EqualTo(100));
+        //}
+
         [Test]
-        public void Index_Get_Initialize_UserId()
+        public void Index_Get_Initialize_Api_Token()
         {
-            //arrange
+            // arrange
             var users = new Mock<IUsersRepository>();
             var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
 
             forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
-            users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
+            users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net", ApiToken = "111222" } }).AsQueryable());
 
             var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
 
-            //act
+            // act
             var result = dashboard.Index() as ViewResult;
 
-            //post
-            Assert.That(result.ViewData["UserId"], Is.EqualTo(100));
+            // post
+            Assert.That(result.ViewData["ApiToken"], Is.EqualTo("111222"));
         }
 
         [Test]

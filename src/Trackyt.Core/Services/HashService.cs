@@ -23,5 +23,10 @@ namespace Trackyt.Core.Services
         {
             return (StringComparer.OrdinalIgnoreCase.Compare(CreateMD5Hash(input), hash) == 0);
         }
+
+        public string CreateApiToken(string email, string password)
+        {
+            return CreateMD5Hash(email + password + "trackytnet_api_token" + DateTime.Now.ToLongTimeString());
+        }
     }
 }

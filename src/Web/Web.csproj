@@ -200,6 +200,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\v11\" />
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
   </ItemGroup>

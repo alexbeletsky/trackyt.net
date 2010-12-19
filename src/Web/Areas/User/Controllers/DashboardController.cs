@@ -10,13 +10,13 @@ namespace Web.Areas.User.Controllers
     [TrackyAuthorizeAttribute(LoginController = "Login")]
     public class DashboardController : Controller
     {
-        private IUsersRepository _repository;
+        private IUsersRepository _users;
         private IFormsAuthentication _authentication;
         private IPathHelper _path;
 
         public DashboardController(IUsersRepository repository, IFormsAuthentication authentication, IPathHelper path)
         {
-            _repository = repository;
+            _users = repository;
             _authentication = authentication;
             _path = path;
         }
@@ -24,10 +24,11 @@ namespace Web.Areas.User.Controllers
         public ActionResult Index()
         {
             var userEmail = _authentication.GetLoggedUser();
-            var user = _repository.Users.WithEmail(userEmail);
-            ViewData["UserId"] = user.Id;;
+            var user = _users.Users.WithEmail(userEmail);
+            //ViewData["UserId"] = user.Id;;
             ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1");
             ViewData["Email"] = userEmail;
+            ViewData["ApiToken"] = user.ApiToken;
 
             return View();
         }

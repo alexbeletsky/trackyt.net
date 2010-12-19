@@ -6,6 +6,9 @@ using Trackyt.Core.DAL.Repositories.Impl;
 using Trackyt.Core.Services;
 using Trackyt.Core.DAL.DataModel;
 
+// v.1.0.2
+// This application is not valid any more, since data model has been changed (no Password column in User any more)
+
 namespace PasswordClosed.NotifyUsers.App
 {
     class Program

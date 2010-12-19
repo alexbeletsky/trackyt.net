@@ -232,20 +232,13 @@ input#task-description
 {
     display: block;
     position: relative;
-    height: auto;
-    min-height: 75px;
-    width: 100%;
     background-color: #252628;
     color: #e7e6de;
 }
 
 #account-details fieldset
 {
-    display: block;
-    padding: 5px;
-    margin-top: 10px;
-    margin-right: 40px;
-    margin-bottom: 10px;
+    width: 360px;
     float: right;
     border-style:none;
     font-size: small;    
@@ -259,17 +252,7 @@ input#task-description
 
 #account-details fieldset span
 {
-    margin-left: 60px;
     float: right;
-}
-
-#account-details #close-account-details
-{
-    float: right;
-    margin-right: 15px;
-    text-decoration: none;
-    color: #ededed;
-    font-size: xx-small;    
 }
 
 .clear

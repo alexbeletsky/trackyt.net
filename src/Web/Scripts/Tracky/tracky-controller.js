@@ -1,20 +1,26 @@
 ﻿$(document).ready(function () {
-    var userId = $('#userId').val();
+    var apiToken = $('#apiToken').val();
     var api = $('#api').val();
 
 
     // Tracky control initialization
 
     function loadData(callback) {
-        $.post(api + '/GetAllTasks/' + userId, null, callback, 'json');
+        $.post(api + '/GetAllTasks/' + apiToken, null, callback, 'json');
+
+        //callback(null);
     }
 
     function submitData(data, callback) {
-        $.postJson(api + '/Submit/' + userId, data, callback);
+        $.postJson(api + '/Submit/' + apiToken, data, callback);
+
+        //callback(null);
     }
 
     function deleteData(data, callback) {
-        $.postJson(api + '/Delete/' + userId, data, callback);
+        $.postJson(api + '/Delete/' + apiToken, data, callback);
+
+        //callback(null);
     }
 
     var tracky = create_tracky(

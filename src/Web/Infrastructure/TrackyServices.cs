@@ -21,6 +21,7 @@ namespace Web.Infrastructure
             Bind<IBlogPostsRepository>().To<BlogPostsRepository>();
             Bind<IAuthenticationService>().To<AuthenticationService>();
             Bind<IHashService>().To<HashService>();
+            Bind<IApiService>().To<ApiService>();
         }
     }
 }

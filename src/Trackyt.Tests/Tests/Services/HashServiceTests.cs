@@ -116,6 +116,20 @@ namespace Trackyt.Core.Tests.Tests.Services
             Assert.That(hash, Is.EqualTo("5f4dcc3b5aa765d61d8327deb882cf99"));
         }
 
+        [Test]
+        public void CreateApiToken()
+        {
+            // arrange
+            var service = new HashService();
+
+            // act
+            var hash = service.CreateApiToken("email", "passwordhash");
+
+            // assert
+            Assert.That(hash, Is.Not.Null);
+            Assert.That(hash.Length, Is.EqualTo(32));
+
+        }
 
     }
 }

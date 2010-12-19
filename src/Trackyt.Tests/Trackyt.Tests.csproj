@@ -78,6 +78,7 @@
     <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />
     <Compile Include="Tests\Mocks\UsersRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\Services\ApiServiceTests.cs" />
     <Compile Include="Tests\Services\AuthenticationServicesTests.cs" />
     <Compile Include="Tests\Services\CredentialServicesTests.cs" />
     <Compile Include="Tests\Services\HashServiceTests.cs" />

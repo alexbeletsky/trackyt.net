@@ -21,6 +21,10 @@
 <body>
     <div id="account-details">
         <fieldset>
+            <div id="apitoken">
+                <label for="apitoken-value">Api Token:</label>
+                <span id="apitoken-value"><%: ViewData["ApiToken"] %></span>
+            </div>
             <div id="email">
                 <label for="email-value">Email:</label>
                 <span id="email-value"><%: ViewData["Email"] %></span>

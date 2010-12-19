@@ -51,6 +51,7 @@ namespace Trackyt.Core.Services
             {
                 Email = email,
                 PasswordHash = _hash.CreateMD5Hash(password),
+                ApiToken = _hash.CreateApiToken(email, password),
                 Temp = temp
             };
 

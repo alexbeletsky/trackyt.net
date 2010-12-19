@@ -710,6 +710,8 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private string _PasswordHash;
 		
+		private string _ApiToken;
+		
 		private EntitySet<Task> _Tasks;
 		
     #region Extensibility Method Definitions
@@ -726,6 +728,8 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnTimestampChanged();
     partial void OnPasswordHashChanging(string value);
     partial void OnPasswordHashChanged();
+    partial void OnApiTokenChanging(string value);
+    partial void OnApiTokenChanged();
     #endregion
 		
 		public User()
@@ -830,6 +834,26 @@ namespace Trackyt.Core.DAL.DataModel
 					this._PasswordHash = value;
 					this.SendPropertyChanged("PasswordHash");
 					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApiToken", DbType="NVarChar(32)", UpdateCheck=UpdateCheck.Never)]
+		public string ApiToken
+		{
+			get
+			{
+				return this._ApiToken;
+			}
+			set
+			{
+				if ((this._ApiToken != value))
+				{
+					this.OnApiTokenChanging(value);
+					this.SendPropertyChanging();
+					this._ApiToken = value;
+					this.SendPropertyChanged("ApiToken");
+					this.OnApiTokenChanged();
 				}
 			}
 		}

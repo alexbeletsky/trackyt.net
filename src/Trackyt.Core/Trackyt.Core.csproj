@@ -69,6 +69,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\CredentialsService.cs" />
     <Compile Include="Services\EmailService.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Services\ICredentialsService.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\IHashService.cs" />
+    <Compile Include="Services\IApiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

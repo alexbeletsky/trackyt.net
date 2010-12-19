@@ -9,5 +9,7 @@ namespace Trackyt.Core.Services
     {
         string CreateMD5Hash(string value);
         bool ValidateMD5Hash(string value, string hash);
+
+        string CreateApiToken(string email, string password);
     }
 }
