@@ -38,7 +38,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             var service = new ApiService(repository.Object, hash.Object);
 
             // act
-            var result = service.Authenticate("23211");
+            var result = service.GetUserIdByApiToken("23211");
 
             // assert
             Assert.That(result, Is.EqualTo(2));
@@ -57,7 +57,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             var service = new ApiService(repository.Object, hash.Object);
 
             // act
-            var result = service.Authenticate("12346");
+            var result = service.GetUserIdByApiToken("12346");
 
             // assert
             Assert.That(result, Is.EqualTo(0));

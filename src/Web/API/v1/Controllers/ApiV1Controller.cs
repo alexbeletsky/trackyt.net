@@ -64,7 +64,7 @@ namespace Web.API.v1.Controllers
         [TrackyAuthorizeAttribute(LoginController = "Login")]
         public JsonResult GetAllTasks(string apiToken)
         {
-            var userId = _api.Authenticate(apiToken);
+            var userId = _api.GetUserIdByApiToken(apiToken);
 
             if (userId == 0)
             {
@@ -94,7 +94,7 @@ namespace Web.API.v1.Controllers
             var newTasks = 0;
             var updateTasks = 0;
 
-            var userId = _api.Authenticate(apiToken);
+            var userId = _api.GetUserIdByApiToken(apiToken);
 
             if (userId == 0)
             {
@@ -143,7 +143,7 @@ namespace Web.API.v1.Controllers
         {
             var deletedTasks = 0;
 
-            var userId = _api.Authenticate(apiToken);
+            var userId = _api.GetUserIdByApiToken(apiToken);
 
             if (userId == 0)
             {

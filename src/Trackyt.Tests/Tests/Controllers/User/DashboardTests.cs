@@ -59,7 +59,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
 
-            forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
+            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net", ApiToken = "111222" } }).AsQueryable());
 
             var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
@@ -79,7 +79,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
 
-            forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
+            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
             path.Setup(p => p.VirtualToAbsolute(It.IsAny<string>())).Returns((string v) => v);
 
@@ -100,7 +100,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
 
-            forms.Setup(f => f.GetLoggedUser()).Returns("logged@tracky.net");
+            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
             path.Setup(p => p.VirtualToAbsolute(It.IsAny<string>())).Returns((string v) => v);
 

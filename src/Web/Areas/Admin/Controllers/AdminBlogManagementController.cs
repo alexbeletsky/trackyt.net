@@ -32,8 +32,6 @@ namespace Web.Areas.Admin.Controllers
 
         public ActionResult AddPost()
         {
-            //var dummy = new BlogPost { CreatedDate = DateTime.Now };
-
             return View();
         }
 

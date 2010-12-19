@@ -8,7 +8,7 @@ namespace Trackyt.Core.Services
     public interface IAuthenticationService
     {
         bool Authenticate(string email, string password);
-        int GetUserId(string email);
-        bool CreateUser(string email, string password, bool temp);
+        int GetUserIdByEmail(string email);
+        bool RegisterNewUser(string email, string password, bool temp);
     }
 }

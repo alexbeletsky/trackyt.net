@@ -34,13 +34,13 @@ namespace Trackyt.Core.Services
             return false;
         }
 
-        public int GetUserId(string email)
+        public int GetUserIdByEmail(string email)
         {
             var user = _users.Users.WithEmail(email);
             return (user == null ? 0 : user.Id);  
         }
 
-        public bool CreateUser(string email, string password, bool temp)
+        public bool RegisterNewUser(string email, string password, bool temp)
         {
             if (_users.Users.WithEmail(email) != null)
             {

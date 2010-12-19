@@ -8,6 +8,6 @@ namespace Trackyt.Core.Services
     public interface IApiService
     {
         string GetApiToken(string email, string password);
-        int Authenticate(string apiToken);
+        int GetUserIdByApiToken(string apiToken);
     }
 }

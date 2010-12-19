@@ -59,7 +59,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.CreateUser("a@a.com", "password", false)).Returns(true);
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Returns(true);
             auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
             //act
@@ -83,7 +83,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.CreateUser("a@a.com", "password", false)).Returns(false);
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Returns(false);
             //auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
             //act
@@ -110,7 +110,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.CreateUser("a@a.com", "password", false)).Throws(new Exception());
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Throws(new Exception());
 
 
             //act / post
@@ -128,7 +128,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var resuts = controller.QuickStart() as RedirectResult;
 
             //post
-            auth.Verify(a => a.CreateUser(It.IsAny<string>(), It.IsAny<string>(), true));
+            auth.Verify(a => a.RegisterNewUser(It.IsAny<string>(), It.IsAny<string>(), true));
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var controller = new RegistrationController(auth.Object);
 
             var users = new List<dynamic>();
-            auth.Setup(a => a.CreateUser(It.IsAny<string>(), It.IsAny<string>(), true)).Callback(
+            auth.Setup(a => a.RegisterNewUser(It.IsAny<string>(), It.IsAny<string>(), true)).Callback(
                 (string e, string p, bool t) =>
                 { users.Add(new { Email = e, Password = p, Temp = t }); }
             );

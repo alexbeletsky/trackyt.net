@@ -97,7 +97,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
 
             // act
-            var id = service.GetUserId("ok@a.com");
+            var id = service.GetUserIdByEmail("ok@a.com");
 
             // assert
             Assert.That(id, Is.EqualTo(1));
@@ -115,7 +115,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             users.Setup(u => u.Users).Returns(new List<User> { new User { Email = "ok@a.com", PasswordHash = hash.CreateMD5Hash("111"), Id = 1, Temp = false } }.AsQueryable());
 
             // act
-            var id = service.GetUserId("notok@a.com");
+            var id = service.GetUserIdByEmail("notok@a.com");
 
             // assert
             Assert.That(id, Is.EqualTo(0));
@@ -135,7 +135,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.CreateUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass", false);
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -156,7 +156,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.CreateUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass", false);
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -178,7 +178,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.CreateUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass", false);
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -199,8 +199,8 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.CreateUser("test@trackyt.net", "mypass", false);
-            var result = service.CreateUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            var result = service.RegisterNewUser("test@trackyt.net", "mypass", false);
 
             // assert
             Assert.That(result, Is.False);
@@ -220,7 +220,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.CreateUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass", false);
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));

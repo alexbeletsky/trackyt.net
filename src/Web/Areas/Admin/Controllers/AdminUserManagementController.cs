@@ -10,11 +10,11 @@ namespace Web.Areas.Admin.Controllers
     [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
     public class AdminUserManagementController : Controller
     {
-        private IUsersRepository _usersRepository;
+        private IUsersRepository _users;
 
         public AdminUserManagementController(IUsersRepository usersRepository)
         {
-            _usersRepository = usersRepository;
+            _users = usersRepository;
         }
 
         public ActionResult Index()
@@ -24,16 +24,15 @@ namespace Web.Areas.Admin.Controllers
 
         public ActionResult Summary()
         {
-            var totalUsersCount = _usersRepository.Users.Count();
-            var tempUsersCount = _usersRepository.Users.WithTemp(true).Count();
+            var totalUsersCount = _users.Users.Count();
+            var tempUsersCount = _users.Users.WithTemp(true).Count();
 
             return View(new AdminUserSummary(totalUsersCount, tempUsersCount));
         }
 
         public ActionResult Table()
         {
-            return View(_usersRepository.Users.ToList());
+            return View(_users.Users.ToList());
         }
-
     }
 }

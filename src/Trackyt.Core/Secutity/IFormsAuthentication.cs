@@ -9,7 +9,7 @@ namespace Trackyt.Core.Security
     {
         void SetAuthCookie(string email, bool persistant);
         
-        string GetLoggedUser();
+        string GetLoggedUserEmail();
         string GeneratePassword();
     }
 }

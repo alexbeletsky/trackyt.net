@@ -6,11 +6,11 @@ namespace Web.Areas.Admin.Controllers
 {
     public class AdminLoginController : Controller
     {
-        private IAuthenticationService _authentication;
+        private IAuthenticationService _auth;
 
         public AdminLoginController(IAuthenticationService auth)
         {
-            _authentication = auth;
+            _auth = auth;
         }
 
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_authentication.Authenticate("Admin", model.Password))
+                if (_auth.Authenticate("Admin", model.Password))
                 {
                     return Redirect("~/Admin/AdminDashboard");
                 }   

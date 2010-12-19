@@ -11,11 +11,11 @@ namespace Web.Areas.Blog.Controllers
     {
         private static readonly int PostsOnPageCount = 5;
 
-        private IBlogPostsRepository _repository;
+        private IBlogPostsRepository _posts;
 
         public PostsController(IBlogPostsRepository postsRepository)
         {
-            _repository = postsRepository;
+            _posts = postsRepository;
         }
 
         public ActionResult Index()
@@ -41,19 +41,20 @@ namespace Web.Areas.Blog.Controllers
 
         private BlogPost GetPostByUrl(string url)
         {
-            return _repository.BlogPosts.WithUrl(url);            
+            return _posts.BlogPosts.WithUrl(url);            
         }
 
         private BlogPosts GetPostsByPage(int currentPage)
         {
-            var posts = _repository.BlogPosts.Page(currentPage, PostsOnPageCount);
+            var posts = _posts.BlogPosts.Page(currentPage, PostsOnPageCount);
             var model = new BlogPosts(currentPage, TotalPages(), posts.ToList());
             return model;
         }
 
+        // TODO: refactor, code is not clear
         private int TotalPages()
         {
-            var postsCount = _repository.BlogPosts.Count();
+            var postsCount = _posts.BlogPosts.Count();
             var delta = (postsCount % PostsOnPageCount) == 0 ? 0 : 1; 
 
             return (postsCount / PostsOnPageCount) + delta;

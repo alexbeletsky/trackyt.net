@@ -14,7 +14,7 @@ namespace Trackyt.Core.Security
             FormsAuthentication.SetAuthCookie(email, persistant);
         }
 
-        public string GetLoggedUser()
+        public string GetLoggedUserEmail()
         {
             return HttpContext.Current.User.Identity.Name;
         }

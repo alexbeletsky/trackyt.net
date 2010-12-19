@@ -6,6 +6,7 @@ using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Security;
 using Trackyt.Core.Services;
 using System;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -24,12 +25,12 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Models.RegisterUserModel model)
+        public ActionResult Register(RegisterUserModel model)
         {
             if (ModelState.IsValid)
             {
                 //check if used already registered
-                if (_auth.CreateUser(model.Email, model.Password, false))
+                if (_auth.RegisterNewUser(model.Email, model.Password, false))
                 {
                     return Redirect("~/User/Dashboard");
                 }
@@ -49,7 +50,7 @@ namespace Web.Controllers
             var email = "temp" + postfix + "@trackyt.net";
             var password = email;
 
-            _auth.CreateUser(email, password, true);
+            _auth.RegisterNewUser(email, password, true);
 
             return Redirect("~/User/Dashboard");
         }

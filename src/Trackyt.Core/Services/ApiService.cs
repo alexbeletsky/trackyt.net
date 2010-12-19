@@ -17,7 +17,7 @@ namespace Trackyt.Core.Services
             _hash = hash;
         }
 
-        public int Authenticate(string apiToken)
+        public int GetUserIdByApiToken(string apiToken)
         {
             var user = _users.Users.Where(u => u.ApiToken == apiToken).SingleOrDefault();
             if (user == null)

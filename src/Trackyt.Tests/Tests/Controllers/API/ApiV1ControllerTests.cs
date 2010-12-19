@@ -134,7 +134,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             //act
             var result = api.GetAllTasks("api_token") as JsonResult;
@@ -174,7 +174,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 0, ActualWork = 14, Description = "new task 1", Number = 12 },
@@ -212,7 +212,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 0, ActualWork = 14, Description = "new task 1", Number = 12 },
@@ -242,7 +242,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
@@ -272,7 +272,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var submit = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
@@ -301,7 +301,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var delete = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
@@ -326,7 +326,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
 
-            service.Setup(s => s.Authenticate("api_token")).Returns(100);
+            service.Setup(s => s.GetUserIdByApiToken("api_token")).Returns(100);
 
             var delete = new List<TaskDto> {
                 new TaskDto { Id = 1, ActualWork = 14, Description = "updated", Number = 12 },
