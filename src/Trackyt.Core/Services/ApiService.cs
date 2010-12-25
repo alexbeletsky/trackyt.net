@@ -30,8 +30,13 @@ namespace Trackyt.Core.Services
 
         public string GetApiToken(string email, string password)
         {
-            return _users.Users.Where(u => u.Email == email && _hash.ValidateMD5Hash(password, u.PasswordHash)).
-                Select(u => u.ApiToken).SingleOrDefault();
+            var user = _users.Users.Where(u => u.Email == email).SingleOrDefault();
+            if (_hash.ValidateMD5Hash(password, user.PasswordHash))
+            {
+                return user.ApiToken;
+            }
+
+            return null;
         }
     }
 }
