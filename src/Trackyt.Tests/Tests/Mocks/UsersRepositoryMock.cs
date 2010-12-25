@@ -33,7 +33,7 @@ namespace Trackyt.Core.Tests.Mocks
             }
         }
 
-        public void SaveUser(User user)
+        public void Save(User user)
         {
             if (_failOnRegister)
                 throw new Exception();
@@ -41,7 +41,7 @@ namespace Trackyt.Core.Tests.Mocks
             _users.Add(user);    
         }
 
-        public void DeleteUser(User user)
+        public void Delete(User user)
         {
             throw new NotImplementedException();
         }

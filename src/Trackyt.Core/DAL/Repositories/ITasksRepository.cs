@@ -21,12 +21,12 @@ namespace Trackyt.Core.DAL.Repositories
         /// Saves or updates task
         /// </summary>
         /// <param name="task">Task object</param>
-        void SaveTask(Task task);
+        void Save(Task task);
 
         /// <summary>
         /// Deletes task
         /// </summary>
         /// <param name="task">Task object</param>
-        void DeleteTask(Task task);
+        void Delete(Task task);
     }
 }

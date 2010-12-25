@@ -6,7 +6,6 @@
         urlWithParams += '/' + params[p];
     }
 
-    stop(2000);
     $.ajax(
         {
             url: urlWithParams,
@@ -15,14 +14,13 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
             dataType: 'json',
+            async: false,
             complete: function (result) {
                 if (result.status == 404) {
                     ok(false, '404 error');
                 } else {
                     callback($.parseJSON(result.responseText));
                 }
-
-                start();
             }
         });
 }

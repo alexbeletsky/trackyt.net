@@ -35,7 +35,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             }
         }
 
-        public void SaveUser(User user)
+        public void Save(User user)
         {
             if (user.Id == 0)
             {
@@ -48,7 +48,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             _context.SubmitChanges();
         }
 
-        public void DeleteUser(User user)
+        public void Delete(User user)
         {
             _context.Users.DeleteOnSubmit(user);
             _context.SubmitChanges();

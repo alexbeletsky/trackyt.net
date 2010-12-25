@@ -39,7 +39,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             }
         }
 
-        public void SaveBlogPost(BlogPost blogPost)
+        public void Save(BlogPost blogPost)
         {
             if (_context.BlogPosts.WithUrl(blogPost.Url) != null)
             {
@@ -53,7 +53,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             _context.SubmitChanges();
         }
 
-        public void DeleteBlogPost(DataModel.BlogPost blogPost)
+        public void Delete(DataModel.BlogPost blogPost)
         {
             _context.BlogPosts.DeleteOnSubmit(blogPost);
             _context.SubmitChanges();

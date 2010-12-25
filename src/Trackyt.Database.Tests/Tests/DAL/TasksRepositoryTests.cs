@@ -31,7 +31,7 @@ namespace Trackyt.Core.DAL.Tests
                 };
 
                 //ACT
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //POST
                 var foundTask = repository.Tasks.WithId(task.Id);
@@ -58,10 +58,10 @@ namespace Trackyt.Core.DAL.Tests
                     ActualWork = 0
                 };
 
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //ACT
-                repository.DeleteTask(task);
+                repository.Delete(task);
 
                 //POST
                 var foundTask = repository.Tasks.WithId(task.Id);
@@ -86,11 +86,11 @@ namespace Trackyt.Core.DAL.Tests
                     ActualWork = 0
                 };
 
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //ACT
                 task.Description = "My new task (update)";
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //POST
                 var foundTask = repository.Tasks.WithId(task.Id);
@@ -118,7 +118,7 @@ namespace Trackyt.Core.DAL.Tests
                     ActualWork = 0
                 };
 
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //ACT
                 var foundTask = repository.Tasks.WithId(task.Id);
@@ -145,7 +145,7 @@ namespace Trackyt.Core.DAL.Tests
                     ActualWork = 0
                 };
 
-                repository.SaveTask(task);
+                repository.Save(task);
 
                 //ACT
                 var foundTask = repository.Tasks.WithUserId(fixture.Setup.User.Id);
@@ -171,7 +171,7 @@ namespace Trackyt.Core.DAL.Tests
 
                 foreach (var task in tasks)
                 {
-                    repository.SaveTask(task);
+                    repository.Save(task);
                 }
 
                 //ACT

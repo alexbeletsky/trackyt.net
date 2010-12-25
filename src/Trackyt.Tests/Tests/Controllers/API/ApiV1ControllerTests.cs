@@ -45,7 +45,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var index = 222;
             _submittedTasks.Clear();
             _deletedTasks.Clear();
-            repository.Setup(f => f.SaveTask(It.IsAny<Task>())).Callback((Task t) =>
+            repository.Setup(f => f.Save(It.IsAny<Task>())).Callback((Task t) =>
                 {
                     //assign id for new tasks
                     if (t.Id == 0)
@@ -55,7 +55,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
                     _submittedTasks.Add(t);
                 }
             );
-            repository.Setup(f => f.DeleteTask(It.IsAny<Task>())).Callback((Task t) =>
+            repository.Setup(f => f.Delete(It.IsAny<Task>())).Callback((Task t) =>
                 {
                     _deletedTasks.Add(t);
                 }

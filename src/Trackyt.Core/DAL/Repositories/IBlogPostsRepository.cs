@@ -20,12 +20,12 @@ namespace Trackyt.Core.DAL.Repositories
         /// Creates new record and initialize Id for new objects and update exiting objects
         /// </summary>
         /// <param name="blogPost">Blog post object</param>
-        void SaveBlogPost(BlogPost blogPost);
+        void Save(BlogPost blogPost);
 
         /// <summary>
         /// Deletes blog post
         /// </summary>
         /// <param name="blogPost"></param>
-        void DeleteBlogPost(BlogPost blogPost);
+        void Delete(BlogPost blogPost);
     }
 }

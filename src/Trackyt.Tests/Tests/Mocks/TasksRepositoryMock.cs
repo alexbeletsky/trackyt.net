@@ -10,12 +10,12 @@ namespace Trackyt.Core.Tests.Mocks
     {
         private IList<DAL.DataModel.Task> _tasksRepository = new List<DAL.DataModel.Task>();
 
-        public void SaveTask(DAL.DataModel.Task task)
+        public void Save(DAL.DataModel.Task task)
         {
             _tasksRepository.Add(task);
         }
 
-        public void DeleteTask(DAL.DataModel.Task task)
+        public void Delete(DAL.DataModel.Task task)
         {
             _tasksRepository.Remove(task);
         }

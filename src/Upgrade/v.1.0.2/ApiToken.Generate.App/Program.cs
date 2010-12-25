@@ -40,7 +40,7 @@ namespace ApiToken.Generate.App
                     var apiToken = hash.CreateApiToken(user.Email, user.PasswordHash);
                     user.ApiToken = apiToken;
 
-                    usersRepository.SaveUser(user);
+                    usersRepository.Save(user);
 
                     Console.WriteLine(string.Format("Generated API token for {0}", user.Email));
                 }

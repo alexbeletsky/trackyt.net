@@ -20,12 +20,12 @@ namespace Trackyt.Core.DAL.Repositories
         /// Creates new record and initialize Id for new objects and update exiting objects
         /// </summary>
         /// <param name="user">User object</param>
-        void SaveUser(User user);
+        void Save(User user);
 
         /// <summary>
         /// Deletes user
         /// </summary>
         /// <param name="user">User object</param>
-        void DeleteUser(User user);
+        void Delete(User user);
     }
 }

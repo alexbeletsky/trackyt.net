@@ -21,12 +21,12 @@ namespace Trackyt.Core.DAL.Tests
         {
             for (int users = 0; users < usersCount; users++)
             {
-                register.SaveUser(new User { Email = users + "@a.com", Temp = false });
+                register.Save(new User { Email = users + "@a.com", Temp = false });
             }
 
             for (int temp = 0; temp < tempUsers; temp++)
             {
-                register.SaveUser(new User { Email = "temp" + temp + "@a.com", Temp = true });
+                register.Save(new User { Email = "temp" + temp + "@a.com", Temp = true });
             }
         }
 
@@ -48,7 +48,7 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(user);
+                register.Save(user);
 
                 //POST
                 var actual = register.Users.WithEmail("email");
@@ -73,7 +73,7 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(user);
+                register.Save(user);
 
                 var newUser = new User()
                 {
@@ -82,7 +82,7 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(newUser);
+                register.Save(newUser);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(user);
+                register.Save(user);
 
                 //ACT
                 var foundUser = register.Users.WithId(user.Id);
@@ -127,11 +127,11 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(user);
+                register.Save(user);
 
                 //ACT
                 user.Email = "newsec";
-                register.SaveUser(user);
+                register.Save(user);
 
                 //POST
                 var foundUser = register.Users.WithId(user.Id);
@@ -155,10 +155,10 @@ namespace Trackyt.Core.DAL.Tests
                     //Password = "pass"
                 };
 
-                register.SaveUser(user);
+                register.Save(user);
 
                 //ACT
-                register.DeleteUser(user);
+                register.Delete(user);
 
                 //POST
                 var foundUser = register.Users.WithId(user.Id);

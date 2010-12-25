@@ -44,7 +44,7 @@ namespace Trackyt.Database.Tests.Tests.Services
                 var passwordHash = hashService.CreateMD5Hash(password);
                 var apiToken = hashService.CreateApiToken(email, password);
                 
-                userRepository.SaveUser(
+                userRepository.Save(
                     new User
                     {
                         Email = email,
@@ -78,7 +78,7 @@ namespace Trackyt.Database.Tests.Tests.Services
                 var passwordHash = hashService.CreateMD5Hash(password);
                 var apiToken = hashService.CreateApiToken(email, password);
 
-                userRepository.SaveUser(
+                userRepository.Save(
                     new User
                     {
                         Email = email,

@@ -86,7 +86,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
             var submittedPosts = new List<BlogPost>();
-            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>())).Callback((BlogPost p) => submittedPosts.Add(p));
+            blogRepository.Setup(b => b.Save(It.IsAny<BlogPost>())).Callback((BlogPost p) => submittedPosts.Add(p));
 
             var blogManagement = new AdminBlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey Joe" };
@@ -104,7 +104,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
             var submittedPosts = new List<BlogPost>();
-            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+            blogRepository.Setup(b => b.Save(It.IsAny<BlogPost>()))
                 .Callback((BlogPost p) => 
                 {
                     if (submittedPosts.Find(x => x.Url == p.Url) != null)
@@ -132,7 +132,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
             var submittedPosts = new List<BlogPost>();
-            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+            blogRepository.Setup(b => b.Save(It.IsAny<BlogPost>()))
                 .Callback((BlogPost p) =>
                 {
                     if (submittedPosts.Find(x => x.Url == p.Url) != null)
@@ -161,7 +161,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
             var submittedPosts = new List<BlogPost>();
-            blogRepository.Setup(b => b.SaveBlogPost(It.IsAny<BlogPost>()))
+            blogRepository.Setup(b => b.Save(It.IsAny<BlogPost>()))
                 .Callback((BlogPost p) =>
                 {
                     if (submittedPosts.Find(x => x.Url == p.Url) != null)

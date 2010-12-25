@@ -46,7 +46,7 @@ namespace Web.Areas.Admin.Controllers
                     post.Url = CreatePostUrl(post.Title);                    
                     post.CreatedDate = DateTime.Now; 
 
-                    _blogRepository.SaveBlogPost(post);
+                    _blogRepository.Save(post);
                 }
             }
             catch (Exception e)

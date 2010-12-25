@@ -55,7 +55,7 @@ namespace Trackyt.Core.Services
                 Temp = temp
             };
 
-            _users.SaveUser(user);
+            _users.Save(user);
 
             Authenticate(email, password);
 

@@ -37,7 +37,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             }
         }
 
-        public void SaveTask(Task task) 
+        public void Save(Task task) 
         {
             if (task.Id == 0)
             {
@@ -46,7 +46,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
             _context.SubmitChanges();
         }
 
-        public void DeleteTask(Task task)
+        public void Delete(Task task)
         {
             _context.Tasks.DeleteOnSubmit(task);
             _context.SubmitChanges();

@@ -1,31 +1,83 @@
 ﻿$(function () {
-    module("v11 api tests");
+    module("v11 api tests", {
+        // setup method will authenticate to v.1.1. API by calling 'authenticate'
+        // it will store apiToken, so rest of tests could reuse that
 
-    var url = 'api/v1.1/';
-    var apiToken = null;
+        setup: function () {
+            var me = this;
 
-    test("authenticate method", function () {
-        var method = 'Authenticate';
-        var data = { email: 'tracky@tracky.net', password: '111111' };
-        var type = 'POST';
+            this.url = 'api/v1.1/';
+            this.apiToken = null;
 
-        api_test(url, method, type, null, data, function (result) {
-            ok(result.success, "call failed");
+            // authenticate
+            var method = 'authenticate';
+            var data = { email: 'tracky@tracky.net', password: '111111' };
+            var type = 'POST';
 
-            apiToken = result.data.apiToken;
-            ok(apiToken.length == 32, "invalid api token");
+            api_test(this.url, method, type, null, data, function (result) {
+                ok(result.success, method + " method call failed");
+
+                me.apiToken = result.data.apiToken;
+                ok(me.apiToken.length == 32, "invalid api token");
+            });
+        }
+    }
+    );
+
+    test("get all tasks method", function () {
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = ['token-' + this.apiToken];
+
+        api_test(this.url, method, type, params, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var tasks = result.data.tasks;
+            ok(tasks.length >= 1, "tasks has not been returned");
         });
     });
 
-    //    test("add task method", function () {
-    //        var method = 'addtask';
-    //        var params = ['257ef0b2b382fc2bc43f65e2419c01d3'];
+    test("create new task method", function () {
+        var method = 'tasks/new';
+        var data = [{ description: 'new task 1' }, { description: 'new task 2'}];
+        var type = 'POST';
 
-    //        api_test(url, method, type, params, function (result) {
+        var params = ['token-' + this.apiToken];
+        api_test(this.url, method, type, params, data, function (result) {
+            ok(result.success, method + " method call failed");
+            ok(result.data != null, "data is null");
+            ok(result.data.length == 2, "data does not contain 2 items");
+            ok(result.data[0].Id > 0, "id for first item is wrong");
+            ok(result.data[1].Id > 0, "id for second item is wrong");
+        });
+    });
 
+    test("delete task method", function () {
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = ['token-' + this.apiToken];
 
+        var me = this;
 
-    //        });
+        api_test(this.url, method, type, params, data, function (result) {
+            ok(result.success, method + " method call failed");
 
-    //    });
+            var taskId = result.data.tasks[0].Id;
+            ok(taskId >= 1, "could not get task for deletion");
+
+            var method = 'tasks/delete';
+            var data = [{ Id: taskId}];
+            var type = 'DELETE';
+            var params = ['token-' + me.apiToken];
+
+            api_test(me.url, method, type, params, data, function (result) {
+                ok(result.success, method + " method call failed");
+                ok(result.data != null, "data is null");
+                ok(result.data.length == 1, "data does not contain 1 item");
+            });
+        });
+    });
+
 });

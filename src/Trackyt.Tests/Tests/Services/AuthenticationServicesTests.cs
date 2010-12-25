@@ -132,7 +132,7 @@ namespace Trackyt.Core.Tests.Tests.Services
 
             var users = new List<User>();
             usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
-            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
             service.RegisterNewUser("test@trackyt.net", "mypass", false);
@@ -153,7 +153,7 @@ namespace Trackyt.Core.Tests.Tests.Services
 
             var users = new List<User>();
             usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
-            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
             service.RegisterNewUser("test@trackyt.net", "mypass", false);
@@ -175,7 +175,7 @@ namespace Trackyt.Core.Tests.Tests.Services
 
             var users = new List<User>();
             usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
-            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
             service.RegisterNewUser("test@trackyt.net", "mypass", false);
@@ -196,7 +196,7 @@ namespace Trackyt.Core.Tests.Tests.Services
 
             var users = new List<User>();
             usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
-            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
             service.RegisterNewUser("test@trackyt.net", "mypass", false);
@@ -217,7 +217,7 @@ namespace Trackyt.Core.Tests.Tests.Services
 
             var users = new List<User>();
             usersRepository.Setup(u => u.Users).Returns(users.AsQueryable());
-            usersRepository.Setup(u => u.SaveUser(It.IsAny<User>())).Callback((User u) => users.Add(u));
+            usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
             service.RegisterNewUser("test@trackyt.net", "mypass", false);

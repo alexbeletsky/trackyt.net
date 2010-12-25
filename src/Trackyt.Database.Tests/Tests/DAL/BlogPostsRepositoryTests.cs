@@ -30,7 +30,7 @@ namespace Trackyt.Database.Tests.Tests.DAL
                     CreatedDate = (DateTime.Now.AddDays(blog))
                 };
 
-                repository.SaveBlogPost(post);
+                repository.Save(post);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Trackyt.Database.Tests.Tests.DAL
                 };
 
                 //act
-                repository.SaveBlogPost(post);
+                repository.Save(post);
 
                 //assert
                 Assert.That(post.Id, Is.GreaterThan(0));
@@ -76,10 +76,10 @@ namespace Trackyt.Database.Tests.Tests.DAL
                     CreatedDate = DateTime.Now
                 };
 
-                repository.SaveBlogPost(post);
+                repository.Save(post);
 
                 //act
-                repository.DeleteBlogPost(post);
+                repository.Delete(post);
 
                 //assert
                 var foundTask = repository.BlogPosts.WithId(post.Id);
@@ -196,8 +196,8 @@ namespace Trackyt.Database.Tests.Tests.DAL
                 var repository = new BlogPostsRepository(fixture.Setup.Context);
 
                 //act / post
-                repository.SaveBlogPost(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
-                repository.SaveBlogPost(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
+                repository.Save(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
+                repository.Save(new BlogPost { Url = "1", Title = "1", Body = "b", CreatedDate = DateTime.Now, CreatedBy = "c"});
             }
 
         }

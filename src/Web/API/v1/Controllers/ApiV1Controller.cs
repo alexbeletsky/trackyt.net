@@ -125,7 +125,7 @@ namespace Web.API.v1.Controllers
                 task.Description = taskData.Description;
                 task.ActualWork = taskData.ActualWork;
 
-                _repository.SaveTask(task);
+                _repository.Save(task);
             }
 
             return Json(
@@ -162,7 +162,7 @@ namespace Web.API.v1.Controllers
                     deletedTasks++;
 
                     var taskToDelete = _repository.Tasks.WithId(taskData.Id);
-                    _repository.DeleteTask(taskToDelete);
+                    _repository.Delete(taskToDelete);
                 }
             }
 
