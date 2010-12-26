@@ -1,14 +1,8 @@
-﻿function api_test(url, method, type, params, data, callback) {
-    var urlWithParams = url;
-
-    urlWithParams += method;
-    for (var p in params) {
-        urlWithParams += '/' + params[p];
-    }
+﻿function api_test(url, type, data, callback) {
 
     $.ajax(
         {
-            url: urlWithParams,
+            url: url,
             type: type,
             processData: false,
             contentType: 'application/json; charset=utf-8',
