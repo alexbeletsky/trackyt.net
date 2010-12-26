@@ -54,6 +54,30 @@
         });
     });
 
+    test("get all tasks returns all required fields", function () {
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var tasks = result.data.tasks;
+            ok(tasks.length >= 1, "tasks has not been returned");
+
+            var task = result.data.tasks[0];
+            ok(task.Id !== undefined, "Id field is absent");
+            ok(task.Description !== undefined, "Description field is absent");
+            ok(task.Status !== undefined, "Status field is absent");
+            ok(task.CreatedDate !== undefined, "CreatedDate field is absent");
+            ok(task.StartedDate !== undefined, "StartedDate field is absent");
+            ok(task.StoppedDate !== undefined, "StoppedDate field is absent");
+        });
+    });
+
     test("create new task method", function () {
         var method = 'tasks/new';
         var data = [{ description: 'new task 1' }, { description: 'new task 2'}];

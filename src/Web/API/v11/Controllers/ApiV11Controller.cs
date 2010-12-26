@@ -68,15 +68,36 @@ namespace Web.API.v11.Controllers
             }
 
 
-            var tasksQuery = _tasks.Tasks.WithUserId(userId);
+            var tasks = CreateTasksList(userId);
 
             return Json(
                 new
                 {
                     success = true,
-                    data = new { tasks = tasksQuery.Select(t => _mapper.Map<Task, TaskDto>(t)).ToList() }
+                    data = new { tasks = tasks }
                 },
                 JsonRequestBehavior.AllowGet);
+        }
+
+        private IList<TaskDescriptor> CreateTasksList(int userId)
+        {
+            return _tasks.Tasks.WithUserId(userId)
+                .Select(
+                    t => 
+                        new TaskDescriptor 
+                        { 
+                            Id = t.Id, 
+                            Description = t.Description,
+                            Status = GetTaskStatus(t),
+                            CreatedDate = t.CreatedDate,
+                            StartedDate = null,
+                            StoppedDate = null
+                        }).ToList();
+        }
+
+        private int GetTaskStatus(Task t)
+        {
+            return 0;
         }
 
         // POST tasks/new
