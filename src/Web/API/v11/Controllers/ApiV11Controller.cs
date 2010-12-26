@@ -102,7 +102,7 @@ namespace Web.API.v11.Controllers
                 var task = new Task { Description = taskDescriptor.Description, UserId = userId };
                 _tasks.Save(task);
 
-                results.Add(new OperationResult { Id = task.Id });
+                results.Add(new OperationResult { Id = task.Id, CreatedDate = task.CreatedDate });
             }
 
             return Json(

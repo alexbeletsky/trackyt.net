@@ -182,5 +182,23 @@ namespace Trackyt.Core.DAL.Tests
                 Assert.That(foundTasks.Count(), Is.EqualTo(2));
             }
         }
+
+        [Test]
+        public void Save_CreatedDateInitialized_TaskSavedWithCreatedDate()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                // arrange
+                var repository = new TasksRepository(fixture.Setup.Context);
+
+                // act
+                var task = new Task { UserId = fixture.Setup.User.Id, Description = "created date test" };
+                repository.Save(task);
+
+                // assert
+                var found = repository.Tasks.Where(t => t.Description == "created date test").SingleOrDefault();
+                Assert.That(found.CreatedDate, Is.Not.Null);
+            }
+        }
     }
 }

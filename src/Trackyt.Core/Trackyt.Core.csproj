@@ -52,6 +52,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Trackyt.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\DataModel\TrackytExtensibility.cs" />
     <Compile Include="DAL\Extensions\BlogPostsExtensions.cs" />
     <Compile Include="DAL\Extensions\TasksExtensions.cs" />
     <Compile Include="DAL\Extensions\UsersExtrensions.cs" />

@@ -41,6 +41,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
         {
             if (task.Id == 0)
             {
+                task.CreatedDate = DateTime.UtcNow;
                 _context.Tasks.InsertOnSubmit(task);
             }
             _context.SubmitChanges();

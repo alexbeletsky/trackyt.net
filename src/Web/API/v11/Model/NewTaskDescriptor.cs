@@ -14,5 +14,6 @@ namespace Web.API.v11.Model
     public class OperationResult
     {
         public int Id { set; get; }
+        public DateTime? CreatedDate { set; get; }
     }
 }
