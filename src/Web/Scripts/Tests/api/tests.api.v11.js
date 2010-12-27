@@ -69,12 +69,12 @@
             ok(tasks.length >= 1, "tasks has not been returned");
 
             var task = result.data.tasks[0];
-            ok(task.Id !== undefined, "Id field is absent");
-            ok(task.Description !== undefined, "Description field is absent");
-            ok(task.Status !== undefined, "Status field is absent");
-            ok(task.CreatedDate !== undefined, "CreatedDate field is absent");
-            ok(task.StartedDate !== undefined, "StartedDate field is absent");
-            ok(task.StoppedDate !== undefined, "StoppedDate field is absent");
+            ok(task.id !== undefined, "Id field is absent");
+            ok(task.description !== undefined, "Description field is absent");
+            ok(task.status !== undefined, "Status field is absent");
+            ok(task.createdDate !== undefined, "CreatedDate field is absent");
+            ok(task.startedDate !== undefined, "StartedDate field is absent");
+            ok(task.stoppedDate !== undefined, "StoppedDate field is absent");
         });
     });
 
@@ -90,8 +90,8 @@
             ok(result.success, method + " method call failed");
             ok(result.data != null, "data is null");
             ok(result.data.length == 2, "data does not contain 2 items");
-            ok(result.data[0].Id > 0, "id for first item is wrong");
-            ok(result.data[1].Id > 0, "id for second item is wrong");
+            ok(result.data[0].id > 0, "id for first item is wrong");
+            ok(result.data[1].id > 0, "id for second item is wrong");
         });
     });
 
@@ -108,7 +108,7 @@
             ok(result.data != null, "data is null");
             ok(result.data.length == 1, "data does not contain 1 item");
 
-            var createdDate = result.data[0].CreatedDate;
+            var createdDate = result.data[0].createdDate;
             ok(createdDate != null);
         });
     });
@@ -126,11 +126,11 @@
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
 
-            var taskId = result.data.tasks[0].Id;
+            var taskId = result.data.tasks[0].id;
             ok(taskId >= 1, "could not get task for deletion");
 
             var method = 'tasks/delete';
-            var data = [{ Id: taskId}];
+            var data = [taskId];
             var type = 'DELETE';
             var params = [];
 
@@ -144,10 +144,40 @@
         });
     });
 
-    //    //        test("start task method", function () {
-    //    //            var date = new Date();
-    //    //            var utc = Date.UTC(date.getUTCFullYear(), date.);
-    //    //            var s = date;
-    //    //        });
+    test("start task method", function () {
+        var me = this;
+
+        var method = 'tasks/start';
+        var data = [40];
+        var type = 'PUT';
+        var params = null;
+
+        var call = createCallUrl(me.url, me.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+            ok(result.data[0].startedDate !== undefined, "started date have to be initialized with new value");
+            ok(result.data[0].stoppedDate == null, "stopped date have to be reset");
+        });
+
+    });
+
+    test("stop task method", function () {
+        var me = this;
+
+        var method = 'tasks/stop';
+        var data = [40];
+        var type = 'PUT';
+        var params = null;
+
+        var call = createCallUrl(me.url, me.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+            ok(result.data[0].startedDate != null, "startedDate have to be set");
+            ok(result.data[0].stoppedDate != null, "stoppedDate have to be set");
+        });
+    });
+
 
 });

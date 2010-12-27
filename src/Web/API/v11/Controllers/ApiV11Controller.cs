@@ -15,6 +15,7 @@ using Web.API.v11.Model;
 namespace Web.API.v11.Controllers
 {
     // TODO: implemented quickly by copy-pasting code of v1, it have to be refactored to use common codebase
+    // TODO: refactor, refactor, refactor!
 
     public class ApiV11Controller : Controller
     {
@@ -86,12 +87,12 @@ namespace Web.API.v11.Controllers
                     t => 
                         new TaskDescriptor 
                         { 
-                            Id = t.Id, 
-                            Description = t.Description,
-                            Status = GetTaskStatus(t),
-                            CreatedDate = t.CreatedDate,
-                            StartedDate = null,
-                            StoppedDate = null
+                            id = t.Id, 
+                            description = t.Description,
+                            status = GetTaskStatus(t),
+                            createdDate = t.CreatedDate,
+                            startedDate = t.StartedDate,
+                            stoppedDate = t.StoppedDate
                         }).ToList();
         }
 
@@ -117,13 +118,13 @@ namespace Web.API.v11.Controllers
                     });
             }
 
-            var results = new List<OperationResult>();
+            var results = new List<DeleteOperationResult>();
             foreach (var taskDescriptor in taskDescriptors)
             {
-                var task = new Task { Description = taskDescriptor.Description, UserId = userId };
+                var task = new Task { Description = taskDescriptor.description, UserId = userId, Status = (int)TaskStatus.None };
                 _tasks.Save(task);
 
-                results.Add(new OperationResult { Id = task.Id, CreatedDate = task.CreatedDate });
+                results.Add(new DeleteOperationResult { id = task.Id, createdDate = task.CreatedDate });
             }
 
             return Json(
@@ -137,7 +138,7 @@ namespace Web.API.v11.Controllers
         // DELETE tasks/delete
 
         [HttpDelete]
-        public JsonResult Delete(string apiToken, IList<TaskDescriptor> taskDescriptors)
+        public JsonResult Delete(string apiToken, IList<int> taskIds)
         {
             var userId = _api.GetUserIdByApiToken(apiToken);
 
@@ -151,13 +152,13 @@ namespace Web.API.v11.Controllers
                     });
             }
 
-            var results = new List<OperationResult>();
-            foreach (var taskDescriptor in taskDescriptors)
+            var results = new List<DeleteOperationResult>();
+            foreach (var id in taskIds)
             {
-                var task = _tasks.Tasks.WithId(taskDescriptor.Id);
+                var task = _tasks.Tasks.WithId(id);
                 _tasks.Delete(task);
 
-                results.Add(new OperationResult { Id = task.Id });
+                results.Add(new DeleteOperationResult { id = task.Id });
             }
 
             return Json(
@@ -166,6 +167,82 @@ namespace Web.API.v11.Controllers
                     success = true,
                     data = results
                 });
+        }
+
+        // PUT tasks/start
+
+        [HttpPut]
+        public JsonResult Start(string apiToken, IList<int> taskIds)
+        {
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+            var results = new List<StartStopOperationResult>();
+            foreach (var taskId in taskIds)
+            {
+                var task = _tasks.Tasks.WithId(taskId);
+
+                task.Status = (int)TaskStatus.Started;
+                task.StartedDate = DateTime.UtcNow;
+                task.StoppedDate = null;
+
+                _tasks.Save(task);
+                results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
+            }
+
+            return Json(
+                new 
+                {
+                    success = true,
+                    data = results
+                });
+        }
+
+        // PUT tasks/stop
+
+        [HttpPut]
+        public JsonResult Stop(string apiToken, IList<int> taskIds)
+        {
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+            var results = new List<StartStopOperationResult>();
+            foreach (var taskId in taskIds)
+            {
+                var task = _tasks.Tasks.WithId(taskId);
+
+                task.Status = (int)TaskStatus.Stopped;
+                task.StoppedDate = DateTime.UtcNow;
+
+                _tasks.Save(task);
+                results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = results
+                });
+
         }
     }
 }

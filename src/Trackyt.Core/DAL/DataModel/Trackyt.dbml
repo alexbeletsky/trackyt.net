@@ -40,6 +40,8 @@
       <Column Name="ActualWork" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="StartedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="StoppedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
       <Association Name="User_Task" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>

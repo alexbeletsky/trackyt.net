@@ -679,6 +679,10 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
+		private System.Nullable<System.DateTime> _StartedDate;
+		
+		private System.Nullable<System.DateTime> _StoppedDate;
+		
 		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
@@ -701,6 +705,10 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnTimestampChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
+    partial void OnStartedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartedDateChanged();
+    partial void OnStoppedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStoppedDateChanged();
     #endregion
 		
 		public Task()
@@ -869,6 +877,46 @@ namespace Trackyt.Core.DAL.DataModel
 					this._CreatedDate = value;
 					this.SendPropertyChanged("CreatedDate");
 					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartedDate", DbType="DateTime2", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> StartedDate
+		{
+			get
+			{
+				return this._StartedDate;
+			}
+			set
+			{
+				if ((this._StartedDate != value))
+				{
+					this.OnStartedDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartedDate = value;
+					this.SendPropertyChanged("StartedDate");
+					this.OnStartedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StoppedDate", DbType="DateTime2", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> StoppedDate
+		{
+			get
+			{
+				return this._StoppedDate;
+			}
+			set
+			{
+				if ((this._StoppedDate != value))
+				{
+					this.OnStoppedDateChanging(value);
+					this.SendPropertyChanging();
+					this._StoppedDate = value;
+					this.SendPropertyChanged("StoppedDate");
+					this.OnStoppedDateChanged();
 				}
 			}
 		}

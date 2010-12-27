@@ -5,19 +5,33 @@ using System.Web;
 
 namespace Web.API.v11.Model
 {
-    public class TaskDescriptor
+    public enum TaskStatus
     {
-        public int Id { set; get; }
-        public string Description { set; get; }
-        public int Status { set; get; }
-        public DateTime? CreatedDate { set; get; }
-        public DateTime? StartedDate { set; get; }
-        public DateTime? StoppedDate { set; get; }
+        None = 0,
+        Started = 1,
+        Stopped = 2
     }
 
-    public class OperationResult
+    public class TaskDescriptor
     {
-        public int Id { set; get; }
-        public DateTime? CreatedDate { set; get; }
+        public int id { set; get; }
+        public string description { set; get; }
+        public int status { set; get; }
+        public DateTime? createdDate { set; get; }
+        public DateTime? startedDate { set; get; }
+        public DateTime? stoppedDate { set; get; }
+    }
+
+    public class DeleteOperationResult
+    {
+        public int id { set; get; }
+        public DateTime? createdDate { set; get; }
+    }
+
+    public class StartStopOperationResult
+    {
+        public int id { get; set; }
+        public DateTime? startedDate { get; set; }
+        public DateTime? stoppedDate { get; set; }
     }
 }
