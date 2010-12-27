@@ -155,6 +155,8 @@
     <Content Include="Scripts\Tests\framework\funcunit\template.html" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.css" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
+    <Content Include="Scripts\Tests\unit\tests.controls.tasks.js" />
+    <Content Include="Scripts\Tracky\controls.tasks.js" />
     <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.registration-validation.js" />
     <Content Include="Scripts\Tests\unit\tests.tracky-controller.js" />
