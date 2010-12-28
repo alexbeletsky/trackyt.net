@@ -13,11 +13,20 @@ tasksControl.prototype = (function () {
         return $.grep(array, function(val) { val != value; });
     }
 
+    function getTaskById(tasks, id) {
+        for (var t in tasks) {
+            if (tasks[t].id == id) {
+                return tasks[t];
+            }
+        }
+        return null;
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // private members
 
-    var onTaskAddedHandler = null;
 
+    // class task definition
     function task(control, t) {
         this.id = t.id;
         this.ref = 'task-' + this.id ;
@@ -25,29 +34,44 @@ tasksControl.prototype = (function () {
         this.control.div.append('<div id=' + this.ref + ' class="task"></div>');
         this.div = $('#' + this.ref);
 
-        new description(this, t);
-        new remove(this, t);        
-        new start(this, t);
-        new stop(this, t);
-        new timer(this, t);
+        this.sections = [];
+
+        this.sections['description'] = new description(this, t);
+        this.sections['remove'] = new remove(this, t);        
+        this.sections['start'] = new start(this, t);
+        this.sections['stop'] = new stop(this, t);
+        this.sections['timer'] = new timer(this, t);
 
         if (this.control.layout) {
             this.control.layout(this.div);
         }
     }
 
-    task.prototype.remove = function() {
-        this.div.remove();
-    }
+    // class task members
+    task.prototype = (function() {
+        return {
+            remove: function() {
+                this.div.remove();
+            },
 
+            start: function () {
+                this.sections['timer'].run();
+            }
+        }
+
+    })();
+
+    // class description definition
     function description(task, t) {
         this.description = t.description;
 
         task.div.append('<span class="description">' + this.description + '</span>');
     }
 
+    // class timer definition
     function timer(task, t) {
         this.spent = t.spent;
+        this.ref = 'timer-' + t.id;
 
         this.format = function() {
             var minutes = parseInt(this.spent / 60);
@@ -63,9 +87,26 @@ tasksControl.prototype = (function () {
             return formatted;
         }
 
-        task.div.append('<span class="timer">' + this.format() + '</span>');
+        this.update = function() {
+             $('#' + this.ref).html(this.format());
+        }
 
+        task.div.append('<span id="' + this.ref +'" class="timer">' + this.format() + '</span>');
     }
+
+    // class timer members
+    timer.prototype = (function() {
+        return {
+            run: function() {
+                var me = this;
+        
+                if (!this.timerId) {
+                    this.timerId = setInterval(function() { me.spent++; me.update(); }, 1000);
+                }  
+            }
+        }
+
+    })();
 
     function start(task, t) {
         task.div.append('<span class="start"><a href="/tasks/start/' + task.id + '" title="Start">Start</a></span>'); 
@@ -90,17 +131,20 @@ tasksControl.prototype = (function () {
         },
 
         removeTask: function (id) {
-            
-            for(var t in this.tasks) {
-                if (this.tasks[t].id == id) {
-                    // remove from array
-                    var taskToRemove = this.tasks[t];
-                    this.tasks = removeFromArray(this.tasks, taskToRemove);
-                    // call remove handler of task
-                    taskToRemove.remove();
-                }
+            // remove from array
+            var taskToRemove = getTaskById(this.tasks, id);
+            if (taskToRemove) {
+                this.tasks = removeFromArray(this.tasks, taskToRemove);
+                // call remove handler of task
+                taskToRemove.remove();
             }
+        },
 
+        startTask: function(id) {
+            var taskToStart = getTaskById(this.tasks, id);   
+            if (taskToStart) {
+                taskToStart.start();
+            }      
         },
 
         tasksCount: function () {

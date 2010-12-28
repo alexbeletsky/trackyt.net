@@ -28,6 +28,15 @@
     // Task control handlers
 
     $('.start a').live('click', function () {
+        var method = $(this).attr('href');
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.startTask(r.data.id);
+            }
+
+        });
+
+
         return false;
     });
 
@@ -46,8 +55,8 @@
         task.children('.delete').addClass('right');
     }
 
-    a.call('/tasks/all', 'GET', null, function (r) {
-        
+    a.call('/tasks/all', 'GET', undefined, function (r) {
+
         if (r.success) {
             for (var t in r.data.tasks) {
                 control.addTask(r.data.tasks[t]);

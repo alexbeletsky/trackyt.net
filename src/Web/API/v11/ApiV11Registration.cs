@@ -21,8 +21,8 @@ namespace Web.API.v11
             //API v1 map
             context.MapRoute(
                 "ApiV11_tasks",
-                "API/v1.1/{apiToken}/tasks/{action}",
-                new { controller = "ApiV11" },
+                "API/v1.1/{apiToken}/tasks/{action}/{taskId}",
+                new { controller = "ApiV11", taskId = UrlParameter.Optional },
                 new { apiToken = @"[a-fA-F\d]{32}" }
             );
         }

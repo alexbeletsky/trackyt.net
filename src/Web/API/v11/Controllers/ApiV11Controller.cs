@@ -222,8 +222,44 @@ namespace Web.API.v11.Controllers
 
         // PUT tasks/start
 
+        //[HttpPut]
+        //public JsonResult Start(string apiToken, IList<int> taskIds)
+        //{
+        //    var userId = _api.GetUserIdByApiToken(apiToken);
+
+        //    if (userId == 0)
+        //    {
+        //        return Json(
+        //            new
+        //            {
+        //                success = false,
+        //                data = (string)null
+        //            });
+        //    }
+
+        //    var results = new List<StartStopOperationResult>();
+        //    foreach (var taskId in taskIds)
+        //    {
+        //        var task = _tasks.Tasks.WithId(taskId);
+
+        //        task.Status = (int)TaskStatus.Started;
+        //        task.StartedDate = DateTime.UtcNow;
+        //        task.StoppedDate = null;
+
+        //        _tasks.Save(task);
+        //        results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
+        //    }
+
+        //    return Json(
+        //        new
+        //        {
+        //            success = true,
+        //            data = results
+        //        });
+        //}
+
         [HttpPut]
-        public JsonResult Start(string apiToken, IList<int> taskIds)
+        public JsonResult Start(string apiToken, int taskId)
         {
             var userId = _api.GetUserIdByApiToken(apiToken);
 
@@ -237,24 +273,20 @@ namespace Web.API.v11.Controllers
                     });
             }
 
-            var results = new List<StartStopOperationResult>();
-            foreach (var taskId in taskIds)
-            {
-                var task = _tasks.Tasks.WithId(taskId);
 
-                task.Status = (int)TaskStatus.Started;
-                task.StartedDate = DateTime.UtcNow;
-                task.StoppedDate = null;
+            var task = _tasks.Tasks.WithId(taskId);
 
-                _tasks.Save(task);
-                results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
-            }
+            task.Status = (int)TaskStatus.Started;
+            task.StartedDate = DateTime.UtcNow;
+            task.StoppedDate = null;
+
+            _tasks.Save(task);
 
             return Json(
-                new 
+                new
                 {
                     success = true,
-                    data = results
+                    data = new StartStopOperationResult { id = task.Id, startedDate = task.StartedDate, stoppedDate = task.StoppedDate }
                 });
         }
 

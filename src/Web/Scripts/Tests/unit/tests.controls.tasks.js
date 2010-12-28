@@ -11,7 +11,6 @@
         );
 
     test("smoke test", function () {
-
         var control = new tasksControl();
         ok(control != null);
     });
@@ -196,4 +195,27 @@
         var timer = task.children('.timer').html();
         same(timer, "01:17", "timer has not been initialized");
     });
+
+    test("start task", function () {
+
+        // arrange
+        var control = new tasksControl($('#tasks'));
+        var task = { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null, spent: 0 };
+        control.addTask(task);
+
+        // act
+        control.startTask(0);
+
+        // assert
+        stop(1500);
+        setTimeout(function () {
+            var task = $('#tasks .task:first-child');
+            ok(task != null, "could not get task from div");
+            var timer = task.children('.timer').html();
+            same(timer, "00:01", "timer has not been initialized");
+
+            start();
+        }, 1000);
+    });
+
 });

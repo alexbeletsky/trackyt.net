@@ -158,7 +158,7 @@
     <Content Include="Scripts\Tests\unit\tests.controls.tasks.js" />
     <Content Include="Scripts\Tracky\api.js" />
     <Content Include="Scripts\Tracky\controller.tasks.js" />
-    <Content Include="Scripts\Tracky\controls.tasks.js" />
+    <Content Include="Scripts\Tracky\control.tasks.js" />
     <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.registration-validation.js" />
     <Content Include="Scripts\Tests\unit\tests.tracky-controller.js" />

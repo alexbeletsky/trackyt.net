@@ -89,7 +89,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             var result = dashboard.Index() as ViewResult;
 
             //post
-            Assert.That(result.ViewData["Api"], Is.EqualTo("~/API/v1"));
+            Assert.That(result.ViewData["Api"], Is.EqualTo("~/API/v1.1/"));
         }
 
         [Test]
