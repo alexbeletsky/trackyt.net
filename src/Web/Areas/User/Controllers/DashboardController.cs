@@ -26,7 +26,7 @@ namespace Web.Areas.User.Controllers
             var userEmail = _auth.GetLoggedUserEmail();
             var user = _users.Users.WithEmail(userEmail);
             
-            ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1");
+            ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1.1/");
             ViewData["Email"] = userEmail;
             ViewData["ApiToken"] = user.ApiToken;
 

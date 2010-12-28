@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Trackyt.Core.Services;
-using Trackyt.Core.DAL.Repositories;
 using AutoMapper;
 using Trackyt.Core.DAL.DataModel;
-using Web.API.v1.Model;
 using Trackyt.Core.DAL.Extensions;
+using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.Services;
 using Web.API.v11.Model;
-
 
 namespace Web.API.v11.Controllers
 {
@@ -89,19 +86,73 @@ namespace Web.API.v11.Controllers
                         { 
                             id = t.Id, 
                             description = t.Description,
-                            status = GetTaskStatus(t),
                             createdDate = t.CreatedDate,
                             startedDate = t.StartedDate,
-                            stoppedDate = t.StoppedDate
+                            stoppedDate = t.StoppedDate,
+                            status = t.Status,
+                            spent = CalculateSpent(t.StartedDate, t.StoppedDate)
                         }).ToList();
         }
 
-        private int GetTaskStatus(Task t)
+        // POST tasks/add
+
+        // TODO: add integration test
+        [HttpPost]
+        public JsonResult Add(string apiToken, string description)
         {
-            return 0;
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+            var task = new Task { Description = description, UserId = userId, Status = (int)TaskStatus.None };
+            _tasks.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new
+                    {
+                        task = new TaskDescriptor
+                            {
+                                id = task.Id,
+                                description = task.Description,
+                                createdDate = task.CreatedDate,
+                                startedDate = task.StartedDate,
+                                stoppedDate = task.StoppedDate,
+                                status = task.Status,
+                                spent = CalculateSpent(task.StartedDate, task.StoppedDate)
+                            }
+                    }
+                });
         }
 
+        private int CalculateSpent(DateTime? start, DateTime? stop)
+        {
+            if (start == null)
+            {
+                return 0;
+            }
+
+            if (stop == null)
+            {
+                return (DateTime.UtcNow - start).Value.Seconds;
+            }
+
+            return (stop - start).Value.Seconds;
+        }
+
+
         // POST tasks/new
+        // TODO: remove this call (add used instead)
 
         [HttpPost]
         public JsonResult New(string apiToken, IList<TaskDescriptor> taskDescriptors)
@@ -242,7 +293,6 @@ namespace Web.API.v11.Controllers
                     success = true,
                     data = results
                 });
-
         }
     }
 }
