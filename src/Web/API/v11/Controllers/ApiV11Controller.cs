@@ -101,7 +101,7 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = CreateTaskDescriptor(task)
+                    data = new { task = CreateTaskDescriptor(task) }
                 });
         }
 
@@ -109,7 +109,7 @@ namespace Web.API.v11.Controllers
         // TODO: API correct to use taskId
         // TODO: API add integration test
         [HttpDelete]
-        public JsonResult Delete(string apiToken, IList<int> taskIds)
+        public JsonResult Delete(string apiToken, int taskId)
         {
             var userId = _api.GetUserIdByApiToken(apiToken);
 
@@ -123,20 +123,17 @@ namespace Web.API.v11.Controllers
                     });
             }
 
-            var results = new List<DeleteOperationResult>();
-            foreach (var id in taskIds)
+            var task = _tasks.Tasks.WithId(taskId);
+            if (task != null)
             {
-                var task = _tasks.Tasks.WithId(id);
                 _tasks.Delete(task);
-
-                results.Add(new DeleteOperationResult { id = task.Id });
             }
 
             return Json(
                 new
                 {
                     success = true,
-                    data = results
+                    data = new { id = taskId }
                 });
         }
 

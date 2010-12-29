@@ -52,6 +52,13 @@
     });
 
     $('.delete a').live('click', function () {
+        var method = $(this).attr('href');
+        a.call(method, 'DELETE', null, function (r) {
+            if (r.success) {
+                control.removeTask(r.data.id);
+            }
+        });
+
         return false;
     });
 

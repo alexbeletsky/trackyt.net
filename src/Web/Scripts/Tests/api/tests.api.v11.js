@@ -89,7 +89,7 @@
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
             ok(result.data != null, "data is null");
-            ok(result.data.id > 0, "id for first item is wrong");
+            ok(result.data.task.id > 0, "id for first item is wrong");
         });
     });
 
@@ -103,9 +103,8 @@
 
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
-            ok(result.data != null, "data is null");
-            var createdDate = result.data.createdDate;
-            ok(createdDate != null);
+            ok(result.data.task != null, "data is null");
+            ok(result.data.task.createdDate != null);
         });
     });
 
@@ -134,8 +133,7 @@
 
             api_test(call, type, data, function (result) {
                 ok(result.success, method + " method call failed");
-                ok(result.data != null, "data is null");
-                ok(result.data.length == 1, "data does not contain 1 item");
+                ok(result.data.id != null, "data is null");
             });
         });
     });

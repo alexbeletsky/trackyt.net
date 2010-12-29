@@ -13,8 +13,13 @@ tasksControl.prototype = (function () {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // helpers
 
-    function removeFromArray(array, value) {
-        return $.grep(array, function(val) { val != value; });
+    function removeFromArray(tasks, task) {
+        var me = this;
+        this.task = task;
+
+        return $.grep(tasks, function(t) { 
+            return t.id != me.task.id; 
+        });
     }
 
     function getTaskById(tasks, id) {

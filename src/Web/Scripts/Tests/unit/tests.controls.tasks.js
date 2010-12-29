@@ -57,6 +57,27 @@
         ok(currentTasks == 0, "task has not been removed from control");
     });
 
+    test("remove task from control several tasks", function () {
+        // assert
+        var control = new tasksControl($('#tasks'));
+        var tasks = [
+            { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 1, description: "task 2", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 2, description: "task 3", status: 0, createdDate: null, startedDate: null, stoppedDate: null }
+            ];
+
+        for (var t in tasks) {
+            control.addTask(tasks[t]);
+        }
+
+        // act
+        control.removeTask(tasks[0].id);
+
+        // assert
+        var currentTasks = control.tasksCount();
+        same(currentTasks, 2, "2 tasks should remain in control");
+    });
+
     test("remove task from ui", function () {
         // assert
         var control = new tasksControl($('#tasks'));

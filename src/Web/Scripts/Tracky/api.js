@@ -10,7 +10,7 @@ api.prototype = (function () {
         // TODO: correct function to make it work with optional arguments, so I could run 
         // call (method, type, data, function()) and call (method, type, function()) if no data passed..
         call: function (method, type, data, callback) {
-
+    
             if (method) {
                 $.ajax(
                     {

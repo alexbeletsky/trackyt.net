@@ -49,6 +49,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
 
         public void Delete(Task task)
         {
+
             _context.Tasks.DeleteOnSubmit(task);
             _context.SubmitChanges();
         }
