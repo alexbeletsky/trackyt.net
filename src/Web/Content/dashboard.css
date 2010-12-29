@@ -165,6 +165,11 @@
     text-decoration: none;
 }
 
+.disabled
+{
+    pointer-events: none;
+}
+
 .task .index
 {
     position: relative;
@@ -194,16 +199,6 @@
 {
     padding-right: 4px;
     float:right;
-}
-
-.task .start
-{
-    /*
-    background-image: url('Images/dashboard/start.png');
-    background-position: center;
-    width: 65px;
-    height: 35px; 
-    */
 }
 
 #operation-controls input

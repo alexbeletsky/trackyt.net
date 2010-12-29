@@ -193,7 +193,7 @@
         var task = $('#tasks .task:first-child');
         ok(task != null, "could not get task from div");
         var timer = task.children('.timer').html();
-        same(timer, "01:17", "timer has not been initialized");
+        same(timer, "0:01:17", "timer has not been initialized");
     });
 
     test("start task", function () {
@@ -212,10 +212,34 @@
             var task = $('#tasks .task:first-child');
             ok(task != null, "could not get task from div");
             var timer = task.children('.timer').html();
-            same(timer, "00:01", "timer has not been initialized");
+            same(timer, "0:00:01", "timer has not been started");
 
             start();
         }, 1000);
+    });
+
+    test("stop task", function () {
+
+        // arrange
+        var control = new tasksControl($('#tasks'));
+        var task = { id: 0, description: "task 1", status: 1, createdDate: null, startedDate: null, stoppedDate: null, spent: 1 };
+        control.addTask(task);
+
+        stop(1500);
+        setTimeout(function () {
+            // act
+            control.stopTask(0);
+
+            var task = $('#tasks .task:first-child');
+            ok(task != null, "could not get task from div");
+            var timer = task.children('.timer').html();
+            same(timer, "0:00:02", "timer has not been started");
+
+            start();
+        }, 1000);
+
+
+
     });
 
 });

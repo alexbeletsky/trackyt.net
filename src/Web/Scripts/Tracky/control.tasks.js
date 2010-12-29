@@ -5,6 +5,10 @@
 }
 
 tasksControl.prototype = (function () {
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // helpers
+    var TaskStatusNone = 0; var TaskStatusStarted = 1; var TaskStatusStopped = 2; 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // helpers
@@ -28,6 +32,8 @@ tasksControl.prototype = (function () {
 
     // class task definition
     function task(control, t) {
+        var me = this;
+
         this.id = t.id;
         this.ref = 'task-' + this.id ;
         this.control = control;
@@ -37,10 +43,25 @@ tasksControl.prototype = (function () {
         this.sections = [];
 
         this.sections['description'] = new description(this, t);
-        this.sections['remove'] = new remove(this, t);        
+        this.sections['remove'] = new remove(this, t); 
+        this.sections['stop'] = new stop(this, t);               
         this.sections['start'] = new start(this, t);
-        this.sections['stop'] = new stop(this, t);
         this.sections['timer'] = new timer(this, t);
+
+        // subscribe on timer event
+        this.timerStarted = function() {
+            me.sections['start'].disable();
+            me.sections['stop'].enable();
+        }
+
+        this.timerStopped = function() {
+            me.sections['start'].enable();
+            me.sections['stop'].disable();            
+        }
+
+        this.sections['timer'].onTimerStarted(this.timerStarted);
+        this.sections['timer'].onTimerStopped(this.timerStopped);
+        this.sections['timer'].init();
 
         if (this.control.layout) {
             this.control.layout(this.div);
@@ -56,6 +77,10 @@ tasksControl.prototype = (function () {
 
             start: function () {
                 this.sections['timer'].run();
+            },
+
+            stop: function () {
+                this.sections['timer'].pause();
             }
         }
 
@@ -70,14 +95,20 @@ tasksControl.prototype = (function () {
 
     // class timer definition
     function timer(task, t) {
+        this.status = t.status;
         this.spent = t.spent;
         this.ref = 'timer-' + t.id;
 
+        // event handlers
+        this.onTimerStartedHandler = null;
+        this.onTimerStoppedHandler = null;
+
         this.format = function() {
-            var minutes = parseInt(this.spent / 60);
+            var hours = Math.floor(this.spent / 3600);
+            var minutes = Math.floor(this.spent / 60) % 60;
             var seconds = this.spent % 60;
 
-            var formatted = '';
+            var formatted = '' + hours + ':';
             if (minutes < 10)
                 formatted += '0';
             formatted += minutes + ':';
@@ -102,19 +133,65 @@ tasksControl.prototype = (function () {
         
                 if (!this.timerId) {
                     this.timerId = setInterval(function() { me.spent++; me.update(); }, 1000);
-                }  
+                } 
+                
+                if (this.onTimerStartedHandler) {
+                    this.onTimerStartedHandler();
+                } 
+            },
+
+            pause: function() {
+                clearTimeout(this.timerId); this.timerId = null;
+
+                if (this.onTimerStoppedHandler) {
+                    this.onTimerStoppedHandler();
+                }
+            },
+
+            init: function () {
+                if (this.status == TaskStatusStarted) {
+                    this.run();
+                } else {
+                    this.pause();
+                }
+            },
+
+            onTimerStarted: function (h) {
+                this.onTimerStartedHandler = h;
+            },
+
+            onTimerStopped: function (h) {
+                this.onTimerStoppedHandler = h;
             }
         }
 
     })();
 
+    var enableDisable = (function() {
+        return {
+            enable: function () {
+                $('#' + this.ref).show();
+            },
+
+            disable: function () {
+                $('#' + this.ref).hide();
+            }
+        }
+    })();
+
     function start(task, t) {
-        task.div.append('<span class="start"><a href="/tasks/start/' + task.id + '" title="Start">Start</a></span>'); 
+        this.ref = 'start-' + t.id;
+        task.div.append('<span id="' + this.ref + '" class="start"><a href="/tasks/start/' + task.id + '" title="Start">Start</a></span>'); 
     }
 
+    start.prototype = enableDisable;
+
     function stop(task, t) {
-        task.div.append('<span class="stop"><a class="stop" href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>'); 
+        this.ref = 'stop-' + t.id;
+        task.div.append('<span id="' + this.ref + '" class="stop"><a class="stop" href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>'); 
     }
+
+    stop.prototype = enableDisable;
 
     function remove(task, t) {
         task.div.append('<span class="delete"><a class="delete" href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>'); 
@@ -131,11 +208,9 @@ tasksControl.prototype = (function () {
         },
 
         removeTask: function (id) {
-            // remove from array
             var taskToRemove = getTaskById(this.tasks, id);
             if (taskToRemove) {
                 this.tasks = removeFromArray(this.tasks, taskToRemove);
-                // call remove handler of task
                 taskToRemove.remove();
             }
         },
@@ -145,6 +220,13 @@ tasksControl.prototype = (function () {
             if (taskToStart) {
                 taskToStart.start();
             }      
+        },
+
+        stopTask: function(id) {
+            var taskToStop = getTaskById(this.tasks, id);  
+            if (taskToStop) {
+                taskToStop.stop();
+            }
         },
 
         tasksCount: function () {

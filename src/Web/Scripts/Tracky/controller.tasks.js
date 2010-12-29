@@ -1,4 +1,6 @@
 ﻿$(function () {
+    // Global config
+    $.blockUI.defaults.message = null;
 
     var url = $('#api').val();
     var token = $('#apiToken').val();
@@ -33,14 +35,19 @@
             if (r.success) {
                 control.startTask(r.data.id);
             }
-
         });
-
 
         return false;
     });
 
     $('.stop a').live('click', function () {
+        var method = $(this).attr('href');
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.stopTask(r.data.id);
+            }
+        });
+
         return false;
     });
 
@@ -55,6 +62,8 @@
         task.children('.delete').addClass('right');
     }
 
+    // initial load of all tasks
+    $.blockUI();
     a.call('/tasks/all', 'GET', undefined, function (r) {
 
         if (r.success) {
@@ -62,5 +71,7 @@
                 control.addTask(r.data.tasks[t]);
             }
         }
+
+        $.unblockUI();
     });
 });
