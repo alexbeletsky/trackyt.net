@@ -14,8 +14,8 @@
                 <input id="start-all" type="button" value="Start All"/>
                 <span>|</span>
                 <input id="stop-all" type="button" value="Stop All"/>
-                <span>|</span>      
-                <input id="submit" type="button" value="Submit"/>
+<%--                <span>|</span>      
+                <input id="submit" type="button" value="Submit"/>--%>
             </div>        
         </div>  
         <div id="tasks">

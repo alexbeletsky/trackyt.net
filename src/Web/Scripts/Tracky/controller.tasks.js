@@ -15,7 +15,6 @@
         var d = $('#task-description').val();
         if (d) {
             a.call('/tasks/add', 'POST', { description: d }, function (r) {
-
                 if (r.success) {
                     control.addTask(r.data.task);
                 }
@@ -25,6 +24,23 @@
             });
         }
     });
+
+    $('#start-all').live('click', function () {
+        a.call('/tasks/start/all', 'PUT', null, function (r) {
+            if (r.success) {
+                control.startAll();
+            }
+        });
+    });
+
+    $('#stop-all').live('click', function () {
+        a.call('/tasks/stop/all', 'PUT', null, function (r) {
+            if (r.success) {
+                control.stopAll();
+            }
+        });
+    });
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers

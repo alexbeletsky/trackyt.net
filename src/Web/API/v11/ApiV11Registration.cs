@@ -16,7 +16,21 @@ namespace Web.API.v11
                 "ApiV11_auth",
                 "API/v1.1/authenticate",
                 new { controller = "ApiV11", action = "Authenticate" }
-            ); 
+            );
+
+            context.MapRoute(
+                "ApiV11_tasks_startall",
+                "API/v1.1/{apiToken}/tasks/start/all",
+                new { controller = "ApiV11", action = "StartAll" },
+                new { apiToken = @"[a-fA-F\d]{32}" }
+            );
+
+            context.MapRoute(
+                "ApiV11_tasks_stopall",
+                "API/v1.1/{apiToken}/tasks/stop/all",
+                new { controller = "ApiV11", action = "StopAll" },
+                new { apiToken = @"[a-fA-F\d]{32}" }
+            );
 
             //API v1 map
             context.MapRoute(

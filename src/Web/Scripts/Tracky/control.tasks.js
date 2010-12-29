@@ -33,8 +33,7 @@ tasksControl.prototype = (function () {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // private members
-
-
+    
     // class task definition
     function task(control, t) {
         var me = this;
@@ -56,11 +55,13 @@ tasksControl.prototype = (function () {
 
         // subscribe on timer event
         this.timerStarted = function() {
+            me.started = true;
             me.sections['start'].disable();
             me.sections['stop'].enable();
         }
 
         this.timerStopped = function() {
+            me.started = false;
             me.sections['start'].enable();
             me.sections['stop'].disable();            
         }
@@ -92,6 +93,7 @@ tasksControl.prototype = (function () {
             },
 
             stop: function () {
+
                 this.sections['timer'].pause();
             }
         }
@@ -241,6 +243,41 @@ tasksControl.prototype = (function () {
             }
         },
 
+        startAll: function() {
+            for(var t in this.tasks) {
+                this.tasks[t].start();
+            }
+        },
+
+        stopAll: function () {
+            for(var t in this.tasks) {
+                this.tasks[t].stop();
+            }
+        },
+        
+        // used by unit tests
+        startedCount: function () {
+            var count = 0;
+            for(var t in this.tasks) {
+                if (this.tasks[t].started) {
+                    count++;
+                }
+            }
+            return count;
+        },
+
+        // used by unit tests
+        stoppedCount: function () {
+            var count = 0;
+            for(var t in this.tasks) {
+                if (!this.tasks[t].started) {
+                    count++;
+                }
+            }
+            return count;
+        },
+
+        // used by unit tests
         tasksCount: function () {
             return this.tasks.length;
         },

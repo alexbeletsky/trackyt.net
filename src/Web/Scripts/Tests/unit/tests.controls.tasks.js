@@ -85,11 +85,16 @@
         control.addTask(task);
 
         // act
+        // after addition of fadeIn/fadeOut effect, now remove of task is async
+        stop(1000);
         control.removeTask(task.id);
 
-        // assert
-        var currentTasks = $('#tasks .task').size();
-        ok(currentTasks == 0, "task has not been removed from ui");
+        setTimeout(function () {
+            // assert
+            var currentTasks = $('#tasks .task').size();
+            ok(currentTasks == 0, "task has not been removed from ui");
+            start();
+        }, 500);
     });
 
     test("task has description field", function () {
@@ -258,9 +263,54 @@
 
             start();
         }, 1000);
+    });
 
+    test("start all tasks", function () {
+        // assert
+        var control = new tasksControl($('#tasks'));
+        var tasks = [
+            { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 1, description: "task 2", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 2, description: "task 3", status: 0, createdDate: null, startedDate: null, stoppedDate: null }
+            ];
 
+        for (var t in tasks) {
+            control.addTask(tasks[t]);
+        }
 
+        // act
+        stop(1000);
+        control.startAll();
+        setTimeout(function () {
+            // assert
+            var started = control.startedCount();
+            same(started, 3, "all tasks are started");
+            start();
+        }, 500);
+    });
+
+    test("stop all tasks", function () {
+        // assert
+        var control = new tasksControl($('#tasks'));
+        var tasks = [
+            { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 1, description: "task 2", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 2, description: "task 3", status: 0, createdDate: null, startedDate: null, stoppedDate: null }
+            ];
+
+        for (var t in tasks) {
+            control.addTask(tasks[t]);
+        }
+
+        // act
+        stop(1000);
+        control.stopAll();
+        setTimeout(function () {
+            // assert
+            var stopped = control.stoppedCount();
+            same(stopped, 3, "all tasks are stopped");
+            start();
+        }, 500);
     });
 
 });

@@ -154,20 +154,77 @@ namespace Web.API.v11.Controllers
                     });
             }
 
-
             var task = _tasks.Tasks.WithId(taskId);
 
-            task.Status = (int)TaskStatus.Started;
-            task.StartedDate = DateTime.UtcNow;
-            task.StoppedDate = null;
-
-            _tasks.Save(task);
+            StartAndSave(task);
 
             return Json(
                 new
                 {
                     success = true,
                     data = CreateTaskDescriptor(task) 
+                });
+        }
+
+        // PUT tasks/start/all
+
+        [HttpPut]
+        public JsonResult StartAll(string apiToken)
+        {
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+            var allTasks = _tasks.Tasks.WithUserId(userId);
+            foreach (var task in allTasks)
+            {
+                StartAndSave(task);
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = (string)null
+                });
+        }
+
+        // PUT tasks/stop/all
+
+        [HttpPut]
+        public JsonResult StopAll(string apiToken)
+        {
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        data = (string)null
+                    });
+            }
+
+            var allTasks = _tasks.Tasks.WithUserId(userId);
+            foreach (var task in allTasks)
+            {
+                StopAndSave(task);
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = (string)null
                 });
         }
 
@@ -189,14 +246,7 @@ namespace Web.API.v11.Controllers
 
             var task = _tasks.Tasks.WithId(taskId);
 
-            if (task.Status == (int)TaskStatus.Started)
-            {
-                task.Status = (int)TaskStatus.Stopped;
-                task.StoppedDate = DateTime.UtcNow;
-                task.ActualWork += GetDifferenceInSeconds(task.StartedDate, task.StoppedDate);
-                 
-                _tasks.Save(task);
-            }
+            StopAndSave(task);
 
             return Json(
                 new
@@ -250,6 +300,29 @@ namespace Web.API.v11.Controllers
             }
 
             return Convert.ToInt32(Math.Floor((stop - start).Value.TotalSeconds));
+        }
+
+        private void StartAndSave(Task task)
+        {
+            if (task.Status == (int)TaskStatus.None || task.Status == (int)TaskStatus.Stopped)
+            {
+                task.Status = (int)TaskStatus.Started;
+                task.StartedDate = DateTime.UtcNow;
+                task.StoppedDate = null;
+                _tasks.Save(task);
+            }
+        }
+
+        private void StopAndSave(Task task)
+        {
+            if (task.Status == (int)TaskStatus.Started)
+            {
+                task.Status = (int)TaskStatus.Stopped;
+                task.StoppedDate = DateTime.UtcNow;
+                task.ActualWork += GetDifferenceInSeconds(task.StartedDate, task.StoppedDate);
+
+                _tasks.Save(task);
+            }
         }
     }
 }

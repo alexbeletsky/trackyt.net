@@ -95,7 +95,7 @@
 
     test("task add returns created datetime", function () {
         var method = 'tasks/add';
-        var data = { description: 'task with datetime'};
+        var data = { description: 'task with datetime' };
         var type = 'POST';
         var params = [];
 
@@ -201,5 +201,76 @@
         });
     });
 
+    test("start all tasks", function () {
+        var me = this;
+
+        var method = 'tasks/start/all';
+        var data = null;
+        var type = 'PUT';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var method = 'tasks/all';
+            var data = null;
+            var type = 'GET';
+            var params = [];
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, method + " method call failed");
+
+                var tasks = result.data.tasks;
+                var allStarted = true;
+
+                for (var t in tasks) {
+                    if (tasks[t].status != 1) {
+                        allStarted = false;
+                    }
+                }
+                ok(allStarted, "not all tasks have been started");
+            });
+        });
+    });
+
+    test("stop all tasks", function () {
+        var me = this;
+
+        var method = 'tasks/stop/all';
+        var data = null;
+        var type = 'PUT';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var method = 'tasks/all';
+            var data = null;
+            var type = 'GET';
+            var params = [];
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, method + " method call failed");
+
+                var tasks = result.data.tasks;
+                var allStopped = true;
+
+                for (var t in tasks) {
+                    if (tasks[t].status != 2) {
+                        allStopped = false;
+                    }
+                }
+                ok(allStopped, "not all tasks have been stopped");
+            });
+        });
+    });
 
 });
