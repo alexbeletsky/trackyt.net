@@ -78,8 +78,7 @@ namespace Web.API.v11.Controllers
         }
 
         // POST tasks/add
-
-        // TODO: add integration test
+        // TODO: API handle description == null case
         [HttpPost]
         public JsonResult Add(string apiToken, string description)
         {
@@ -102,51 +101,13 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = new
-                    {
-                        task = CreateTaskDescriptor(task)
-                    }
-                });
-        }
-
-
-        // POST tasks/new
-        // TODO: remove this call (add used instead)
-
-        [HttpPost]
-        public JsonResult New(string apiToken, IList<TaskDescriptor> taskDescriptors)
-        {
-            var userId = _api.GetUserIdByApiToken(apiToken);
-
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
-            var results = new List<DeleteOperationResult>();
-            foreach (var taskDescriptor in taskDescriptors)
-            {
-                var task = new Task { Description = taskDescriptor.description, UserId = userId, Status = (int)TaskStatus.None };
-                _tasks.Save(task);
-
-                results.Add(new DeleteOperationResult { id = task.Id, createdDate = task.CreatedDate });
-            }
-
-            return Json(
-                new
-                {
-                    success = true,
-                    data = results
+                    data = CreateTaskDescriptor(task)
                 });
         }
 
         // DELETE tasks/delete
-
+        // TODO: API correct to use taskId
+        // TODO: API add integration test
         [HttpDelete]
         public JsonResult Delete(string apiToken, IList<int> taskIds)
         {
@@ -291,7 +252,7 @@ namespace Web.API.v11.Controllers
                 return (int)(DateTime.UtcNow - start).Value.TotalSeconds;
             }
 
-            return (int)(stop - start).Value.TotalSeconds;
+            return Convert.ToInt32(Math.Floor((stop - start).Value.TotalSeconds));
         }
     }
 }

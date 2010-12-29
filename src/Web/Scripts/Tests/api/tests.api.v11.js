@@ -78,9 +78,9 @@
         });
     });
 
-    test("create new task method", function () {
-        var method = 'tasks/new';
-        var data = [{ description: 'new task 1' }, { description: 'new task 2'}];
+    test("task add method", function () {
+        var method = 'tasks/add';
+        var data = { description: 'new task 1' };
         var type = 'POST';
         var params = [];
 
@@ -89,15 +89,13 @@
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
             ok(result.data != null, "data is null");
-            ok(result.data.length == 2, "data does not contain 2 items");
-            ok(result.data[0].id > 0, "id for first item is wrong");
-            ok(result.data[1].id > 0, "id for second item is wrong");
+            ok(result.data.id > 0, "id for first item is wrong");
         });
     });
 
-    test("new task returns created datetime", function () {
-        var method = 'tasks/new';
-        var data = [{ description: 'task with datetime'}];
+    test("task add returns created datetime", function () {
+        var method = 'tasks/add';
+        var data = { description: 'task with datetime'};
         var type = 'POST';
         var params = [];
 
@@ -106,9 +104,7 @@
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
             ok(result.data != null, "data is null");
-            ok(result.data.length == 1, "data does not contain 1 item");
-
-            var createdDate = result.data[0].createdDate;
+            var createdDate = result.data.createdDate;
             ok(createdDate != null);
         });
     });
@@ -129,8 +125,8 @@
             var taskId = result.data.tasks[0].id;
             ok(taskId >= 1, "could not get task for deletion");
 
-            var method = 'tasks/delete';
-            var data = [taskId];
+            var method = 'tasks/delete/' + taskId;
+            var data = null;
             var type = 'DELETE';
             var params = [];
 
@@ -147,17 +143,31 @@
     test("start task method", function () {
         var me = this;
 
-        var method = 'tasks/start';
-        var data = [40];
-        var type = 'PUT';
-        var params = null;
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
 
-        var call = createCallUrl(me.url, me.apiToken, method, params);
+        var call = createCallUrl(this.url, this.apiToken, method, params);
 
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
-            ok(result.data[0].startedDate !== undefined, "started date have to be initialized with new value");
-            ok(result.data[0].stoppedDate == null, "stopped date have to be reset");
+
+            var taskId = result.data.tasks[0].id;
+            ok(taskId >= 1, "could not get task for deletion");
+
+            var method = 'tasks/start/' + taskId;
+            var data = null;
+            var type = 'PUT';
+            var params = [];
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, method + " method call failed");
+                ok(result.data != null, "data is null");
+                ok(result.data.id == taskId, "id of updated item returned");
+            });
         });
 
     });
@@ -165,17 +175,31 @@
     test("stop task method", function () {
         var me = this;
 
-        var method = 'tasks/stop';
-        var data = [40];
-        var type = 'PUT';
-        var params = null;
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
 
-        var call = createCallUrl(me.url, me.apiToken, method, params);
+        var call = createCallUrl(this.url, this.apiToken, method, params);
 
         api_test(call, type, data, function (result) {
             ok(result.success, method + " method call failed");
-            ok(result.data[0].startedDate != null, "startedDate have to be set");
-            ok(result.data[0].stoppedDate != null, "stoppedDate have to be set");
+
+            var taskId = result.data.tasks[0].id;
+            ok(taskId >= 1, "could not get task for deletion");
+
+            var method = 'tasks/stop/' + taskId;
+            var data = null;
+            var type = 'PUT';
+            var params = [];
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, method + " method call failed");
+                ok(result.data != null, "data is null");
+                ok(result.data.id == taskId, "id of updated item returned");
+            });
         });
     });
 

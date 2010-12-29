@@ -16,56 +16,6 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
     [TestFixture]
     public class ApiV1ControllerTests
     {
-        #region setup code
-
-        private static IList<Task> _submittedTasks = new List<Task>();
-        private static IList<Task> _deletedTasks = new List<Task>();
-
-        private static IMappingEngine SetupMapper()
-        {
-            TrackyMapping.SetupMapping();
-
-            return Mapper.Engine;
-        }
-
-        private static Mock<ITasksRepository> SetupMockRepository(int userId)
-        {
-            var repository = new Mock<ITasksRepository>();
-            repository.Setup(f => f.Tasks).Returns(new List<Task>()
-                {
-                    new Task { Id = 1, Description = "Task1", ActualWork = 0, Number = 1, UserId = userId },
-                    new Task { Id = 2, Description = "Task2", ActualWork = 15, Number = 2, UserId = userId },
-                    new Task { Id = 3, Description = "Task3", ActualWork = 20, Number = 3, UserId = userId },
-                    new Task { Id = 4, Description = "Task3", ActualWork = 0, Number = 4, UserId = userId + 1 },
-                    new Task { Id = 5, Description = "Task3", ActualWork = 7, Number = 1, UserId = userId + 2 },
-                    new Task { Id = 6, Description = "Task3", ActualWork = 4, Number = 1, UserId = userId + 3 },
-                }.AsQueryable()
-                );
-
-            var index = 222;
-            _submittedTasks.Clear();
-            _deletedTasks.Clear();
-            repository.Setup(f => f.Save(It.IsAny<Task>())).Callback((Task t) =>
-                {
-                    //assign id for new tasks
-                    if (t.Id == 0)
-                    {
-                        t.Id = index++;
-                    }
-                    _submittedTasks.Add(t);
-                }
-            );
-            repository.Setup(f => f.Delete(It.IsAny<Task>())).Callback((Task t) =>
-                {
-                    _deletedTasks.Add(t);
-                }
-            );
-
-            return repository;
-        }
-
-        #endregion
-
         [Test]
         public void Smoke()
         {
@@ -128,8 +78,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             //arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -168,8 +118,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -185,20 +135,20 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             api.Submit("api_token", submit);
 
             // assert
-            Assert.That(_submittedTasks.Count, Is.EqualTo(2));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks.Count, Is.EqualTo(2));
 
-            Assert.That(_submittedTasks[0].Id, Is.EqualTo(222));
-            Assert.That(_submittedTasks[0].UserId, Is.EqualTo(100));
-            Assert.That(_submittedTasks[0].ActualWork, Is.EqualTo(14));
-            Assert.That(_submittedTasks[0].Description, Is.EqualTo("new task 1"));
-            Assert.That(_submittedTasks[0].Number, Is.EqualTo(12));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Id, Is.EqualTo(222));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].UserId, Is.EqualTo(100));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].ActualWork, Is.EqualTo(14));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Description, Is.EqualTo("new task 1"));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Number, Is.EqualTo(12));
 
 
-            Assert.That(_submittedTasks[1].Id, Is.EqualTo(223));
-            Assert.That(_submittedTasks[1].UserId, Is.EqualTo(100));
-            Assert.That(_submittedTasks[1].ActualWork, Is.EqualTo(177));
-            Assert.That(_submittedTasks[1].Description, Is.EqualTo("new task 2"));
-            Assert.That(_submittedTasks[1].Number, Is.EqualTo(13));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[1].Id, Is.EqualTo(223));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[1].UserId, Is.EqualTo(100));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[1].ActualWork, Is.EqualTo(177));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[1].Description, Is.EqualTo("new task 2"));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[1].Number, Is.EqualTo(13));
         }
 
         [Test]
@@ -206,8 +156,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -236,8 +186,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -252,13 +202,13 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             api.Submit("api_token", submit);
 
             // assert
-            Assert.That(_submittedTasks.Count, Is.EqualTo(1));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks.Count, Is.EqualTo(1));
 
-            Assert.That(_submittedTasks[0].Id, Is.EqualTo(1), "id of object could not be changed");
-            Assert.That(_submittedTasks[0].UserId, Is.EqualTo(100));
-            Assert.That(_submittedTasks[0].ActualWork, Is.EqualTo(14));
-            Assert.That(_submittedTasks[0].Description, Is.EqualTo("updated"));
-            Assert.That(_submittedTasks[0].Number, Is.EqualTo(12));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Id, Is.EqualTo(1), "id of object could not be changed");
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].UserId, Is.EqualTo(100));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].ActualWork, Is.EqualTo(14));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Description, Is.EqualTo("updated"));
+            Assert.That(ApiTestsCommonSetup.SubmittedTasks[0].Number, Is.EqualTo(12));
         }
 
         [Test]
@@ -266,8 +216,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -295,8 +245,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
@@ -311,8 +261,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             api.Delete("api_token", delete);
 
             // post
-            Assert.That(_deletedTasks.Count, Is.EqualTo(1));
-            Assert.That(_deletedTasks[0].Id, Is.EqualTo(1));
+            Assert.That(ApiTestsCommonSetup.DeletedTasks.Count, Is.EqualTo(1));
+            Assert.That(ApiTestsCommonSetup.DeletedTasks[0].Id, Is.EqualTo(1));
         }
 
         [Test]
@@ -320,8 +270,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         {
             // arrange
             var userId = 100;
-            var repository = SetupMockRepository(userId);
-            var mapper = SetupMapper();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var mapper = ApiTestsCommonSetup.SetupMapper();
             var service = new Mock<IApiService>();
 
             var api = new ApiV1Controller(service.Object, repository.Object, mapper);
