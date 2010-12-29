@@ -673,7 +673,7 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private System.Nullable<int> _Status;
 		
-		private System.Nullable<int> _ActualWork;
+		private int _ActualWork;
 		
 		private System.Data.Linq.Binary _Timestamp;
 		
@@ -699,7 +699,7 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnDescriptionChanged();
     partial void OnStatusChanging(System.Nullable<int> value);
     partial void OnStatusChanged();
-    partial void OnActualWorkChanging(System.Nullable<int> value);
+    partial void OnActualWorkChanging(int value);
     partial void OnActualWorkChanged();
     partial void OnTimestampChanging(System.Data.Linq.Binary value);
     partial void OnTimestampChanged();
@@ -821,8 +821,8 @@ namespace Trackyt.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWork", DbType="Int", UpdateCheck=UpdateCheck.Never)]
-		public System.Nullable<int> ActualWork
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWork", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int ActualWork
 		{
 			get
 			{

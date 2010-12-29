@@ -77,23 +77,6 @@ namespace Web.API.v11.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
-        private IList<TaskDescriptor> CreateTasksList(int userId)
-        {
-            return _tasks.Tasks.WithUserId(userId)
-                .Select(
-                    t => 
-                        new TaskDescriptor 
-                        { 
-                            id = t.Id, 
-                            description = t.Description,
-                            createdDate = t.CreatedDate,
-                            startedDate = t.StartedDate,
-                            stoppedDate = t.StoppedDate,
-                            status = t.Status,
-                            spent = CalculateSpent(t.StartedDate, t.StoppedDate)
-                        }).ToList();
-        }
-
         // POST tasks/add
 
         // TODO: add integration test
@@ -121,33 +104,9 @@ namespace Web.API.v11.Controllers
                     success = true,
                     data = new
                     {
-                        task = new TaskDescriptor
-                            {
-                                id = task.Id,
-                                description = task.Description,
-                                createdDate = task.CreatedDate,
-                                startedDate = task.StartedDate,
-                                stoppedDate = task.StoppedDate,
-                                status = task.Status,
-                                spent = CalculateSpent(task.StartedDate, task.StoppedDate)
-                            }
+                        task = CreateTaskDescriptor(task)
                     }
                 });
-        }
-
-        private int CalculateSpent(DateTime? start, DateTime? stop)
-        {
-            if (start == null)
-            {
-                return 0;
-            }
-
-            if (stop == null)
-            {
-                return (int)(DateTime.UtcNow - start).Value.TotalSeconds;
-            }
-
-            return (int)(stop - start).Value.TotalSeconds;
         }
 
 
@@ -222,42 +181,6 @@ namespace Web.API.v11.Controllers
 
         // PUT tasks/start
 
-        //[HttpPut]
-        //public JsonResult Start(string apiToken, IList<int> taskIds)
-        //{
-        //    var userId = _api.GetUserIdByApiToken(apiToken);
-
-        //    if (userId == 0)
-        //    {
-        //        return Json(
-        //            new
-        //            {
-        //                success = false,
-        //                data = (string)null
-        //            });
-        //    }
-
-        //    var results = new List<StartStopOperationResult>();
-        //    foreach (var taskId in taskIds)
-        //    {
-        //        var task = _tasks.Tasks.WithId(taskId);
-
-        //        task.Status = (int)TaskStatus.Started;
-        //        task.StartedDate = DateTime.UtcNow;
-        //        task.StoppedDate = null;
-
-        //        _tasks.Save(task);
-        //        results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
-        //    }
-
-        //    return Json(
-        //        new
-        //        {
-        //            success = true,
-        //            data = results
-        //        });
-        //}
-
         [HttpPut]
         public JsonResult Start(string apiToken, int taskId)
         {
@@ -286,46 +209,9 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = new StartStopOperationResult { id = task.Id, startedDate = task.StartedDate, stoppedDate = task.StoppedDate }
+                    data = CreateTaskDescriptor(task) 
                 });
         }
-
-        // PUT tasks/stop
-
-        //[HttpPut]
-        //public JsonResult Stop(string apiToken, IList<int> taskIds)
-        //{
-        //    var userId = _api.GetUserIdByApiToken(apiToken);
-
-        //    if (userId == 0)
-        //    {
-        //        return Json(
-        //            new
-        //            {
-        //                success = false,
-        //                data = (string)null
-        //            });
-        //    }
-
-        //    var results = new List<StartStopOperationResult>();
-        //    foreach (var taskId in taskIds)
-        //    {
-        //        var task = _tasks.Tasks.WithId(taskId);
-
-        //        task.Status = (int)TaskStatus.Stopped;
-        //        task.StoppedDate = DateTime.UtcNow;
-
-        //        _tasks.Save(task);
-        //        results.Add(new StartStopOperationResult { id = task.Id, startedDate = task.StoppedDate, stoppedDate = task.StoppedDate });
-        //    }
-
-        //    return Json(
-        //        new
-        //        {
-        //            success = true,
-        //            data = results
-        //        });
-        //}
 
         [HttpPut]
         public JsonResult Stop(string apiToken, int taskId)
@@ -349,7 +235,8 @@ namespace Web.API.v11.Controllers
             {
                 task.Status = (int)TaskStatus.Stopped;
                 task.StoppedDate = DateTime.UtcNow;
-
+                task.ActualWork += GetDifferenceInSeconds(task.StartedDate, task.StoppedDate);
+                 
                 _tasks.Save(task);
             }
 
@@ -357,9 +244,54 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = new StartStopOperationResult { id = task.Id, startedDate = task.StartedDate, stoppedDate = task.StoppedDate }
+                    data = CreateTaskDescriptor(task) 
                 });
         }
 
+        private IList<TaskDescriptor> CreateTasksList(int userId)
+        {
+            return _tasks.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();
+        }
+
+        private TaskDescriptor CreateTaskDescriptor(Task t)
+        {
+            return new TaskDescriptor
+            {
+                id = t.Id,
+                description = t.Description,
+                createdDate = t.CreatedDate,
+                startedDate = t.StartedDate,
+                stoppedDate = t.StoppedDate,
+                status = t.Status,
+                spent = GetTaskActualWork(t)
+            };
+        }
+
+        private int GetTaskActualWork(Task t)
+        {
+            var actualWork = t.ActualWork;
+
+            if (t.Status == (int)TaskStatus.Started)
+            {
+                actualWork += GetDifferenceInSeconds(t.StartedDate, DateTime.UtcNow);
+            }
+
+            return actualWork;
+        }
+
+        private int GetDifferenceInSeconds(DateTime? start, DateTime? stop)
+        {
+            if (start == null)
+            {
+                return 0;
+            }
+
+            if (stop == null)
+            {
+                return (int)(DateTime.UtcNow - start).Value.TotalSeconds;
+            }
+
+            return (int)(stop - start).Value.TotalSeconds;
+        }
     }
 }

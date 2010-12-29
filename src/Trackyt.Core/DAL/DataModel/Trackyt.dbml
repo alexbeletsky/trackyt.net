@@ -37,7 +37,7 @@
       <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ActualWork" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ActualWork" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
       <Column Name="StartedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
