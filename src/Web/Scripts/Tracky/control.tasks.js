@@ -44,6 +44,7 @@ tasksControl.prototype = (function () {
         this.control = control;
         this.control.div.append('<div id=' + this.ref + ' class="task"></div>');
         this.div = $('#' + this.ref);
+        this.div.hide();
 
         this.sections = [];
 
@@ -64,20 +65,26 @@ tasksControl.prototype = (function () {
             me.sections['stop'].disable();            
         }
 
+        // initialize timer
         this.sections['timer'].onTimerStarted(this.timerStarted);
         this.sections['timer'].onTimerStopped(this.timerStopped);
         this.sections['timer'].init();
 
+        // call external layout handler to apply custom styles
         if (this.control.layout) {
             this.control.layout(this.div);
         }
+
+        // show it
+        this.div.fadeIn('fast');
     }
 
     // class task members
     task.prototype = (function() {
         return {
             remove: function() {
-                this.div.remove();
+                var me = this;
+                this.div.fadeOut('fast', function() { me.div.remove(); });
             },
 
             start: function () {
