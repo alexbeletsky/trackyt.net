@@ -30,4 +30,5 @@
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=102" %>"></script>
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=102" %>"></script>
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=102" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.account.js") + "?ver=102" %>"></script>
 </asp:Content>
