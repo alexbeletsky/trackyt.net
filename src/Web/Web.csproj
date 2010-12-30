@@ -157,6 +157,7 @@
     <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
     <Content Include="Scripts\Tests\unit\tests.controls.tasks.js" />
     <Content Include="Scripts\Tracky\api.js" />
+    <Content Include="Scripts\Tracky\controller.account.js" />
     <Content Include="Scripts\Tracky\controller.tasks.js" />
     <Content Include="Scripts\Tracky\control.tasks.js" />
     <Content Include="UnitTests.html" />

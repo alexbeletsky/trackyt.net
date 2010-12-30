@@ -18,9 +18,6 @@
                             <%: user.Email %>
                         </td>
                         <td>
-                            <%: user.Password %>
-                        </td>
-                        <td>
                             <%: user.Temp %>
                         </td>
                     </tr>

@@ -1,5 +1,4 @@
 ﻿function api_test(url, type, data, callback) {
-
     $.ajax(
         {
             url: url,
