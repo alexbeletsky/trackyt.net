@@ -72,17 +72,15 @@ test("start a task", function () {
                 S.wait(1000, function () {
 
                     // get last added task and press start
-                    var tasks = S('.task').size();
-                    var index = tasks - 1;
-
-                    S('#start-' + index).click();
+                    S('tasks task:last start a').click();
 
                     // wait for 5 seconds
                     S.wait(function () {
-                        S('#start-' + index).click();
-                        var timer = S('#actualWork-' + index).html();
+                        // stop the task
+                        S('tasks task:last stop a').click();
+                        var timer = S('tasks task:last timer').html();
                         
-                        same(timer, "00:05", "5 seconds must be counted by timer");
+                        same(timer, "0:00:05", "5 seconds must be counted by timer");
                     });
                 });
             });

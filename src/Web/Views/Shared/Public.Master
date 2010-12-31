@@ -61,7 +61,7 @@
         </div>
         <div class="navigation-footer-block left">
             <ul>
-                <li class="api bold"><a href="#"><%: Html.ActionLink("api", "Api", new { area = "", controller = "Home" })%></a></li>
+                <li class="api bold"><%: Html.ActionLink("api", "ApiV11", new { area = "", controller = "Home" })%></a></li>
                 <li class="opensource"><a href="<%: Url.Action("Faq", new { area="", controller="Home"}) %>#OpenSource" >open source</a></li>
                 <li class="faq"><%: Html.ActionLink("faq", "Faq", new { area = "", controller = "Home" })%></li>
             </ul>

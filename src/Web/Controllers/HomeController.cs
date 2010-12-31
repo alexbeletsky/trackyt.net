@@ -18,5 +18,15 @@ namespace Web.Controllers
         {
             return View();
         }
+
+        public ActionResult ApiV11()
+        {
+            return View();
+        }
+
+        public ActionResult ApiV10()
+        {
+            return View();
+        }
     }
 }

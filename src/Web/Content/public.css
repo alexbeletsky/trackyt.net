@@ -622,6 +622,13 @@ http://ryanfait.com/
 
 /* API */
 
+.center
+{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .api code 
 {
     position: relative;
@@ -634,7 +641,7 @@ http://ryanfait.com/
 {
     border:1px solid gray;
     display:block;
-    margin: 0px;
+    margin-bottom: 10px;
     padding 10px;
     overflow: scroll;
 }

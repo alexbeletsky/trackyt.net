@@ -1,18 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Api.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ApiContent" runat="server">
-</asp:Content>
-
-
-<%--<%@ Page Title="Trackyt.net | API documentation" Language="C#" MasterPageFile="~/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="content api">
-        <h1>Trackyt.net Api documentation</h1>
-            <h2>Current API version</h2>
-            <p>
-            Current version of API is v1. *
-            </p>
             <p style="font-size: x-small; margin-left: 20px">
                 * - current version of API uses ASP.net Forms Authentication mechanism to authenticate users. That makes it a bit non convenient to use from not .NET applications. API-token model will be implemented in nearest versions, please follow our <%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %> for updates.
             </p>
@@ -30,7 +19,6 @@
             <p>
             Each response body contains <code>success</code> and <code>data</code> elements. <code>success</code> would refer to operation status, such as <code>true</code> for success operations, <code>false</code> for failed ones. <code>data</code> actual content depends on type of call.
             </p>
-            
             <h2>Authentication</h2>
             <p>
             Before usage of any API methods, you need to authenticate yourself. This can be done via HTTP POST. After successful authentication a session is created using a cookie. Cookie contains .ASPXAUTH token for authentication. For <code>CURL</code>-based application you should store it to file and refer it for all API calls. In case of successful authentication response will contain <code>userId</code> - id of User, that's used as argument for all API call.
@@ -138,7 +126,3 @@
             </pre>
     </div>
 </asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
---%>

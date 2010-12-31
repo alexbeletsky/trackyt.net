@@ -1,0 +1,10 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="maincontent" ContentPlaceHolderID="maincontent" runat="server">
+    <% Html.RenderPartial("ApiTableOfContent"); %>
+
+    <asp:ContentPlaceHolder ID="apicontent" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
+    <title>Trackyt.net | API</title>
+</asp:Content>
