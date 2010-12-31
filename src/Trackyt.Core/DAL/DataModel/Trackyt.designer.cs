@@ -22,7 +22,7 @@ namespace Trackyt.Core.DAL.DataModel
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdb_patchv102")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdb")]
 	public partial class TrackytDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -45,7 +45,7 @@ namespace Trackyt.Core.DAL.DataModel
     #endregion
 		
 		public TrackytDataContext() : 
-				base(global::Trackyt.Core.Properties.Settings.Default.trackytdb_patchv102ConnectionString, mappingSource)
+				base(global::Trackyt.Core.Properties.Settings.Default.trackytdbConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -671,7 +671,7 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private string _Description;
 		
-		private System.Nullable<int> _Status;
+		private int _Status;
 		
 		private int _ActualWork;
 		
@@ -697,7 +697,7 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnNumberChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
-    partial void OnStatusChanging(System.Nullable<int> value);
+    partial void OnStatusChanging(int value);
     partial void OnStatusChanged();
     partial void OnActualWorkChanging(int value);
     partial void OnActualWorkChanged();
@@ -801,8 +801,8 @@ namespace Trackyt.Core.DAL.DataModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int", UpdateCheck=UpdateCheck.Never)]
-		public System.Nullable<int> Status
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int Status
 		{
 			get
 			{

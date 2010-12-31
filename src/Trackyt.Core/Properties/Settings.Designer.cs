@@ -66,5 +66,15 @@ namespace Trackyt.Core.Properties {
                 return ((string)(this["trackytdb_patchv102ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=trackytdb;Integrated Security=True")]
+        public string trackytdbConnectionString1 {
+            get {
+                return ((string)(this["trackytdbConnectionString1"]));
+            }
+        }
     }
 }
