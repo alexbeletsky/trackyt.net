@@ -13,9 +13,6 @@ using Web.Infrastructure.Exceptions;
 
 namespace Web.API.v11.Controllers
 {
-    // TODO: implemented quickly by copy-pasting code of v1, it have to be refactored to use common codebase
-    // TODO: refactor, refactor, refactor!
-
     [HandleJsonError]
     public class ApiV11Controller : Controller
     {
@@ -243,7 +240,7 @@ namespace Web.API.v11.Controllers
 
             if (stop == null)
             {
-                return (int)(DateTime.UtcNow - start).Value.TotalSeconds;
+                return Convert.ToInt32(Math.Floor((DateTime.UtcNow - start).Value.TotalSeconds));
             }
 
             return Convert.ToInt32(Math.Floor((stop - start).Value.TotalSeconds));
@@ -272,7 +269,6 @@ namespace Web.API.v11.Controllers
             }
         }
 
-
         private void CheckArgumentNotNullOrEmpty(string value, string name)
         {
             if (string.IsNullOrEmpty(value))
@@ -280,7 +276,6 @@ namespace Web.API.v11.Controllers
                 throw new ArgumentNullException(name);
             }
         }
-
 
         private void CheckArgumentApiToken(string apiToken)
         {
@@ -317,6 +312,5 @@ namespace Web.API.v11.Controllers
                 throw new Exception(string.Format("Task with id: {0} does not exists. Delete operation failed.", taskId));
             }
         }
-
     }
 }
