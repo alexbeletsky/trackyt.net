@@ -8,12 +8,15 @@ using Trackyt.Core.DAL.Extensions;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Services;
 using Web.API.v11.Model;
+using Web.Infrastructure.Error;
+using Web.Infrastructure.Exceptions;
 
 namespace Web.API.v11.Controllers
 {
     // TODO: implemented quickly by copy-pasting code of v1, it have to be refactored to use common codebase
     // TODO: refactor, refactor, refactor!
 
+    [HandleJsonError]
     public class ApiV11Controller : Controller
     {
         private IApiService _api;
@@ -30,12 +33,15 @@ namespace Web.API.v11.Controllers
         [HttpPost]
         public JsonResult Authenticate(string email, string password)
         {
+            CheckArgumentNotNullOrEmpty(email, "email");
+            CheckArgumentNotNullOrEmpty(password, "password");
+
             var success = true;
             var apiToken = _api.GetApiToken(email, password);
 
             if (apiToken == null)
             {
-                success = false;
+                throw new UserNotAuthorized();
             }
 
             return Json(
@@ -49,23 +55,12 @@ namespace Web.API.v11.Controllers
         // Tasks
 
         // GET tasks/all
-
         [HttpGet]
         public JsonResult All(string apiToken)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
-
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
-
+            CheckArgumentApiToken(apiToken);
+            
+            var userId = CheckAuthorization(apiToken);
             var tasks = CreateTasksList(userId);
 
             return Json(
@@ -78,22 +73,13 @@ namespace Web.API.v11.Controllers
         }
 
         // POST tasks/add
-        // TODO: API handle description == null case
         [HttpPost]
         public JsonResult Add(string apiToken, string description)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
+            CheckArgumentApiToken(apiToken);
+            CheckArgumentNotNullOrEmpty(description, "description");
 
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
+            var userId = CheckAuthorization(apiToken);
             var task = new Task { Description = description, UserId = userId, Status = (int)TaskStatus.None };
             _tasks.Save(task);
 
@@ -106,28 +92,17 @@ namespace Web.API.v11.Controllers
         }
 
         // DELETE tasks/delete
-        // TODO: API correct to use taskId
-        // TODO: API add integration test
         [HttpDelete]
         public JsonResult Delete(string apiToken, int taskId)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
+            CheckArgumentApiToken(apiToken);
+            CheckArgumentLessThanZero(taskId, "taskId");
 
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
+            var userId = CheckAuthorization(apiToken);
             var task = _tasks.Tasks.WithId(taskId);
-            if (task != null)
-            {
-                _tasks.Delete(task);
-            }
+
+            CheckTaskNotNull(taskId, task);
+            _tasks.Delete(task);
 
             return Json(
                 new
@@ -142,20 +117,13 @@ namespace Web.API.v11.Controllers
         [HttpPut]
         public JsonResult Start(string apiToken, int taskId)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
+            CheckArgumentApiToken(apiToken);
+            CheckArgumentLessThanZero(taskId, "taskId");
 
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
+            var userId = CheckAuthorization(apiToken);
             var task = _tasks.Tasks.WithId(taskId);
 
+            CheckTaskNotNull(taskId, task);
             StartAndSave(task);
 
             return Json(
@@ -166,24 +134,39 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        // PUT tasks/stop
+
+        [HttpPut]
+        public JsonResult Stop(string apiToken, int taskId)
+        {
+            CheckArgumentApiToken(apiToken);
+            CheckArgumentLessThanZero(taskId, "taskId");
+
+            var userId = CheckAuthorization(apiToken);
+            var task = _tasks.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+            StopAndSave(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = CreateTaskDescriptor(task)
+                });
+        }
+
+
         // PUT tasks/start/all
 
         [HttpPut]
         public JsonResult StartAll(string apiToken)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
+            CheckArgumentApiToken(apiToken);
 
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
+            var userId = CheckAuthorization(apiToken);
             var allTasks = _tasks.Tasks.WithUserId(userId);
+
             foreach (var task in allTasks)
             {
                 StartAndSave(task);
@@ -202,19 +185,11 @@ namespace Web.API.v11.Controllers
         [HttpPut]
         public JsonResult StopAll(string apiToken)
         {
-            var userId = _api.GetUserIdByApiToken(apiToken);
+            CheckArgumentApiToken(apiToken);
 
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
+            var userId = CheckAuthorization(apiToken);
             var allTasks = _tasks.Tasks.WithUserId(userId);
+
             foreach (var task in allTasks)
             {
                 StopAndSave(task);
@@ -225,34 +200,6 @@ namespace Web.API.v11.Controllers
                 {
                     success = true,
                     data = (string)null
-                });
-        }
-
-        [HttpPut]
-        public JsonResult Stop(string apiToken, int taskId)
-        {
-            var userId = _api.GetUserIdByApiToken(apiToken);
-
-            if (userId == 0)
-            {
-                return Json(
-                    new
-                    {
-                        success = false,
-                        data = (string)null
-                    });
-            }
-
-
-            var task = _tasks.Tasks.WithId(taskId);
-
-            StopAndSave(task);
-
-            return Json(
-                new
-                {
-                    success = true,
-                    data = CreateTaskDescriptor(task) 
                 });
         }
 
@@ -324,5 +271,52 @@ namespace Web.API.v11.Controllers
                 _tasks.Save(task);
             }
         }
+
+
+        private void CheckArgumentNotNullOrEmpty(string value, string name)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(name);
+            }
+        }
+
+
+        private void CheckArgumentApiToken(string apiToken)
+        {
+            if (string.IsNullOrEmpty(apiToken) || apiToken.Length != 32)
+            {
+                throw new ArgumentException("Provided Api token has wrong format.");
+            }
+        }
+
+        private void CheckArgumentLessThanZero(int value, string name)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Provided value could not be less than zero.", name);
+            }
+        }
+
+        private int CheckAuthorization(string apiToken)
+        {
+            var userId = _api.GetUserIdByApiToken(apiToken);
+
+            if (userId == 0)
+            {
+                throw new UserNotAuthorized();
+            }
+
+            return userId;
+        }
+
+        private static void CheckTaskNotNull(int taskId, Task task)
+        {
+            if (task == null)
+            {
+                throw new Exception(string.Format("Task with id: {0} does not exists. Delete operation failed.", taskId));
+            }
+        }
+
     }
 }
