@@ -309,7 +309,7 @@ namespace Web.API.v11.Controllers
         {
             if (task == null)
             {
-                throw new Exception(string.Format("Task with id: {0} does not exists. Delete operation failed.", taskId));
+                throw new Exception(string.Format("Task with id: {0} does not exists. Operation failed.", taskId));
             }
         }
     }

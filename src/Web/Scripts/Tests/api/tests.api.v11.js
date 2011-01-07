@@ -273,4 +273,47 @@
         });
     });
 
+    test("start called for bad id", function () {
+        var method = 'tasks/start/' + 5555;
+        var data = null;
+        var type = 'PUT';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success == false);
+            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+        });
+    });
+
+    test("stop called for bad id", function () {
+        var method = 'tasks/stop/' + 5555;
+        var data = null;
+        var type = 'PUT';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success == false);
+            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+        });
+    });
+
+    test("delete called for bad id", function () {
+        var method = 'tasks/delete/' + 5555;
+        var data = null;
+        var type = 'DELETE';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success == false);
+            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+        });
+    });
+
+
 });
