@@ -38,7 +38,7 @@ namespace Web.API.v11.Controllers
 
             if (apiToken == null)
             {
-                throw new UserNotAuthorized();
+                throw new UserNotAuthorizedException();
             }
 
             return Json(
@@ -299,7 +299,7 @@ namespace Web.API.v11.Controllers
 
             if (userId == 0)
             {
-                throw new UserNotAuthorized();
+                throw new UserNotAuthorizedException();
             }
 
             return userId;

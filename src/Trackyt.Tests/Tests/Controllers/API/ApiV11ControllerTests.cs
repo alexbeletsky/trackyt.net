@@ -317,7 +317,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void Authenticate_ApiTokenNotLinkedToUser_ExceptionThrow()
         {
             // arrange
@@ -335,7 +335,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]        
+        [ExpectedException(typeof(UserNotAuthorizedException))]        
         public void All_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -393,7 +393,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void Add_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -452,7 +452,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void Delete_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -529,7 +529,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void Start_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -606,7 +606,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void Stop_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -663,7 +663,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void StartAll_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -701,7 +701,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorized))]
+        [ExpectedException(typeof(UserNotAuthorizedException))]
         public void StopAll_CheckAuthentication_ExceptionThrown()
         {
             // arrange

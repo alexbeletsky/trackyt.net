@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Web.Infrastructure.Exceptions
 {
-    public class UserNotAuthorized : Exception
+    public class UserNotAuthorizedException : Exception
     {
-        public UserNotAuthorized() : base("User is not authorized on Trackyt.net.")
+        public UserNotAuthorizedException() : base("User is not authorized on Trackyt.net.")
         {
 
         }
