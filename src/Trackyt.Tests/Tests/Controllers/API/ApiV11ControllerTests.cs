@@ -16,7 +16,6 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
     // API v.1.1 is covered with integration tests (/Scripts/Tests/api/tests.api.v11.js)
 
     // TODO: API unit tests for all controller methods
-    // TODO: API improve test by using IDateTimeProvider to be able to mock it and use mock instead of DateTime.UtcNow (test performance issue)
     [TestFixture]
     public class ApiV11ControllerTests
     {
@@ -24,10 +23,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         public void Smoke()
         {
             // assert
-            var repository = new Mock<ITasksRepository>();
-            var mapper = new Mock<IMappingEngine>();
+            var repository = ApiTestsCommonSetup.SetupMockRepository(0);
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper.Object);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             // act / assert
             Assert.That(api, Is.Not.Null);
@@ -40,10 +39,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
@@ -64,16 +62,14 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
             api.Stop(token, 1);
 
             // assert
@@ -90,16 +86,17 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            var currentDate = DateTime.UtcNow;
+            date.Setup(d => d.UtcNow).Returns(currentDate);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(1));            
             api.Stop(token, 1);
 
             // assert
@@ -114,18 +111,15 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
             api.Stop(token, 1);
-            Thread.Sleep(1000);
             api.Start(token, 1);
 
             // assert
@@ -142,18 +136,19 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            var currentDate = DateTime.UtcNow;
+            date.Setup(d => d.UtcNow).Returns(currentDate);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(1));
             api.Stop(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(2));
             api.Start(token, 1);
 
             // assert
@@ -168,19 +163,20 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            var currentDate = DateTime.UtcNow;
+            date.Setup(d => d.UtcNow).Returns(currentDate);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(1));
             api.Stop(token, 1);
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(2));
             api.Stop(token, 1);
 
             // assert
@@ -195,19 +191,22 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            var currentDate = DateTime.UtcNow;
+            date.Setup(d => d.UtcNow).Returns(currentDate);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(1));
+
             api.Stop(token, 1);
             api.Start(token, 1);
-            Thread.Sleep(1000);
+            date.Setup(d => d.UtcNow).Returns(currentDate.AddSeconds(2));
+
             api.Stop(token, 1);
 
             // assert
@@ -222,11 +221,11 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            date.Setup(d => d.UtcNow).Returns(DateTime.UtcNow);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
@@ -245,11 +244,11 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
+            date.Setup(d => d.UtcNow).Returns(DateTime.UtcNow);
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
             // act 
@@ -269,10 +268,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // arrange
             var userId = 100;
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken("bad_token")).Returns(userId);
 
@@ -290,10 +288,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // arrange
             var userId = 100;
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             // act
             api.Authenticate(null, "");
@@ -307,10 +304,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // arrange
             var userId = 100;
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             // act
             api.Authenticate("aa", null);
@@ -323,10 +319,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // arrange
             var userId = 100;
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetApiToken("email", "password")).Returns((string)null);
 
@@ -342,10 +337,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -361,10 +355,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -380,10 +373,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -400,10 +392,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -420,10 +411,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -439,10 +429,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -459,10 +448,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -478,10 +466,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
@@ -497,10 +484,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -517,10 +503,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -536,10 +521,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -555,10 +539,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
@@ -574,10 +557,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -594,10 +576,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -613,10 +594,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -632,10 +612,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
 
@@ -651,10 +630,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -670,10 +648,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -689,10 +666,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
@@ -708,10 +684,9 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var userId = 100;
             var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var mapper = ApiTestsCommonSetup.SetupMapper();
+            var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-
-            var api = new ApiV11Controller(service.Object, repository.Object, mapper);
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
             service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 

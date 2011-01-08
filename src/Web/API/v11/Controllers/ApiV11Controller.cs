@@ -18,13 +18,13 @@ namespace Web.API.v11.Controllers
     {
         private IApiService _api;
         private ITasksRepository _tasks;
-        private IMappingEngine _mapper;
+        private IDateTimeProviderService _dateTime;
 
-        public ApiV11Controller(IApiService auth, ITasksRepository repository, IMappingEngine mapper)
+        public ApiV11Controller(IApiService auth, ITasksRepository repository, IDateTimeProviderService date)
         {
             _api = auth;
             _tasks = repository;
-            _mapper = mapper;
+            _dateTime = date;
         }
 
         [HttpPost]
@@ -225,7 +225,7 @@ namespace Web.API.v11.Controllers
 
             if (t.Status == (int)TaskStatus.Started)
             {
-                actualWork += GetDifferenceInSeconds(t.StartedDate, DateTime.UtcNow);
+                actualWork += GetDifferenceInSeconds(t.StartedDate, _dateTime.UtcNow);
             }
 
             return actualWork;
@@ -240,7 +240,7 @@ namespace Web.API.v11.Controllers
 
             if (stop == null)
             {
-                return Convert.ToInt32(Math.Floor((DateTime.UtcNow - start).Value.TotalSeconds));
+                return Convert.ToInt32(Math.Floor((_dateTime.UtcNow - start).Value.TotalSeconds));
             }
 
             return Convert.ToInt32(Math.Floor((stop - start).Value.TotalSeconds));
@@ -251,7 +251,7 @@ namespace Web.API.v11.Controllers
             if (task.Status == (int)TaskStatus.None || task.Status == (int)TaskStatus.Stopped)
             {
                 task.Status = (int)TaskStatus.Started;
-                task.StartedDate = DateTime.UtcNow;
+                task.StartedDate = _dateTime.UtcNow;
                 task.StoppedDate = null;
                 _tasks.Save(task);
             }
@@ -262,7 +262,7 @@ namespace Web.API.v11.Controllers
             if (task.Status == (int)TaskStatus.Started)
             {
                 task.Status = (int)TaskStatus.Stopped;
-                task.StoppedDate = DateTime.UtcNow;
+                task.StoppedDate = _dateTime.UtcNow;
                 task.ActualWork += GetDifferenceInSeconds(task.StartedDate, task.StoppedDate);
 
                 _tasks.Save(task);
