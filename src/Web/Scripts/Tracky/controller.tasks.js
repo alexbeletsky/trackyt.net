@@ -25,6 +25,13 @@
         }
     });
 
+    $('#task-description').live('keyup', function (e) {
+        if (e.keyCode == '13') {
+            e.preventDefault();
+            $('#add-task').click();
+        }
+    });
+
     $('#start-all').live('click', function () {
         a.call('/tasks/start/all', 'PUT', null, function (r) {
             if (r.success) {
@@ -90,7 +97,6 @@
     // initial load of all tasks
     $.blockUI();
     a.call('/tasks/all', 'GET', undefined, function (r) {
-
         if (r.success) {
             for (var t in r.data.tasks) {
                 control.addTask(r.data.tasks[t]);
