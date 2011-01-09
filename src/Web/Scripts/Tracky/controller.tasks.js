@@ -46,6 +46,7 @@
     // Task control handlers
 
     $('.start a').live('click', function () {
+        debugger;
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
@@ -57,6 +58,7 @@
     });
 
     $('.stop a').live('click', function () {
+        debugger;
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {

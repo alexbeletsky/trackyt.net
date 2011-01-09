@@ -202,13 +202,13 @@ tasksControl.prototype = (function () {
 
     function stop(task, t) {
         this.ref = 'stop-' + t.id;
-        task.div.append('<span id="' + this.ref + '" class="stop"><a class="stop" href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>'); 
+        task.div.append('<span id="' + this.ref + '" class="stop"><a href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>'); 
     }
 
     stop.prototype = enableDisable;
 
     function remove(task, t) {
-        task.div.append('<span class="delete"><a class="delete" href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>'); 
+        task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>'); 
     }
 
     return {
