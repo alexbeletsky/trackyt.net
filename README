@@ -1,17 +1,6 @@
-Tracky.net
+Trackyt.net
 
 Web application for time/task tracking.
 
-Branch: patch/v.1.0.2
-
-History
-
-- [2010-10-14] started to use uppercut for builds
-- [2010-09-22] converted web application to MVC 2.0, futher development will be done on MVC
-- [2010-09-12] major frontend operation completed
-- [2010-07-11] major backend operation completed
-- [2010-06-29] project started
-
-TODO
-
+http://trackyt.net
 
