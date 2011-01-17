@@ -48,12 +48,10 @@
         });
     });
 
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
 
     $('.start a').live('click', function () {
-        debugger;
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
@@ -65,7 +63,6 @@
     });
 
     $('.stop a').live('click', function () {
-        debugger;
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
@@ -78,15 +75,30 @@
 
     $('.delete a').live('click', function () {
         var method = $(this).attr('href');
-        a.call(method, 'DELETE', null, function (r) {
-            if (r.success) {
-                control.removeTask(r.data.id);
-            }
+        
+        $.confirm({
+            message: 'Are you sure to delete this task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        a.call(method, 'DELETE', null, function (r) {
+                            if (r.success) {
+                                control.removeTask(r.data.id);
+                            }
+                        });
+                    }
+                },
+                No: {
+                
+                }
+                },
         });
 
         return false;
     });
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Layout and initialization
 
     function layout(task) {
         task.children('.start').addClass('right');
