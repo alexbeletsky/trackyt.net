@@ -6,7 +6,6 @@
 
 html, body 
 {
-    /* background-image: url('Images/public/body-backround.jpg'); */
     font-family: Verdana, Georgia, Serif;
     font-size: 14px;
     color: #424242;
@@ -45,11 +44,7 @@ h1, h2, h3
 {
     display: block;
     position: relative;
-    
-    /*
-    background-image: url('Images/public/header-backround.png');
-    */
-    
+
     background: #B6D84E; /* old browsers */
     background: -moz-linear-gradient(top, #B6D84E 0%, #D7E8A4 100%, #D1E98C 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B6D84E), color-stop(100%,#D7E8A4), color-stop(100%,#D1E98C)); /* webkit */
@@ -104,105 +99,6 @@ h1, h2, h3
 
 #navigation > ul li { float:left; height:50px; }
 
-/* Navigation button images 
-
-#navigation ul li.home
-{
-    background: transparent url('Images/public/home-button.jpg') no-repeat;
-}
-
-#navigation ul li.product-tour
-{
-    background: transparent url('Images/public/product-tour-button.jpg') no-repeat;
-}
-
-#navigation ul li.blog
-{
-    background: transparent url('Images/public/blog-button.jpg') no-repeat;
-}
-
-#navigation ul li.about-us
-{
-    background: transparent url('Images/public/about-us-button.jpg') no-repeat;
-}
-
-#navigation ul li.login
-{
-    background: transparent url('Images/public/login-button.jpg') no-repeat;
-}
-
-#navigation ul li.registration
-{
-    background: transparent url('Images/public/registration-button.jpg') no-repeat;
-}
-
-#navigation ul li.support
-{
-    background: transparent url('Images/public/support-button.jpg') no-repeat;
-}
-
-*/
-
-/* Navigation button size 
-
-#navigation ul li.home a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 79px;
-}
-
-#navigation ul li.product-tour a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 148px;
-}
-
-#navigation ul li.blog a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 68px;
-}
-
-#navigation ul li.about-us a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 102px;
-}
-
-
-#navigation ul li.login a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 79px;
-}
-
-#navigation ul li.registration a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 138px;
-}
-
-#navigation ul li.support a
-{
-    display:block;
-    background: none;
-    height: 50px;
-    width: 89px;
-}
-*/
-
 /* Main container */
 
 #main-container
@@ -242,7 +138,7 @@ h1, h2, h3
 /*
 
 Sticky Footer by Ryan Fait
-http://ryanfait.com/
+http://ryanfait.com/sticky-footer/
 
 */
 
