@@ -25,6 +25,13 @@
         }
     });
 
+    $('#task-description').live('keyup', function (e) {
+        if (e.keyCode == '13') {
+            e.preventDefault();
+            $('#add-task').click();
+        }
+    });
+
     $('#start-all').live('click', function () {
         a.call('/tasks/start/all', 'PUT', null, function (r) {
             if (r.success) {
@@ -40,7 +47,6 @@
             }
         });
     });
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
@@ -69,15 +75,30 @@
 
     $('.delete a').live('click', function () {
         var method = $(this).attr('href');
-        a.call(method, 'DELETE', null, function (r) {
-            if (r.success) {
-                control.removeTask(r.data.id);
-            }
+        
+        $.confirm({
+            message: 'Are you sure to delete this task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        a.call(method, 'DELETE', null, function (r) {
+                            if (r.success) {
+                                control.removeTask(r.data.id);
+                            }
+                        });
+                    }
+                },
+                No: {
+                
+                }
+                },
         });
 
         return false;
     });
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Layout and initialization
 
     function layout(task) {
         task.children('.start').addClass('right');
@@ -88,7 +109,6 @@
     // initial load of all tasks
     $.blockUI();
     a.call('/tasks/all', 'GET', undefined, function (r) {
-
         if (r.success) {
             for (var t in r.data.tasks) {
                 control.addTask(r.data.tasks[t]);

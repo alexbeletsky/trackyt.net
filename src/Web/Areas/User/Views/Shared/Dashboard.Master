@@ -6,11 +6,13 @@
 <head runat="server">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link href="../../../../Content/dashboard.css?ver=102" rel="stylesheet" type="text/css" />
+    <link href="../../../../Content/confirm.css?ver=102" rel="stylesheet" type="text/css" />
 
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/jquery.blockUI.js") %>"  type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/json2.js") %>" type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/jquery.postJson.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/ga.js") %>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
@@ -19,6 +21,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div class="wrapper">
     <div id="account-details">
         <fieldset>
             <div id="apitoken">
@@ -31,13 +34,13 @@
             </div>
         </fieldset>
         <div class="clear"></div>
-<%--        <a id="close-account-details" href="#">[x] Close</a>--%>
     </div>
     <div id="top">
         <div id="logo">
         </div>
         <div id="navigation-container">
-            <%--Account | Log Off--%>
+            <%: Html.ActionLink("Faq", "Faq", new { area = "", controller = "Home" }, new { id = "faq" })%>            
+            <span> | </span>
             <a id="show-account-details" href="show/account/details">Account</a>
             <span> | </span>
             <%: Html.ActionLink("Sign Out", "Index", new { area = "", controller = "Home" }, new { id = "sign-out" })%>
@@ -47,7 +50,10 @@
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
     </div>
+    <div class="push"></div>
+    </div>
     <div id="footer">
+        <% Html.RenderPartial("Footer"); %>                
     </div>
 </body>
 </html>

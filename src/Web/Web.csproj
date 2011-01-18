@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -100,6 +101,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Helpers\BlogPostsHelper.cs" />
+    <Compile Include="Helpers\BlogPostProcessor.cs" />
+    <Compile Include="Infrastructure\Error\HandleJsonError.cs" />
+    <Compile Include="Infrastructure\Exceptions\UserNotAuthorized.cs" />
+    <Compile Include="Models\LastArticleFromBlogModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Areas\User\Controllers\DashboardController.cs" />
@@ -131,13 +137,14 @@
     <Content Include="Areas\Admin\Views\AdminUserManagement\Table.aspx" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
-    <Content Include="Areas\Blog\Views\Posts\Pager.ascx" />
+    <Content Include="Areas\Blog\Views\Shared\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
+    <Content Include="Content\confirm.css" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Scripts\ga.js" />
     <Content Include="FunctionalTests.html" />
-    <Content Include="Scripts\Tests\acceptance\tests.bugs.js" />
+    <Content Include="Scripts\jquery.confirm.js" />
     <Content Include="Scripts\Tests\acceptance\tests.dashboard.js" />
     <Content Include="Scripts\Tests\acceptance\tests.home.js" />
     <Content Include="Scripts\Tests\acceptance\tests.signup.js" />
@@ -161,9 +168,7 @@
     <Content Include="Scripts\Tracky\controller.tasks.js" />
     <Content Include="Scripts\Tracky\control.tasks.js" />
     <Content Include="UnitTests.html" />
-    <Content Include="Scripts\Tests\unit\tests.registration-validation.js" />
-    <Content Include="Scripts\Tests\unit\tests.tracky-controller.js" />
-    <Content Include="Scripts\Tests\unit\tests.trackyt.js" />
+    <Content Include="Scripts\Tests\unit\tests.controller.registration.js" />
     <Content Include="Views\Error\GenericError.aspx" />
     <Content Include="Views\Home\Api.aspx" />
     <Content Include="Views\Home\ApiV10.aspx" />
@@ -186,10 +191,12 @@
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
-    <Content Include="Scripts\Tracky\registration-validation.js" />
-    <Content Include="Scripts\Tracky\tracky.js" />
-    <Content Include="Scripts\Tracky\tracky-controller.js" />
+    <Content Include="Scripts\Tracky\controller.registration.js" />
     <Content Include="Views\Shared\ApiTableOfContent.ascx" />
+    <Content Include="Views\Shared\Copyright.ascx" />
+    <Content Include="Views\Shared\Footer.ascx" />
+    <Content Include="Views\Shared\LastArticleFromBlog.ascx" />
+    <Content Include="Views\Shared\Navigation.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -214,7 +221,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
   </ItemGroup>
   <ItemGroup>

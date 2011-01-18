@@ -43,6 +43,12 @@
         </div>
         </div>
         <div class="clear"></div>
+
+        <p>
+            <% Html.RenderAction("LastArticleFromBlog"); %>
+        </p>     
+
+        <h3>Feedback</h3>
         <p>
             As our user and customer, make your suggestions or problem visible for us. In our turn we'll do the best to match our vision with yours expectations. Create your account or start temporary one and boost your productivity and time management with <strong>trackyt.net</strong>
         </p>

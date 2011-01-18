@@ -1,13 +1,102 @@
-﻿body 
+﻿* 
+{
+    margin: 0;
+}
+
+html, body 
 {
     /* 5e6c78 */ 
     background-color: #5a748a;
     background-image: url('Images/dashboard/back.png');
-    font-family: Georgia;
+    font-family: Verdana, Georgia, Serif;
+    font-size: 14px;
+    color: #424242;
     
     margin: 0;
     padding: 0;
 }
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -130px; /* the bottom margin is the negative value of the footer's height */
+}
+
+
+footer, .push {
+	height: 130px; /* .push must be the same height as .footer */
+	
+    position: relative;
+    width: 100%;
+    background-color: #192832;
+    background-image: url('Images/public/footer-backround.png');
+    background-position:center;
+    background-repeat: no-repeat;
+    margin-top: -30px;
+    overflow: hidden;
+    
+    color: #eeeeee;
+    font-size: 10px;    
+}
+
+/*
+    TODO: code below is copy from public.css, should be fixed to avoid duplication
+*/
+
+#footer a
+{
+    text-decoration:none;    
+    color: #eeeeee;
+}
+
+#navigation-footer
+{
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 95%;
+}
+
+.navigation-footer-block
+{
+    font-size: 12px;    
+}
+
+.navigation-footer-block ul
+{
+    padding: 5px;
+    margin-right: 16px;
+    list-style: none outside none;
+}
+
+.navigation-footer-block li
+{
+    margin: 4px;
+}
+
+.navigation-footer-block .bold
+{
+    font-weight:bold;
+}
+
+.navigation-footer-block img
+{
+    position: relative;
+    margin-top: 6px;
+    border: 0px;
+}
+
 
 #top
 {
@@ -59,7 +148,9 @@
 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;        
+    border-radius: 10px; 
+    
+     z-index: 500;           
 }
 
 #new-task-control
