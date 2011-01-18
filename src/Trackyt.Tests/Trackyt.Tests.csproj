@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -72,9 +73,11 @@
     <Compile Include="Tests\Controllers\API\ApiV11ControllerTests.cs" />
     <Compile Include="Tests\Controllers\API\ApiV1ControllerTests.cs" />
     <Compile Include="Tests\Controllers\Blog\PostsControllerTests.cs" />
+    <Compile Include="Tests\Controllers\Public\HomeControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
     <Compile Include="Tests\Controllers\User\DashboardTests.cs" />
+    <Compile Include="Tests\Helpers\BlogPostsHelperTests.cs" />
     <Compile Include="Tests\Helpers\PagerHtmlExtensionTests.cs" />
     <Compile Include="Tests\Mocks\RegistrationViewMock.cs" />
     <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />

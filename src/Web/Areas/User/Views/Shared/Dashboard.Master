@@ -34,7 +34,6 @@
             </div>
         </fieldset>
         <div class="clear"></div>
-<%--        <a id="close-account-details" href="#">[x] Close</a>--%>
     </div>
     <div id="top">
         <div id="logo">

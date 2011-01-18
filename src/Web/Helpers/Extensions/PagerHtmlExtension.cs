@@ -21,11 +21,6 @@ namespace Web.Helpers.Extensions
         {
             var pageBuilder = new PagerBuilder(HttpUtility.UrlDecode(url), totalPages, currentPage, pagerSize);
 
-            //for (var index = 1; index < totalPages + 1; index++)
-            //{
-            //    pageBuilder.AddPage(new Page(index, index == currentPage));
-            //}
-
             return pageBuilder.ToMvcHtmlString();
         }
     }
