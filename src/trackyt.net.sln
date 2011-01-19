@@ -26,8 +26,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v.1.0.1", "v.1.0.1", "{0EC8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v.1.0.2", "v.1.0.2", "{5C78FEDA-1294-4C73-ACE9-C95E3D15D6CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiToken.Generate.App", "Upgrade\v.1.0.2\ApiToken.Generate.App\ApiToken.Generate.App.csproj", "{107D2887-B887-41DC-8AC7-4C56C2FE3B82}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,16 +76,6 @@ Global
 		{486CFA8B-9C56-482C-BA2D-7304634A4BC9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{486CFA8B-9C56-482C-BA2D-7304634A4BC9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{486CFA8B-9C56-482C-BA2D-7304634A4BC9}.Release|x86.ActiveCfg = Release|Any CPU
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Debug|x86.ActiveCfg = Debug|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Debug|x86.Build.0 = Debug|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Release|Any CPU.ActiveCfg = Release|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Release|Mixed Platforms.Build.0 = Release|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Release|x86.ActiveCfg = Release|x86
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +87,5 @@ Global
 		{486CFA8B-9C56-482C-BA2D-7304634A4BC9} = {FD2C3643-911F-4FC4-A89E-09F5DB8F67E8}
 		{0EC8BCEE-9CE9-4B9C-8F80-C338F14166EC} = {1A405510-C6D4-4BF5-BBA7-5AD8CABDA05F}
 		{5C78FEDA-1294-4C73-ACE9-C95E3D15D6CE} = {1A405510-C6D4-4BF5-BBA7-5AD8CABDA05F}
-		{107D2887-B887-41DC-8AC7-4C56C2FE3B82} = {5C78FEDA-1294-4C73-ACE9-C95E3D15D6CE}
 	EndGlobalSection
 EndGlobal

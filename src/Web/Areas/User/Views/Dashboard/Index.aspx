@@ -24,9 +24,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/jquery.confirm.js") + "?ver=102" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=102" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=102" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=102" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.account.js") + "?ver=102" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/jquery.confirm.js") + "?ver=103" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=103" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=103" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=103" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.account.js") + "?ver=103" %>"></script>
 </asp:Content>
