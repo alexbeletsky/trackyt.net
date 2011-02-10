@@ -87,6 +87,7 @@
     <Compile Include="Tests\Services\AuthenticationServicesTests.cs" />
     <Compile Include="Tests\Services\CredentialServicesTests.cs" />
     <Compile Include="Tests\Services\HashServiceTests.cs" />
+    <Compile Include="Tests\Services\NotificationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">

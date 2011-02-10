@@ -85,6 +85,8 @@
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\IHashService.cs" />
     <Compile Include="Services\IApiService.cs" />
+    <Compile Include="Services\INotificationService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

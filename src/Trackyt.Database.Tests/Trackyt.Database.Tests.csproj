@@ -61,6 +61,7 @@
     <Compile Include="Tests\DAL\TasksRepositoryTests.cs" />
     <Compile Include="Tests\DAL\UsersRepositoryTests.cs" />
     <Compile Include="Tests\Services\ApiServicesTests.cs" />
+    <Compile Include="Tests\Services\NotificationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">
