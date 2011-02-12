@@ -23,6 +23,10 @@ namespace Web.Infrastructure
             Bind<IHashService>().To<HashService>();
             Bind<IApiService>().To<ApiService>();
             Bind<IDateTimeProviderService>().To<DateTimeProviderService>();
+            Bind<INotificationService>().ToProvider<TrackyNotificationServiceProvider>();
+            Bind<IEMailService>().To<EmailService>();
+            Bind<ICredentialsService>().To<CredentialsService>();
+            Bind<ICredentialsRepository>().To<CredentialsRepository>();
         }
     }
 }

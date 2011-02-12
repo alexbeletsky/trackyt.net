@@ -76,6 +76,7 @@
     <Compile Include="Services\CredentialsService.cs" />
     <Compile Include="Services\DateTimeProviderService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\NotificationServiceForDebug.cs" />
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Secutity\IFormsAuthentication.cs" />

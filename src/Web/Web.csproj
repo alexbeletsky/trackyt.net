@@ -105,6 +105,7 @@
     <Compile Include="Helpers\BlogPostProcessor.cs" />
     <Compile Include="Infrastructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrastructure\Exceptions\UserNotAuthorized.cs" />
+    <Compile Include="Infrastructure\TrackyNotificationServiceProvider.cs" />
     <Compile Include="Models\LastArticleFromBlogModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />

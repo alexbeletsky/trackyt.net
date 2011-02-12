@@ -32,14 +32,17 @@ namespace Trackyt.Core.Services
                     "<p>" +
                         "You password used during registration is: {1}" +
                     "<p>" +
-                        "Please follow our Twitter for news and status updates: " +
+                        "Keep this email, because we will not be able to remind you password if you lost it. In case of any questions, please just respond to this email." +
+                    "</p>" +
+                    "<p>" +
+                        "Please follow our Twitter for news and updates: " +
                     "</p>" +
                     "<p>" +
                        "<a href=\"http://twitter.com/#!/trackytnet\">http://twitter.com/#!/trackytnet</a>" +
                     "</p>" +
-                    "<p>" +
-                        "Please keep this email, because we will not be able to remind you password if you lost it. If any question, please just respond to this email." +
-                    "</p>"
+                    "<p></p>" +
+                    "<p><i>trackyt.net support team</i></p>" +
+                    "<p>@trackytnet</p>"
                 , usersEmail, password);
 
             var email = new EmailMessage
