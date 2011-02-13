@@ -15,7 +15,6 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 {
     // API v.1.1 is covered with integration tests (/Scripts/Tests/api/tests.api.v11.js)
 
-    // TODO: API unit tests for all controller methods
     [TestFixture]
     public class ApiV11ControllerTests
     {
@@ -693,36 +692,5 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // act
             api.StopAll(token);
         }
-
-        // TODO: API enable (correct) test then DateTimeProvider implmented
-        //[Test]
-        //public void All_IfTaskStatusIsStarted_SpentEqualsToActualWorkPlusTimeSpanBetweenStartedDateAndCurrentDate()
-        //{
-        //    // arrange
-        //    var userId = 100;
-        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-        //    var mapper = ApiTestsCommonSetup.SetupMapper();
-        //    var service = new Mock<IApiService>();
-
-        //    var api = new ApiV11Controller(service.Object, repository.Object, mapper);
-
-        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
-
-        //    // act 
-        //    var results = api.All(token) as JsonResult;
-        //    dynamic data = results.Data;
-
-        //    var difference = GetTimeDifference();
-
-        //    var tasksList = data.data.tasks as IList<TaskDescriptor>;
-        //    Assert.That(tasksList, Is.Not.Null);
-        //    Assert.That(tasksList[1].spent, Is.EqualTo(20 + difference), "spend equal to task ActualWork field");
-        //}
-
-        //private static int GetTimeDifference()
-        //{
-        //    var difference = Convert.ToInt32(Math.Floor((DateTime.Now - ApiTestsCommonSetup.StartedDate).TotalSeconds));
-        //    return difference;
-        //}
     }
 }

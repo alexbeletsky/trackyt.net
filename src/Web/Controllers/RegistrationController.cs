@@ -34,7 +34,7 @@ namespace Web.Controllers
                 var email = model.Email;
                 var password = model.Password;
 
-                if (_auth.RegisterNewUser(email, password, false))
+                if (_auth.RegisterNewUser(email, password))
                 {
                     _notification.NotifyUserOnRegistration(email, password);
                     return Redirect("~/User/Dashboard");
@@ -55,7 +55,7 @@ namespace Web.Controllers
             var email = "temp" + postfix + "@trackyt.net";
             var password = email;
 
-            _auth.RegisterNewUser(email, password, true);
+            _auth.RegisterTemporaryUser(email, password);
 
             return Redirect("~/User/Dashboard");
         }

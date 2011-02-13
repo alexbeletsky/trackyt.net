@@ -135,7 +135,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass");
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -156,7 +156,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass");
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -178,7 +178,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass");
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));
@@ -199,8 +199,8 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.RegisterNewUser("test@trackyt.net", "mypass", false);
-            var result = service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass");
+            var result = service.RegisterNewUser("test@trackyt.net", "mypass");
 
             // assert
             Assert.That(result, Is.False);
@@ -220,7 +220,7 @@ namespace Trackyt.Core.Tests.Tests.Services
             usersRepository.Setup(u => u.Save(It.IsAny<User>())).Callback((User u) => users.Add(u));
 
             // act
-            service.RegisterNewUser("test@trackyt.net", "mypass", false);
+            service.RegisterNewUser("test@trackyt.net", "mypass");
 
             // assert
             Assert.That(users.Count, Is.GreaterThan(0));

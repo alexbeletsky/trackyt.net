@@ -10,7 +10,8 @@ namespace Trackyt.Core.Services
         bool Authenticate(string email, string password);
         int GetUserIdByEmail(string email);
 
-        // TODO: refactor method to do not accept boolean flags
-        bool RegisterNewUser(string email, string password, bool temp);
+        //bool RegisterNewUser(string email, string password, bool temp);
+        bool RegisterNewUser(string email, string password);
+        bool RegisterTemporaryUser(string email, string password);
     }
 }

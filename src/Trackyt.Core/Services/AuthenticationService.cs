@@ -40,13 +40,36 @@ namespace Trackyt.Core.Services
             return (user == null ? 0 : user.Id);  
         }
 
-        public bool RegisterNewUser(string email, string password, bool temp)
+        public bool RegisterNewUser(string email, string password)
         {
             if (_users.Users.WithEmail(email) != null)
             {
                 return false;
             }
 
+            var user = CreateUserWithTempFlag(email, password, false);
+
+            SaveAndAuthenticate(email, password, user);
+
+            return true;
+        }
+
+        public bool RegisterTemporaryUser(string email, string password)
+        {
+            if (_users.Users.WithEmail(email) != null)
+            {
+                return false;
+            }
+
+            var user = CreateUserWithTempFlag(email, password, true);
+
+            SaveAndAuthenticate(email, password, user);
+
+            return true;
+        }
+
+        private User CreateUserWithTempFlag(string email, string password, bool temp)
+        {
             var user = new User
             {
                 Email = email,
@@ -55,11 +78,13 @@ namespace Trackyt.Core.Services
                 Temp = temp
             };
 
+            return user;
+        }
+
+        private void SaveAndAuthenticate(string email, string password, User user)
+        {
             _users.Save(user);
-
             Authenticate(email, password);
-
-            return true;
         }
     }
 }

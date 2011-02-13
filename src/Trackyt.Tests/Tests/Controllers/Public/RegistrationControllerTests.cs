@@ -55,7 +55,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Returns(true);
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(true);
             auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
             //act
@@ -80,7 +80,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Returns(false);
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(false);
             //auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
             //act
@@ -108,7 +108,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
-            auth.Setup(a => a.RegisterNewUser("a@a.com", "password", false)).Throws(new Exception());
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Throws(new Exception());
 
 
             //act / post
@@ -127,7 +127,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var resuts = controller.QuickStart() as RedirectResult;
 
             //post
-            auth.Verify(a => a.RegisterNewUser(It.IsAny<string>(), It.IsAny<string>(), true));
+            auth.Verify(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>()));
         }
 
         [Test]
@@ -139,9 +139,9 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var controller = new RegistrationController(auth.Object, notification.Object);
 
             var users = new List<dynamic>();
-            auth.Setup(a => a.RegisterNewUser(It.IsAny<string>(), It.IsAny<string>(), true)).Callback(
-                (string e, string p, bool t) =>
-                { users.Add(new { Email = e, Password = p, Temp = t }); }
+            auth.Setup(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>())).Callback(
+                (string e, string p) =>
+                { users.Add(new { Email = e, Password = p, Temp = true }); }
             );
 
             //act
@@ -183,7 +183,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 Password = "111111"
             };
 
-            auth.Setup(a => a.RegisterNewUser("a@a.com", "111111", false)).Returns(true);
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "111111")).Returns(true);
 
             //act
             var result = controller.Register(user) as RedirectResult;

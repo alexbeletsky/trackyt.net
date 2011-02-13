@@ -5,6 +5,8 @@ using Trackyt.Core.Services;
 
 namespace Web.Infrastructure
 {
+    // http://stackoverflow.com/questions/542875/how-do-i-check-if-debug-is-enabled-in-web-config
+
     public class TrackyNotificationServiceProvider : Provider<INotificationService> 
     {
         protected override INotificationService CreateInstance(IContext context)

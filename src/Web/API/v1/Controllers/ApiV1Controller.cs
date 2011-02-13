@@ -20,13 +20,11 @@ namespace Web.API.v1.Controllers
     // Information used, how to unit test JSON response
     // http://www.heartysoft.com/post/2010/05/25/ASPNET-MVC-Unit-Testing-JsonResult-Returning-Anonymous-Types.aspx
 
-    //TODO: error handling
-    //TODO: HandleError have to be added here (perhaps, this not only class to have it)
-    // Information
+    // HandleError Information
     // http://forums.asp.net/p/1471123/3407713.aspx
     // http://weblogs.asp.net/scottgu/archive/2008/07/14/asp-net-mvc-preview-4-release-part-1.aspx
 
-    // TODO: code start to stink and need to be refactored..
+    // NOTE: This controller is no longer used, see ApiV11Controller 
 
     public class ApiV1Controller : Controller
     {
