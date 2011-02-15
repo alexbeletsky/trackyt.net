@@ -41,7 +41,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
 
         public void Save(BlogPost blogPost)
         {
-            if (_context.BlogPosts.WithUrl(blogPost.Url) != null)
+            if (blogPost.Id == 0 && _context.BlogPosts.WithUrl(blogPost.Url) != null)
             {
                 throw new DuplicateKeyException(blogPost, "Blog post with the same URL already exists. Please correct blog post title.");
             }

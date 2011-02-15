@@ -5,7 +5,7 @@
     <div id="table-container">
         <table>
             <tr>
-                <th>Id</th><th>Email</th><th>Password</th><th>Temp</th>    
+                <th>Id</th><th>Email</th><th>Temp</th>    
             </tr>
 
             <% foreach (var user in Model)

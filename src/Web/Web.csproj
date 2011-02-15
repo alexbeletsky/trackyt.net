@@ -128,9 +128,13 @@
   <ItemGroup>
     <Content Include="ApiTests.html" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\AllPosts.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Edit.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Summary.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Updated.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\View.aspx" />
     <Content Include="Areas\Admin\Views\AdminLogin\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminDashboard\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminUserManagement\Index.aspx" />
@@ -143,6 +147,8 @@
     <Content Include="Content\confirm.css" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
+    <Content Include="Scripts\Admin\control.editposts.js" />
+    <Content Include="Scripts\Admin\controller.editposts.js" />
     <Content Include="Scripts\ga.js" />
     <Content Include="FunctionalTests.html" />
     <Content Include="Scripts\jquery.confirm.js" />
@@ -163,7 +169,8 @@
     <Content Include="Scripts\Tests\framework\funcunit\template.html" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.css" />
     <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
-    <Content Include="Scripts\Tests\unit\tests.controls.tasks.js" />
+    <Content Include="Scripts\Tests\unit\tests.control.editposts.js" />
+    <Content Include="Scripts\Tests\unit\tests.control.tasks.js" />
     <Content Include="Scripts\Tracky\api.js" />
     <Content Include="Scripts\Tracky\controller.account.js" />
     <Content Include="Scripts\Tracky\controller.tasks.js" />

@@ -5,6 +5,7 @@ using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.DAL.Repositories;
 using Web.Areas.Admin.Models;
 using Web.Infrastructure.Security;
+using Trackyt.Core.DAL.Extensions;
 
 namespace Web.Areas.Admin.Controllers
 {
@@ -55,6 +56,43 @@ namespace Web.Areas.Admin.Controllers
             }
 
             return View(post);
+        }
+
+        public ActionResult AllPosts()
+        {
+            return View();
+        }
+
+        public JsonResult Posts()
+        {
+            return Json(new { success = true, data = new { posts = _blogRepository.BlogPosts.ToArray() } }, JsonRequestBehavior.AllowGet);
+        }
+
+        new public ActionResult View(string url)
+        {
+            var blogPost = _blogRepository.BlogPosts.WithUrl(url);
+            return View(blogPost);
+        }
+
+        public ActionResult Edit(string url)
+        {
+            var blogPost = _blogRepository.BlogPosts.WithUrl(url);
+            return View(blogPost);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(BlogPost model)
+        {
+            var blogPost = _blogRepository.BlogPosts.WithUrl(model.Url);
+
+            blogPost.Title = model.Title;
+            blogPost.Body = model.Body;
+            blogPost.CreatedBy = model.CreatedBy;
+
+            _blogRepository.Save(blogPost);
+
+            return View("Updated", blogPost);
         }
 
         private string CreatePostUrl(string title)

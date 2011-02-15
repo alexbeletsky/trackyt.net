@@ -8,6 +8,9 @@
                     <%: Html.ActionLink("Summary", "Summary") %></li>
                 <li>
                     <%: Html.ActionLink("Add post", "AddPost") %></li>
+                <li>
+                    <%: Html.ActionLink("All posts", "AllPosts") %>
+                </li>
             </ul>
         </div>
     </div>
