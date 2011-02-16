@@ -17,10 +17,13 @@
                     <div class="blogpost">
                         <div class="header">
                             <div class="title">
-                                <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url }) %>
-                            </div>
+                                <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url })%>
+                               </div>
                             <div class="posted-on">
                                 Published on: <%: blogPost.CreatedDate.ToShortDateString() %> By: <%: blogPost.CreatedBy %>
+                            </div>
+                            <div class="comments">
+                                <a href="blog/posts/<%: blogPost.Url %>#disqus_thread" data-disqus-identifier="<%: "disqus_id_" + blogPost.Id %>"></a>
                             </div>
                         </div>
                         <div class="body">
@@ -33,6 +36,19 @@
 
             <%: Html.Partial("Pager") %>
 
+            <!-- Disqus -->
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'trackytnetproductblog'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function () {
+                    var s = document.createElement('script'); s.async = true;
+                    s.type = 'text/javascript';
+                    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+                    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                } ());
+            </script>
         </div>
     </div>
 </asp:Content>

@@ -274,8 +274,16 @@ http://ryanfait.com/sticky-footer/
     margin-top: 5px;
     margin-left: 10px;
     color: #797878;
-    
+    display: inline-block;
+    float: left;
     font-size:10px;
+}
+
+.blogpost .header .comments
+{
+    display: inline-block;    
+    float: right;
+    font-size:10px;    
 }
 
 .pager
@@ -305,6 +313,11 @@ http://ryanfait.com/sticky-footer/
 .clear
 {
     clear: both;
+}
+
+#dsq-content 
+{
+    padding: 20px;
 }
 
 /* Main page */
