@@ -3,10 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Model.Title %></h2>
     <h5>
-    Published on: <%: Model.CreatedDate.ToShortDateString()%> By: <%: Model.CreatedBy%>
+        Published on: <%: Model.CreatedDate.ToShortDateString()%> By: <%: Model.CreatedBy%>
     </h5>
     <div>
-    <%: MvcHtmlString.Create(Model.Body)%>
+        <%: MvcHtmlString.Create(Model.Body)%>
+    </div>
+    </span>
+        <div>
+        <%: Html.ActionLink("Back to posts", "AllPosts") %>
     </div>
 </asp:Content>
 

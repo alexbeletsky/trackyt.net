@@ -129,6 +129,7 @@
     <Content Include="ApiTests.html" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\AllPosts.aspx" />
+    <Content Include="Areas\Admin\Views\AdminBlogManagement\Deleted.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Edit.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />

@@ -40,7 +40,7 @@ namespace Web.Helpers
 
             if (addReadMoreHref)
             {
-                body += string.Format(ReadMoreHrefFormat, _post.Url);
+                body += string.Format(ReadMoreHrefFormat, "blog/posts/" + _post.Url);
             }
 
             if (body.EndsWith(Space))

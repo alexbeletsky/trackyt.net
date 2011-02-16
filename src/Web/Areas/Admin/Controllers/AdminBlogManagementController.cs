@@ -21,19 +21,19 @@ namespace Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return base.View();
         }
 
         public ActionResult Summary()
         {
             var blogPostCount = _blogRepository.BlogPosts.Count();
 
-            return View(new AdminBlogSummary(blogPostCount));
+            return base.View(new AdminBlogSummary(blogPostCount));
         }
 
         public ActionResult AddPost()
         {
-            return View();
+            return base.View();
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace Web.Areas.Admin.Controllers
 
         public ActionResult AllPosts()
         {
-            return View();
+            return base.View();
         }
 
         public JsonResult Posts()
@@ -71,13 +71,13 @@ namespace Web.Areas.Admin.Controllers
         new public ActionResult View(string url)
         {
             var blogPost = _blogRepository.BlogPosts.WithUrl(url);
-            return View(blogPost);
+            return base.View(blogPost);
         }
 
         public ActionResult Edit(string url)
         {
             var blogPost = _blogRepository.BlogPosts.WithUrl(url);
-            return View(blogPost);
+            return base.View(blogPost);
         }
 
         [HttpPost]
@@ -92,7 +92,15 @@ namespace Web.Areas.Admin.Controllers
 
             _blogRepository.Save(blogPost);
 
-            return View("Updated", blogPost);
+            return base.View("Updated", blogPost);
+        }
+
+        public ActionResult Delete(string url)
+        {
+            var blogPost = _blogRepository.BlogPosts.WithUrl(url);
+            _blogRepository.Delete(blogPost);
+
+            return base.View("Deleted");
         }
 
         private string CreatePostUrl(string title)

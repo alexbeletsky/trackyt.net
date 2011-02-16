@@ -42,7 +42,7 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "AllPosts") %>
+        <%: Html.ActionLink("Back to posts", "AllPosts") %>
     </div>
 
 </asp:Content>
