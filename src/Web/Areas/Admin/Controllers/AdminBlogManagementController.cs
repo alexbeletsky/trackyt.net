@@ -9,6 +9,7 @@ using Trackyt.Core.DAL.Extensions;
 
 namespace Web.Areas.Admin.Controllers
 {
+    //TODO: add tests for untested methods
     [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
     public class AdminBlogManagementController : Controller
     {
@@ -40,6 +41,10 @@ namespace Web.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult AddPost(BlogPost post)
         {
+            //TODO: there is a bug here - even blog post could not be save to repository and exception is thrown
+            //it is only model state is updated, but post instance is pass as view model. View checks model for null
+            //and if it is not null, treat as successful operation. So, in case of failure it will show success message
+            //together with error message.
             try
             {
                 if (ModelState.IsValid)

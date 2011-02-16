@@ -20,10 +20,11 @@
                                 <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url })%>
                                </div>
                             <div class="posted-on">
-                                Published on: <%: blogPost.CreatedDate.ToShortDateString() %> By: <%: blogPost.CreatedBy %>
+                                Published on: <%: blogPost.CreatedDate.ToShortDateString() %> 
+                                By: <a href="<%: blogPost.Site %>"><%: blogPost.CreatedBy %></a>
                             </div>
                             <div class="comments">
-                                <a href="blog/posts/<%: blogPost.Url %>#disqus_thread" data-disqus-identifier="<%: "disqus_id_" + blogPost.Id %>"></a>
+                                <a href="<%: Url.Action("PostByUrl", new { url = blogPost.Url }) %>#disqus_thread" data-disqus-identifier="<%: "disqus_id_" + blogPost.Id %>"></a>
                             </div>
                         </div>
                         <div class="body">

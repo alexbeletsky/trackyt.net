@@ -40,6 +40,14 @@
                 <%: Html.TextBoxFor(model => model.CreatedBy) %>
                 <%: Html.ValidationMessageFor(model => model.CreatedBy) %>
             </div>
+
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Site) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Site) %>
+                <%: Html.ValidationMessageFor(model => model.Site) %>
+            </div>
             
             <p>
                 <input type="submit" value="Post" />

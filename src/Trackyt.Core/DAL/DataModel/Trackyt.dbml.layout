@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Trackyt">
   <DataContextMoniker Name="/TrackytDataContext" />
   <nestedChildShapes>
-    <classShape Id="c0349117-c1dc-4edd-a566-e979a4bc57b1" absoluteBounds="4.125, 0.5, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/TrackytDataContext/BlogPost" />
-      <nestedChildShapes>
-        <elementListCompartment Id="32110413-655a-4b47-81bd-97d87a2b3fac" absoluteBounds="4.14, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="aa61bf61-75bd-41f0-a9ef-891a2d05ccce" absoluteBounds="4.125, 3.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/TrackytDataContext/Credential" />
       <nestedChildShapes>
@@ -33,5 +27,11 @@
         <classShapeMoniker Id="3d9d51b4-70cd-4415-923c-2c52b155870f" />
       </nodes>
     </associationConnector>
+    <classShape Id="73be1be0-05ab-4d48-959f-cdd74609f203" absoluteBounds="4.25, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TrackytDataContext/BlogPost" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2a115795-3901-4ddf-9242-f6dcaef0ab61" absoluteBounds="4.265, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -1,0 +1,1 @@
+UPDATE [BlogPosts] SET Site='http://twitter.com/#!/alexbeletsky' WHERE CreatedBy='Alexander Beletsky';
