@@ -17,6 +17,16 @@ a
     color: #3e7143;
 }
 
+a:hover
+{
+    cursor: pointer;
+}
+
+img
+{
+    border: 0px;
+}    
+
 p
 {
     margin: 10px;
@@ -212,7 +222,6 @@ http://ryanfait.com/sticky-footer/
 {
     position: relative;
     margin-top: 6px;
-    border: 0px;
 }
 
 #copyright

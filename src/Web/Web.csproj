@@ -96,6 +96,7 @@
     <Compile Include="Areas\Admin\Models\AdminUserSummary.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Blog\Controllers\RssController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,11 +144,13 @@
     <Content Include="Areas\Admin\Views\AdminUserManagement\Table.aspx" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
+    <Content Include="Areas\Blog\Views\Rss\Feed.aspx" />
     <Content Include="Areas\Blog\Views\Shared\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Content\confirm.css" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
+    <Content Include="Content\Images\public\rss.gif" />
     <Content Include="Scripts\Admin\control.editposts.js" />
     <Content Include="Scripts\Admin\controller.editposts.js" />
     <Content Include="Scripts\ga.js" />

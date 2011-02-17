@@ -11,7 +11,11 @@
                <%
            } 
              %>
-
+             <div class="right">
+                <a href="http://<%: Request.Url.Host + Url.Action("Index", new { area="Blog", controller = "Posts" }) %>/feed.xml" title="Subscribe">
+                    <img src="<%: Url.Content("~/Content/Images/public/rss.png") %>" alt="Subscribe">
+                </a>
+            </div>
             <% foreach (var blogPost in Model.Content)
                { %>
                     <div class="blogpost">

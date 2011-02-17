@@ -15,6 +15,12 @@ namespace Web.Areas.Blog
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Blog_RssFeed",
+                "Blog/feed.xml",
+                new { controller = "Rss", action = "Feed" }
+            );
+
+            context.MapRoute(
                 "Blog_PostByUrl",
                 "Blog/Posts/{url}",
                 new { controller = "Posts", action = "PostByUrl" }
