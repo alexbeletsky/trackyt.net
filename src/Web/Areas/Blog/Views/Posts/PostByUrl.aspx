@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="content">
+        <div id="blogpost-container">
+
         <% if (Model == null)
            {
                 %>
@@ -13,7 +15,11 @@
            else
            {
                %>
-               <div id="blogpost-container">
+                    <div class="right">
+                        <a href="http://<%: Request.Url.Host + Url.Action("Index", new { area="Blog", controller = "Posts" }) %>/feed.rss" title="Subscribe">
+                            <img src="<%: Url.Content("~/Content/Images/public/rss.png") %>" alt="Subscribe">
+                        </a>
+                    </div>
                     <div class="blogpost">
                         <div class="header">
                             <div class="title">

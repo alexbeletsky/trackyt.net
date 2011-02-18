@@ -16,7 +16,7 @@ namespace Web.Areas.Blog
         {
             context.MapRoute(
                 "Blog_RssFeed",
-                "Blog/feed.xml",
+                "Blog/feed.rss",
                 new { controller = "Rss", action = "Feed" },
                 new string[] { "Web.Areas.Blog.Controllers" }
             );
