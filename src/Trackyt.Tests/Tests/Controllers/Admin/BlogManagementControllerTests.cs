@@ -61,7 +61,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             var result = blogManagement.Summary() as ViewResult;
 
             //post
-            var model = result.ViewData.Model as AdminBlogSummary;
+            var model = result.ViewData.Model as BlogSummaryModel;
             Assert.That(model, Is.Not.Null);
             Assert.That(model.TotalPosts, Is.EqualTo(4));
         }

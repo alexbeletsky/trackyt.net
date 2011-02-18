@@ -60,7 +60,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             var result = userManagement.Summary() as ViewResult;
 
             //post
-            var model = result.ViewData.Model as AdminUserSummary;
+            var model = result.ViewData.Model as UserSummaryModel;
             Assert.That(model, Is.Not.Null);
             Assert.That(model.TotalRegisteredUsers, Is.EqualTo(4));
             Assert.That(model.TempUsers, Is.EqualTo(1));

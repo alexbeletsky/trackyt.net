@@ -27,7 +27,7 @@ namespace Web.Areas.Admin.Controllers
             var totalUsersCount = _users.Users.Count();
             var tempUsersCount = _users.Users.WithTemp(true).Count();
 
-            return View(new AdminUserSummary(totalUsersCount, tempUsersCount));
+            return View(new UserSummaryModel { TotalRegisteredUsers = totalUsersCount, TempUsers = tempUsersCount });
         }
 
         public ActionResult Table()

@@ -29,7 +29,7 @@ namespace Web.Areas.Admin.Controllers
         {
             var blogPostCount = _blogRepository.BlogPosts.Count();
 
-            return base.View(new AdminBlogSummary(blogPostCount));
+            return base.View(new BlogSummaryModel { TotalPosts = blogPostCount });
         }
 
         public ActionResult AddPost()

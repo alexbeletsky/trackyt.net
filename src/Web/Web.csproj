@@ -90,10 +90,12 @@
     <Compile Include="Areas\Admin\Controllers\BlogManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
-    <Compile Include="Areas\Admin\Models\AdminBlogSummary.cs" />
+    <Compile Include="Areas\Admin\Models\BlogSummaryModel.cs" />
     <Compile Include="Areas\Admin\Models\AdminLogin.cs" />
-    <Compile Include="Areas\Admin\Models\AdminUserSummary.cs" />
+    <Compile Include="Areas\Admin\Models\TaskSummaryModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserSummaryModel.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Controllers\RssController.cs" />
@@ -139,6 +141,7 @@
     <Content Include="Areas\Admin\Views\BlogManagement\View.aspx" />
     <Content Include="Areas\Admin\Views\Login\Index.aspx" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.aspx" />
+    <Content Include="Areas\Admin\Views\TaskManagement\Summary.aspx" />
     <Content Include="Areas\Admin\Views\UserManagement\Index.aspx" />
     <Content Include="Areas\Admin\Views\UserManagement\Summary.aspx" />
     <Content Include="Areas\Admin\Views\UserManagement\Table.aspx" />
@@ -269,6 +272,7 @@
     <Content Include="Areas\User\Views\Shared\Dashboard.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
     <None Include="Scripts\Tests\framework\funcunit\envjs" />
     <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
     <None Include="Scripts\Tests\framework\funcunit\README" />

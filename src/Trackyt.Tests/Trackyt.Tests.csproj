@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Tests\Controllers\Admin\BlogManagementControllerTests.cs" />
     <Compile Include="Tests\Controllers\Admin\LoginControllerTests.cs" />
+    <Compile Include="Tests\Controllers\Admin\TaskManagementControllerTests.cs" />
     <Compile Include="Tests\Controllers\Admin\UserManagementControllerTests.cs" />
     <Compile Include="Tests\Controllers\API\ApiTestsCommon.cs" />
     <Compile Include="Tests\Controllers\API\ApiV11ControllerTests.cs" />
