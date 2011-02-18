@@ -13,14 +13,14 @@ using Trackyt.Core.DAL.DataModel;
 namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 {
     [TestFixture]
-    public class AdminBlogManagementControllerTests
+    public class BlogManagementControllerTests
     {
         [Test]
         public void Smoke()
         {
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
 
             //act/post
             Assert.That(blogManagement, Is.Not.Null);
@@ -31,7 +31,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
         {
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
 
             //act
             var result = blogManagement.Index() as ViewResult;
@@ -55,7 +55,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 
             blogRepository.Setup(b => b.BlogPosts).Returns(blogPosts.AsQueryable());
 
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
 
             //act
             var result = blogManagement.Summary() as ViewResult;
@@ -71,7 +71,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
         {
             //arrange
             var blogRepository = new Mock<IBlogPostsRepository>();
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
 
             //act
             var result = blogManagement.AddPost() as ViewResult;
@@ -88,7 +88,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             var submittedPosts = new List<BlogPost>();
             blogRepository.Setup(b => b.Save(It.IsAny<BlogPost>())).Callback((BlogPost p) => submittedPosts.Add(p));
 
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey Joe" };
             
             //act
@@ -116,7 +116,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
                 }
                 );
 
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey Joe" };
             
             //act
@@ -144,7 +144,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
                 }
                 );
 
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey Joe" };
 
             //act
@@ -173,7 +173,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
                 }
                 );
 
-            var blogManagement = new AdminBlogManagementController(blogRepository.Object);
+            var blogManagement = new BlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey, Joe.!:;" };
 
             //act

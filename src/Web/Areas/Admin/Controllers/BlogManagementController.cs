@@ -11,11 +11,11 @@ namespace Web.Areas.Admin.Controllers
 {
     //TODO: add tests for untested methods
     [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
-    public class AdminBlogManagementController : Controller
+    public class BlogManagementController : Controller
     {
         private IBlogPostsRepository _blogRepository;
 
-        public AdminBlogManagementController(IBlogPostsRepository blogRepository)
+        public BlogManagementController(IBlogPostsRepository blogRepository)
         {
             _blogRepository = blogRepository;
         }

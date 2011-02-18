@@ -13,14 +13,14 @@ using Trackyt.Core.Services;
 namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 {
     [TestFixture]
-    public class AdminLoginControllerTests
+    public class LoginControllerTests
     {
         [Test]
         public void Smoke()
         {
             //arrange
             var auth = new Mock<IAuthenticationService>();
-            var controller = new AdminLoginController(auth.Object);
+            var controller = new LoginController(auth.Object);
 
             //act/assert
             Assert.That(controller, Is.Not.Null);
@@ -31,7 +31,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
         {
             //arrange
             var auth = new Mock<IAuthenticationService>();
-            var controller = new AdminLoginController(auth.Object);
+            var controller = new LoginController(auth.Object);
 
             //act
             var result = controller.Index() as ViewResult;

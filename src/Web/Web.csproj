@@ -87,10 +87,10 @@
     <Compile Include="API\v1\ApiV1Registration.cs" />
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminBlogManagementController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminDashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminUserManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBlogSummary.cs" />
     <Compile Include="Areas\Admin\Models\AdminLogin.cs" />
     <Compile Include="Areas\Admin\Models\AdminUserSummary.cs" />
@@ -128,20 +128,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApiTests.html" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\AddPost.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\AllPosts.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Deleted.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Edit.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Index.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Posted.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Summary.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\Updated.aspx" />
-    <Content Include="Areas\Admin\Views\AdminBlogManagement\View.aspx" />
-    <Content Include="Areas\Admin\Views\AdminLogin\Index.aspx" />
-    <Content Include="Areas\Admin\Views\AdminDashboard\Index.aspx" />
-    <Content Include="Areas\Admin\Views\AdminUserManagement\Index.aspx" />
-    <Content Include="Areas\Admin\Views\AdminUserManagement\Summary.aspx" />
-    <Content Include="Areas\Admin\Views\AdminUserManagement\Table.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\AddPost.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\AllPosts.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Deleted.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Index.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Posted.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Summary.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Updated.aspx" />
+    <Content Include="Areas\Admin\Views\BlogManagement\View.aspx" />
+    <Content Include="Areas\Admin\Views\Login\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.aspx" />
+    <Content Include="Areas\Admin\Views\UserManagement\Index.aspx" />
+    <Content Include="Areas\Admin\Views\UserManagement\Summary.aspx" />
+    <Content Include="Areas\Admin\Views\UserManagement\Table.aspx" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
     <Content Include="Areas\Blog\Views\Rss\Feed.aspx" />
@@ -260,10 +260,10 @@
     <Content Include="Areas\Admin\Views\Shared\Admin.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\AdminUserManagement.Master" />
+    <Content Include="Areas\Admin\Views\Shared\UserManagement.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\AdminBlogManagement.Master" />
+    <Content Include="Areas\Admin\Views\Shared\BlogManagement.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\User\Views\Shared\Dashboard.Master" />

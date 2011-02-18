@@ -13,14 +13,14 @@ using Web.Areas.Admin.Models;
 namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 {
     [TestFixture]
-    public class AdminUserManagementControllerTests
+    public class UserManagementControllerTests
     {
         [Test]
         public void Smoke()
         {
             //arrange
             var repository = new Mock<IUsersRepository>();
-            var userManagement = new AdminUserManagementController(repository.Object);
+            var userManagement = new UserManagementController(repository.Object);
 
             //act/post
             Assert.That(userManagement, Is.Not.Null);
@@ -31,7 +31,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
         {
             //arrange
             var repository = new Mock<IUsersRepository>();
-            var userManagement = new AdminUserManagementController(repository.Object);
+            var userManagement = new UserManagementController(repository.Object);
 
             //act
             var result = userManagement.Index() as ViewResult;
@@ -54,7 +54,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             };
             repository.Setup(r => r.Users).Returns(usersList.AsQueryable());
 
-            var userManagement = new AdminUserManagementController(repository.Object);
+            var userManagement = new UserManagementController(repository.Object);
 
             //act
             var result = userManagement.Summary() as ViewResult;
@@ -80,7 +80,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
             };
             repository.Setup(r => r.Users).Returns(usersList.AsQueryable());
 
-            var userManagement = new AdminUserManagementController(repository.Object);
+            var userManagement = new UserManagementController(repository.Object);
 
             //act
             var result = userManagement.Table() as ViewResult;

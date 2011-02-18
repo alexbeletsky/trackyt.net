@@ -4,7 +4,7 @@ using Web.Infrastructure.Security;
 namespace Web.Areas.Admin.Controllers
 {
     [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
-    public class AdminDashboardController : Controller
+    public class DashboardController : Controller
     {
         public ActionResult Index()
         {

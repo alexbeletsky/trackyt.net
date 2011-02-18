@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/AdminUserManagement.Master" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.List<User>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/UserManagement.Master" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.List<User>>" %>
 <%@ Import Namespace="Trackyt.Core.DAL.DataModel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">

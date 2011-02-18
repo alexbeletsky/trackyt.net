@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/AdminUserManagement.Master" Inherits="System.Web.Mvc.ViewPage<Web.Areas.Admin.Models.AdminUserSummary>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/UserManagement.Master" Inherits="System.Web.Mvc.ViewPage<Web.Areas.Admin.Models.AdminUserSummary>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div id="summary-container">

@@ -18,7 +18,8 @@ namespace Web.Areas.User
             context.MapRoute(
                 "User",
                 "User/{controller}/{action}/{id}",
-                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional }
+                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional },
+                new string[] { "Web.Areas.User.Controllers" }
             );
         }
     }

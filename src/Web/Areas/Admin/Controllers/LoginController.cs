@@ -4,11 +4,11 @@ using Web.Areas.Admin.Models;
 
 namespace Web.Areas.Admin.Controllers
 {
-    public class AdminLoginController : Controller
+    public class LoginController : Controller
     {
         private IAuthenticationService _auth;
 
-        public AdminLoginController(IAuthenticationService auth)
+        public LoginController(IAuthenticationService auth)
         {
             _auth = auth;
         }
@@ -25,7 +25,7 @@ namespace Web.Areas.Admin.Controllers
             {
                 if (_auth.Authenticate("Admin", model.Password))
                 {
-                    return Redirect("~/Admin/AdminDashboard");
+                    return Redirect("~/Admin/Dashboard");
                 }   
                 else
                 {
