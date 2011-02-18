@@ -13,18 +13,18 @@ editPostsControl.prototype = (function () {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // private members
     function post(control, p) {
-        var post = '<tr><td>' + createHref('Edit', 'post/edit/' + p.Url) +
-            '</td><td>' + createHref('View', 'post/view/' + p.Url) +
+        var post = '<tr><td>' + createHref('Edit', 'post/edit/' + p.Url, 'edit') +
+            '</td><td>' + createHref('View', 'post/view/' + p.Url, 'view') +
             '</td><td>' + p.Title +
             '</td><td>' + p.CreatedBy +
             '</td><td>' + new Date(parseInt(p.CreatedDate.substr(6))).toDateString() +
-            '</td><td>' + createHref('Delete', 'post/delete/' + p.Url) +
+            '</td><td>' + createHref('Delete', 'post/delete/' + p.Url, 'delete') +
             '</td></tr>';
 
         control.table.append(post);
 
-        function createHref(text, href) {
-            return '<a href="' + href + '">' + text + '</a>';
+        function createHref(text, href, class) {
+            return '<span class="' + class + '"><a href="' + href + '">' + text + '</a></span>';
         }
     }
 

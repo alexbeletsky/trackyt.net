@@ -1,6 +1,19 @@
 ﻿$(function () {
     var control = new editPostsControl($('#edit-posts-table'));
 
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Control handlers
+
+    $('.delete a').live('click', function () {
+        if (confirm("Are you sure to delete this blog post?")) {
+            return true;
+        }
+
+        return false;
+    });
+
+
     $.ajax(
         {
             url: 'posts',

@@ -70,18 +70,22 @@ namespace Web.Areas.Admin.Controllers
 
         public JsonResult Posts()
         {
-            return Json(new { success = true, data = new { posts = _blogRepository.BlogPosts.ToArray() } }, JsonRequestBehavior.AllowGet);
+            var allPosts = _blogRepository.BlogPosts;
+
+            return Json(new { success = true, data = new { posts = allPosts.ToArray() } }, JsonRequestBehavior.AllowGet);
         }
 
         new public ActionResult View(string url)
         {
             var blogPost = _blogRepository.BlogPosts.WithUrl(url);
+            
             return base.View(blogPost);
         }
 
         public ActionResult Edit(string url)
         {
             var blogPost = _blogRepository.BlogPosts.WithUrl(url);
+            
             return base.View(blogPost);
         }
 

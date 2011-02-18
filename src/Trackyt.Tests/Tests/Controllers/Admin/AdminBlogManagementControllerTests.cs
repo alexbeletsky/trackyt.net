@@ -90,6 +90,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Admin
 
             var blogManagement = new AdminBlogManagementController(blogRepository.Object);
             var model = new BlogPost { Title = "Hey Joe" };
+            
             //act
             var result = blogManagement.AddPost(model) as ViewResult;
 
