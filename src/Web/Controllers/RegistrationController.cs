@@ -13,10 +13,12 @@ namespace Web.Controllers
     public class RegistrationController : Controller
     {
         private IAuthenticationService _auth;
+        private INotificationService _notification;
 
-        public RegistrationController(IAuthenticationService auth)
+        public RegistrationController(IAuthenticationService auth, INotificationService notification)
         {
             _auth = auth;
+            _notification = notification;
         }
 
         public ActionResult Index()
@@ -29,9 +31,12 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //check if used already registered
-                if (_auth.RegisterNewUser(model.Email, model.Password, false))
+                var email = model.Email;
+                var password = model.Password;
+
+                if (_auth.RegisterNewUser(email, password))
                 {
+                    _notification.NotifyUserOnRegistration(email, password);
                     return Redirect("~/User/Dashboard");
                 }
                 else
@@ -50,7 +55,7 @@ namespace Web.Controllers
             var email = "temp" + postfix + "@trackyt.net";
             var password = email;
 
-            _auth.RegisterNewUser(email, password, true);
+            _auth.RegisterTemporaryUser(email, password);
 
             return Redirect("~/User/Dashboard");
         }

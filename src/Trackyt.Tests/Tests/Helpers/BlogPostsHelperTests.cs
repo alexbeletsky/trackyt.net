@@ -20,7 +20,7 @@ namespace Trackyt.Core.Tests.Tests.Helpers
                 Url = "post-url",
                 Title = "post-title",
                 Body = @"<p>First.</p><p>Second.</p>",
-                 CreatedBy = "alexanderb"
+                CreatedBy = "alexanderb"
             };
 
             // act
@@ -39,14 +39,14 @@ namespace Trackyt.Core.Tests.Tests.Helpers
                 Url = "post-url",
                 Title = "post-title",
                 Body = @"<post-preview><p>First from preview.</p><p>Second from preview.</p></post-preview><p>First.</p><p>Second.</p>",
-                 CreatedBy = "alexanderb"
+                CreatedBy = "alexanderb"
             };
 
             // act
             var postBody = BlogPostsHelper.GetPreviewPostBody(blogPost);
 
             // assert
-            Assert.That(postBody, Is.EqualTo("First from preview. Second from preview. <a href=\"post-url\">Read more...</a>"));
+            Assert.That(postBody, Is.EqualTo("First from preview. Second from preview. <a href=\"blog/posts/post-url\">Read more...</a>"));
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace Trackyt.Core.Tests.Tests.Helpers
             var postBody = BlogPostsHelper.GetPreviewPostBody(blogPost);
 
             // assert
-            Assert.That(postBody, Is.EqualTo("First from preview. Second from preview. <a href=\"post-url\">Read more...</a>"));
+            Assert.That(postBody, Is.EqualTo("First from preview. Second from preview. <a href=\"blog/posts/post-url\">Read more...</a>"));
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Trackyt.Core.Tests.Tests.Helpers
                 Url = "post-url",
                 Title = "post-title",
                 Body = @"<p>First.</p><p>Second.</p>",
-                 CreatedBy = "alexanderb"
+                CreatedBy = "alexanderb"
             };
 
             // act

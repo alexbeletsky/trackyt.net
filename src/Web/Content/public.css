@@ -17,6 +17,16 @@ a
     color: #3e7143;
 }
 
+a:hover
+{
+    cursor: pointer;
+}
+
+img
+{
+    border: 0px;
+}    
+
 p
 {
     margin: 10px;
@@ -212,7 +222,6 @@ http://ryanfait.com/sticky-footer/
 {
     position: relative;
     margin-top: 6px;
-    border: 0px;
 }
 
 #copyright
@@ -274,8 +283,16 @@ http://ryanfait.com/sticky-footer/
     margin-top: 5px;
     margin-left: 10px;
     color: #797878;
-    
+    display: inline-block;
+    float: left;
     font-size:10px;
+}
+
+.blogpost .header .comments
+{
+    display: inline-block;    
+    float: right;
+    font-size:10px;    
 }
 
 .pager
@@ -305,6 +322,11 @@ http://ryanfait.com/sticky-footer/
 .clear
 {
     clear: both;
+}
+
+#dsq-content 
+{
+    padding: 20px;
 }
 
 /* Main page */

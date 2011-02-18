@@ -58,9 +58,11 @@
     <Compile Include="HttpSimulator\SimulatedHttpRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\DAL\BlogPostsRepositoryTests.cs" />
+    <Compile Include="Tests\DAL\CredentialsRepositoryTests.cs" />
     <Compile Include="Tests\DAL\TasksRepositoryTests.cs" />
     <Compile Include="Tests\DAL\UsersRepositoryTests.cs" />
     <Compile Include="Tests\Services\ApiServicesTests.cs" />
+    <Compile Include="Tests\Services\NotificationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">

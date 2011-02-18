@@ -7,7 +7,6 @@ using System.Configuration;
 
 namespace Trackyt.Core.DAL.Repositories.Impl
 {
-    // TODO: add unit tests
     public class CredentialsRepository : ICredentialsRepository
     {
         private TrackytDataContext _context;
@@ -29,7 +28,6 @@ namespace Trackyt.Core.DAL.Repositories.Impl
         {
             _context = context;
         }
-
 
         public IQueryable<DataModel.Credential> Credentials
         {

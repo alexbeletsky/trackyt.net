@@ -61,6 +61,36 @@ namespace Trackyt.Database.Tests.Tests.DAL
         }
 
         [Test]
+        public void Save_UpdatePost()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                //arrange
+                var repository = new BlogPostsRepository(fixture.Setup.Context);
+                var post = new BlogPost
+                {
+                    Url = "Some-new-post",
+                    Title = "Some new post",
+                    Body = "<p>This is new post in blog</p>",
+                    CreatedBy = "AlexanderB",
+                    CreatedDate = DateTime.Now
+                };
+
+                repository.Save(post);
+
+                var blogPost = repository.BlogPosts.Where(p => p.Url == post.Url).Single();
+                
+                // act
+                blogPost.Title += "(updated)";
+                repository.Save(blogPost);
+
+                //assert
+                var updatedPost = repository.BlogPosts.Where(p => p.Url == post.Url).Single();
+                Assert.That(updatedPost.Title, Is.EqualTo("Some new post(updated)"));
+            }
+        }
+
+        [Test]
         public void DeletePost()
         {
             using (var fixture = new FixtureInit("http://localhost"))
