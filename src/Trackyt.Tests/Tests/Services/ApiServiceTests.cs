@@ -130,5 +130,38 @@ namespace Trackyt.Core.Tests.Tests.Services
             Assert.That(token, Is.Null);
         }
 
+        [Test]
+        public void GetApiToken_NoSuchUser_ReturnNull()
+        {
+            // arrange
+            var hash = new Mock<IHashService>();
+            var repository = new Mock<IUsersRepository>();
+
+            var users = new List<User> { 
+                new User { 
+                    Id = 1, 
+                    Email = "a@a.com", 
+                    PasswordHash = "passhash", 
+                    ApiToken = "12345" }, 
+                new User { 
+                    Id = 2, 
+                    Email = "b@a.com", 
+                    PasswordHash = "passhash2", 
+                    ApiToken = "23211" 
+                } };
+
+            repository.Setup(r => r.Users).Returns(users.AsQueryable());
+
+            hash.Setup(h => h.ValidateMD5Hash("pass", "passhash2")).Returns(true);
+
+            var service = new ApiService(repository.Object, hash.Object);
+
+            // act
+            var token = service.GetApiToken("user_wrong", "pass_wrong");
+
+            // post
+            Assert.That(token, Is.Null);
+        }
+
     }
 }
