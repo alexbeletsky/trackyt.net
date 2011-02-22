@@ -95,7 +95,7 @@ nt":0}}}
             </pre>
             <h3>delete task method</h3>
             <ul>
-                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/delete/15</li>
+                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/delete/15</li>
                 <li>Type: DELETE</li>
                 <li>Payload: none</li>
                 <li>Response: deletion confirmation</li>
@@ -116,7 +116,7 @@ curl -X DELETE http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/task
             </pre>
             <h3>start task method</h3>
             <ul>
-                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/start/14</li>
+                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/14</li>
                 <li>Type: PUT</li>
                 <li>Payload: none</li>
                 <li>Response: start confirmation</li>
@@ -132,14 +132,12 @@ $ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/v1.1/af005f695d300d0
             <p>Response:</p>
             <pre>
                 <code>
-{"success":true,"data":{"id":14,"description":"task with datetime","status":1,"c
-reatedDate":"\/Date(1293762168998)\/","startedDate":"\/Date(1293770149975)\/","s
-toppedDate":null,"spent":0}}
+{"success":true,"data":{"task":{"id":14,"description":"one more","status":1,"createdDate":"\/Date(1298355048965)\/","startedDate":"\/Date(1298362917541)\/","stoppedDate":null,"spent":50}}}
                 </code>
             </pre>
             <h3>stop task method</h3>
             <ul>
-                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/stop/15</li>
+                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/15</li>
                 <li>Type: PUT</li>
                 <li>Payload: none</li>
                 <li>Response: stop confirmation</li>
@@ -154,14 +152,12 @@ $ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/api/v1.1/af005f695d3
             <p>Response:</p>
             <pre>
                 <code>
-{"success":true,"data":{"id":14,"description":"task with datetime","status":2,"c
-reatedDate":"\/Date(1293762168998)\/","startedDate":"\/Date(1293762949975)\/","s
-toppedDate":"\/Date(1293770266781)\/","spent":116}}
+{"success":true,"data":{"task":{"id":14,"description":"one more","status":2,"createdDate":"\/Date(1298355048965)\/","startedDate":"\/Date(1298362917541)\/","stoppedDate":"\/Date(1298362987440)\/","spent":50}}}
                 </code>
             </pre>
             <h3>start all tasks method</h3>
             <ul>
-                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/start/all</li>
+                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/all</li>
                 <li>Type: PUT</li>
                 <li>Payload: none</li>
                 <li>Response: start all confirmation</li>
@@ -181,7 +177,7 @@ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/v1.1/af005f695d300d0df
             </pre>
             <h3>stop all tasks method</h3>
             <ul>
-                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/stop/all</li>
+                <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/all</li>
                 <li>Type: PUT</li>
                 <li>Payload: none</li>
                 <li>Response: stop all confirmation</li>

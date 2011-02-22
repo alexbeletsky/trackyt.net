@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Public.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <asp:Content ID="maincontent" ContentPlaceHolderID="maincontent" runat="server">
+    <% Html.RenderPartial("ApiImplementations"); %>
     <% Html.RenderPartial("ApiTableOfContent"); %>
 
     <asp:ContentPlaceHolder ID="apicontent" runat="server"></asp:ContentPlaceHolder>

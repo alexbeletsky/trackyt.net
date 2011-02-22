@@ -55,7 +55,7 @@
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
-                control.startTask(r.data.id);
+                control.startTask(r.data.task.id);
             }
         });
 
@@ -66,7 +66,7 @@
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
-                control.stopTask(r.data.id);
+                control.stopTask(r.data.task.id);
             }
         });
 

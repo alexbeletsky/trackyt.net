@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
     <div class="content">
-        <h1>Trackyt.net Api documentation</h1>
+        <h1>Trackyt.net API documentation</h1>
             <p>Current version of API is v1.1</p>
             <p style="font-size: x-small;">Older versions of API are also supported, but it is highly recommended to use the latest one.</p>
             <div class="center">

@@ -207,6 +207,7 @@
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
     <Content Include="Scripts\Tracky\controller.registration.js" />
+    <Content Include="Views\Shared\ApiImplementations.ascx" />
     <Content Include="Views\Shared\ApiTableOfContent.ascx" />
     <Content Include="Views\Shared\Copyright.ascx" />
     <Content Include="Views\Shared\Footer.ascx" />
