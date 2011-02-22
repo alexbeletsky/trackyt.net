@@ -164,7 +164,7 @@
             api_test(call, type, data, function (result) {
                 ok(result.success, method + " method call failed");
                 ok(result.data != null, "data is null");
-                ok(result.data.id == taskId, "id of updated item returned");
+                ok(result.data.task.id == taskId, "id of updated item returned");
             });
         });
 
@@ -196,7 +196,7 @@
             api_test(call, type, data, function (result) {
                 ok(result.success, method + " method call failed");
                 ok(result.data != null, "data is null");
-                ok(result.data.id == taskId, "id of updated item returned");
+                ok(result.data.task.id == taskId, "id of updated item returned");
             });
         });
     });
@@ -283,7 +283,7 @@
 
         api_test(call, type, data, function (result) {
             ok(result.success == false);
-            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+            same(result.message, "Task with id: 5555 does not exists.");
         });
     });
 
@@ -297,7 +297,7 @@
 
         api_test(call, type, data, function (result) {
             ok(result.success == false);
-            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+            same(result.message, "Task with id: 5555 does not exists.");
         });
     });
 
@@ -311,7 +311,7 @@
 
         api_test(call, type, data, function (result) {
             ok(result.success == false);
-            same(result.message, "Task with id: 5555 does not exists. Operation failed.");
+            same(result.message, "Task with id: 5555 does not exists.");
         });
     });
 });
