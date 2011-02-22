@@ -13,10 +13,9 @@ namespace Web.Infrastructure.Error
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (filterContext.HttpContext.Request.IsAjaxRequest() && filterContext.Exception != null)
+            if (filterContext.Exception != null)
             {
-                SetResponseStatusCode(filterContext);
-
+                //SetResponseStatusCode(filterContext);
                 filterContext.Result = new JsonResult()
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,

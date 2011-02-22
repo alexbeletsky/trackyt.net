@@ -127,7 +127,7 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = CreateTaskDescriptor(task) 
+                    data = new { task = CreateTaskDescriptor(task) }
                 });
         }
 
@@ -149,7 +149,7 @@ namespace Web.API.v11.Controllers
                 new
                 {
                     success = true,
-                    data = CreateTaskDescriptor(task)
+                    data = new { task = CreateTaskDescriptor(task) }
                 });
         }
 
@@ -305,11 +305,12 @@ namespace Web.API.v11.Controllers
             return userId;
         }
 
+        // TODO: get rid of that check. Repository must throw such exception, in case of task does not exist
         private static void CheckTaskNotNull(int taskId, Task task)
         {
             if (task == null)
             {
-                throw new Exception(string.Format("Task with id: {0} does not exists. Operation failed.", taskId));
+                throw new Exception(string.Format("Task with id: {0} does not exists.", taskId));
             }
         }
     }
