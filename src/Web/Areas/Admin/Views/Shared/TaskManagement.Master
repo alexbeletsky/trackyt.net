@@ -5,7 +5,7 @@
         <div id="submenu">
             <ul>
                 <li>
-                    <%: Html.ActionLink("Summary", "Summary") %>
+                    <%: Html.ActionLink("Summary", "summary") %>
                 </li>
             </ul>
         </div>

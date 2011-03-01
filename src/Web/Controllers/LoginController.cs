@@ -25,7 +25,7 @@ namespace Web.Controllers
             {
                 if (_auth.Authenticate(model.Email, model.Password))
                 {
-                    return Redirect(returnUrl ?? "~/User/Dashboard");
+                    return Redirect(returnUrl ?? "~/user/dashboard");
                 }
                 else
                 {

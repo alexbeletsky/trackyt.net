@@ -10,7 +10,7 @@
     </div>
     </span>
         <div>
-        <%: Html.ActionLink("Back to posts", "AllPosts") %>
+        <%: Html.ActionLink("Back to posts", "allposts") %>
     </div>
 </asp:Content>
 

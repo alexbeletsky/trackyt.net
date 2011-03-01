@@ -9,7 +9,7 @@ namespace Web.Areas.User
         {
             get
             {
-                return "User";
+                return "user";
             }
         }
 
@@ -17,7 +17,7 @@ namespace Web.Areas.User
         {
             context.MapRoute(
                 "User",
-                "User/{controller}/{action}/{id}",
+                "user/{controller}/{action}/{id}",
                 new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional },
                 new string[] { "Web.Areas.User.Controllers" }
             );

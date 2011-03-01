@@ -55,7 +55,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
             var result = controller.Login(model, null) as RedirectResult;
 
             //assert
-            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
         }
 
         [Test]

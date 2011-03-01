@@ -21,7 +21,7 @@
                     <div class="blogpost">
                         <div class="header">
                             <div class="title">
-                                <%: Html.ActionLink(blogPost.Title, "PostByUrl", new { url = blogPost.Url })%>
+                                <%: Html.ActionLink(blogPost.Title, "postbyurl", new { url = blogPost.Url })%>
                                </div>
                             <div class="posted-on">
                                 Published on: <%: blogPost.CreatedDate.ToShortDateString() %> 

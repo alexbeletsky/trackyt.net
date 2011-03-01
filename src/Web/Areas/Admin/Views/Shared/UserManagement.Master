@@ -6,9 +6,9 @@
         <div id="submenu">
             <ul>
                 <li>
-                    <%: Html.ActionLink("Summary", "Summary") %></li>
+                    <%: Html.ActionLink("Summary", "summary") %></li>
                 <li>
-                    <%: Html.ActionLink("All users", "Table") %></li>
+                    <%: Html.ActionLink("All users", "table") %></li>
             </ul>
         </div>
     </div>

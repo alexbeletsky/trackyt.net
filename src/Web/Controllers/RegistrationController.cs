@@ -37,7 +37,7 @@ namespace Web.Controllers
                 if (_auth.RegisterNewUser(email, password))
                 {
                     _notification.NotifyUserOnRegistration(email, password);
-                    return Redirect("~/User/Dashboard");
+                    return Redirect("~/user/dashboard");
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace Web.Controllers
 
             _auth.RegisterTemporaryUser(email, password);
 
-            return Redirect("~/User/Dashboard");
+            return Redirect("~/user/dashboard");
         }
     }
 }

@@ -39,11 +39,11 @@
         <div id="logo">
         </div>
         <div id="navigation-container">
-            <%: Html.ActionLink("Faq", "Faq", new { area = "", controller = "Home" }, new { id = "faq" })%>            
+            <%: Html.ActionLink("Faq", "faq", new { area = "", controller = "home" }, new { id = "faq" })%>            
             <span> | </span>
             <a id="show-account-details" href="show/account/details">Account</a>
             <span> | </span>
-            <%: Html.ActionLink("Sign Out", "Index", new { area = "", controller = "Home" }, new { id = "sign-out" })%>
+            <%: Html.ActionLink("Sign Out", "index", new { area = "", controller = "home" }, new { id = "sign-out" })%>
         </div>
     </div>
     <div id="content">

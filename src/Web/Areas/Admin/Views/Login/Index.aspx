@@ -10,7 +10,7 @@
 <body>
     <div class="admin-login">
         <div class="admin-login-box">
-            <% using(Html.BeginForm("Login", "Login")) { %>
+            <% using(Html.BeginForm("login", "login")) { %>
                 <%: Html.TextBoxFor(m => m.Password, new { type = "password" })%>
 
                 <input id="login" value="Login" type="submit" />

@@ -12,12 +12,12 @@
     <div id="container">
         <div id="content">
         <h1 class="left">Sign In</h1>
-        <span id="else" class="left"> or <%: Html.ActionLink("Sign Up", "Index", "Registration") %></span>
+        <span id="else" class="left"> or <%: Html.ActionLink("Sign Up", "index", "registration") %></span>
         <div class="clear"></div>
         <p>
         If you are already our customer, please log in. If you are new, please proceed and create new account
         </p>
-        <% using (Html.BeginForm("Login", "Login", FormMethod.Post, new { id = "login_form" }))
+        <% using (Html.BeginForm("login", "login", FormMethod.Post, new { id = "login_form" }))
            {%>
         <%: Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")%>
         <fieldset>

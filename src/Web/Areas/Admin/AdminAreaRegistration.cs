@@ -8,7 +8,7 @@ namespace Web.Areas.Admin
         {
             get
             {
-                return "Admin";
+                return "admin";
             }
         }
 
@@ -18,14 +18,14 @@ namespace Web.Areas.Admin
 
             context.MapRoute(
                 "Admin_admin",
-                "Admin",
+                "admin",
                 new { action = "Index", controller = "Login" },
                 new string[] { "Web.Areas.Admin.Controllers" }
             );
 
             context.MapRoute(
                 "Admin_Post_Management",
-                "Admin/BlogManagement/post/{action}/{url}",
+                "admin/blogmanagement/post/{action}/{url}",
                 new { action = "Index", controller = "BlogManagement" },
                 new string[] { "Web.Areas.Admin.Controllers" }
             );
@@ -46,7 +46,7 @@ namespace Web.Areas.Admin
 
             context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}/{action}/{id}",
+                "admin/{controller}/{action}/{id}",
                 new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional },
                 new string[] { "Web.Areas.Admin.Controllers" }
 
