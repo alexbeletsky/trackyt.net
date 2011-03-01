@@ -10,7 +10,7 @@
                 Simple.Small.Smart.
             </p>
             <div class="green-button bottom">
-                <%: Html.ActionLink("Sign up for free", "Index", new { controller = "Registration" })%>
+                <%: Html.ActionLink("Sign up for free", "index", new { controller = "registration" })%>
                 <p>
                     No registration needed
                 </p>
@@ -38,7 +38,7 @@
         <div class="column">
             <h2>Anything more?</h2>
             <p>
-                Product is build using <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> architecture and we really much care about extensibilty. We work on <%: Html.ActionLink("API", "ApiV11", new { area = "", controller = "Home" }) %> that allows any third-party vendors to integrate. It also provides abilities to build new applications that uses existing functionality created for trackyt.net. This is a big area for improvements for mobile applications. 
+                Product is build using <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> architecture and we really much care about extensibilty. We work on <%: Html.ActionLink("API", "apiV11", new { area = "", controller = "home" }) %> that allows any third-party vendors to integrate. It also provides abilities to build new applications that uses existing functionality created for trackyt.net. This is a big area for improvements for mobile applications. 
             </p>
         </div>
         </div>

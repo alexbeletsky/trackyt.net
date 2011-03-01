@@ -14,7 +14,7 @@
     <div id="container">
         <div id="content">
             <h1 class="left">Sign Up</h1>
-            <span id="else" class="left"> or <%: Html.ActionLink("Start now", "QuickStart", "Registration", new { id = "start-now" })%></span>
+            <span id="else" class="left"> or <%: Html.ActionLink("Start now", "quickstart", "registration", new { id = "start-now" })%></span>
             <div class="clear"></div>
             <p>
             If you are just in hurry or have doubts you are free to skip regisration. You can start using application with <a href = "<%: Url.Action("Faq", new { area="", controller="Home"})%>#TempReg">temporary account</a> created for you
