@@ -37,6 +37,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\lib\AutoMapper\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.1.1\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\lib\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
@@ -88,6 +91,7 @@
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskManagementController.cs" />
@@ -274,6 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
+    <Content Include="packages.config" />
     <None Include="Scripts\Tests\framework\funcunit\envjs" />
     <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
     <None Include="Scripts\Tests\framework\funcunit\README" />
