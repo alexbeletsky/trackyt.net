@@ -63,7 +63,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
 
             //assert (result)
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
 
             //post
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/User/Dashboard"));
+            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
         }
 
         [Test]
