@@ -5,7 +5,7 @@
         Existing blog post has been <span class="green">successfully</span> deleted. 
     </span>
     <div>
-        <%: Html.ActionLink("Back to posts", "AllPosts") %>
+        <%: Html.ActionLink("Back to posts", "allposts") %>
     </div>
 </asp:Content>
 

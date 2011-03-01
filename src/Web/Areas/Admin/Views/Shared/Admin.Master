@@ -18,11 +18,11 @@
             </div>
             <div id="navigation">
                 <ul>
-                    <li><%: Html.ActionLink("Users", "Summary", new { area="Admin", controller="UserManagement" }) %></li>
-                    <li><%: Html.ActionLink("Blog", "Summary", new { area="Admin", controller="BlogManagement" }) %></li>
-                    <li><%: Html.ActionLink("Tasks", "Summary", new { area = "Admin", controller = "TaskManagement" }, new { id = "sign-out" })%>
+                    <li><%: Html.ActionLink("Users", "summary", new { area="admin", controller="usermanagement" }) %></li>
+                    <li><%: Html.ActionLink("Blog", "summary", new { area = "admin", controller = "blogmanagement" })%></li>
+                    <li><%: Html.ActionLink("Tasks", "summary", new { area = "admin", controller = "taskmanagement" }, new { id = "sign-out" })%>
                     </li>
-                    <li><%: Html.ActionLink("Sign Out", "Index", new { area = "", controller = "Home" }, new { id = "sign-out" })%>
+                    <li><%: Html.ActionLink("Sign Out", "index", new { area = "", controller = "home" }, new { id = "sign-out" })%>
                     </li>
 
                 </ul>
