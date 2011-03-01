@@ -17,6 +17,13 @@ namespace Web.Areas.Admin
             context.Routes.IgnoreRoute("admin/elmah.axd/{*pathInfo}");
 
             context.MapRoute(
+                "Admin_admin",
+                "Admin",
+                new { action = "Index", controller = "Login" },
+                new string[] { "Web.Areas.Admin.Controllers" }
+            );
+
+            context.MapRoute(
                 "Admin_Post_Management",
                 "Admin/BlogManagement/post/{action}/{url}",
                 new { action = "Index", controller = "BlogManagement" },
@@ -24,9 +31,16 @@ namespace Web.Areas.Admin
             );
 
             context.MapRoute(
-                "Admin_admin",
-                "Admin",
-                new { action = "Index", controller = "Login" },
+                "Admin_elmah",
+                "admin/elmah/{type}",
+                new { action = "Index", controller = "Elmah", type = UrlParameter.Optional },
+                new string[] { "Web.Areas.Admin.Controllers" }
+            );
+
+            context.MapRoute(
+                "Admin_elmah_detail",
+                "admin/elmah/detail/{type}",
+                new { action = "Detail", controller = "Elmah", type = UrlParameter.Optional },
                 new string[] { "Web.Areas.Admin.Controllers" }
             );
 
