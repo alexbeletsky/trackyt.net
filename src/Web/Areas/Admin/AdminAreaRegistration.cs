@@ -14,6 +14,8 @@ namespace Web.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.Routes.IgnoreRoute("admin/elmah.axd/{*pathInfo}");
+
             context.MapRoute(
                 "Admin_Post_Management",
                 "Admin/BlogManagement/post/{action}/{url}",

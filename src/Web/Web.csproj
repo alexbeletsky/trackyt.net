@@ -37,6 +37,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\lib\AutoMapper\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.1.1\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\lib\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
@@ -274,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
+    <Content Include="packages.config" />
     <None Include="Scripts\Tests\framework\funcunit\envjs" />
     <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
     <None Include="Scripts\Tests\framework\funcunit\README" />
