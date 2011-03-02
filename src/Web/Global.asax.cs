@@ -36,7 +36,6 @@ namespace Web
 
             // Dependency injection
             ControllerBuilder.Current.SetControllerFactory(new TrackyControllerFactory());
-            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
 
             // Auto-mapper
             TrackyMapping.SetupMapping();
