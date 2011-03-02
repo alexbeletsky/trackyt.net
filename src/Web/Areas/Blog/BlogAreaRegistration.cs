@@ -8,7 +8,7 @@ namespace Web.Areas.Blog
         {
             get
             {
-                return "Blog";
+                return "blog";
             }
         }
 
@@ -16,21 +16,21 @@ namespace Web.Areas.Blog
         {
             context.MapRoute(
                 "Blog_RssFeed",
-                "Blog/feed.rss",
+                "blog/feed.rss",
                 new { controller = "Rss", action = "Feed" },
                 new string[] { "Web.Areas.Blog.Controllers" }
             );
 
             context.MapRoute(
                 "Blog_PostByUrl",
-                "Blog/Posts/{url}",
+                "blog/posts/{url}",
                 new { controller = "Posts", action = "PostByUrl" },
                 new string[] { "Web.Areas.Blog.Controllers" }
             );
 
             context.MapRoute(
                 "Blog_default",
-                "Blog/{controller}/{action}/{id}",
+                "blog/{controller}/{action}/{id}",
                 new { action = "Index", controller = "Posts", id = UrlParameter.Optional },
                 new string[] { "Web.Areas.Blog.Controllers" }
             );

@@ -10,7 +10,7 @@
            { %>
                 <div id="summary-container">
                     <span>Congratulations! New blog post has been <span class="green">successfully</span> created. 
-                    <%: Html.ActionLink("View post", "PostByUrl", new { area = "Blog", controller = "Posts", url = Model.Url })%>
+                    <%: Html.ActionLink("View post", "postbyurl", new { area = "blog", controller = "posts", url = Model.Url })%>
                     </span>
                 </div>
         <% }%>
@@ -57,7 +57,7 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Back to List", "index") %>
     </div>
 
 </asp:Content>

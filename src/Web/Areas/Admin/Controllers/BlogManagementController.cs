@@ -10,7 +10,7 @@ using Trackyt.Core.DAL.Extensions;
 namespace Web.Areas.Admin.Controllers
 {
     //TODO: add tests for untested methods
-    [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "Admin", LoginController = "AdminLogin")]
+    [TrackyAuthorizeAttribute(Users = "Admin", LoginArea = "admin", LoginController = "login")]
     public class BlogManagementController : Controller
     {
         private IBlogPostsRepository _blogRepository;

@@ -4,30 +4,30 @@
     <div class="navigation-footer-block left">
         <ul>
             <li class="home">
-                <%: Html.ActionLink("home", "Index", new { area = "", controller = "Home" })%></li>
+                <%: Html.ActionLink("home", "index", new { area = "", controller = "home" })%></li>
             <li class="product-tour"><a href="#">product tour</a></li>
             <li class="blog">
-                <%: Html.ActionLink("blog", "Index", new { area = "Blog", controller = "Posts" }) %></li>
+                <%: Html.ActionLink("blog", "index", new { area = "blog", controller = "posts" }) %></li>
             <%--                <li class="about-us"><a href="#">about us</a></li>--%>
         </ul>
     </div>
     <div class="navigation-footer-block left">
         <ul>
             <li class="register bold">
-                <%: Html.ActionLink("register now!", "Index", new { area = "", controller = "Registration" })%></li>
+                <%: Html.ActionLink("register now!", "index", new { area = "", controller = "registration" })%></li>
             <li class="login">
-                <%: Html.ActionLink("login", "Index", new { area = "", controller = "Login" })%></li>
+                <%: Html.ActionLink("login", "index", new { area = "", controller = "login" })%></li>
             <%--<li class="support"><a href="#">support</a></li>--%>
         </ul>
     </div>
     <div class="navigation-footer-block left">
         <ul>
             <li class="api bold">
-                <%: Html.ActionLink("api", "ApiV11", new { area = "", controller = "Home" })%></a></li>
-            <li class="opensource"><a href="<%: Url.Action("Faq", new { area="", controller="Home"}) %>#OpenSource">
+                <%: Html.ActionLink("api", "apiV11", new { area = "", controller = "home" })%></a></li>
+            <li class="opensource"><a href="<%: Url.Action("faq", new { area="", controller="home"}) %>#OpenSource">
                 open source</a></li>
             <li class="faq">
-                <%: Html.ActionLink("faq", "Faq", new { area = "", controller = "Home" })%></li>
+                <%: Html.ActionLink("faq", "faq", new { area = "", controller = "home" })%></li>
         </ul>
     </div>
     <div class="navigation-footer-block right">

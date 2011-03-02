@@ -3,9 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <link href="../../Content/public-login.css?ver=105" rel="stylesheet" type="text/css" />
+    <link href="../../Content/public-login.css?ver=106" rel="stylesheet" type="text/css" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/Tracky/controller.registration.js") + "?ver=105" %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Tracky/controller.registration.js") + "?ver=106" %>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
@@ -14,7 +14,7 @@
     <div id="container">
         <div id="content">
             <h1 class="left">Sign Up</h1>
-            <span id="else" class="left"> or <%: Html.ActionLink("Start now", "QuickStart", "Registration", new { id = "start-now" })%></span>
+            <span id="else" class="left"> or <%: Html.ActionLink("Start now", "quickstart", "registration", new { id = "start-now" })%></span>
             <div class="clear"></div>
             <p>
             If you are just in hurry or have doubts you are free to skip regisration. You can start using application with <a href = "<%: Url.Action("Faq", new { area="", controller="Home"})%>#TempReg">temporary account</a> created for you

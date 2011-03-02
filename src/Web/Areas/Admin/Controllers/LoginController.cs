@@ -25,11 +25,11 @@ namespace Web.Areas.Admin.Controllers
             {
                 if (_auth.Authenticate("Admin", model.Password))
                 {
-                    return Redirect("~/Admin/Dashboard");
+                    return Redirect("~/admin/dashboard");
                 }   
                 else
                 {
-                    return Redirect("~/Admin");
+                    return Redirect("~/admin");
                 }
             }
 

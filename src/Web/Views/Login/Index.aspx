@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <link href="../../Content/public-login.css?ver=105" rel="stylesheet" type="text/css" />
+    <link href="../../Content/public-login.css?ver=106" rel="stylesheet" type="text/css" />
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
@@ -12,12 +12,12 @@
     <div id="container">
         <div id="content">
         <h1 class="left">Sign In</h1>
-        <span id="else" class="left"> or <%: Html.ActionLink("Sign Up", "Index", "Registration") %></span>
+        <span id="else" class="left"> or <%: Html.ActionLink("Sign Up", "index", "registration") %></span>
         <div class="clear"></div>
         <p>
         If you are already our customer, please log in. If you are new, please proceed and create new account
         </p>
-        <% using (Html.BeginForm("Login", "Login", FormMethod.Post, new { id = "login_form" }))
+        <% using (Html.BeginForm("login", "login", FormMethod.Post, new { id = "login_form" }))
            {%>
         <%: Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")%>
         <fieldset>
