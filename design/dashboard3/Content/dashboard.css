@@ -18,6 +18,19 @@ html, body
 
 }
 
+#top
+{
+    position: relative;
+    height: auto;
+    min-height: 35px;
+    width: 100%;
+    background-color: #252628;
+    
+    color: #1cbcff;
+    font-family: Verdana, Arial, Serif;
+    font-size: 12px;
+}
+
 .left
 {
     float: left;
@@ -32,19 +45,19 @@ html, body
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -35px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
 }
 
 .push {
-	height: 35px; /* .push must be the same height as .footer */
+	height: 20px; /* .push must be the same height as .footer */
 
 }
 
 #footer  {
-	height: 35px; /* .push must be the same height as .footer */
+	height: 20px; /* .push must be the same height as .footer */
     position: relative;
     width: 100%;
-    background-color: #192832;
+    background-color: #252628;
     overflow: hidden;
     
     color: #eeeeee;
@@ -98,19 +111,6 @@ html, body
     border: 0px;
 }
 
-
-#top
-{
-    position: relative;
-    height: auto;
-    min-height: 35px;
-    width: 100%;
-    background-color: #252628;
-    
-    color: #1cbcff;
-    font-family: Verdana, Arial, Serif;
-    font-size: 12px;
-}
 
 #logo
 {
@@ -199,8 +199,7 @@ html, body
 
 #new-task-container input
 {
-    height: 100%;
-    margin-right: 5px;
+    height: 50px;
 	opacity: 0.4;
 }
 
@@ -208,7 +207,8 @@ html, body
 {    
     width: 100%;
 	opacity: 0.4;
-	
+	font-size:x-large;
+	height: 36px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;        
@@ -253,7 +253,7 @@ html, body
     margin-top: 8px;
     
     width: 100%;
-    height: 28px;
+    height: 30px;
 }
 
 .task span
@@ -313,12 +313,6 @@ html, body
     cursor: pointer;
     width: 70px;
     height: 40px;
-}
-
-input#task-description
-{
-    padding: 4px;
-    font-size:x-large;
 }
 
 #account-details
