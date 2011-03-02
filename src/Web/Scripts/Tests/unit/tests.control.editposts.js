@@ -27,7 +27,7 @@
     test("add post", function () {
         // arrange
         var post =
-            { url: 'post-1-url', title: 'post-1-title', publishedDate: '11-11-2011', author: 'Alexander Beletsky' };
+            { url: 'post-1-url', title: 'post-1-title', CreatedDate: '/Date(1224043200000)/', publishedDate: '11-11-2011', author: 'Alexander Beletsky' };
 
         var control = new editPostsControl($('#edit-posts-table'));
 
