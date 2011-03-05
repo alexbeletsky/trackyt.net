@@ -33,7 +33,7 @@ function signup_submit() {
         list += '</ul>';
 
         $('#PasswordValidationMessage').html('');
-        $('#PasswordValidationMessage').append('<span>Values in form is incorrect</span>');
+        $('#PasswordValidationMessage').append('<span>Values in form are incorrect:</span>');
         $('#PasswordValidationMessage').append(list);
     }
 
