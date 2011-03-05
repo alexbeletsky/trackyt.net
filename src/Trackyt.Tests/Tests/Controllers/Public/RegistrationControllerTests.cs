@@ -26,7 +26,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
         }
 
         [Test]
-        public void Index()
+        public void Index_Get_ReturnsView()
         {
             //arrange
             var auth = new Mock<IAuthenticationService>();
@@ -81,7 +81,6 @@ namespace Trackyt.Core.Tests.Controllers.Public
             };
 
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(false);
-            //auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
             //act
             controller.Register(model);
@@ -190,6 +189,72 @@ namespace Trackyt.Core.Tests.Controllers.Public
 
             //post
             notification.Verify(n => n.NotifyUserOnRegistration("a@a.com", "111111"));
+        }
+
+        [Test]
+        public void Mobile_Get_ReturnsView()
+        {
+            // arrange
+            var auth = new Mock<IAuthenticationService>();
+            var notification = new Mock<INotificationService>();
+            var controller = new RegistrationController(auth.Object, notification.Object);
+
+            // act
+            var view = controller.Mobile();
+
+            // assert
+            Assert.That(view, Is.Not.Null);
+        }
+
+        [Test]
+        public void RegisterMobile_Post_RedirectedToSuccess()
+        {
+            // arrange
+            var auth = new Mock<IAuthenticationService>();
+            var notification = new Mock<INotificationService>();
+            var controller = new RegistrationController(auth.Object, notification.Object);
+
+            // act
+            var model = new RegisterUserModel()
+            {
+                Email = "a@a.com",
+                Password = "password",
+                ConfirmPassword = "password"
+            };
+
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(true);
+            auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
+
+            var result = controller.RegisterMobile(model) as RedirectResult;
+
+            // assert
+            Assert.That(result.Url, Is.EqualTo("~/registration/success"));
+        }
+
+        [Test]
+        public void RegisterMobile_Post_RedirectedBackToView()
+        {
+            // arrange
+            var auth = new Mock<IAuthenticationService>();
+            var notification = new Mock<INotificationService>();
+            var controller = new RegistrationController(auth.Object, notification.Object);
+
+            // act
+            var model = new RegisterUserModel()
+            {
+                Email = "a@a.com",
+                Password = "password",
+                ConfirmPassword = "password"
+            };
+
+            auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(false);
+
+            var result = controller.Register(model) as ViewResult;
+
+            //assert
+            Assert.That(model, Is.EqualTo(result.ViewData.Model));
+            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, Is.EqualTo("Sorry, user with such email already exist. Please register with different email."));
+
         }
 
     }
