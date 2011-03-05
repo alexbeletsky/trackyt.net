@@ -25,29 +25,7 @@ namespace Web.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult Register(RegisterUserModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var email = model.Email;
-                var password = model.Password;
-
-                if (_auth.RegisterNewUser(email, password))
-                {
-                    _notification.NotifyUserOnRegistration(email, password);
-                    return Redirect("~/user/dashboard");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
-                }
-            }
-
-            return View("Index", model);
-        }
-
+        
         [HttpGet]
         public ActionResult QuickStart()
         {
@@ -59,5 +37,51 @@ namespace Web.Controllers
 
             return Redirect("~/user/dashboard");
         }
+
+        [HttpGet]
+        public ActionResult Mobile()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Success()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterUserModel model)
+        {
+            return RegiterWithAction(model, () => { return Redirect("~/user/dashboard"); }, () => { return View("index", model); });
+        }
+
+        [HttpPost]
+        public ActionResult RegisterMobile(RegisterUserModel model)
+        {
+            return RegiterWithAction(model, () => { return Redirect("~/registration/success"); }, () => { return View("mobile", model); });
+        }
+
+        private ActionResult RegiterWithAction(RegisterUserModel model, Func<ActionResult> successAction, Func<ActionResult> defaultAction)
+        {
+            if (ModelState.IsValid)
+            {
+                var email = model.Email;
+                var password = model.Password;
+
+                if (_auth.RegisterNewUser(email, password))
+                {
+                    _notification.NotifyUserOnRegistration(email, password);
+                    return successAction.Invoke();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sorry, user with such email already exist. Please register with different email.");
+                }
+            }
+
+            return defaultAction.Invoke();
+        }
+
     }
 }

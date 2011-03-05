@@ -309,6 +309,8 @@
     <None Include="Scripts\Tests\framework\funcunit\README" />
     <None Include="Scripts\Tests\framework\funcunit\run.bat" />
     <Content Include="Views\Shared\Api.Master" />
+    <Content Include="Views\Registration\Mobile.cshtml" />
+    <Content Include="Views\Registration\Success.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
