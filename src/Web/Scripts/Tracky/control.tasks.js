@@ -2,6 +2,29 @@
     this.div = div;
     this.layout = layout;
     this.tasks = [];
+
+//    div.sortable( {
+//            axis: 'y',
+//            delay: 100,
+//            opacity: 0.6,
+//            update: saveTaskPosition
+//        }
+//    );
+//    div.disableSelection();
+//}
+
+//function saveTaskPosition(event, ui) {
+//    var tasks = $('.task');
+
+//    var position = 0;
+//    tasks.each(function update(index, task) {
+//        updatePosition(task, position++);
+//    });
+
+//    function updatePosition(task, position) {
+//        var id = $(task).attr('id');
+//        var p = position;
+//    }
 }
 
 tasksControl.prototype = (function () {
