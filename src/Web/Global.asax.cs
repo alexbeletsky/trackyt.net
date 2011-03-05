@@ -18,7 +18,8 @@ namespace Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //routes.IgnoreRoute("admin/{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("robots.txt");
+            routes.IgnoreRoute("favicon.ico");
 
             routes.MapRoute(
                 "Default", // Route name
