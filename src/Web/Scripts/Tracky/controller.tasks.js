@@ -6,7 +6,7 @@
     var token = $('#apiToken').val();
 
     var a = new api(url, token);
-    var control = new tasksControl($('#tasks'), layout);
+    var control = new tasksControl($('#tasks'), layout, updateTaskPosition);
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +50,14 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
+
+    $('.moveontop').live('click', function () {
+        $(this).parent().slideUp(function () {
+            $(this).prependTo('#tasks').slideDown(function () {
+                control.updatePositions();
+            });
+        });
+    });
 
     $('.start a').live('click', function () {
         var method = $(this).attr('href');
@@ -97,6 +105,14 @@
         return false;
     });
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Callbacks
+
+    function updateTaskPosition(id, position) {
+        var method = '/tasks/update/' + id + '/position/' + position;
+        a.call(method, 'PUT', undefined, function (r) {}); 
+    }
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 

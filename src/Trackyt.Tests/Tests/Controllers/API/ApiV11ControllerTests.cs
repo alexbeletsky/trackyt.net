@@ -692,5 +692,26 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // act
             api.StopAll(token);
         }
+
+        [Test]
+        public void UpdatePosition_UpdateTaskPosition()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePosition(token, 1, 100);
+
+            // assert
+            var task = ApiTestsCommonSetup.SubmittedTasks[0];
+            Assert.That(task.Position, Is.EqualTo(100));
+        }
     }
 }

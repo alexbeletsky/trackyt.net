@@ -1,0 +1,2 @@
+ALTER TABLE [Tasks]
+ADD Position [int] NOT NULL DEFAULT 1 WITH VALUES;

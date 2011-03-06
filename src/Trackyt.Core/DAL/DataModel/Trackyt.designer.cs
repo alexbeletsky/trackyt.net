@@ -713,6 +713,8 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private System.Nullable<int> _PlannedEffort;
 		
+		private int _Position;
+		
 		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
@@ -745,6 +747,8 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnPlannedDateChanged();
     partial void OnPlannedEffortChanging(System.Nullable<int> value);
     partial void OnPlannedEffortChanged();
+    partial void OnPositionChanging(int value);
+    partial void OnPositionChanged();
     #endregion
 		
 		public Task()
@@ -1013,6 +1017,26 @@ namespace Trackyt.Core.DAL.DataModel
 					this._PlannedEffort = value;
 					this.SendPropertyChanged("PlannedEffort");
 					this.OnPlannedEffortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Position", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int Position
+		{
+			get
+			{
+				return this._Position;
+			}
+			set
+			{
+				if ((this._Position != value))
+				{
+					this.OnPositionChanging(value);
+					this.SendPropertyChanging();
+					this._Position = value;
+					this.SendPropertyChanged("Position");
+					this.OnPositionChanged();
 				}
 			}
 		}

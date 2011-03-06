@@ -53,6 +53,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -88,7 +89,9 @@
     </Compile>
     <Compile Include="API\v11\ApiV11Registration.cs" />
     <Compile Include="API\v11\Controllers\ApiV11Controller.cs" />
-    <Compile Include="API\v11\Model\NewTaskDescriptor.cs" />
+    <Compile Include="API\v11\Model\DeleteOperationResult.cs" />
+    <Compile Include="API\v11\Model\StartStopOperationResult.cs" />
+    <Compile Include="API\v11\Model\TaskDescriptor.cs" />
     <Compile Include="API\v1\ApiV1Registration.cs" />
     <Compile Include="API\v1\Model\TaskDto.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />

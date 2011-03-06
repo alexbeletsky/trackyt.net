@@ -33,7 +33,7 @@ namespace Trackyt.Core.DAL.Repositories.Impl
         {
             get
             {
-                return _context.Tasks;
+                return _context.Tasks.OrderBy(t => t.Position);
             }
         }
 

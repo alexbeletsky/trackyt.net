@@ -57,7 +57,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
             
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var tasks = CreateTasksList(userId);
 
             return Json(
@@ -76,7 +76,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentNotNullOrEmpty(description, "description");
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var task = new Task { Description = description, UserId = userId, Status = (int)TaskStatus.None };
             _tasks.Save(task);
 
@@ -95,7 +95,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var task = _tasks.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -117,7 +117,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var task = _tasks.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -139,7 +139,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var task = _tasks.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -161,7 +161,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var allTasks = _tasks.Tasks.WithUserId(userId);
 
             foreach (var task in allTasks)
@@ -184,7 +184,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = CheckAuthorization(apiToken);
+            var userId = GetUserIdByApiToken(apiToken);
             var allTasks = _tasks.Tasks.WithUserId(userId);
 
             foreach (var task in allTasks)
@@ -197,6 +197,27 @@ namespace Web.API.v11.Controllers
                 {
                     success = true,
                     data = (string)null
+                });
+        }
+
+        [HttpPut]
+        public ActionResult UpdatePosition(string apiToken, int taskId, int position)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+            var task = _tasks.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+
+            task.Position = position;
+            _tasks.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { task = CreateTaskDescriptor(task) }
                 });
         }
 
@@ -215,7 +236,8 @@ namespace Web.API.v11.Controllers
                 startedDate = t.StartedDate,
                 stoppedDate = t.StoppedDate,
                 status = t.Status,
-                spent = GetTaskActualWork(t)
+                spent = GetTaskActualWork(t),
+                position = t.Position
             };
         }
 
@@ -293,7 +315,7 @@ namespace Web.API.v11.Controllers
             }
         }
 
-        private int CheckAuthorization(string apiToken)
+        private int GetUserIdByApiToken(string apiToken)
         {
             var userId = _api.GetUserIdByApiToken(apiToken);
 
@@ -306,11 +328,11 @@ namespace Web.API.v11.Controllers
         }
 
         // TODO: get rid of that check. Repository must throw such exception, in case of task does not exist
-        private static void CheckTaskNotNull(int taskId, Task task)
+        private static void CheckTaskNotNull(int id, Task task)
         {
             if (task == null)
             {
-                throw new Exception(string.Format("Task with id: {0} does not exists.", taskId));
+                throw new Exception(string.Format("Task with id: {0} does not exists.", id));
             }
         }
     }

@@ -21,18 +21,6 @@ namespace Web.API.v11.Model
         public DateTime? startedDate { set; get; }
         public DateTime? stoppedDate { set; get; }
         public int spent { set; get; }
-    }
-
-    public class DeleteOperationResult
-    {
-        public int id { set; get; }
-        public DateTime? createdDate { set; get; }
-    }
-
-    public class StartStopOperationResult
-    {
-        public int id { get; set; }
-        public DateTime? startedDate { get; set; }
-        public DateTime? stoppedDate { get; set; }
+        public int position { get; set; }
     }
 }
