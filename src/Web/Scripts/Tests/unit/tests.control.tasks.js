@@ -11,7 +11,7 @@
         );
 
     test("smoke test", function () {
-        var control = new tasksControl();
+        var control = new tasksControl($('#tasks'));
         ok(control != null);
     });
 

@@ -1,31 +1,12 @@
-﻿function tasksControl(div, layout) {
+﻿function tasksControl(div, layout, updateTaskPosition) {
     this.div = div;
     this.layout = layout;
+    this.updateTaskPosition = updateTaskPosition;
     this.tasks = [];
 
-//    div.sortable( {
-//            axis: 'y',
-//            delay: 100,
-//            opacity: 0.6,
-//            update: saveTaskPosition
-//        }
-//    );
-//    div.disableSelection();
-//}
-
-//function saveTaskPosition(event, ui) {
-//    var tasks = $('.task');
-
-//    var position = 0;
-//    tasks.each(function update(index, task) {
-//        updatePosition(task, position++);
-//    });
-
-//    function updatePosition(task, position) {
-//        var id = $(task).attr('id');
-//        var p = position;
-//    }
+    this.init();
 }
+
 
 tasksControl.prototype = (function () {
     
@@ -54,6 +35,47 @@ tasksControl.prototype = (function () {
         return null;
     }
 
+    function idToTaskReference(id) {
+        return 'task-' + id;
+    }
+
+    function taskReferenceToId(ref) {
+        return ref.substr(5);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // drag-n-drop
+
+    function makeSortable(div, updateTaskPosition) {
+        var me = this;
+
+        div.sortable( {
+                axis: 'y',
+                delay: 100,
+                opacity: 0.6,
+                update: function (event, ui) {
+                     me.update(event, ui);
+                }
+            }
+        );
+        div.disableSelection();
+
+        this.update = function(event, ui) {
+            var tasks = div.children('.task');
+
+            var position = 1;
+            tasks.each(function update(index, task) {
+                updatePosition(task, position++);
+            });
+
+            function updatePosition(task, position) {
+                var id = taskReferenceToId($(task).attr('id'));
+                updateTaskPosition(id, position);
+            }
+        }
+    }
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // private members
     
@@ -62,7 +84,7 @@ tasksControl.prototype = (function () {
         var me = this;
 
         this.id = t.id;
-        this.ref = 'task-' + this.id ;
+        this.ref = idToTaskReference(this.id) ;
         this.control = control;
         this.control.div.append('<div id=' + this.ref + ' class="task"></div>');
         this.div = $('#' + this.ref);
@@ -234,17 +256,22 @@ tasksControl.prototype = (function () {
         task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>'); 
     }
 
+
     return {
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         // public members
+
+        init: function() {
+            makeSortable(this.div, this.updateTaskPosition);    
+        },
 
         addTask: function (t) {
             var taskToAdd = new task(this, t);
             this.tasks.push(taskToAdd);
         },
 
-        removeTask: function (id) {
+        removeTask: function(id) {
             var taskToRemove = getTaskById(this.tasks, id);
             if (taskToRemove) {
                 this.tasks = removeFromArray(this.tasks, taskToRemove);

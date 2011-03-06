@@ -6,7 +6,7 @@
     var token = $('#apiToken').val();
 
     var a = new api(url, token);
-    var control = new tasksControl($('#tasks'), layout);
+    var control = new tasksControl($('#tasks'), layout, updateTaskPosition);
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +97,14 @@
         return false;
     });
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Callbacks
+
+    function updateTaskPosition(id, position) {
+        var method = '/tasks/update/' + id + '/position/' + position;
+        a.call(method, 'PUT', undefined, function (r) {}); 
+    }
+    
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 
