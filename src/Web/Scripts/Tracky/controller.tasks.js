@@ -51,6 +51,14 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
 
+    $('.moveontop').live('click', function () {
+        $(this).parent().slideUp(function () {
+            $(this).prependTo('#tasks').slideDown(function () {
+                control.updatePositions();
+            });
+        });
+    });
+
     $('.start a').live('click', function () {
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {

@@ -272,6 +272,18 @@ footer, .push {
     width: 45px;
 }
 
+.task .moveontop 
+{
+    float: left;
+    font-size: larger;
+    padding-left: 10px;    
+}
+
+.task .moveontop:hover 
+{
+    cursor: pointer;
+}
+
 .task .description
 {
     float: left;
