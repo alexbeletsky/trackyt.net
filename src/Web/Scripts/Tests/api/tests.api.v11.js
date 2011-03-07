@@ -314,4 +314,32 @@
             same(result.message, "Task with id: 5555 does not exists.");
         });
     });
+
+    test("update position", function () {
+        var me = this;
+
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var taskId = result.data.tasks[0].id;
+            ok(taskId >= 1, "could not get task for update");
+
+            var method = 'tasks/update/' + taskId + '/position/' + 100;
+            var type = 'PUT';
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, "update call failed");
+                ok(result.data.task.position == 100, "position value wrong");
+            });
+        });
+    });
 });

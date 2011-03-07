@@ -6,7 +6,7 @@
     var token = $('#apiToken').val();
 
     var a = new api(url, token);
-    var control = new tasksControl($('#tasks'), layout);
+    var control = new tasksControl($('#tasks'), layout, updateTaskPosition);
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +17,7 @@
             a.call('/tasks/add', 'POST', { description: d }, function (r) {
                 if (r.success) {
                     control.addTask(r.data.task);
+                    control.updatePositions();
                 }
 
                 $('#task-description').val('');
@@ -50,6 +51,14 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
+
+    $('.moveontop').live('click', function () {
+        $(this).parent().slideUp(function () {
+            $(this).prependTo('#tasks').slideDown(function () {
+                control.updatePositions();
+            });
+        });
+    });
 
     $('.start a').live('click', function () {
         var method = $(this).attr('href');
@@ -98,12 +107,20 @@
     });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Callbacks
+
+    function updateTaskPosition(id, position) {
+        var method = '/tasks/update/' + id + '/position/' + position;
+        a.call(method, 'PUT', undefined, function (r) {}); 
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 
     function layout(task) {
-        task.children('.start').addClass('right');
-        task.children('.stop').addClass('right');
-        task.children('.delete').addClass('right');
+//        task.children('.start').addClass('right');
+//        task.children('.stop').addClass('right');
+//        task.children('.delete').addClass('right');
     }
 
     // initial load of all tasks

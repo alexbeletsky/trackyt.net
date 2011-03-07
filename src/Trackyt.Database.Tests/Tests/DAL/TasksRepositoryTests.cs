@@ -200,5 +200,27 @@ namespace Trackyt.Core.DAL.Tests
                 Assert.That(found.CreatedDate, Is.Not.Null);
             }
         }
+
+        [Test]
+        public void Tasks_SortedByPosition()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                // arrange
+                var repository = new TasksRepository(fixture.Setup.Context);
+
+                repository.Save(new Task { UserId = fixture.Setup.User.Id, Position = 3 });
+                repository.Save(new Task { UserId = fixture.Setup.User.Id, Position = 2 });
+                repository.Save(new Task { UserId = fixture.Setup.User.Id, Position = 1 });
+
+                // act
+                var tasks = repository.Tasks.ToArray();
+
+                // assert
+                Assert.That(tasks[0].Position, Is.EqualTo(1));
+                Assert.That(tasks[1].Position, Is.EqualTo(2));
+                Assert.That(tasks[2].Position, Is.EqualTo(3));
+            }
+        }
     }
 }

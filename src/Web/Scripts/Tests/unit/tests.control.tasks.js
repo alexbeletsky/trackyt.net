@@ -11,7 +11,7 @@
         );
 
     test("smoke test", function () {
-        var control = new tasksControl();
+        var control = new tasksControl($('#tasks'));
         ok(control != null);
     });
 
@@ -290,7 +290,7 @@
     });
 
     test("stop all tasks", function () {
-        // assert
+        // arrange
         var control = new tasksControl($('#tasks'));
         var tasks = [
             { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
@@ -311,6 +311,25 @@
             same(stopped, 3, "all tasks are stopped");
             start();
         }, 500);
+    });
+
+    test("move task on top", function () {
+        // arrange
+        var control = new tasksControl($('#tasks'));
+        var tasks = [
+            { id: 0, description: "task 1", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 1, description: "task 2", status: 0, createdDate: null, startedDate: null, stoppedDate: null },
+            { id: 2, description: "task 3", status: 0, createdDate: null, startedDate: null, stoppedDate: null }
+            ];
+
+        for (var t in tasks) {
+            control.addTask(tasks[t]);
+        }
+
+        // act
+        // control.moveOnTop();
+
+
     });
 
 });

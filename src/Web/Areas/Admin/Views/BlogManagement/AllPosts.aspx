@@ -7,6 +7,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%: Url.Content("~/Scripts/Admin/control.editposts.js") + "?ver=107"%>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/Admin/controller.editposts.js") + "?ver=107"%>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Admin/control.editposts.js") + "?ver=108"%>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Admin/controller.editposts.js") + "?ver=108"%>" type="text/javascript"></script>
 </asp:Content>
