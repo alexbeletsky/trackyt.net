@@ -84,7 +84,6 @@ tasksControl.prototype = (function () {
         this.control = control;
         this.control.div.append('<div id=' + this.ref + ' class="task"></div>');
         this.div = $('#' + this.ref);
-        this.div.hide();
 
         this.sections = [];
 
@@ -119,7 +118,7 @@ tasksControl.prototype = (function () {
         }
 
         // show it
-        this.div.fadeIn('fast');
+        this.div.slideDown();
     }
 
     // class task members
@@ -127,7 +126,7 @@ tasksControl.prototype = (function () {
         return {
             remove: function () {
                 var me = this;
-                this.div.fadeOut('fast', function () { me.div.remove(); });
+                this.div.slideUp(function () { me.div.remove(); });
             },
 
             start: function () {
@@ -144,7 +143,7 @@ tasksControl.prototype = (function () {
 
     // class moveOnTop definition
     function moveOnTop(task, t) {
-        task.div.append('<span class="moveontop">top</span>');
+        task.div.append('<span class="moveontop"></span>');
     }
 
     // class description definition
@@ -199,6 +198,8 @@ tasksControl.prototype = (function () {
                 if (this.onTimerStartedHandler) {
                     this.onTimerStartedHandler();
                 }
+
+                $('#' + this.ref).addClass('run');
             },
 
             pause: function () {
@@ -207,6 +208,8 @@ tasksControl.prototype = (function () {
                 if (this.onTimerStoppedHandler) {
                     this.onTimerStoppedHandler();
                 }
+
+                $('#' + this.ref).removeClass('run');
             },
 
             init: function () {

@@ -17,6 +17,7 @@
             a.call('/tasks/add', 'POST', { description: d }, function (r) {
                 if (r.success) {
                     control.addTask(r.data.task);
+                    control.updatePositions();
                 }
 
                 $('#task-description').val('');
@@ -117,9 +118,9 @@
     // Layout and initialization
 
     function layout(task) {
-        task.children('.start').addClass('right');
-        task.children('.stop').addClass('right');
-        task.children('.delete').addClass('right');
+//        task.children('.start').addClass('right');
+//        task.children('.stop').addClass('right');
+//        task.children('.delete').addClass('right');
     }
 
     // initial load of all tasks
