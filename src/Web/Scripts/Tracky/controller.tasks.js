@@ -60,6 +60,35 @@
         });
     });
 
+    $('.description').live('dblclick', function () {
+        var value = $(this).html();
+        if ($('#description-edit').length == 0) {
+            $(this).html('<input type="text" id="description-edit"/><input type="hidden" id="description-prev"/>');
+            $('#description-prev').val(value);
+            $('#description-edit').val(value).focus();
+        }
+    });
+
+    $('#description-edit').live('keyup', function (e) {
+        var description = $(this).val();
+        var previous = $('#description-prev').val();
+        var span = $(this).parent();
+
+        if (e.keyCode == 13) {
+            span.html(description);
+
+            $('#description-edit').remove();
+            $('#description-prev').remove();
+
+        } if (e.keyCode == 27) {
+            span.html(previous);    
+
+            $('#description-edit').remove();
+            $('#description-prev').remove();
+        }
+
+    });
+
     $('.start a').live('click', function () {
         var method = $(this).attr('href');
         a.call(method, 'PUT', null, function (r) {
