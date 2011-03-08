@@ -6,7 +6,7 @@
     var token = $('#apiToken').val();
 
     var a = new api(url, token);
-    var control = new tasksControl($('#tasks'), layout, updateTaskPosition);
+    var control = new tasksControl($('#tasks'), layout, updateTaskPositionCallback, updateTaskDescriptionCallback);
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,24 +69,31 @@
         }
     });
 
+    function saveTaskEdit() {
+        var updatedDescription = $('#description-edit').val();
+        var task = $('#description-edit').parent().parent();
+        control.updateTaskDescription(task.attr('id'), updatedDescription);
+        removeEditControls();
+    }
+
+    function cancelTaskEdit() {
+        var previousDescription = $('#description-prev').val();
+        var task = $('#description-edit').parent().parent();
+        control.setTaskDescription(task.attr('id'), previousDescription);
+        removeEditControls();                
+    }
+
+    function removeEditControls () {
+        $('#description-edit').remove();
+        $('#description-prev').remove();
+    }
+
     $('#description-edit').live('keyup', function (e) {
-        var description = $(this).val();
-        var previous = $('#description-prev').val();
-        var span = $(this).parent();
-
         if (e.keyCode == 13) {
-            span.html(description);
-
-            $('#description-edit').remove();
-            $('#description-prev').remove();
-
+            saveTaskEdit();
         } if (e.keyCode == 27) {
-            span.html(previous);    
-
-            $('#description-edit').remove();
-            $('#description-prev').remove();
+            cancelTaskEdit();
         }
-
     });
 
     $('.start a').live('click', function () {
@@ -138,9 +145,14 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Callbacks
 
-    function updateTaskPosition(id, position) {
+    function updateTaskPositionCallback(id, position) {
         var method = '/tasks/update/' + id + '/position/' + position;
         a.call(method, 'PUT', undefined, function (r) {}); 
+    }
+
+    function updateTaskDescriptionCallback(id, description) {
+        var method = '/tasks/update/' + id + '/description/' + description;
+        a.call(method, 'PUT', undefined, function (r) {});
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////
