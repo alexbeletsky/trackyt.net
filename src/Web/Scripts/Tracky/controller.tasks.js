@@ -6,8 +6,35 @@
     var token = $('#apiToken').val();
 
     var a = new api(url, token);
-    var control = new tasksControl($('#tasks'), layout, updateTaskPositionCallback, updateTaskDescriptionCallback);
+    var element = $('#tasks');
+    var control = new tasksControl(element);
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // drag-n-drop
+
+    function makeSortable(div, updateTaskPositionCallback) {
+        element.sortable({
+            axis: 'y',
+            delay: 100,
+            opacity: 0.6,
+            update: function (event, ui) {
+                updateAfterSort();
+            }
+        }
+        );
+        element.disableSelection();
+    }
+
+    function updateAfterSort() {
+        var tasks = element.children('.task');
+
+        var position = 1;
+        tasks.each(function (index, task) {
+            var id = control.getTaskIdFromReference($(task).attr('id'));
+            updateTaskPositionCallback(id, position++);
+        });
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Dashboard handlers
@@ -55,7 +82,7 @@
     $('.moveontop').live('click', function () {
         $(this).parent().slideUp(function () {
             $(this).prependTo('#tasks').slideDown(function () {
-                control.updatePositions();
+                updateAfterSort();
             });
         });
     });
@@ -69,17 +96,26 @@
         }
     });
 
+
     function saveTaskEdit() {
-        var updatedDescription = $('#description-edit').val();
+        var currentDescription = $('#description-edit').val();
+        var previousDescription = $('#description-prev').val();
         var task = $('#description-edit').parent().parent();
-        control.updateTaskDescription(task.attr('id'), updatedDescription);
+        
+        control.setTaskDescription(task.attr('id'), currentDescription);
+        if (currentDescription != previousDescription) {
+            updateTaskDescriptionCallback(task.attr('id'), currentDescription);
+        }
+
         removeEditControls();
     }
 
     function cancelTaskEdit() {
         var previousDescription = $('#description-prev').val();
         var task = $('#description-edit').parent().parent();
+        
         control.setTaskDescription(task.attr('id'), previousDescription);
+        
         removeEditControls();                
     }
 
@@ -150,21 +186,18 @@
         a.call(method, 'PUT', undefined, function (r) {}); 
     }
 
-    function updateTaskDescriptionCallback(id, description) {
-        var method = '/tasks/update/' + id + '/description/' + description;
+    function updateTaskDescriptionCallback(ref, description) {
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/description/' + description;
         a.call(method, 'PUT', undefined, function (r) {});
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 
-    function layout(task) {
-//        task.children('.start').addClass('right');
-//        task.children('.stop').addClass('right');
-//        task.children('.delete').addClass('right');
-    }
 
     // initial load of all tasks
+    makeSortable();
+
     $.blockUI();
     a.call('/tasks/all', 'GET', undefined, function (r) {
         if (r.success) {

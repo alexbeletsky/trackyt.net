@@ -43,6 +43,14 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
+            context.MapRoute(
+                "ApiV11_tasks_updatedescription",
+                "api/v1.1/{apiToken}/tasks/update/{taskId}/description/{description}",
+                new { controller = "ApiV11", action = "UpdateDescription" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
 
             context.MapRoute(
                 "ApiV11_tasks_getall",

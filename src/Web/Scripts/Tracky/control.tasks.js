@@ -1,8 +1,8 @@
 ﻿function tasksControl(div, layout, updateTaskPositionCallback, updateTaskDescriptionCallback) {
     this.div = div;
-    this.layout = layout;
-    this.updateTaskPositionCallback = updateTaskPositionCallback;
-    this.updateTaskDescriptionCallback = updateTaskDescriptionCallback;
+//    this.layout = layout;
+//    this.updateTaskPositionCallback = updateTaskPositionCallback;
+//    this.updateTaskDescriptionCallback = updateTaskDescriptionCallback;
     this.tasks = [];
 
     this.init();
@@ -42,34 +42,6 @@ tasksControl.prototype = (function () {
 
     function taskReferenceToId(ref) {
         return ref.substr(5);
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // drag-n-drop
-
-    function makeSortable(div, updateTaskPosition) {
-        var me = this;
-
-        div.sortable({
-            axis: 'y',
-            delay: 100,
-            opacity: 0.6,
-            update: function (event, ui) {
-                updateAfterSort(div, updateTaskPosition);
-            }
-        }
-        );
-        div.disableSelection();
-    }
-
-    function updateAfterSort(div, updateTaskPosition) {
-        var tasks = div.children('.task');
-
-        var position = 1;
-        tasks.each(function (index, task) {
-            var id = taskReferenceToId($(task).attr('id'));
-            updateTaskPosition(id, position++);
-        });
     }
 
 
@@ -113,10 +85,10 @@ tasksControl.prototype = (function () {
         this.sections['timer'].onTimerStopped(this.timerStopped);
         this.sections['timer'].init();
 
-        // call external layout handler to apply custom styles
-        if (this.control.layout) {
-            this.control.layout(this.div);
-        }
+        //        // call external layout handler to apply custom styles
+        //        if (this.control.layout) {
+        //            this.control.layout(this.div);
+        //        }
 
         // show it
         this.div.slideDown();
@@ -289,7 +261,7 @@ tasksControl.prototype = (function () {
         // public members
 
         init: function () {
-            makeSortable(this.div, this.updateTaskPositionCallback);
+            //makeSortable(this.div);
         },
 
         addTask: function (t) {
@@ -358,19 +330,13 @@ tasksControl.prototype = (function () {
             return this.tasks.length;
         },
 
-        updatePositions: function () {
-            updateAfterSort(this.div, this.updateTaskPositionCallback);
-        },
-
-        updateTaskDescription: function (taskRef, desc) {
-            var id = taskReferenceToId(taskRef);
-            var task = getTaskById(this.tasks, id);
-            task.updateDescription(desc);
+        getTaskIdFromReference: function (ref) {
+            return taskReferenceToId(ref);
         },
 
         setTaskDescription: function (taskRef, desc) {
             var id = taskReferenceToId(taskRef);
-            var task = getTaskById(id);
+            var task = getTaskById(this.tasks, id);
             task.setDescription(desc);
         }
     };
