@@ -160,6 +160,10 @@
     <Content Include="Areas\Blog\Views\Shared\Pager.ascx" />
     <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
     <Content Include="Content\confirm.css" />
+    <Content Include="Content\Images\dashboard\arrow-right.png" />
+    <Content Include="Content\Images\dashboard\arrow-up.png" />
+    <Content Include="Content\Images\dashboard\delete.png" />
+    <Content Include="Content\Images\dashboard\stop.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Content\Images\public\rss.png" />

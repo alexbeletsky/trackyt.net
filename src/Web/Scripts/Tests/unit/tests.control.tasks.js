@@ -313,7 +313,7 @@
         }, 500);
     });
 
-    test("move task on top", function () {
+    test("task set description", function () {
         // arrange
         var control = new tasksControl($('#tasks'));
         var tasks = [
@@ -327,9 +327,10 @@
         }
 
         // act
-        // control.moveOnTop();
+        var task = $('#tasks .task').get(0);
+        control.setTaskDescription($(task).attr('id'), 'task 1 updated');
 
-
+        // assert
+        ok($(task).children('.description').html() == 'task 1 updated');
     });
-
 });

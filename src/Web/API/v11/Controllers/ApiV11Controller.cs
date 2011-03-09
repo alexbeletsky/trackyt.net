@@ -221,6 +221,28 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        [HttpPut]
+        public ActionResult UpdateDescription(string apiToken, int taskId, string description)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+            var task = _tasks.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+            
+            task.Description = description;
+            _tasks.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { task = CreateTaskDescriptor(task) }
+                });
+
+        }
+
         private IList<TaskDescriptor> CreateTasksList(int userId)
         {
             return _tasks.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();
