@@ -44,7 +44,7 @@
             a.call('/tasks/add', 'POST', { description: d }, function (r) {
                 if (r.success) {
                     control.addTask(r.data.task);
-                    control.updatePositions();
+                    updateAfterSort();
                 }
 
                 $('#task-description').val('');
