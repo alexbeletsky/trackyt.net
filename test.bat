@@ -30,7 +30,7 @@ echo.
 echo Usage: test.bat
 echo Usage: test.bat all - to run all tests
 echo.
-goto finish
+EXIT /B 1
 
 :errors
 EXIT /B %ERRORLEVEL%

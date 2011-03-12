@@ -1,0 +1,157 @@
+Error: You must specify Database Name (/d).
+  -?, --help, -h             Prints out the options.
+  -d, --db, --database, --databasename=VALUE
+                             REQUIRED: DatabaseName - The database you want 
+                               to create/migrate.
+  -f, --files, --sqlfilesdirectory=VALUE
+                             REQUIRED: SqlFilesDirectory - The directory 
+                               where your SQL scripts are.
+  -s, --server, --servername, --instance, --instancename=VALUE
+                             ServerName - The server and instance you would 
+                               like to run on. (local) and (local)\SQL2008 are 
+                               both valid values. Defaults to "(local)".
+  -c, --cs, --connstring, --connectionstring=VALUE
+                             As an alternative to ServerName and Database - 
+                               You can provide an entire connection string 
+                               instead.
+      --dt, --dbt, --databasetype=VALUE
+                             DatabaseType - Tells RH what type of database it 
+                               is running on. This is a plugin model. This is 
+                               the fully qualified name of a class that 
+                               implements the interface roundhouse.sql.Databas-
+                               e, roundhouse. If you have your own assembly, 
+                               just set it next to rh.exe and set this value 
+                               appropriately. Defaults to "roundhouse.database-
+                               s.sqlserver.SqlServerDatabase, roundhous-
+                               e.databases.sqlserver" which can also run 
+                               against SQL Server 2005.
+  -r, --repo, --repositorypath=VALUE
+                             RepositoryPath - The repository. A string that 
+                               can be anything. Used to track versioning along 
+                               with the version. Defaults to null.
+      --vf, --versionfile=VALUE
+                             VersionFile - Either an XML file or a DLL that a 
+                               version can be resolved from. Defaults to 
+                               "_BuildInfo.xml".
+      --vx, --versionxpath=VALUE
+                             VersionXPath - Works in conjunction with an XML 
+                               version file. Defaults to "//buildInfo/version".
+  -u, --up, --upfolder, --upfoldername=VALUE
+                             UpFolderName - The name of the folder where you 
+                               keep your update scripts. Will recurse through 
+                               subfolders. Defaults to "up".
+      --do, --down, --downfolder, --downfoldername=VALUE
+                             DownFolderName - The name of the folder where 
+                               you keep your versioning down scripts. Will 
+                               recurse through subfolders. Defaults to "down".
+      --rf, --runfirst, --runfirstfolder, --runfirstafterupdatefolder, --runfirstafterupdatefoldername=VALUE
+                             RunFirstAfterUpdateFolderName - The name of the 
+                               folder where you keep any functions, views, or 
+                               sprocs that are order dependent. If you have a 
+                               function that depends on a view, you definitely 
+                               need the view in this folder. Will recurse 
+                               through subfolders. Defaults to 
+                               "runFirstAfterUp".
+      --fu, --functions, --functionsfolder, --functionsfoldername=VALUE
+                             FunctionsFolderName - The name of the folder 
+                               where you keep your functions. Will recurse 
+                               through subfolders. Defaults to "functions".
+      --vw, --views, --viewsfolder, --viewsfoldername=VALUE
+                             ViewsFolderName - The name of the folder where 
+                               you keep your views. Will recurse through 
+                               subfolders. Defaults to "views".
+      --sp, --sprocs, --sprocsfolder, --sprocsfoldername=VALUE
+                             SprocsFolderName - The name of the folder where 
+                               you keep your stored procedures. Will recurse 
+                               through subfolders. Defaults to "sprocs".
+  -p, --permissions, --permissionsfolder, --permissionsfoldername=VALUE
+                             PermissionsFolderName - The name of the folder 
+                               where you keep your permissions scripts. Will 
+                               recurse through subfolders. Defaults to 
+                               "permissions".
+      --sc, --schema, --schemaname=VALUE
+                             SchemaName - This is the schema where RH stores 
+                               it's two tables. Once you set this a certain wa-
+                               y, do not change this. This is definitelly 
+                               running with scissors and very sharp. I am 
+                               allowing you to have flexibility, but because 
+                               this is a knife you can still get cut if you use 
+                               it wrong. I'm just saying. You've been warned. 
+                               Defaults to "RoundhousE".
+      --vt, --versiontable, --versiontablename=VALUE
+                             VersionTableName - This is the table where RH 
+                               stores versioning information. Once you set thi-
+                               s, do not change this. This is definitelly 
+                               running with scissors and very sharp. Defaults 
+                               to "Version".
+      --srt, --scriptsruntable, --scriptsruntablename=VALUE
+                             ScriptsRunTableName - This is the table where RH 
+                               stores information about scripts that have been 
+                               run. Once you set this a certain way, do not 
+                               change this. This is definitelly running with 
+                               scissors and very sharp. Defaults to 
+                               "ScriptsRun".
+      --sret, --scriptsrunerrorstable, --scriptsrunerrorstablename=VALUE
+                             ScriptsRunErrorsTableName - This is the table 
+                               where RH stores information about scripts that 
+                               have been run with errors. Once you set this a 
+                               certain way, do not change this. This is 
+                               definitelly running with scissors and very shar-
+                               p. Defaults to "ScriptsRunErrors".
+      --env, --environment, --environmentname=VALUE
+                             EnvironmentName - This allows RH to be 
+                               environment aware and only run scripts that are 
+                               in a particular environment based on the naming 
+                               of the script. LOCAL.something.sql would only be 
+                               run in the LOCAL environment. Defaults to 
+                               "LOCAL".
+      --restore              Restore - This instructs RH to do a restore 
+                               (with the restorefrompath parameter) of a 
+                               database before running migration scripts. 
+                               Defaults to false.
+      --rfp, --restorefrom, --restorefrompath=VALUE
+                             RestoreFromPath - This tells the restore where 
+                               to get to the backed up database. Defaults to 
+                               null. Required if /restore has been set. NOTE: 
+                               will try to use Litespeed for the restore if the 
+                               last two characters of the name are LS (as in 
+                               DudeLS.bak).
+      --rco, --restoreoptions, --restorecustomoptions=VALUE
+                             RestoreCustomOptions - This provides the restore 
+                               any custom options as in MOVE='Somewhere or 
+                               another'.
+      --rt, --restoretimeout=VALUE
+                             RestoreTimeout - Allows you to specify a restore 
+                               timeout in seconds. The default is 900 seconds.
+      --cds, --createdatabasescript, --createdatabasecustomscript=VALUE
+                             CreateDatabaseCustomScript - This instructs RH 
+                               to use this script for creating a database 
+                               instead of the default based on the SQLType.
+      --drop                 Drop - This instructs RH to remove a database 
+                               and not run migration scripts. Defaults to false.
+      --dc, --dnc, --donotcreatedatabase
+                             DontCreateDatabase - This instructs RH to not 
+                               create a database if it does not exists. 
+                               Defaults to false.
+  -o, --output, --outputpath=VALUE
+                             OutputPath - This is where everything related to 
+                               the migration is stored. This includes any 
+                               backups, all items that ran, permission dumps, 
+                               logs, etc. Defaults to 
+                               "C:\ProgramData\RoundhousE".
+  -w, --warnononetimescriptchanges
+                             WarnOnOneTimeScriptChanges - If you do not want 
+                               RH to error when you change scripts that should 
+                               not change, you must set this flag. One time 
+                               scripts are DDL/DML (anything in the upFolder). 
+                               Defaults to false.
+      --ni, --noninteractive NonInteractive - tells RH not to ask for any 
+                               input when it runs. Defaults to false.
+  -t, --trx, --transaction, --wt, --withtransaction
+                             WithTransaction - This instructs RH to run 
+                               inside of a transaction. Defaults to false.
+      --simple               RecoveryModeSimple - This instructs RH to set 
+                               the database recovery mode to simple recovery. 
+                               Defaults to false.
+      --debug                Debug - This instructs RH to write out all 
+                               messages.
