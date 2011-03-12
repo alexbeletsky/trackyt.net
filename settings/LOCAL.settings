@@ -3,22 +3,17 @@
   <!-- environment settings -->
   <property name="environment" value="LOCAL" />
   <!-- servers -->
-  <property name="server.app" value="127.0.0.1" />
-  <property name="server.file" value="127.0.0.1" />
-  <property name="server.msmq" value="localhost" />
   <property name="server.database" value=".\SQLEXPRESS" />
   <property name="web.deploy.folder" value="c:\trackyt.net\" />
+  <property name="web.site.name" value="trackyt.net" />
 
   <property name="database.name" value="trackytdb" />
   <property name="log.level" value="DEBUG" />
   <property name="app.user.name" value="alexander.beletsky" />
-  <property name="app.user.password" value="__REPLACE__" />
-  <property name="queue.name" value="__REPLACE__" />
-  <property name="error.emails.to" value="__REPLACE__" />
 
   <!-- base settings -->
   <property name="project.name" value="trackyt.net" overwrite="false" />
-  <property name="repository.path" value="git://github.com/alexanderbeletsky/Trackyourtasks.net" />
+  <property name="repository.path" value="git://github.com/alexanderbeletsky/trackyt.net" />
   <property name="folder.app.drop" value="${project.name}" overwrite="false" />
   <property name="folder.database" value="db" overwrite="false" />
 
