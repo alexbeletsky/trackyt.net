@@ -22,9 +22,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
         {
             //arrange
             var users = new Mock<IUsersRepository>();
-            var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
-            var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
+            var dashboard = new DashboardController(users.Object, path.Object);
 
             //act/post
             Assert.That(dashboard, Is.Not.Null);
@@ -56,16 +55,13 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
         {
             // arrange
             var users = new Mock<IUsersRepository>();
-            var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
+            var dashboard = new DashboardController(users.Object, path.Object);
 
-            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net", ApiToken = "111222" } }).AsQueryable());
 
-            var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
-
             // act
-            var result = dashboard.Index() as ViewResult;
+            var result = dashboard.Index("logged@tracky.net") as ViewResult;
 
             // post
             Assert.That(result.ViewData["ApiToken"], Is.EqualTo("111222"));
@@ -74,19 +70,16 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
         [Test]
         public void Index_Get_Initialize_Api_Path()
         {
-            //arrange
+            // arrange
             var users = new Mock<IUsersRepository>();
-            var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
+            var dashboard = new DashboardController(users.Object, path.Object);
 
-            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
             path.Setup(p => p.VirtualToAbsolute(It.IsAny<string>())).Returns((string v) => v);
 
-            var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
-
             //act
-            var result = dashboard.Index() as ViewResult;
+            var result = dashboard.Index("logged@tracky.net") as ViewResult;
 
             //post
             Assert.That(result.ViewData["Api"], Is.EqualTo("~/API/v1.1/"));
@@ -95,19 +88,16 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
         [Test]
         public void Index_Get_Initialize_Users_Email()
         {
-            //arrange
+            // arrange
             var users = new Mock<IUsersRepository>();
-            var forms = new Mock<IFormsAuthentication>();
             var path = new Mock<IPathHelper>();
+            var dashboard = new DashboardController(users.Object, path.Object);
 
-            forms.Setup(f => f.GetLoggedUserEmail()).Returns("logged@tracky.net");
             users.Setup(u => u.Users).Returns((new List<User> { new User { Id = 100, Email = "logged@tracky.net" } }).AsQueryable());
             path.Setup(p => p.VirtualToAbsolute(It.IsAny<string>())).Returns((string v) => v);
 
-            var dashboard = new DashboardController(users.Object, forms.Object, path.Object);
-
             //act
-            var result = dashboard.Index() as ViewResult;
+            var result = dashboard.Index("logged@tracky.net") as ViewResult;
 
             //post
             Assert.That(result.ViewData["Email"], Is.EqualTo("logged@tracky.net"));

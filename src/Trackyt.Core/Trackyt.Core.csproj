@@ -37,6 +37,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +80,7 @@
     <Compile Include="Services\CredentialsService.cs" />
     <Compile Include="Services\DateTimeProviderService.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\IRedirectService.cs" />
     <Compile Include="Services\NotificationServiceForDebug.cs" />
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
@@ -88,6 +93,7 @@
     <Compile Include="Services\IApiService.cs" />
     <Compile Include="Services\INotificationService.cs" />
     <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\RedirectService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
