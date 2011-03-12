@@ -1,15 +1,17 @@
 @echo off
 
 if '%1' == '' goto usage
+if '%2' == '' goto usage
 
-sqlcmd -S seekey-note\sqlexpress -i .\scripts\backupdb.sql -v Database = %1 -e
+sqlcmd -S %1 -i .\scripts\backupdb.sql -v Database = %2 -e
 if %ERRORLEVEL% NEQ 0 goto errors
 
 goto finish
 
 :usage
 echo.
-echo Usage: backup.bat [database]
+echo Usage: backup.bat [server] [database]
+echo [server] - server eg. mymachine\SQLEXPRESS
 echo [database] - name of database to backup
 echo.
 EXIT /B 1

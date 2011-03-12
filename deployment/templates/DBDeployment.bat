@@ -9,7 +9,7 @@ SET version.xpath="//buildInfo/version"
 SET environment="${environment}"
 
 echo backup database
-call .\scripts\backupdb.bat %database.name%
+call .\scripts\backupdb.bat %server.database% %database.name%
 if %ERRORLEVEL% NEQ 0 goto errors
 
 echo update database
