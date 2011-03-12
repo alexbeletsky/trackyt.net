@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Moq;
 using Web.Infrastructure.Security;
 using Trackyt.Core.Services;
+using SharpTestsEx;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Public
 {
@@ -18,9 +19,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
         [Test]
         public void Smoke()
         {
-            //arrange
-            var service = new Mock<IAuthenticationService>(); 
-            var controller = new LoginController(service.Object);
+            // arrange
+            var service = new Mock<IAuthenticationService>();
+            var redirect = new RedirectService();
+            var controller = new LoginController(service.Object, redirect);
 
             //act/post
             Assert.That(controller, Is.Not.Null);
@@ -30,9 +32,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
         [Test]
         public void Login_Index_View()
         {
-            //arrange
+            // arrange
             var service = new Mock<IAuthenticationService>();
-            var controller = new LoginController(service.Object);
+            var redirect = new RedirectService();
+            var controller = new LoginController(service.Object, redirect);
 
             //act
             var result = controller.Index();
@@ -44,9 +47,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
         [Test]
         public void Login_Post_Success()
         {
-            //arrange
+            // arrange
             var service = new Mock<IAuthenticationService>();
-            var controller = new LoginController(service.Object);
+            var redirect = new RedirectService();
+            var controller = new LoginController(service.Object, redirect);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
             service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(true);
@@ -55,15 +59,16 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
             var result = controller.Login(model, null) as RedirectResult;
 
             //assert
-            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
+            result.Url.Should().Be("~/user/a@a.com");
         }
 
         [Test]
         public void Login_Post_Success_With_ReturnUrl()
         {
-            //arrange
+            // arrange
             var service = new Mock<IAuthenticationService>();
-            var controller = new LoginController(service.Object);
+            var redirect = new RedirectService();
+            var controller = new LoginController(service.Object, redirect);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
             service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(true);
@@ -78,9 +83,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Public
         [Test]
         public void Login_Post_Fail()
         {
-            //arrange
+            // arrange
             var service = new Mock<IAuthenticationService>();
-            var controller = new LoginController(service.Object);
+            var redirect = new RedirectService();
+            var controller = new LoginController(service.Object, redirect);
             var model = new LoginModel() { Email = "a@a.com", Password = "xxx" };
 
             service.Setup(s => s.Authenticate("a@a.com", "xxx")).Returns(false);

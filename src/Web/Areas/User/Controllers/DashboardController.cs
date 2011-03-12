@@ -11,23 +11,20 @@ namespace Web.Areas.User.Controllers
     public class DashboardController : Controller
     {
         private IUsersRepository _users;
-        private IFormsAuthentication _auth;
         private IPathHelper _path;
 
-        public DashboardController(IUsersRepository repository, IFormsAuthentication authentication, IPathHelper path)
+        public DashboardController(IUsersRepository repository, IPathHelper path)
         {
             _users = repository;
-            _auth = authentication;
             _path = path;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string email)
         {
-            var userEmail = _auth.GetLoggedUserEmail();
-            var user = _users.Users.WithEmail(userEmail);
+            var user = _users.Users.WithEmail(email);
             
             ViewData["Api"] = _path.VirtualToAbsolute("~/API/v1.1/");
-            ViewData["Email"] = userEmail;
+            ViewData["Email"] = email;
             ViewData["ApiToken"] = user.ApiToken;
 
             return View();
