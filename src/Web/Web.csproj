@@ -326,7 +326,7 @@
   <Target Name="BeforeBuild">
   </Target> -->
   <Target Name="AfterBuild" Condition="'$(Configuration)'=='Release'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
