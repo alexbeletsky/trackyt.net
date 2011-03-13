@@ -7,10 +7,12 @@ namespace Web.Controllers
     public class LoginController : Controller
     {
         private IAuthenticationService _auth;
+        private IRedirectService _redirect;
 
-        public LoginController(IAuthenticationService authentication)
+        public LoginController(IAuthenticationService authentication, IRedirectService redirect)
         {
             _auth = authentication;
+            _redirect = redirect; 
         }
 
         public ActionResult Index()
@@ -25,7 +27,7 @@ namespace Web.Controllers
             {
                 if (_auth.Authenticate(model.Email, model.Password))
                 {
-                    return Redirect(returnUrl ?? "~/user/dashboard");
+                    return returnUrl == null ? _redirect.ToDashboard(model.Email) : _redirect.ToUrl(returnUrl);
                 }
                 else
                 {

@@ -27,6 +27,7 @@ namespace Web.Infrastructure
             Bind<IEMailService>().To<EmailService>();
             Bind<ICredentialsService>().To<CredentialsService>();
             Bind<ICredentialsRepository>().To<CredentialsRepository>();
+            Bind<IRedirectService>().To<RedirectService>();
         }
     }
 }

@@ -14,11 +14,13 @@ namespace Web.Controllers
     {
         private IAuthenticationService _auth;
         private INotificationService _notification;
+        private IRedirectService _redirect;
 
-        public RegistrationController(IAuthenticationService auth, INotificationService notification)
+        public RegistrationController(IAuthenticationService auth, INotificationService notification, IRedirectService redirect)
         {
             _auth = auth;
             _notification = notification;
+            _redirect = redirect;
         }
 
         public ActionResult Index()
@@ -35,7 +37,7 @@ namespace Web.Controllers
 
             _auth.RegisterTemporaryUser(email, password);
 
-            return Redirect("~/user/dashboard");
+            return _redirect.ToDashboard(email);
         }
 
         [HttpGet]
@@ -53,13 +55,13 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Register(RegisterUserModel model)
         {
-            return RegiterWithAction(model, () => { return Redirect("~/user/dashboard"); }, () => { return View("index", model); });
+            return RegiterWithAction(model, () => { return _redirect.ToDashboard(model.Email); }, () => { return View("index", model); });
         }
 
         [HttpPost]
         public ActionResult RegisterMobile(RegisterUserModel model)
         {
-            return RegiterWithAction(model, () => { return Redirect("~/registration/success"); }, () => { return View("mobile", model); });
+            return RegiterWithAction(model, () => { return _redirect.ToRegistrationSuccess(); }, () => { return View("mobile", model); });
         }
 
         private ActionResult RegiterWithAction(RegisterUserModel model, Func<ActionResult> successAction, Func<ActionResult> defaultAction)

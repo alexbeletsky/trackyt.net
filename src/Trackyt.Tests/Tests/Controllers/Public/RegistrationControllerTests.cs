@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Trackyt.Core.Services;
 using Web.Controllers;
 using Web.Models;
+using SharpTestsEx;
 
 namespace Trackyt.Core.Tests.Controllers.Public
 {
@@ -16,10 +17,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void Smoke()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             //act/assert
             Assert.That(controller, Is.Not.Null);
@@ -28,10 +30,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void Index_Get_ReturnsView()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             //act
             var result = controller.Index();
@@ -43,10 +46,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void Register_Post_Success_Redirected_To_Dashboard()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             var model = new RegisterUserModel()
             {
@@ -62,17 +66,17 @@ namespace Trackyt.Core.Tests.Controllers.Public
             var result = controller.Register(model) as RedirectResult;
 
             //assert (result)
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
+            result.Url.Should().Be("~/user/a@a.com");
         }
 
         [Test]
         public void Register_Post_Fail_Already_Registered()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -96,10 +100,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [ExpectedException(typeof(Exception))]
         public void Register_Post_Fail_Unknown_Reason()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
             var model = new RegisterUserModel()
             {
                 Email = "a@a.com",
@@ -117,10 +122,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void QuickStart_Get_Success_Temp_User_Created()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             //act
             var resuts = controller.QuickStart() as RedirectResult;
@@ -132,10 +138,11 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void QuickStart_Get_Success_Temp_User_Name_Is_Unique()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             var users = new List<dynamic>();
             auth.Setup(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>())).Callback(
@@ -156,26 +163,27 @@ namespace Trackyt.Core.Tests.Controllers.Public
         [Test]
         public void QuickStart_Get_Success_Redirected_To_Dashboard()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             //act
             var result = controller.QuickStart() as RedirectResult;
 
             //post
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Url, Is.EqualTo("~/user/dashboard"));
+            result.Url.Should().StartWith("~/user/");
         }
 
         [Test]
         public void Register_NewUserRegistered_EmailSent()
         {
-            //arrange
+            // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
             var user = new RegisterUserModel
             {
                 Email = "a@a.com",
@@ -197,7 +205,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
             // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             // act
             var view = controller.Mobile();
@@ -212,7 +221,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
             // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             // act
             var model = new RegisterUserModel()
@@ -237,7 +247,8 @@ namespace Trackyt.Core.Tests.Controllers.Public
             // arrange
             var auth = new Mock<IAuthenticationService>();
             var notification = new Mock<INotificationService>();
-            var controller = new RegistrationController(auth.Object, notification.Object);
+            var redirect = new RedirectService();
+            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
             // act
             var model = new RegisterUserModel()
