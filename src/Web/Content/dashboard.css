@@ -153,9 +153,9 @@ footer, .push {
     padding-top: 40px;
     background-color: #e7e6de;
         
-     -webkit-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
-     -moz-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
-     box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
+     -moz-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
+     box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -171,7 +171,7 @@ footer, .push {
     margin:0 auto;
     /* 3d4a59 */
     background-color: #425565;
-    opacity: 0.7;
+    opacity: 0.6;
     
     border: 1px solid #2f3439;
     
@@ -294,12 +294,7 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/arrow-up.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.4;    
 }
 
 .task .moveontop:hover 
@@ -314,6 +309,22 @@ footer, .push {
     font-size: large;
     padding-left: 14px;
     margin-top: 4px;
+}
+
+.task .plantodate
+{
+    float: right;
+    height: 32px;
+    width: 32px;
+    background-image: url('Images/dashboard/cal.png');
+    
+    opacity: 0.4;
+}
+
+.task .plantodate:hover 
+{
+    cursor: pointer;
+    opacity: 0.6;
 }
 
 .task .timer 
@@ -337,12 +348,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/arrow-right.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.4;    
 }
 
 .task .start a:hover 
@@ -358,12 +364,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/stop.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.4;    
 }
 
 .task .stop a:hover 
@@ -371,6 +372,7 @@ footer, .push {
     cursor: pointer;
     opacity: 0.6;
 }
+
 .task .delete a
 {
     float:right;    
@@ -378,12 +380,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/delete.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.4;
 }
 
 .task .delete a:hover 
@@ -452,9 +449,9 @@ input#task-description
 
 #description-edit
 {
-    width: 460px;
+    width: 420px;
     padding: 4px;
-    opacity: 0.7;
+    opacity: 0.6;
     
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;

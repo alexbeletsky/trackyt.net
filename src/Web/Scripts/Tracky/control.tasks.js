@@ -62,6 +62,7 @@ tasksControl.prototype = (function () {
 
         this.sections['moveontop'] = new moveOnTop(this, t);
         this.sections['description'] = new description(this, t);
+        this.sections['plantodate'] = new plantodate(this, t);
         this.sections['remove'] = new remove(this, t);
         this.sections['stop'] = new stop(this, t);
         this.sections['start'] = new start(this, t);
@@ -145,6 +146,10 @@ tasksControl.prototype = (function () {
         };
 
     })();
+
+    function plantodate(task, t) {
+        task.div.append('<span class="plantodate"></div>');
+    }
 
     // class timer definition
     function timer(task, t) {

@@ -96,6 +96,17 @@
         }
     });
 
+    $('.plantodate').live('click', function () {
+        if ($('.datepicker').length == 0) {
+            $(this).append('<span class="datepicker"></span>');
+            $('.datepicker').datepicker({
+                showOn: 'both',
+                onSelect: function (date, inst) {
+                    $('.datepicker').remove();
+                }
+            });
+        }
+    });
 
     function saveTaskEdit() {
         var currentDescription = $('#description-edit').val();
@@ -193,7 +204,6 @@
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
-
 
     // initial load of all tasks
     makeSortable();
