@@ -14,8 +14,6 @@
                 <input id="start-all" type="button" value="Start All"/>
                 <span>|</span>
                 <input id="stop-all" type="button" value="Stop All"/>
-<%--                <span>|</span>      
-                <input id="submit" type="button" value="Submit"/>--%>
             </div>        
         </div>  
         <div id="tasks">
@@ -24,8 +22,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/jquery-ui.min.js") + "?ver=1010" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/jquery.confirm.js") + "?ver=1010" %>"></script>
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=1010" %>"></script>
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=1010" %>"></script>
     <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=1010" %>"></script>
