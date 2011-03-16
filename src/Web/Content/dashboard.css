@@ -406,7 +406,15 @@ footer, .push {
     opacity: 0.6;
 }
 
-
+.close 
+{
+    float: right;
+    color:#788187;
+    text-decoration:underline;
+    padding-bottom:5px;
+    font-size:12px;
+    cursor:pointer
+}
 
 /*
 .task .right 
