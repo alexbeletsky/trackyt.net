@@ -31,14 +31,13 @@
 
         $(function () {
 
+            //$('.datepicker').datepicker();
             $('.planodate').live('click', function () {
-                $(this).parent().append('<span class="datepicker"></span>');
-                $('.datepicker').datepicker({
-                    showOn: 'both',
-                    onSelect: function (date, inst) {
-                        $('.datepicker').remove();
-                    }
-                });
+                //$(this).append('<input class="datepicker" style="width: 0px; border: none;"/>');
+                $(this).after('<span class="datepicker"></span>');
+                $('.datepicker').datepicker(
+                    { showOn: 'both', buttonImageOnly: true }
+                    , 'show');
             });
         });
 
@@ -46,6 +45,7 @@
 </head>
 <body>
 <div id="1" class="planodate">
+<!--<input class="datepicker" style="width: 0px; border: none;"/>-->
 </div>
 <div id="2" class="planodate">
 </div>

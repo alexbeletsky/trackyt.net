@@ -98,11 +98,10 @@
 
     $('.plantodate').live('click', function () {
         if ($('.datepicker').length == 0) {
-            $(this).append('<span class="datepicker"></span>');
+            $(this).after('<div id="ui-datepicker-div" class="right"><span class="datepicker"></span></div>');
             $('.datepicker').datepicker({
-                showOn: 'both',
                 onSelect: function (date, inst) {
-                    $('.datepicker').remove();
+                    $('#ui-datepicker-div').remove();
                 }
             });
         }
@@ -188,6 +187,7 @@
 
         return false;
     });
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Callbacks

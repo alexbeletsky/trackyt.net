@@ -228,11 +228,26 @@ footer, .push {
     margin-top: 20px;
 }
 
-#tasks
+/* Datepicker */
+
+.datepicker
+{
+    position:absolute;
+    left: -320px;
+    opacity: 0.8;    
+}
+
+#ui-datepicker-div
 {
     position: relative;
-    display: block;
-    width: 700px;
+    z-index: 1000 !important;
+}
+
+/* Tasks */
+
+#tasks
+{
+    width: 720px;
     height: auto;
     margin:0 auto;
     margin-bottom: 20px;
@@ -259,6 +274,8 @@ footer, .push {
     
     width: 100%;
     height: 30px;
+    
+    z-index: -1000;
 }
 
 .task span
@@ -279,7 +296,6 @@ footer, .push {
 
 .task .index
 {
-    position: relative;
     top: -5px;
     left: 0px;
     font-size:x-small;
@@ -317,14 +333,15 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/cal.png');
+    opacity: 0.4;    
     
-    opacity: 0.4;
 }
 
 .task .plantodate:hover 
 {
     cursor: pointer;
     opacity: 0.6;
+    
 }
 
 .task .timer 
@@ -342,7 +359,7 @@ footer, .push {
 }
 
 .task .start a
-{
+{    
     float:right;    
     height: 32px;
     width: 32px;
@@ -358,7 +375,7 @@ footer, .push {
 }
 
 .task .stop a
-{
+{    
     float:right;    
     height: 32px;
     width: 32px;
