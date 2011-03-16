@@ -8,6 +8,7 @@ using Trackyt.Core.Services;
 using Web.Controllers;
 using Web.Models;
 using SharpTestsEx;
+using System.Threading;
 
 namespace Trackyt.Core.Tests.Controllers.Public
 {
@@ -152,6 +153,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
 
             //act
             controller.QuickStart();
+            Thread.Sleep(100);
             controller.QuickStart();
 
             //post
