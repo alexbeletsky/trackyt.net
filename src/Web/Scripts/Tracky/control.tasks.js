@@ -67,6 +67,7 @@ tasksControl.prototype = (function () {
         this.sections['stop'] = new stop(this, t);
         this.sections['start'] = new start(this, t);
         this.sections['timer'] = new timer(this, t);
+        this.sections['planned'] = new planned(this, t);
 
         // subscribe on timer event
         this.timerStarted = function () {
@@ -115,10 +116,10 @@ tasksControl.prototype = (function () {
                 this.sections['description'].setDescription(desc);
             },
 
-            updateDescription: function (desc) {
-                this.setDescription(desc);
-                this.control.updateTaskDescriptionCallback(this.id, desc);
+            setPlannedDate: function (date) {
+                this.sections['planned'].setPlannedDate(date);
             }
+
         }
 
     })();
@@ -259,6 +260,41 @@ tasksControl.prototype = (function () {
         task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>');
     }
 
+    function planned(task, t) {
+        this.ref = 'planned-' + t.id;
+        this.plannedDate = t.plannedDate;
+
+        this.format = function () {
+            if (this.plannedDate) {
+                var date = new Date(parseInt(this.plannedDate.substr(6)));
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+
+                if (day < 10) { day = '0' + day }
+                if (month < 10) { month = '0' + month }
+
+                return day + '-' + month + '-' + year;
+            }
+
+            return '';
+        }
+
+        task.div.append('<span id="' + this.ref + '" class="planned">' + this.format() + '</span>');
+    }
+
+    planned.prototype = (function () {
+
+        return {
+
+            setPlannedDate: function (date) {
+                $('#' + this.ref).html(date);
+            }
+
+        };
+
+    })();
+
 
     return {
 
@@ -343,6 +379,12 @@ tasksControl.prototype = (function () {
             var id = taskReferenceToId(taskRef);
             var task = getTaskById(this.tasks, id);
             task.setDescription(desc);
+        },
+
+        setTaskPlannedDate: function (taskRef, date) {
+            var id = taskReferenceToId(taskRef);
+            var task = getTaskById(this.tasks, id);
+            task.setPlannedDate(date);
         }
     };
 })();

@@ -20,6 +20,7 @@ namespace Web.API.v11.Model
         public DateTime? createdDate { set; get; }
         public DateTime? startedDate { set; get; }
         public DateTime? stoppedDate { set; get; }
+        public DateTime? plannedDate { set; get; }
         public int spent { set; get; }
         public int position { get; set; }
     }

@@ -51,6 +51,14 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
+            context.MapRoute(
+                "ApiV11_tasks_updateplanneddate",
+                "api/v1.1/{apiToken}/tasks/update/{taskId}/planneddate/{date}",
+                new { controller = "ApiV11", action = "UpdatePlannedDate", date = UrlParameter.Optional },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
 
             context.MapRoute(
                 "ApiV11_tasks_getall",

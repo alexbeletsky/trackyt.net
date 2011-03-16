@@ -31,8 +31,7 @@
 
         var position = 1;
         tasks.each(function (index, task) {
-            var id = control.getTaskIdFromReference($(task).attr('id'));
-            updateTaskPositionCallback(id, position++);
+            updateTaskPositionCallback($(task).attr('id'), position++);
         });
     }
 
@@ -98,17 +97,34 @@
 
     $('.plantodate').live('click', function () {
         if ($('.datepicker').length == 0) {
+            var me = $(this);
             $(this).after('<div id="ui-datepicker-div" class="right"><span class="datepicker"></span></div>');
             $('.datepicker').datepicker({
+                dateFormat: 'dd-mm-yy',
+                minDate: 0,
                 onSelect: function (date, inst) {
+                    //me.parent().find('.planned').html(date);
                     $('#ui-datepicker-div').remove();
+                    control.setTaskPlannedDate(me.parent().attr('id'), date);
+                    updateTaskPlannedDateCallback(me.parent().attr('id'), date);
                 }
             });
-            $('.ui-datepicker').append('<div class="close">X</div>');
+
+            $('.ui-datepicker').append('<div class="clear"><div class="clean">Not planned</div><div class="close">X</div></div>');
+            $('.ui-datepicker div.clean').die();
             $('.ui-datepicker div.close').die();
+            $('.ui-datepicker div.clean').live('click', function () {
+                //me.parent().find('.planned').html('');
+
+                $('#ui-datepicker-div').remove();
+                control.setTaskPlannedDate(me.parent().attr('id'), '');
+                updateTaskPlannedDateCallback(me.parent().attr('id'), '');
+            });
             $('.ui-datepicker div.close').live('click', function () {
                 $('#ui-datepicker-div').remove();
             });
+
+
         }
     });
 
@@ -197,14 +213,19 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Callbacks
 
-    function updateTaskPositionCallback(id, position) {
-        var method = '/tasks/update/' + id + '/position/' + position;
+    function updateTaskPositionCallback(ref, position) {
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/position/' + position;
         a.call(method, 'PUT', undefined, function (r) {}); 
     }
 
     function updateTaskDescriptionCallback(ref, description) {
         var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/description/' + description;
         a.call(method, 'PUT', undefined, function (r) {});
+    }
+
+    function updateTaskPlannedDateCallback(ref, plannedDate) {
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/planneddate/' + encodeURI(plannedDate);
+        a.call(method, 'PUT', undefined, function (r) {});         
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////

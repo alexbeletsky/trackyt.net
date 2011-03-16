@@ -234,7 +234,7 @@ footer, .push {
 {
     position:absolute;
     left: -320px;
-    opacity: 0.8;    
+    opacity: 0.9;    
 }
 
 #ui-datepicker-div
@@ -269,11 +269,11 @@ footer, .push {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B4F7B4), color-stop(100%,#48B555)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B4F7B4', endColorstr='#48B555',GradientType=0 ); /* ie */
 
-    margin-top: 5px;
+    margin-top: 3px;
     padding: 5px;
     
     width: 100%;
-    height: 30px;
+    height: 28px;
     
     z-index: -1000;
 }
@@ -325,6 +325,17 @@ footer, .push {
     font-size: large;
     padding-left: 14px;
     margin-top: 4px;
+}
+
+.task #description-edit
+{
+    width: 360px;
+    padding: 4px;
+    opacity: 0.6;
+    
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
 }
 
 .task .plantodate
@@ -406,6 +417,26 @@ footer, .push {
     opacity: 0.6;
 }
 
+.task .planned
+{
+    float:right;
+    padding-right: 8px;
+    font-size: small;
+    margin-top: 4px;    
+    color: #7e7e7e;
+
+}
+
+.clean
+{
+    float: left;
+    color:#788187;
+    text-decoration:underline;
+    padding-bottom:5px;
+    font-size:12px;
+    cursor:pointer    
+}
+
 .close 
 {
     float: right;
@@ -470,15 +501,4 @@ input#task-description
 .clear
 {
     clear: both;
-}
-
-#description-edit
-{
-    width: 420px;
-    padding: 4px;
-    opacity: 0.6;
-    
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
 }
