@@ -100,6 +100,8 @@
         if ($('.datepicker').length == 0) {
             $(this).after('<div id="ui-datepicker-div" class="right"><span class="datepicker"></span></div>');
             $('.datepicker').datepicker({
+                showButtonPanel: true,
+                closeText: 'X',
                 onSelect: function (date, inst) {
                     $('#ui-datepicker-div').remove();
                 }
@@ -188,6 +190,12 @@
         return false;
     });
 
+
+    $('#content').live('click', function () {
+
+        $('#ui-datepicker-div').remove();
+
+    });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Callbacks

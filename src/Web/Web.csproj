@@ -183,7 +183,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Content\Images\public\rss.png" />
-    <Content Include="datepicker.htm" />
+    <Content Include="DatepickerTests.htm" />
     <Content Include="Scripts\Admin\control.editposts.js" />
     <Content Include="Scripts\Admin\controller.editposts.js" />
     <Content Include="Scripts\ga.js" />
