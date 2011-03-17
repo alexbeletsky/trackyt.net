@@ -310,7 +310,7 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/arrow-up.png');
-    opacity: 0.4;    
+    opacity: 0.3;    
 }
 
 .task .moveontop:hover 
@@ -347,7 +347,7 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/cal.png');
-    opacity: 0.4;   
+    opacity: 0.3;   
 }
 
 .task .plantodate:hover 
@@ -381,7 +381,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/arrow-right.png');
-    opacity: 0.4;    
+    opacity: 0.3;    
 }
 
 .task .start a:hover 
@@ -397,7 +397,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/stop.png');
-    opacity: 0.4;    
+    opacity: 0.3;    
 }
 
 .task .stop a:hover 
@@ -413,7 +413,7 @@ footer, .push {
     width: 32px;
     
     background-image: url('Images/dashboard/delete.png');
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 .task .delete a:hover 
