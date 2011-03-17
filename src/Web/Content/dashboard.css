@@ -322,12 +322,16 @@ footer, .push {
 .task .description
 {
     height: 24px;
-    width: 400px;
+    width: 380px;
     
     float: left;
-    font-size: large;
+    font-size: 16px;
     padding-left: 14px;
     margin-top: 4px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .task #description-edit
