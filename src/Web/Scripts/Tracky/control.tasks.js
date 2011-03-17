@@ -62,10 +62,10 @@ tasksControl.prototype = (function () {
 
         this.sections['moveontop'] = new moveOnTop(this, t);
         this.sections['description'] = new description(this, t);
-        this.sections['plantodate'] = new plantodate(this, t);
         this.sections['remove'] = new remove(this, t);
         this.sections['stop'] = new stop(this, t);
         this.sections['start'] = new start(this, t);
+        this.sections['plantodate'] = new plantodate(this, t);
         this.sections['timer'] = new timer(this, t);
         this.sections['planned'] = new planned(this, t);
 

@@ -321,6 +321,9 @@ footer, .push {
 
 .task .description
 {
+    height: 24px;
+    width: 400px;
+    
     float: left;
     font-size: large;
     padding-left: 14px;
@@ -344,8 +347,7 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/cal.png');
-    opacity: 0.4;    
-    
+    opacity: 0.4;   
 }
 
 .task .plantodate:hover 
@@ -357,6 +359,9 @@ footer, .push {
 
 .task .timer 
 {
+    height: 16px;
+    width: 50px;
+    
     float:right;
     padding-right: 40px;
     font-size: small;
@@ -419,12 +424,13 @@ footer, .push {
 
 .task .planned
 {
+    height: 16px;
+    width: 74px;
+    
     float:right;
     padding-right: 8px;
     font-size: small;
     margin-top: 4px;    
-    color: #7e7e7e;
-
 }
 
 .clean
