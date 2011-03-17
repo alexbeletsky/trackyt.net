@@ -214,18 +214,18 @@
     // Callbacks
 
     function updateTaskPositionCallback(ref, position) {
-        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/position/' + position;
-        a.call(method, 'PUT', undefined, function (r) {}); 
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/position';
+        a.call(method, 'PUT', { position: position } , function (r) {}); 
     }
 
     function updateTaskDescriptionCallback(ref, description) {
-        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/description/' + description;
-        a.call(method, 'PUT', undefined, function (r) {});
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/description'; 
+        a.call(method, 'PUT', { description: description }, function (r) {});
     }
 
     function updateTaskPlannedDateCallback(ref, plannedDate) {
-        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/planneddate/' + encodeURI(plannedDate);
-        a.call(method, 'PUT', undefined, function (r) {});         
+        var method = '/tasks/update/' + control.getTaskIdFromReference(ref) + '/planneddate'
+        a.call(method, 'PUT', { plannedDate: plannedDate } , function (r) {});         
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////

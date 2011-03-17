@@ -37,7 +37,7 @@ namespace Web.API.v11
 
             context.MapRoute(
                 "ApiV11_tasks_updateposition",
-                "api/v1.1/{apiToken}/tasks/update/{taskId}/position/{position}",
+                "api/v1.1/{apiToken}/tasks/update/{taskId}/position",
                 new { controller = "ApiV11", action = "UpdatePosition" },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
@@ -45,7 +45,7 @@ namespace Web.API.v11
 
             context.MapRoute(
                 "ApiV11_tasks_updatedescription",
-                "api/v1.1/{apiToken}/tasks/update/{taskId}/description/{description}",
+                "api/v1.1/{apiToken}/tasks/update/{taskId}/description",
                 new { controller = "ApiV11", action = "UpdateDescription" },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
@@ -53,8 +53,8 @@ namespace Web.API.v11
 
             context.MapRoute(
                 "ApiV11_tasks_updateplanneddate",
-                "api/v1.1/{apiToken}/tasks/update/{taskId}/planneddate/{date}",
-                new { controller = "ApiV11", action = "UpdatePlannedDate", date = UrlParameter.Optional },
+                "api/v1.1/{apiToken}/tasks/update/{taskId}/planneddate",
+                new { controller = "ApiV11", action = "UpdatePlannedDate" },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
             );
