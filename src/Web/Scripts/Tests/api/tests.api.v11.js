@@ -315,6 +315,7 @@
         });
     });
 
+    // TODO: document API call
     test("update position", function () {
         var me = this;
 
@@ -341,5 +342,35 @@
                 ok(result.data.task.position == 100, "position value wrong");
             });
         });
+    });
+
+    // TODO: document API call
+    test("update planned date", function () {
+        var me = this;
+
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var taskId = result.data.tasks[0].id;
+            ok(taskId >= 1, "could not get task for update");
+
+            var method = 'tasks/update/' + taskId + '/planneddate/' + '17-03-2011';
+            var type = 'PUT';
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, data, function (result) {
+                ok(result.success, "update call failed");
+                ok(result.data.task.plannedDate == "/Date(1300312800000)/", "planned date value wrong");
+            });
+        });
+
     });
 });

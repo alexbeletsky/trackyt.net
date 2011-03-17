@@ -10,6 +10,7 @@ using Trackyt.Core.Services;
 using Web.API.v11.Model;
 using Web.Infrastructure.Error;
 using Web.Infrastructure.Exceptions;
+using System.Globalization;
 
 namespace Web.API.v11.Controllers
 {
@@ -240,7 +241,34 @@ namespace Web.API.v11.Controllers
                     success = true,
                     data = new { task = CreateTaskDescriptor(task) }
                 });
+        }
 
+        [HttpPut]
+        public ActionResult UpdatePlannedDate(string apiToken, int taskId, string date)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+            var task = _tasks.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+
+            if (string.IsNullOrEmpty(date))
+            {
+                task.PlannedDate = null;
+            }
+            else
+            {
+                task.PlannedDate = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            _tasks.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { task = CreateTaskDescriptor(task) }
+                });
         }
 
         private IList<TaskDescriptor> CreateTasksList(int userId)
@@ -257,6 +285,7 @@ namespace Web.API.v11.Controllers
                 createdDate = t.CreatedDate,
                 startedDate = t.StartedDate,
                 stoppedDate = t.StoppedDate,
+                plannedDate = t.PlannedDate,
                 status = t.Status,
                 spent = GetTaskActualWork(t),
                 position = t.Position

@@ -153,9 +153,9 @@ footer, .push {
     padding-top: 40px;
     background-color: #e7e6de;
         
-     -webkit-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
-     -moz-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
-     box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
+     -moz-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
+     box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -171,7 +171,7 @@ footer, .push {
     margin:0 auto;
     /* 3d4a59 */
     background-color: #425565;
-    opacity: 0.7;
+    opacity: 0.6;
     
     border: 1px solid #2f3439;
     
@@ -228,11 +228,26 @@ footer, .push {
     margin-top: 20px;
 }
 
-#tasks
+/* Datepicker */
+
+.datepicker
+{
+    position:absolute;
+    left: -320px;
+    opacity: 0.9;    
+}
+
+#ui-datepicker-div
 {
     position: relative;
-    display: block;
-    width: 700px;
+    z-index: 1000 !important;
+}
+
+/* Tasks */
+
+#tasks
+{
+    width: 720px;
     height: auto;
     margin:0 auto;
     margin-bottom: 20px;
@@ -254,11 +269,13 @@ footer, .push {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B4F7B4), color-stop(100%,#48B555)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B4F7B4', endColorstr='#48B555',GradientType=0 ); /* ie */
 
-    margin-top: 5px;
+    margin-top: 3px;
     padding: 5px;
     
     width: 100%;
-    height: 30px;
+    height: 28px;
+    
+    z-index: -1000;
 }
 
 .task span
@@ -279,7 +296,6 @@ footer, .push {
 
 .task .index
 {
-    position: relative;
     top: -5px;
     left: 0px;
     font-size:x-small;
@@ -294,12 +310,7 @@ footer, .push {
     height: 32px;
     width: 32px;
     background-image: url('Images/dashboard/arrow-up.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.3;    
 }
 
 .task .moveontop:hover 
@@ -310,14 +321,47 @@ footer, .push {
 
 .task .description
 {
+    height: 24px;
+    width: 400px;
+    
     float: left;
     font-size: large;
     padding-left: 14px;
     margin-top: 4px;
 }
 
+.task #description-edit
+{
+    width: 360px;
+    padding: 4px;
+    opacity: 0.6;
+    
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.task .plantodate
+{
+    float: right;
+    height: 32px;
+    width: 32px;
+    background-image: url('Images/dashboard/cal.png');
+    opacity: 0.3;   
+}
+
+.task .plantodate:hover 
+{
+    cursor: pointer;
+    opacity: 0.6;
+    
+}
+
 .task .timer 
 {
+    height: 16px;
+    width: 50px;
+    
     float:right;
     padding-right: 40px;
     font-size: small;
@@ -331,18 +375,13 @@ footer, .push {
 }
 
 .task .start a
-{
+{    
     float:right;    
     height: 32px;
     width: 32px;
     
     background-image: url('Images/dashboard/arrow-right.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.3;    
 }
 
 .task .start a:hover 
@@ -352,18 +391,13 @@ footer, .push {
 }
 
 .task .stop a
-{
+{    
     float:right;    
     height: 32px;
     width: 32px;
     
     background-image: url('Images/dashboard/stop.png');
-    opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
+    opacity: 0.3;    
 }
 
 .task .stop a:hover 
@@ -371,6 +405,7 @@ footer, .push {
     cursor: pointer;
     opacity: 0.6;
 }
+
 .task .delete a
 {
     float:right;    
@@ -379,11 +414,6 @@ footer, .push {
     
     background-image: url('Images/dashboard/delete.png');
     opacity: 0.3;
-    
-    -webkit-transition: background 0.5s ease;
-    -moz-transition: background 0.5s ease;
-    -o-transition: background 0.5s ease;
-    transition: background 0.5s ease;
 }
 
 .task .delete a:hover 
@@ -392,7 +422,36 @@ footer, .push {
     opacity: 0.6;
 }
 
+.task .planned
+{
+    height: 16px;
+    width: 74px;
+    
+    float:right;
+    padding-right: 8px;
+    font-size: small;
+    margin-top: 4px;    
+}
 
+.clean
+{
+    float: left;
+    color:#788187;
+    text-decoration:underline;
+    padding-bottom:5px;
+    font-size:12px;
+    cursor:pointer    
+}
+
+.close 
+{
+    float: right;
+    color:#788187;
+    text-decoration:underline;
+    padding-bottom:5px;
+    font-size:12px;
+    cursor:pointer
+}
 
 /*
 .task .right 
@@ -448,15 +507,4 @@ input#task-description
 .clear
 {
     clear: both;
-}
-
-#description-edit
-{
-    width: 460px;
-    padding: 4px;
-    opacity: 0.7;
-    
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
 }

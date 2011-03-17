@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using AutoMapper;
 using Moq;
 using NUnit.Framework;
-using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Services;
 using Web.API.v11.Controllers;
 using Web.API.v11.Model;
-using System;
 using Web.Infrastructure.Exceptions;
+using SharpTestsEx;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.API
 {
@@ -733,6 +731,110 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             // assert
             var task = ApiTestsCommonSetup.SubmittedTasks[0];
             Assert.That(task.Description, Is.EqualTo("new description"));
+        }
+
+        [Test]
+        public void UpdatePlannedDate_DateProvided_Planned()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePlannedDate(token, 1, "01-01-2011");
+
+            // assert
+            var task = ApiTestsCommonSetup.SubmittedTasks[0];
+            task.PlannedDate.Should().Be(new DateTime(2011, 1, 1));       
+        }
+
+        [Test]
+        public void UpdatePlannedDate_CheckFormat_Planned()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePlannedDate(token, 1, "12-12-2011");
+
+            // assert
+            var task = ApiTestsCommonSetup.SubmittedTasks[0];
+            task.PlannedDate.Should().Be(new DateTime(2011, 12, 12));
+        }
+
+        [Test]
+        [ExpectedException(typeof(FormatException))]
+        public void UpdatePlannedDate_WrongFormat_ExceptionThrown()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePlannedDate(token, 1, "12-17-2011");
+        }
+
+        [Test]
+        public void UpdatePlannedDate_ResetDateWithEmpty_DateIsNull()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePlannedDate(token, 1, "12-12-2011");
+            api.UpdatePlannedDate(token, 1, "");
+
+            // assert
+            var task = ApiTestsCommonSetup.SubmittedTasks[0];
+            task.PlannedDate.Should().Be(null);
+        }
+
+        [Test]
+        public void UpdatePlannedDate_ResetDateWithNull_DateIsNull()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+
+            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+
+            // act
+            api.UpdatePlannedDate(token, 1, "12-12-2011");
+            api.UpdatePlannedDate(token, 1, null);
+
+            // assert
+            var task = ApiTestsCommonSetup.SubmittedTasks[0];
+            task.PlannedDate.Should().Be(null);
         }
     }
 }
