@@ -363,10 +363,11 @@ footer, .push {
     right: 14px;
     
     height: 16px;
-    width: 50px;
+    width: 61px;
     
     float:right;
     font-size: small;
+    text-align: right;
     color: #7e7e7e;
 }
 
@@ -430,10 +431,11 @@ footer, .push {
     right: 22px;
     
     height: 16px;
-    width: 74px;
+    width: 86px;
     
     float:right;
     font-size: small;
+    text-align: right;
 }
 
 .clean
