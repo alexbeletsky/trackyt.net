@@ -22,8 +22,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=1011" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=1011" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=1011" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.account.js") + "?ver=1011" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/api.js") + "?ver=1012" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/control.tasks.js") + "?ver=1012" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.tasks.js") + "?ver=1012" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Tracky/controller.account.js") + "?ver=1012" %>"></script>
 </asp:Content>
