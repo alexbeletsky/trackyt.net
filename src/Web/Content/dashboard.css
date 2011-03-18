@@ -167,7 +167,7 @@ footer, .push {
 #new-task-control
 {
     width: 760px;
-    height: 120px;
+    height: 100px;
     margin:0 auto;
     /* 3d4a59 */
     background-color: #425565;
@@ -195,7 +195,7 @@ footer, .push {
     width: 600px;
     height: 35px;
     margin:0 auto;
-    margin-top: 25px;
+    margin-top: 24px;
 }
 
 #new-task-container input
@@ -223,9 +223,8 @@ footer, .push {
 {
     color: #1cbcff;
     width: 400px;
-    height: 50px;
     margin:0 auto;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 /* Datepicker */
@@ -247,11 +246,11 @@ footer, .push {
 
 #tasks
 {
-    width: 720px;
+    width: 730px;
     height: auto;
     margin:0 auto;
     margin-bottom: 20px;
-    padding: 20px;
+    padding-top: 20px;
 }
 
 .task  
@@ -270,11 +269,11 @@ footer, .push {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B4F7B4', endColorstr='#48B555',GradientType=0 ); /* ie */
 
     margin-top: 3px;
-    padding: 5px;
+    padding: 1px;
     
     width: 100%;
-    height: 28px;
-    
+    height: 33px;
+
     z-index: -1000;
 }
 
@@ -294,16 +293,6 @@ footer, .push {
     pointer-events: none;
 }
 
-.task .index
-{
-    top: -5px;
-    left: 0px;
-    font-size:x-small;
-    font-weight: bold;
-    float: left;
-    width: 45px;
-}
-
 .task .moveontop 
 {
     float: left;
@@ -321,13 +310,16 @@ footer, .push {
 
 .task .description
 {
-    height: 24px;
-    width: 380px;
+    position: relative;
+    left: 8px;
+    top: 7px;
+    
+    height: auto;
+    width: 400px;
     
     float: left;
     font-size: 16px;
-    padding-left: 14px;
-    margin-top: 4px;
+    text-align:left;
 
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -336,13 +328,17 @@ footer, .push {
 
 .task #description-edit
 {
-    width: 360px;
-    padding: 4px;
+    width: 90%;
     opacity: 0.6;
     
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.task input#description-edit  
+{
+    padding: 2px;
 }
 
 .task .plantodate
@@ -358,18 +354,19 @@ footer, .push {
 {
     cursor: pointer;
     opacity: 0.6;
-    
 }
 
 .task .timer 
 {
+    position: relative;
+    top: 7px;
+    right: 14px;
+    
     height: 16px;
     width: 50px;
     
     float:right;
-    padding-right: 40px;
     font-size: small;
-    margin-top: 4px;    
     color: #7e7e7e;
 }
 
@@ -428,13 +425,15 @@ footer, .push {
 
 .task .planned
 {
+    position: relative;
+    top: 7px;
+    right: 22px;
+    
     height: 16px;
     width: 74px;
     
     float:right;
-    padding-right: 8px;
     font-size: small;
-    margin-top: 4px;    
 }
 
 .clean
