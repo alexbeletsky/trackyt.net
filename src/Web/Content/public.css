@@ -258,6 +258,12 @@ http://ryanfait.com/sticky-footer/
     text-align: justify;
 }
 
+.blogpost img
+{
+    height: auto;
+    width: 100%;
+}
+
 .blogpost .header
 {
     padding-bottom: 20px;

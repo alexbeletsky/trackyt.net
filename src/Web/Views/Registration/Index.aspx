@@ -3,9 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <link href="../../Content/public-login.css?ver=1011" rel="stylesheet" type="text/css" />
+    <link href="../../Content/public-login.css?ver=1012" rel="stylesheet" type="text/css" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/Tracky/controller.registration.js") + "?ver=1011" %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Tracky/controller.registration.js") + "?ver=1012" %>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />

@@ -244,7 +244,7 @@ namespace Web.API.v11.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdatePlannedDate(string apiToken, int taskId, string date)
+        public ActionResult UpdatePlannedDate(string apiToken, int taskId, string plannedDate)
         {
             CheckArgumentApiToken(apiToken);
 
@@ -253,13 +253,13 @@ namespace Web.API.v11.Controllers
 
             CheckTaskNotNull(taskId, task);
 
-            if (string.IsNullOrEmpty(date))
+            if (string.IsNullOrEmpty(plannedDate))
             {
                 task.PlannedDate = null;
             }
             else
             {
-                task.PlannedDate = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                task.PlannedDate = DateTime.ParseExact(plannedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             }
             _tasks.Save(task);
 

@@ -332,12 +332,12 @@
             var taskId = result.data.tasks[0].id;
             ok(taskId >= 1, "could not get task for update");
 
-            var method = 'tasks/update/' + taskId + '/position/' + 100;
+            var method = 'tasks/update/' + taskId + '/position';
             var type = 'PUT';
 
             var call = createCallUrl(me.url, me.apiToken, method, params);
 
-            api_test(call, type, data, function (result) {
+            api_test(call, type, { position: 100 }, function (result) {
                 ok(result.success, "update call failed");
                 ok(result.data.task.position == 100, "position value wrong");
             });
@@ -361,16 +361,15 @@
             var taskId = result.data.tasks[0].id;
             ok(taskId >= 1, "could not get task for update");
 
-            var method = 'tasks/update/' + taskId + '/planneddate/' + '17-03-2011';
+            var method = 'tasks/update/' + taskId + '/planneddate';
             var type = 'PUT';
 
             var call = createCallUrl(me.url, me.apiToken, method, params);
 
-            api_test(call, type, data, function (result) {
+            api_test(call, type, { plannedDate: '17-03-2011' }, function (result) {
                 ok(result.success, "update call failed");
                 ok(result.data.task.plannedDate == "/Date(1300312800000)/", "planned date value wrong");
             });
         });
-
     });
 });
