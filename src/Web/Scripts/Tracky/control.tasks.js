@@ -62,7 +62,12 @@ tasksControl.prototype = (function () {
 
         this.sections['moveontop'] = new moveOnTop(this, t);
         this.sections['description'] = new description(this, t);
-        this.sections['remove'] = new remove(this, t);
+
+        // tmp removed section
+        //this.sections['remove'] = new remove(this, t);
+        this.sections['done'] = new done(this, t);
+        // end section
+
         this.sections['stop'] = new stop(this, t);
         this.sections['start'] = new start(this, t);
         this.sections['plantodate'] = new plantodate(this, t);
@@ -258,6 +263,10 @@ tasksControl.prototype = (function () {
 
     function remove(task, t) {
         task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>');
+    }
+
+    function done(task, t) {
+        task.div.append('<span class="done"><a href="/tasks/done/' + task.id + '" title="Done">Done</a></span>');        
     }
 
     function planned(task, t) {

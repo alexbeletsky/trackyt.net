@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Trackyt">
   <DataContextMoniker Name="/TrackytDataContext" />
   <nestedChildShapes>
-    <classShape Id="aa61bf61-75bd-41f0-a9ef-891a2d05ccce" absoluteBounds="4.125, 3.625, 2, 1.5785953776041666">
+    <classShape Id="aa61bf61-75bd-41f0-a9ef-891a2d05ccce" absoluteBounds="3.375, 3, 2, 1.5785953776041666">
       <DataClassMoniker Name="/TrackytDataContext/Credential" />
       <nestedChildShapes>
-        <elementListCompartment Id="5862f4fb-42ab-4708-a679-fcf322467f66" absoluteBounds="4.14, 4.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5862f4fb-42ab-4708-a679-fcf322467f66" absoluteBounds="3.3899999999999997, 3.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="71c167c8-0b7c-4b8c-ac81-7cddb4e2e107" absoluteBounds="1, 0.5, 2, 1.9631982421875">
@@ -14,23 +14,23 @@
         <elementListCompartment Id="c5734089-242f-4908-81ab-bcc86c1d75a5" absoluteBounds="1.0150000000000001, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="73be1be0-05ab-4d48-959f-cdd74609f203" absoluteBounds="4.25, 0.5, 2, 2.3478011067708335">
+    <classShape Id="73be1be0-05ab-4d48-959f-cdd74609f203" absoluteBounds="3.375, 0.5, 2, 2.3478011067708335">
       <DataClassMoniker Name="/TrackytDataContext/BlogPost" />
       <nestedChildShapes>
-        <elementListCompartment Id="2a115795-3901-4ddf-9242-f6dcaef0ab61" absoluteBounds="4.265, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2a115795-3901-4ddf-9242-f6dcaef0ab61" absoluteBounds="3.3899999999999997, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="af83c6c0-e0dc-4cd2-9bef-c0da7c34a69e" absoluteBounds="1, 3, 2, 3.5016097005208326">
+    <classShape Id="3fbb2515-7a9d-42ee-9458-feab49ac3783" absoluteBounds="1, 2.875, 2, 3.6939111328124996">
       <DataClassMoniker Name="/TrackytDataContext/Task" />
       <nestedChildShapes>
-        <elementListCompartment Id="27d963f4-bf50-4f27-8641-99a7424c69af" absoluteBounds="1.0150000000000001, 3.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="796f4021-b276-4a92-814a-6539f008c022" absoluteBounds="1.0150000000000001, 3.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2 : 2.4631982421875); (2 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2 : 2.4631982421875); (2 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TrackytDataContext/User/User_Task" />
       <nodes>
         <classShapeMoniker Id="71c167c8-0b7c-4b8c-ac81-7cddb4e2e107" />
-        <classShapeMoniker Id="af83c6c0-e0dc-4cd2-9bef-c0da7c34a69e" />
+        <classShapeMoniker Id="3fbb2515-7a9d-42ee-9458-feab49ac3783" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

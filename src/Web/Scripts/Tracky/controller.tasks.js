@@ -37,25 +37,37 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Dashboard handlers
-    $('#add-task').live('click', function () {
-        var d = $('#task-description').val();
-        if (d) {
-            a.call('/tasks/add', 'POST', { description: d }, function (r) {
-                if (r.success) {
-                    control.addTask(r.data.task);
-                    updateAfterSort();
-                }
+//    $('#add-task').live('click', function () {
+//        var d = $('#task-description').val();
+//        if (d) {
+//            a.call('/tasks/add', 'POST', { description: d }, function (r) {
+//                if (r.success) {
+//                    control.addTask(r.data.task);
+//                    updateAfterSort();
+//                }
 
-                $('#task-description').val('');
-                $('#task-description').focus();
-            });
-        }
-    });
+//                $('#task-description').val('');
+//                $('#task-description').focus();
+//            });
+//        }
+//    });
 
     $('#task-description').live('keyup', function (e) {
         if (e.keyCode == '13') {
+            var d = $('#task-description').val();
+            if (d) {
+                a.call('/tasks/add', 'POST', { description: d }, function (r) {
+                    if (r.success) {
+                        control.addTask(r.data.task);
+                        updateAfterSort();
+                    }
+
+                    $('#task-description').val('');
+                    $('#tasks').focus();
+                });
+            }
+
             e.preventDefault();
-            $('#add-task').click();
         }
     });
 
@@ -205,6 +217,18 @@
                 }
                 },
         });
+
+        return false;
+    });
+
+    $('.done a').live('click', function () {
+        var method = $(this).attr('href');
+
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.removeTask(r.data.id);
+            }
+        });        
 
         return false;
     });
