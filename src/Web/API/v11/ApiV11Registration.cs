@@ -19,21 +19,21 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
-            context.MapRoute(
-                "ApiV11_tasks_startall",
-                "api/v1.1/{apiToken}/tasks/start/all",
-                new { controller = "ApiV11", action = "StartAll" },
-                new { apiToken = @"[a-fA-F\d]{32}" },
-                new string[] { "Web.API.v11.Controllers" }
-            );
+            //context.MapRoute(
+            //    "ApiV11_tasks_startall",
+            //    "api/v1.1/{apiToken}/tasks/start/all",
+            //    new { controller = "ApiV11", action = "StartAll" },
+            //    new { apiToken = @"[a-fA-F\d]{32}" },
+            //    new string[] { "Web.API.v11.Controllers" }
+            //);
 
-            context.MapRoute(
-                "ApiV11_tasks_stopall",
-                "api/v1.1/{apiToken}/tasks/stop/all",
-                new { controller = "ApiV11", action = "StopAll" },
-                new { apiToken = @"[a-fA-F\d]{32}" },
-                new string[] { "Web.API.v11.Controllers" }
-            );
+            //context.MapRoute(
+            //    "ApiV11_tasks_stopall",
+            //    "api/v1.1/{apiToken}/tasks/stop/all",
+            //    new { controller = "ApiV11", action = "StopAll" },
+            //    new { apiToken = @"[a-fA-F\d]{32}" },
+            //    new string[] { "Web.API.v11.Controllers" }
+            //);
 
             context.MapRoute(
                 "ApiV11_tasks_updateposition",
@@ -72,6 +72,15 @@ namespace Web.API.v11
                 "ApiV11_tasks_add",
                 "api/v1.1/{apiToken}/tasks/add",
                 new { controller = "ApiV11", action = "Add" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
+
+            context.MapRoute(
+                "ApiV11_tasks_done",
+                "api/v1.1/{apiToken}/tasks/done/{taskId}",
+                new { controller = "ApiV11", action = "Done", taskId = UrlParameter.Optional },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
             );

@@ -403,6 +403,17 @@
                 ok(result.data.task.done == true, "done flag is wrong");
             });
         });
+    });
 
+    test("done count", function () {
+        var method = 'tasks/done';
+        var type = 'GET';
+        var params = [];
+        var data = null;
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+        api_test(call, type, data, function (result) {
+            ok(result.success, "get count done tasks failed");
+        });
     });
 });

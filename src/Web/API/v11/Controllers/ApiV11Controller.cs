@@ -296,6 +296,23 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        [HttpGet]
+        public ActionResult Done(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { totalDone = _tasksRepository.Tasks.WithUserIdAndDone(userId).Count() }
+                },
+                JsonRequestBehavior.AllowGet
+            );
+        }
+
         private IList<TaskDescriptor> CreateTasksList(int userId)
         {
             return _tasksRepository.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();

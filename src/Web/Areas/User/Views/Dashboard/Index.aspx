@@ -8,15 +8,11 @@
         <div id="new-task-control">
             <div id="new-task-container">
                 <input id="task-description" type="text" placeholder="New task description" />
-<%--                <input id="add-task" type="button" value="Add task" />
---%>            
+                
+                <div id="projects">
+                    <div id="project-done"></div>
+                </div>
             </div>
-<%--            <div id="operation-controls">
-                <input id="start-all" type="button" value="Start All"/>
-                <span>|</span>
-                <input id="stop-all" type="button" value="Stop All"/>
-            </div>        
---%>        
             </div>  
         <div id="tasks">
 

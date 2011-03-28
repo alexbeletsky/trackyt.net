@@ -117,7 +117,6 @@ footer, .push {
     width: 100%;
     background-color: #252628;
     
-    color: #1cbcff;
     font-family: Verdana, Arial, Serif;
     font-size: 12px;
 }
@@ -138,7 +137,7 @@ footer, .push {
 #navigation-container a
 {
     text-decoration: none;
-    color: inherit;
+    color: #1cbcff;
 }
 
 #container
@@ -167,11 +166,10 @@ footer, .push {
 #new-task-control
 {
     width: 860px;
-    height: 80px;
     margin:0 auto;
     /* 3d4a59 */
     background-color: #5f798f;
-    opacity: 0.4;
+    opacity: 0.6;
     
     border: 1px solid #2f3439;
     
@@ -193,7 +191,7 @@ footer, .push {
     display: block;
     position: relative;
     width: 90%;
-    height: 30px;
+    height: auto;
     margin:0 auto;
     margin-top: 22px;
 }
@@ -529,4 +527,21 @@ input#task-description
 .clear
 {
     clear: both;
+}
+
+#projects 
+{
+    display: block;
+    position: relative;
+    top: 12px;
+    margin: 0 0 20px 0;
+}
+
+#projects a
+{
+    background-color: #00bd0d;    
+    color: #cdffd1;
+    padding: 1px 4px 1px 4px;
+    border: 1px solid #355631;
+    font-size: 10px;    
 }

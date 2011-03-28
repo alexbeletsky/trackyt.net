@@ -9,7 +9,6 @@
     var element = $('#tasks');
     var control = new tasksControl(element);
 
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // drag-n-drop
 
@@ -226,7 +225,8 @@
 
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
-                control.removeTask(r.data.id);
+                control.removeTask(r.data.task.id);
+                updateDone();
             }
         });        
 
@@ -255,17 +255,31 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 
-    // initial load of all tasks
-    makeSortable();
-
-    $.blockUI();
-    a.call('/tasks/all', 'GET', undefined, function (r) {
-        if (r.success) {
-            for (var t in r.data.tasks) {
-                control.addTask(r.data.tasks[t]);
+    function updateDone()
+    {
+        a.call('/tasks/done', 'GET', undefined, function (r) {
+            if (r.success) {
+                var totalDone = r.data.totalDone;
+                $('#project-done').empty().append('<a href="#">Done (' + totalDone + ')</a>');
             }
-        }
+        });
+    }
 
-        $.unblockUI();
-    });
+    function controllerInit() {
+        makeSortable();
+        updateDone();
+
+        $.blockUI();
+        a.call('/tasks/all', 'GET', undefined, function (r) {
+            if (r.success) {
+                for (var t in r.data.tasks) {
+                    control.addTask(r.data.tasks[t]);
+                }
+            }
+
+            $.unblockUI();
+        });
+    }
+
+    controllerInit();
 });
