@@ -619,77 +619,77 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             api.Stop(token, 333);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void StartAll_CheckArgumentsBadToken_ExceptionThrown()
-        {
-            // arrange
-            var userId = 100;
-            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var date = new Mock<IDateTimeProviderService>();
-            var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+        //[Test]
+        //[ExpectedException(typeof(ArgumentException))]
+        //public void StartAll_CheckArgumentsBadToken_ExceptionThrown()
+        //{
+        //    // arrange
+        //    var userId = 100;
+        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+        //    var date = new Mock<IDateTimeProviderService>();
+        //    var service = new Mock<IApiService>();
+        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
-            // act
-            api.StartAll("bad_token");
-        }
+        //    // act
+        //    api.StartAll("bad_token");
+        //}
 
-        [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
-        public void StartAll_CheckAuthentication_ExceptionThrown()
-        {
-            // arrange
-            var userId = 100;
-            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var date = new Mock<IDateTimeProviderService>();
-            var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+        //[Test]
+        //[ExpectedException(typeof(UserNotAuthorizedException))]
+        //public void StartAll_CheckAuthentication_ExceptionThrown()
+        //{
+        //    // arrange
+        //    var userId = 100;
+        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+        //    var date = new Mock<IDateTimeProviderService>();
+        //    var service = new Mock<IApiService>();
+        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
-            // act
-            api.StartAll(token);
-        }
+        //    // act
+        //    api.StartAll(token);
+        //}
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void StopAll_CheckArgumentsBadToken_ExceptionThrown()
-        {
-            // arrange
-            var userId = 100;
-            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var date = new Mock<IDateTimeProviderService>();
-            var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+        //[Test]
+        //[ExpectedException(typeof(ArgumentException))]
+        //public void StopAll_CheckArgumentsBadToken_ExceptionThrown()
+        //{
+        //    // arrange
+        //    var userId = 100;
+        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+        //    var date = new Mock<IDateTimeProviderService>();
+        //    var service = new Mock<IApiService>();
+        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
-            // act
-            api.StopAll("bad_token");
-        }
+        //    // act
+        //    api.StopAll("bad_token");
+        //}
 
-        [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
-        public void StopAll_CheckAuthentication_ExceptionThrown()
-        {
-            // arrange
-            var userId = 100;
-            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-            var date = new Mock<IDateTimeProviderService>();
-            var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+        //[Test]
+        //[ExpectedException(typeof(UserNotAuthorizedException))]
+        //public void StopAll_CheckAuthentication_ExceptionThrown()
+        //{
+        //    // arrange
+        //    var userId = 100;
+        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+        //    var date = new Mock<IDateTimeProviderService>();
+        //    var service = new Mock<IApiService>();
+        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
 
-            // act
-            api.StopAll(token);
-        }
+        //    // act
+        //    api.StopAll(token);
+        //}
 
         [Test]
         public void UpdatePosition_UpdateTaskPosition()

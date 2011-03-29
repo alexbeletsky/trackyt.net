@@ -22,7 +22,7 @@ namespace Trackyt.Core.DAL.DataModel
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdb")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="trackytdbstage")]
 	public partial class TrackytDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -45,7 +45,7 @@ namespace Trackyt.Core.DAL.DataModel
     #endregion
 		
 		public TrackytDataContext() : 
-				base(global::Trackyt.Core.Properties.Settings.Default.trackytdbConnectionString1, mappingSource)
+				base(global::Trackyt.Core.Properties.Settings.Default.trackytdbstageConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -715,6 +715,8 @@ namespace Trackyt.Core.DAL.DataModel
 		
 		private int _Position;
 		
+		private bool _Done;
+		
 		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
@@ -749,6 +751,8 @@ namespace Trackyt.Core.DAL.DataModel
     partial void OnPlannedEffortChanged();
     partial void OnPositionChanging(int value);
     partial void OnPositionChanged();
+    partial void OnDoneChanging(bool value);
+    partial void OnDoneChanged();
     #endregion
 		
 		public Task()
@@ -1037,6 +1041,26 @@ namespace Trackyt.Core.DAL.DataModel
 					this._Position = value;
 					this.SendPropertyChanged("Position");
 					this.OnPositionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public bool Done
+		{
+			get
+			{
+				return this._Done;
+			}
+			set
+			{
+				if ((this._Done != value))
+				{
+					this.OnDoneChanging(value);
+					this.SendPropertyChanging();
+					this._Done = value;
+					this.SendPropertyChanged("Done");
+					this.OnDoneChanged();
 				}
 			}
 		}

@@ -9,7 +9,6 @@
     var element = $('#tasks');
     var control = new tasksControl(element);
 
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // drag-n-drop
 
@@ -37,25 +36,38 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Dashboard handlers
-    $('#add-task').live('click', function () {
-        var d = $('#task-description').val();
-        if (d) {
-            a.call('/tasks/add', 'POST', { description: d }, function (r) {
-                if (r.success) {
-                    control.addTask(r.data.task);
-                    updateAfterSort();
-                }
+//    $('#add-task').live('click', function () {
+//        var d = $('#task-description').val();
+//        if (d) {
+//            a.call('/tasks/add', 'POST', { description: d }, function (r) {
+//                if (r.success) {
+//                    control.addTask(r.data.task);
+//                    updateAfterSort();
+//                }
 
-                $('#task-description').val('');
-                $('#task-description').focus();
-            });
-        }
-    });
+//                $('#task-description').val('');
+//                $('#task-description').focus();
+//            });
+//        }
+//    });
 
     $('#task-description').live('keyup', function (e) {
         if (e.keyCode == '13') {
+            var d = $('#task-description').val();
+            if (d) {
+                a.call('/tasks/add', 'POST', { description: d }, function (r) {
+                    if (r.success) {
+                        control.addTask(r.data.task);
+                        updateAfterSort();
+                        updateAll();
+                    }
+
+                    $('#task-description').val('');
+                    $('#tasks').focus();
+                });
+            }
+
             e.preventDefault();
-            $('#add-task').click();
         }
     });
 
@@ -74,6 +86,14 @@
             }
         });
     });
+
+    $('.done, .all').live('click', function () {
+        var method = $(this).attr('href');
+        loadTasks(method);
+
+        return false; 
+    });
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
@@ -123,8 +143,6 @@
             $('.ui-datepicker div.close').live('click', function () {
                 $('#ui-datepicker-div').remove();
             });
-
-
         }
     });
 
@@ -196,6 +214,7 @@
                         a.call(method, 'DELETE', null, function (r) {
                             if (r.success) {
                                 control.removeTask(r.data.id);
+                                updateDone();
                             }
                         });
                     }
@@ -205,6 +224,19 @@
                 }
                 },
         });
+
+        return false;
+    });
+
+    $('.done a').live('click', function () {
+        var method = $(this).attr('href');
+
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.removeTask(r.data.task.id);
+                updateDone();
+            }
+        });        
 
         return false;
     });
@@ -231,17 +263,51 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Layout and initialization
 
-    // initial load of all tasks
-    makeSortable();
+    function updateAll()
+    {
+        a.call('/tasks/total', 'GET', undefined, function (r) {
+            if (r.success) {
+                var total = r.data.total;
+                $('#project-all').empty().append('<a class="all" href="/tasks/all">All (' + total + ')</a>');
+            }
+        });
+    }
 
-    $.blockUI();
-    a.call('/tasks/all', 'GET', undefined, function (r) {
+    function updateDone()
+    {
+        a.call('/tasks/totaldone', 'GET', undefined, function (r) {
+            if (r.success) {
+                var totalDone = r.data.totalDone;
+                $('#project-done').empty().append('<a class="done" href="/tasks/done">Done (' + totalDone + ')</a>');
+            }
+        });
+    }
+
+    function updateTasks(r) {
         if (r.success) {
+            control.empty();     
             for (var t in r.data.tasks) {
                 control.addTask(r.data.tasks[t]);
             }
         }
+    }
 
-        $.unblockUI();
-    });
+    function loadTasks(method) {
+        $.blockUI();
+        a.call(method, 'GET', undefined, function (r) {
+            updateTasks(r);
+            $.unblockUI();
+        });
+
+    }
+
+    function controllerInit() {
+        makeSortable();
+        updateAll();
+        updateDone();
+
+        loadTasks('/tasks/all');
+    }
+
+    controllerInit();
 });

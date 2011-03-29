@@ -7,16 +7,16 @@
     <div id="container">
         <div id="new-task-control">
             <div id="new-task-container">
-                <input id="task-description" type="text" />
-                <input id="add-task" type="button" value="Add task" />
+                <input id="task-description" type="text" placeholder="New task description" />
+                
+                <div id="projects">
+                    <div class="project" id="project-all"></div>                    
+                    <div class="project" id="project-done"></div>
+                </div>
             </div>
-            <div id="operation-controls">
-                <input id="start-all" type="button" value="Start All"/>
-                <span>|</span>
-                <input id="stop-all" type="button" value="Stop All"/>
-            </div>        
-        </div>  
+            </div>  
         <div id="tasks">
+
         </div>
 </div>
 </asp:Content>

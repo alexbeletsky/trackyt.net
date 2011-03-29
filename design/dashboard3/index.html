@@ -1,0 +1,96 @@
+<!doctype html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>	Trackyt.net | Dashboard</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link type="text/css" rel="stylesheet" href="Content/dashboard.css?ver=105">
+	<link type="text/css" rel="stylesheet" href="Content/confirm.css?ver=105">
+    <link type="image/x-icon" href="Content/Images/favicon.ico" rel="shortcut icon">
+	<link type="image/ico" href="Content/Images/favicon.ico" rel="icon">
+	
+	<script type="text/javascript" src="Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="Scripts/json2.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.postJson.js"></script>
+
+	<!--
+    <script src="Scripts/jquery.confirm.js?ver=105" type="text/javascript"></script>
+    <script src="Scripts/Tracky/api.js?ver=105" type="text/javascript"></script>
+    <script src="Scripts/Tracky/control.tasks.js?ver=105" type="text/javascript"></script>
+    <script src="Scripts/Tracky/controller.tasks.js?ver=105" type="text/javascript"></script>
+    <script src="Scripts/Tracky/controller.account.js?ver=105" type="text/javascript"></script>
+	-->
+	</head>
+	<body>
+    <div class="wrapper">
+		<div id="account-details" style="display: none;">
+			<fieldset>
+				<div id="apitoken">
+					<label for="apitoken-value">Api Token:</label>
+					<span id="apitoken-value">f1a28b2bc543374852fe0726b1fd06c3</span>
+				</div>
+				<div id="email">
+					<label for="email-value">Email:</label>
+					<span id="email-value">tracky@tracky.net</span>
+				</div>
+			</fieldset>
+			<div class="clear"></div>
+		</div>
+		<div id="top">
+			<div id="logo">
+			</div>
+			<div id="navigation-container">
+				<a id="faq" href="/master/home/faq">Faq</a>            
+				<span> | </span>
+				<a href="show/account/details" id="show-account-details">Account</a>
+				<span> | </span>
+				<a id="sign-out" href="/master/">Sign Out</a>
+			</div>
+		</div>
+		<div id="content">
+			
+			<input type="hidden" value="f1a28b2bc543374852fe0726b1fd06c3" name="apiToken" id="apiToken">
+			<input type="hidden" value="/master/API/v1.1/" name="api" id="api">
+
+			<div id="container">
+				<input type="text" id="task-description" placeholder="New task description">
+				<div id="tasks">
+					<div class="task" id="task-78" style="display: block;"><span class="description">new task 1</span><span class="delete right"><a title="Delete" href="/tasks/delete/78">Delete</a></span><span class="stop right" id="stop-78" style="display: none;"><a title="Stop" href="/tasks/stop/78">Stop</a></span><span class="start right" id="start-78"><a title="Start" href="/tasks/start/78">Start</a></span><span class="timer" id="timer-78">0:00:12</span>
+					</div>
+					<div class="task" id="task-88" style="display: block;"><span class="description">new task 2</span><span class="delete right"><a title="Delete" href="/tasks/delete/88">Delete</a></span><span class="stop right" id="stop-88" style="display: none;"><a title="Stop" href="/tasks/stop/88">Stop</a></span><span class="start right" id="start-88"><a title="Start" href="/tasks/start/88">Start</a></span><span class="timer" id="timer-88">0:00:00</span></div>
+					</div>
+			</div>
+			
+			<!--
+			<div id="container">
+					<div id="new-task-control">
+						<div id="new-task-container">
+							<input type="text" id="task-description" placeholder="New task description">
+
+						</div>
+						<div id="operation-controls">
+							<input type="button" value="Start All" id="start-all">
+							<span>|</span>
+							<input type="button" value="Stop All" id="stop-all">
+						</div>        
+					</div>  
+					<div id="tasks">
+						<div class="task" id="task-78" style="display: block;"><span class="description">new task 1</span><span class="delete right"><a title="Delete" href="/tasks/delete/78">Delete</a></span><span class="stop right" id="stop-78" style="display: none;"><a title="Stop" href="/tasks/stop/78">Stop</a></span><span class="start right" id="start-78"><a title="Start" href="/tasks/start/78">Start</a></span><span class="timer" id="timer-78">0:00:12</span>
+						</div>
+						<div class="task" id="task-88" style="display: block;"><span class="description">new task 2</span><span class="delete right"><a title="Delete" href="/tasks/delete/88">Delete</a></span><span class="stop right" id="stop-88" style="display: none;"><a title="Stop" href="/tasks/stop/88">Stop</a></span><span class="start right" id="start-88"><a title="Start" href="/tasks/start/88">Start</a></span><span class="timer" id="timer-88">0:00:00</span></div>
+					</div>
+			</div>
+			-->
+		</div>
+		<div class="push"></div>
+    </div>
+    <div id="footer">         
+    </div>
+</body></html>

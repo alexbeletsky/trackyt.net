@@ -222,5 +222,53 @@ namespace Trackyt.Core.DAL.Tests
                 Assert.That(tasks[2].Position, Is.EqualTo(3));
             }
         }
+
+        [Test]
+        public void Tasks_DoneFlag_DefaultIsFalse()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                // arrange
+                var repository = new TasksRepository(fixture.Setup.Context);
+
+                var task = new Task
+                {
+                    Description = "Test task",
+                    UserId = fixture.Setup.User.Id
+                };
+
+                // act
+                repository.Save(task);
+
+                // assert
+                var savedTask = repository.Tasks.Where(t => t.Id == task.Id).SingleOrDefault();
+                Assert.That(savedTask.Done, Is.False);
+            }
+        }
+
+        [Test]
+        public void Tasks_DoneFlag_Set()
+        {
+            using (var fixture = new FixtureInit("http://localhost"))
+            {
+                // arrange
+                var repository = new TasksRepository(fixture.Setup.Context);
+
+                var task = new Task
+                {
+                    Description = "Test task",
+                    UserId = fixture.Setup.User.Id,
+                    Done = true
+                };
+
+                // act
+                repository.Save(task);
+
+                // assert
+                var savedTask = repository.Tasks.Where(t => t.Id == task.Id).SingleOrDefault();
+                Assert.That(savedTask.Done, Is.True);
+            }
+
+        }
     }
 }

@@ -1,0 +1,348 @@
+﻿* 
+{
+    margin: 0;
+}
+
+html, body 
+{
+    /* 5e6c78 */ 
+    background-color: #5a748a;
+    background-image: url('Images/dashboard/back.png');
+    font-family: Verdana, Georgia, Serif;
+    font-size: 14px;
+    color: #424242;
+    
+    margin: 0;
+    padding: 0;
+	height: 100%;
+
+}
+
+#top
+{
+    position: relative;
+    height: auto;
+    min-height: 35px;
+    width: 100%;
+    background-color: #252628;
+    
+    color: #1cbcff;
+    font-family: Verdana, Arial, Serif;
+    font-size: 12px;
+}
+
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.push {
+	height: 20px; /* .push must be the same height as .footer */
+
+}
+
+#footer  {
+	height: 20px; /* .push must be the same height as .footer */
+    position: relative;
+    width: 100%;
+    background-color: #252628;
+    overflow: hidden;
+    
+    color: #eeeeee;
+    font-size: 10px;    
+}
+
+/*
+    TODO: code below is copy from public.css, should be fixed to avoid duplication
+*/
+
+#footer a
+{
+    text-decoration:none;    
+    color: #eeeeee;
+}
+
+#navigation-footer
+{
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 95%;
+}
+
+.navigation-footer-block
+{
+    font-size: 12px;    
+}
+
+.navigation-footer-block ul
+{
+    padding: 5px;
+    margin-right: 16px;
+    list-style: none outside none;
+}
+
+.navigation-footer-block li
+{
+    margin: 4px;
+}
+
+.navigation-footer-block .bold
+{
+    font-weight:bold;
+}
+
+.navigation-footer-block img
+{
+    position: relative;
+    margin-top: 6px;
+    border: 0px;
+}
+
+
+#logo
+{
+    display: inline;
+    float: left;
+}
+
+#navigation-container
+{
+    float: right;  
+    margin-top: 10px;
+    margin-right: 20px;  
+}
+
+#navigation-container a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+#container
+{
+/*
+    position: relative;
+    display: block;
+    width: 80%;
+    height: auto;
+    min-height: 600px;
+    margin:0 auto;
+    margin-top: -40px;
+    padding-top: 40px;
+    background-color: #e7e6de;
+        
+     -webkit-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     -moz-box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+     box-shadow: rgba(0,0,0,0.6) 0px 0px 30px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; 
+    
+     z-index: 500;           
+	 */
+	 position: relative;
+	 display: block;
+	 padding: 12px;
+}
+
+#new-task-control
+{
+    width: 760px;
+    height: 120px;
+    margin:0 auto;
+
+    /* 3d4a59 */
+	
+	/*
+    background-color: #425565;
+    opacity: 0.7;
+    
+    border: 1px solid #2f3439;
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;    
+	*/
+}
+
+#add-task
+{    
+    background: #F2F2F2; /* old browsers */
+    background: -moz-linear-gradient(top, #F2F2F2 33%, #BCBCBC 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(33%,#F2F2F2), color-stop(100%,#BCBCBC)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F2F2F2', endColorstr='#BCBCBC',GradientType=0 ); /* ie */
+}
+
+#new-task-container
+{
+    display: block;
+    position: relative;
+    width: 600px;
+    height: 35px;
+    margin:0 auto;
+    margin-top: 25px;
+}
+
+#new-task-container input
+{
+    height: 50px;
+	opacity: 0.4;
+}
+
+#task-description
+{    
+    width: 100%;
+	opacity: 0.4;
+	font-size:x-large;
+	height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+}
+
+#operation-controls
+{
+    color: #1cbcff;
+    width: 400px;
+    height: 50px;
+    margin:0 auto;
+    margin-top: 20px;
+}
+
+#tasks
+{
+    height: auto;
+	width: 100%;
+	margin-top:24px;
+	/*
+    margin:0 auto;
+    margin-bottom: 20px;
+    padding: 20px;
+	*/
+}
+
+.task  
+{
+    border:1px solid #AFAFAF; 
+    font-family: Georgia;
+    color: #0A4202;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+
+    background: #B4F7B4; /* old browsers */
+    background: -moz-linear-gradient(top, #B4F7B4 0%, #48B555 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B4F7B4), color-stop(100%,#48B555)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B4F7B4', endColorstr='#48B555',GradientType=0 ); /* ie */
+
+    margin-top: 8px;
+    
+    width: 100%;
+    height: 30px;
+}
+
+.task span
+{
+    margin-top: 3px;
+}
+
+.task span a
+{
+    color: #0069EA;
+    text-indent: -50000px;    
+    text-decoration: none;
+}
+
+.disabled
+{
+    pointer-events: none;
+}
+
+.task .index
+{
+    position: relative;
+    top: -5px;
+    left: 0px;
+    font-size:x-small;
+    font-weight: bold;
+    float: left;
+    width: 45px;
+}
+
+.task .description
+{
+    float: left;
+    font-size: larger;
+    padding-left: 10px;
+}
+
+.task .timer 
+{
+    float:right;
+    padding-right: 40px;
+    font-size: small;
+}
+
+.task .right 
+{
+    padding-right: 4px;
+    float:right;
+}
+
+#operation-controls input
+{
+    border-style: none;
+    text-decoration: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    width: 70px;
+    height: 40px;
+}
+
+#account-details
+{
+    display: block;
+    position: relative;
+    background-color: #252628;
+    color: #e7e6de;
+}
+
+#account-details fieldset
+{
+    width: 360px;
+    float: right;
+    border-style:none;
+    font-size: small;    
+}
+
+#account-details fieldset label
+{
+    font-weight: bold;
+    float: left;
+}
+
+#account-details fieldset span
+{
+    float: right;
+}
+
+.clear
+{
+    clear: both;
+}

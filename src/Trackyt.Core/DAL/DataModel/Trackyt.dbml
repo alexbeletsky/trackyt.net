@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="trackytdb" Class="TrackytDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=trackytdb;Integrated Security=True" SettingsObjectName="Trackyt.Core.Properties.Settings" SettingsPropertyName="trackytdbConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="trackytdbstage" Class="TrackytDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=trackytdbstage;Integrated Security=True" SettingsObjectName="Trackyt.Core.Properties.Settings" SettingsPropertyName="trackytdbstageConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Credentials" Member="Credentials">
     <Type Name="Credential">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -47,6 +47,7 @@
       <Column Name="PlannedDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
       <Column Name="PlannedEffort" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Done" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="User_Task" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>

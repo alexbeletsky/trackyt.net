@@ -201,77 +201,81 @@
         });
     });
 
-    test("start all tasks", function () {
-        var me = this;
+    // TODO: this call is no longer supported. Documentation have to be updated
 
-        var method = 'tasks/start/all';
-        var data = null;
-        var type = 'PUT';
-        var params = [];
+    //    test("start all tasks", function () {
+    //        var me = this;
 
-        var call = createCallUrl(this.url, this.apiToken, method, params);
+    //        var method = 'tasks/start/all';
+    //        var data = null;
+    //        var type = 'PUT';
+    //        var params = [];
 
-        api_test(call, type, data, function (result) {
-            ok(result.success, method + " method call failed");
+    //        var call = createCallUrl(this.url, this.apiToken, method, params);
 
-            var method = 'tasks/all';
-            var data = null;
-            var type = 'GET';
-            var params = [];
+    //        api_test(call, type, data, function (result) {
+    //            ok(result.success, method + " method call failed");
 
-            var call = createCallUrl(me.url, me.apiToken, method, params);
+    //            var method = 'tasks/all';
+    //            var data = null;
+    //            var type = 'GET';
+    //            var params = [];
 
-            api_test(call, type, data, function (result) {
-                ok(result.success, method + " method call failed");
+    //            var call = createCallUrl(me.url, me.apiToken, method, params);
 
-                var tasks = result.data.tasks;
-                var allStarted = true;
+    //            api_test(call, type, data, function (result) {
+    //                ok(result.success, method + " method call failed");
 
-                for (var t in tasks) {
-                    if (tasks[t].status != 1) {
-                        allStarted = false;
-                    }
-                }
-                ok(allStarted, "not all tasks have been started");
-            });
-        });
-    });
+    //                var tasks = result.data.tasks;
+    //                var allStarted = true;
 
-    test("stop all tasks", function () {
-        var me = this;
+    //                for (var t in tasks) {
+    //                    if (tasks[t].status != 1) {
+    //                        allStarted = false;
+    //                    }
+    //                }
+    //                ok(allStarted, "not all tasks have been started");
+    //            });
+    //        });
+    //    });
 
-        var method = 'tasks/stop/all';
-        var data = null;
-        var type = 'PUT';
-        var params = [];
+    // TODO: this call is no longer supported. Documentation have to be updated
 
-        var call = createCallUrl(this.url, this.apiToken, method, params);
+    //    test("stop all tasks", function () {
+    //        var me = this;
 
-        api_test(call, type, data, function (result) {
-            ok(result.success, method + " method call failed");
+    //        var method = 'tasks/stop/all';
+    //        var data = null;
+    //        var type = 'PUT';
+    //        var params = [];
 
-            var method = 'tasks/all';
-            var data = null;
-            var type = 'GET';
-            var params = [];
+    //        var call = createCallUrl(this.url, this.apiToken, method, params);
 
-            var call = createCallUrl(me.url, me.apiToken, method, params);
+    //        api_test(call, type, data, function (result) {
+    //            ok(result.success, method + " method call failed");
 
-            api_test(call, type, data, function (result) {
-                ok(result.success, method + " method call failed");
+    //            var method = 'tasks/all';
+    //            var data = null;
+    //            var type = 'GET';
+    //            var params = [];
 
-                var tasks = result.data.tasks;
-                var allStopped = true;
+    //            var call = createCallUrl(me.url, me.apiToken, method, params);
 
-                for (var t in tasks) {
-                    if (tasks[t].status != 2) {
-                        allStopped = false;
-                    }
-                }
-                ok(allStopped, "not all tasks have been stopped");
-            });
-        });
-    });
+    //            api_test(call, type, data, function (result) {
+    //                ok(result.success, method + " method call failed");
+
+    //                var tasks = result.data.tasks;
+    //                var allStopped = true;
+
+    //                for (var t in tasks) {
+    //                    if (tasks[t].status != 2) {
+    //                        allStopped = false;
+    //                    }
+    //                }
+    //                ok(allStopped, "not all tasks have been stopped");
+    //            });
+    //        });
+    //    });
 
     test("start called for bad id", function () {
         var method = 'tasks/start/' + 5555;
@@ -370,6 +374,46 @@
                 ok(result.success, "update call failed");
                 ok(result.data.task.plannedDate == "/Date(1300312800000)/", "planned date value wrong");
             });
+        });
+    });
+
+    test("done task", function () {
+        var me = this;
+
+        var method = 'tasks/all';
+        var data = null;
+        var type = 'GET';
+        var params = [];
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+
+        api_test(call, type, data, function (result) {
+            ok(result.success, method + " method call failed");
+
+            var taskId = result.data.tasks[0].id;
+            ok(taskId >= 1, "could not get task for update");
+
+            var method = 'tasks/done/' + taskId;
+            var type = 'PUT';
+
+            var call = createCallUrl(me.url, me.apiToken, method, params);
+
+            api_test(call, type, null, function (result) {
+                ok(result.success, "done call failed");
+                ok(result.data.task.done == true, "done flag is wrong");
+            });
+        });
+    });
+
+    test("total done count", function () {
+        var method = 'tasks/totaldone';
+        var type = 'GET';
+        var params = [];
+        var data = null;
+
+        var call = createCallUrl(this.url, this.apiToken, method, params);
+        api_test(call, type, data, function (result) {
+            ok(result.success, "get count done tasks failed");
         });
     });
 });

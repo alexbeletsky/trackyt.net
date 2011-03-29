@@ -180,6 +180,7 @@
     <Content Include="Content\Images\dashboard\cal.png" />
     <Content Include="Content\Images\dashboard\delete.png" />
     <Content Include="Content\Images\dashboard\stop.png" />
+    <Content Include="Content\Images\dashboard\tick.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Content\Images\public\rss.png" />

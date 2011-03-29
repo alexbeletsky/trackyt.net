@@ -62,10 +62,16 @@ tasksControl.prototype = (function () {
 
         this.sections['moveontop'] = new moveOnTop(this, t);
         this.sections['description'] = new description(this, t);
-        this.sections['remove'] = new remove(this, t);
-        this.sections['stop'] = new stop(this, t);
-        this.sections['start'] = new start(this, t);
-        this.sections['plantodate'] = new plantodate(this, t);
+
+        if (t.done) {
+            this.sections['remove'] = new remove(this, t);
+        } else {
+            this.sections['done'] = new done(this, t);
+            this.sections['stop'] = new stop(this, t);
+            this.sections['start'] = new start(this, t);
+            this.sections['plantodate'] = new plantodate(this, t);
+        }
+
         this.sections['timer'] = new timer(this, t);
         this.sections['planned'] = new planned(this, t);
 
@@ -85,12 +91,11 @@ tasksControl.prototype = (function () {
         // initialize timer
         this.sections['timer'].onTimerStarted(this.timerStarted);
         this.sections['timer'].onTimerStopped(this.timerStopped);
-        this.sections['timer'].init();
 
-        //        // call external layout handler to apply custom styles
-        //        if (this.control.layout) {
-        //            this.control.layout(this.div);
-        //        }
+        // TODO: ugly, need to be re-designed
+        if (!t.done) {
+            this.sections['timer'].init();
+        }
 
         // show it
         this.div.slideDown();
@@ -260,6 +265,10 @@ tasksControl.prototype = (function () {
         task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>');
     }
 
+    function done(task, t) {
+        task.div.append('<span class="done"><a href="/tasks/done/' + task.id + '" title="Done">Done</a></span>');
+    }
+
     function planned(task, t) {
         this.ref = 'planned-' + t.id;
         this.plannedDate = t.plannedDate;
@@ -385,6 +394,12 @@ tasksControl.prototype = (function () {
             var id = taskReferenceToId(taskRef);
             var task = getTaskById(this.tasks, id);
             task.setPlannedDate(date);
+        },
+
+        empty: function () {
+            delete this.tasks;
+            this.tasks = [];
+            this.div.empty();
         }
     };
 })();
