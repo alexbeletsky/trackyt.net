@@ -405,8 +405,8 @@
         });
     });
 
-    test("done count", function () {
-        var method = 'tasks/done';
+    test("total done count", function () {
+        var method = 'tasks/totaldone';
         var type = 'GET';
         var params = [];
         var data = null;

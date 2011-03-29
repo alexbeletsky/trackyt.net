@@ -531,17 +531,28 @@ input#task-description
 
 #projects 
 {
-    display: block;
+    display: inline-block;
     position: relative;
+    width: 100%;
     top: 12px;
     margin: 0 0 20px 0;
 }
 
+.project
+{
+    float: left;
+    margin-right: 6px;
+    width: auto;
+}
+
 #projects a
 {
+    /*
     background-color: #00bd0d;    
+    border: 1px solid #355631;
+    */
+    
     color: #cdffd1;
     padding: 1px 4px 1px 4px;
-    border: 1px solid #355631;
     font-size: 10px;    
 }

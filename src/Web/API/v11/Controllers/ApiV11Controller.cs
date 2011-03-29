@@ -70,6 +70,23 @@ namespace Web.API.v11.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult Total(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+            var tasks = CreateTasksList(userId);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { total = tasks.Count }
+                },
+                JsonRequestBehavior.AllowGet);
+        }
+
         // POST tasks/add
         [HttpPost]
         public JsonResult Add(string apiToken, string description)
@@ -275,6 +292,23 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        [HttpGet]
+        public ActionResult Done(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = GetUserIdByApiToken(apiToken);
+            var tasks = CreateDoneTasksList(userId);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { tasks = tasks }
+                },
+                JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPut]
         public ActionResult Done(string apiToken, int taskId)
         {
@@ -297,7 +331,7 @@ namespace Web.API.v11.Controllers
         }
 
         [HttpGet]
-        public ActionResult Done(string apiToken)
+        public ActionResult TotalDone(string apiToken)
         {
             CheckArgumentApiToken(apiToken);
 
@@ -316,6 +350,11 @@ namespace Web.API.v11.Controllers
         private IList<TaskDescriptor> CreateTasksList(int userId)
         {
             return _tasksRepository.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();
+        }
+
+        private IList<TaskDescriptor> CreateDoneTasksList(int userId)
+        {
+            return _tasksRepository.Tasks.WithUserIdAndDone(userId).Select(t => CreateTaskDescriptor(t)).ToList();
         }
 
         private TaskDescriptor CreateTaskDescriptor(Task t)

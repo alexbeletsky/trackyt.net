@@ -10,7 +10,8 @@
                 <input id="task-description" type="text" placeholder="New task description" />
                 
                 <div id="projects">
-                    <div id="project-done"></div>
+                    <div class="project" id="project-all"></div>                    
+                    <div class="project" id="project-done"></div>
                 </div>
             </div>
             </div>  
