@@ -109,6 +109,7 @@
     <Compile Include="Areas\Blog\Controllers\PostsController.cs" />
     <Compile Include="Areas\Blog\Controllers\RssController.cs" />
     <Compile Include="Areas\Blog\Models\BlogPosts.cs" />
+    <Compile Include="Areas\User\Controllers\ShareController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -184,6 +185,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Content\Images\public\rss.png" />
+    <Content Include="Content\share.css" />
     <Content Include="DatepickerTests.htm" />
     <Content Include="Scripts\Admin\control.editposts.js" />
     <Content Include="Scripts\Admin\controller.editposts.js" />
@@ -316,6 +318,8 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
     <Content Include="packages.config" />
+    <Content Include="Areas\User\Views\Share\Index.cshtml" />
+    <Content Include="Areas\User\Views\Share\Error.cshtml" />
     <None Include="Scripts\Tests\framework\funcunit\envjs" />
     <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
     <None Include="Scripts\Tests\framework\funcunit\README" />

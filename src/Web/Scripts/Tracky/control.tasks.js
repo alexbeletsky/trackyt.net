@@ -1,8 +1,5 @@
 ﻿function tasksControl(div, layout, updateTaskPositionCallback, updateTaskDescriptionCallback) {
     this.div = div;
-//    this.layout = layout;
-//    this.updateTaskPositionCallback = updateTaskPositionCallback;
-//    this.updateTaskDescriptionCallback = updateTaskDescriptionCallback;
     this.tasks = [];
 
     this.init();

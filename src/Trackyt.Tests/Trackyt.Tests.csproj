@@ -82,6 +82,7 @@
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
     <Compile Include="Tests\Controllers\User\DashboardTests.cs" />
+    <Compile Include="Tests\Controllers\User\ShareControllerTests.cs" />
     <Compile Include="Tests\Helpers\BlogPostsHelperTests.cs" />
     <Compile Include="Tests\Helpers\PagerHtmlExtensionTests.cs" />
     <Compile Include="Tests\Helpers\TasksExtensionsTests.cs" />

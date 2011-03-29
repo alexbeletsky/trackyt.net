@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+@model IList<Trackyt.Core.DAL.DataModel.Task>
+           
+<!doctype html>
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Trackyt.net | Shared tasks</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="trackyt.net shared tasks page">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../Content/share.css?ver=1012" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="container">
+        <div id="main">
+            <h1>
+                @ViewBag.Email shared tasks</h1>
+            <div id="tasks">
+                @foreach (var task in Model)
+                {
+                    var description = task.Description;
+                    var plannedDate = task.PlannedDate.HasValue ? task.PlannedDate.Value.ToString("dd-MM-yyyy") : ""; 
+                    
+                    <div class="task">
+                        <span class="description">@description</span><span class="planned">@plannedDate</span>
+                    </div>
+                }
+            </div>
+            <p>
+                I've created and shared my tasks with <a href="http://trackyt.net">trackyt.net</a>, you should try.
+            </p>
+        </div>
+    </div>
+    <!--! end of #container -->
+</body>
+</html>
