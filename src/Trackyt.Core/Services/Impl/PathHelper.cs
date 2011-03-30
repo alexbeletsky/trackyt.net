@@ -1,8 +1,7 @@
 ﻿using System.Web;
 
-namespace Web.Infrastructure.Helpers
+namespace Trackyt.Core.Services.Impl
 {
-    [CoverageExcludeAttribute]
     public class PathHelper : IPathHelper
     {
         public string VirtualToAbsolute(string virtualPath)

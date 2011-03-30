@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Trackyt.Core.DAL.Repositories;
+using Trackyt.Core.DAL.DataModel;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class ApiService : IApiService
     {
@@ -17,15 +18,15 @@ namespace Trackyt.Core.Services
             _hash = hash;
         }
 
-        public int GetUserIdByApiToken(string apiToken)
+        public User GetUserByApiToken(string apiToken)
         {
             var user = _users.Users.Where(u => u.ApiToken == apiToken).SingleOrDefault();
             if (user == null)
             {
-                return 0;
+                throw new Exception(string.Format("Can't find user with token: {0}", apiToken));
             }
 
-            return user.Id;
+            return user;
         }
 
         public string GetApiToken(string email, string password)

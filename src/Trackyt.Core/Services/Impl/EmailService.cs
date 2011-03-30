@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using System;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class EmailService : IEMailService
     {

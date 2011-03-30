@@ -36,20 +36,6 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Dashboard handlers
-//    $('#add-task').live('click', function () {
-//        var d = $('#task-description').val();
-//        if (d) {
-//            a.call('/tasks/add', 'POST', { description: d }, function (r) {
-//                if (r.success) {
-//                    control.addTask(r.data.task);
-//                    updateAfterSort();
-//                }
-
-//                $('#task-description').val('');
-//                $('#task-description').focus();
-//            });
-//        }
-//    });
 
     $('#task-description').live('keyup', function (e) {
         if (e.keyCode == '13') {

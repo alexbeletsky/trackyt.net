@@ -7,7 +7,7 @@ using Trackyt.Core.DAL.Extensions;
 using Trackyt.Core.Security;
 using Trackyt.Core.DAL.DataModel;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class AuthenticationService : IAuthenticationService
     {

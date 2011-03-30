@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Trackyt.Core.DAL.DataModel;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class NotificationService : INotificationService
     {

@@ -9,6 +9,7 @@ using Web.Controllers;
 using Web.Models;
 using SharpTestsEx;
 using System.Threading;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Controllers.Public
 {

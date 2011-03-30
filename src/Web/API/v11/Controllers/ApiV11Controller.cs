@@ -20,12 +20,14 @@ namespace Web.API.v11.Controllers
         private IApiService _apiService;
         private ITasksRepository _tasksRepository;
         private IDateTimeProviderService _dateTimeService;
+        private IShareService _shareService;
 
-        public ApiV11Controller(IApiService auth, ITasksRepository repository, IDateTimeProviderService date)
+        public ApiV11Controller(IApiService auth, ITasksRepository repository, IDateTimeProviderService date, IShareService shareService)
         {
             _apiService = auth;
             _tasksRepository = repository;
             _dateTimeService = date;
+            _shareService = shareService;
         }
 
         [HttpPost]
@@ -58,7 +60,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
             
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var tasks = CreateTasksList(userId);
 
             return Json(
@@ -75,7 +77,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var tasks = CreateTasksList(userId);
 
             return Json(
@@ -94,7 +96,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentNotNullOrEmpty(description, "description");
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = new Task { Description = description, UserId = userId, Status = (int)TaskStatus.None };
             _tasksRepository.Save(task);
 
@@ -113,7 +115,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -135,7 +137,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -157,7 +159,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -227,7 +229,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -248,7 +250,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -269,7 +271,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -297,7 +299,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var tasks = CreateDoneTasksList(userId);
 
             return Json(
@@ -314,7 +316,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -335,7 +337,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
 
             return Json(
                 new
@@ -345,6 +347,24 @@ namespace Web.API.v11.Controllers
                 },
                 JsonRequestBehavior.AllowGet
             );
+        }
+
+        [HttpGet]
+        public ActionResult ShareLink(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var user = _apiService.GetUserByApiToken(apiToken);
+            var shareLink = _shareService.CreateShareLink(user.Email);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { link = shareLink }
+                },
+                JsonRequestBehavior.AllowGet
+                );
         }
 
         private IList<TaskDescriptor> CreateTasksList(int userId)
@@ -446,18 +466,6 @@ namespace Web.API.v11.Controllers
             {
                 throw new ArgumentException("Provided value could not be less than zero.", name);
             }
-        }
-
-        private int GetUserIdByApiToken(string apiToken)
-        {
-            var userId = _apiService.GetUserIdByApiToken(apiToken);
-
-            if (userId == 0)
-            {
-                throw new UserNotAuthorizedException();
-            }
-
-            return userId;
         }
 
         // TODO: get rid of that check. Repository must throw such exception, in case of task does not exist

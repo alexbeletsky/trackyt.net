@@ -11,20 +11,20 @@ namespace Web.Areas.User.Controllers
 {
     public class ShareController : Controller
     {
-        private IHashService _hashService;
+        private IShareService _shareService;
         private ITasksRepository _tasksRepository;
         private IUsersRepository _usersRepository;
 
-        public ShareController(IHashService hash, ITasksRepository tasks, IUsersRepository users)
+        public ShareController(IShareService shareService, ITasksRepository tasks, IUsersRepository users)
         {
-            _hashService = hash;
+            _shareService = shareService;
             _tasksRepository = tasks;
             _usersRepository = users;
         }
         
         public ActionResult Index(string email, string key)
         {
-            if (string.IsNullOrEmpty(key) || !_hashService.ValidateMD5Hash(email + "shared_tasks", key))
+            if (string.IsNullOrEmpty(key) || !_shareService.ValidateShareKey(email, key))
             {
                 return RedirectToAction("error");
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class RedirectService : IRedirectService
     {

@@ -2,6 +2,7 @@
 using Ninject;
 using Ninject.Activation;
 using Trackyt.Core.Services;
+using Trackyt.Core.Services.Impl;
 
 namespace Web.Infrastructure
 {

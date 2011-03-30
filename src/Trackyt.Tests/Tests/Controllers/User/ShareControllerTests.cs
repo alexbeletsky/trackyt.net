@@ -8,6 +8,7 @@ using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.Services;
 using Web.Areas.User.Controllers;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
 {
@@ -20,8 +21,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             // arrange
             var tasksRepository = new Mock<ITasksRepository>();
             var usersRepository = new Mock<IUsersRepository>();
+            var pathHelper = new Mock<IPathHelper>();
             var hashService = new HashService();
-            var controller = new ShareController(hashService, tasksRepository.Object, usersRepository.Object);
+            var shareService = new ShareService(pathHelper.Object, hashService);
+            var controller = new ShareController(shareService, tasksRepository.Object, usersRepository.Object);
 
             var tasks = new List<Task> 
             {
@@ -54,8 +57,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             // arrange
             var tasksRepository = new Mock<ITasksRepository>();
             var usersRepository = new Mock<IUsersRepository>();
+            var pathHelper = new Mock<IPathHelper>();
             var hashService = new HashService();
-            var controller = new ShareController(hashService, tasksRepository.Object, usersRepository.Object);
+            var shareService = new ShareService(pathHelper.Object, hashService);
+            var controller = new ShareController(shareService, tasksRepository.Object, usersRepository.Object);
 
             // act
             var email = "email@com.com";
@@ -72,8 +77,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             // arrange
             var tasksRepository = new Mock<ITasksRepository>();
             var usersRepository = new Mock<IUsersRepository>();
+            var pathHelper = new Mock<IPathHelper>();
             var hashService = new HashService();
-            var controller = new ShareController(hashService, tasksRepository.Object, usersRepository.Object);
+            var shareService = new ShareService(pathHelper.Object, hashService);
+            var controller = new ShareController(shareService, tasksRepository.Object, usersRepository.Object);
 
             // act
             var result = controller.Index("email", "this_is_wrong_hash") as RedirectToRouteResult;
@@ -89,8 +96,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.Tracky
             // arrange
             var tasksRepository = new Mock<ITasksRepository>();
             var usersRepository = new Mock<IUsersRepository>();
+            var pathHelper = new Mock<IPathHelper>();
             var hashService = new HashService();
-            var controller = new ShareController(hashService, tasksRepository.Object, usersRepository.Object);
+            var shareService = new ShareService(pathHelper.Object, hashService);
+            var controller = new ShareController(shareService, tasksRepository.Object, usersRepository.Object);
 
             var tasks = new List<Task> 
             {

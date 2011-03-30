@@ -5,7 +5,7 @@ using System.Text;
 using Trackyt.Core.DAL.Repositories;
 using System.Net;
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class CredentialsService : ICredentialsService
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace Web.Infrastructure.Helpers
+namespace Trackyt.Core.Services
 {
     public interface IPathHelper
     {

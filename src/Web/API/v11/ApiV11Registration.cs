@@ -19,22 +19,6 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
-            //context.MapRoute(
-            //    "ApiV11_tasks_startall",
-            //    "api/v1.1/{apiToken}/tasks/start/all",
-            //    new { controller = "ApiV11", action = "StartAll" },
-            //    new { apiToken = @"[a-fA-F\d]{32}" },
-            //    new string[] { "Web.API.v11.Controllers" }
-            //);
-
-            //context.MapRoute(
-            //    "ApiV11_tasks_stopall",
-            //    "api/v1.1/{apiToken}/tasks/stop/all",
-            //    new { controller = "ApiV11", action = "StopAll" },
-            //    new { apiToken = @"[a-fA-F\d]{32}" },
-            //    new string[] { "Web.API.v11.Controllers" }
-            //);
-
             context.MapRoute(
                 "ApiV11_tasks_updateposition",
                 "api/v1.1/{apiToken}/tasks/update/{taskId}/position",
@@ -101,6 +85,15 @@ namespace Web.API.v11
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
             );
+
+            context.MapRoute(
+                "ApiV11_tasks_sharelink",
+                "api/v1.1/{apiToken}/share/link",
+                new { controller = "ApiV11", action = "ShareLink" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
 
             //API v1 map
             context.MapRoute(

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Trackyt.Core.Services;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Services
 {

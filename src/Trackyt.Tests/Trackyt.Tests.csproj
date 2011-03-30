@@ -96,6 +96,7 @@
     <Compile Include="Tests\Services\HashServiceTests.cs" />
     <Compile Include="Tests\Services\NotificationServiceTests.cs" />
     <Compile Include="Tests\Services\RedirectServicesTests.cs" />
+    <Compile Include="Tests\Services\ShareServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">

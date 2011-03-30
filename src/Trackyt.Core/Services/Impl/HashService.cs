@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 // http://msdn.microsoft.com/en-us/library/system.security.cryptography.md5.aspx
 // https://gist.github.com/734467#comments
 
-namespace Trackyt.Core.Services
+namespace Trackyt.Core.Services.Impl
 {
     public class HashService : IHashService
     {
