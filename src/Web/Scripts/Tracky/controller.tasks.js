@@ -57,21 +57,21 @@
         }
     });
 
-    $('#start-all').live('click', function () {
-        a.call('/tasks/start/all', 'PUT', null, function (r) {
-            if (r.success) {
-                control.startAll();
-            }
-        });
-    });
+//    $('#start-all').live('click', function () {
+//        a.call('/tasks/start/all', 'PUT', null, function (r) {
+//            if (r.success) {
+//                control.startAll();
+//            }
+//        });
+//    });
 
-    $('#stop-all').live('click', function () {
-        a.call('/tasks/stop/all', 'PUT', null, function (r) {
-            if (r.success) {
-                control.stopAll();
-            }
-        });
-    });
+//    $('#stop-all').live('click', function () {
+//        a.call('/tasks/stop/all', 'PUT', null, function (r) {
+//            if (r.success) {
+//                control.stopAll();
+//            }
+//        });
+//    });
 
     $('.done, .all').live('click', function () {
         var method = $(this).attr('href');
@@ -220,6 +220,8 @@
         a.call(method, 'PUT', null, function (r) {
             if (r.success) {
                 control.removeTask(r.data.task.id);
+                
+                updateAll();
                 updateDone();
             }
         });        
@@ -282,6 +284,8 @@
         $.blockUI();
         a.call(method, 'GET', undefined, function (r) {
             updateTasks(r);
+            updateAll();
+
             $.unblockUI();
         });
 
@@ -289,7 +293,6 @@
 
     function controllerInit() {
         makeSortable();
-        updateAll();
         updateDone();
 
         loadTasks('/tasks/all');

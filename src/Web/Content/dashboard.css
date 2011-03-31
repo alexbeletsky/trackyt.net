@@ -559,7 +559,7 @@ input#task-description
 
 .share-link
 {
-    display: block;
+    display: inline-block;
     float: right;
     position: relative;
     top: 28px;
@@ -578,7 +578,9 @@ input#task-description
     
     background: #767e84;
     padding: 12px;
-    width: 480px;
+    width: auto;
+ 
+    color: #dadada;
     
     opacity: 0.9;
     
@@ -587,7 +589,7 @@ input#task-description
 
 .share-link input
 {
-    width: 96%;
+    width: 490px;
     height: 24px;
     padding: 1px;
     margin-right: 6px;            
@@ -607,5 +609,4 @@ input#task-description
 
 .share-link span
 {
-    color: #dadada;
 }
