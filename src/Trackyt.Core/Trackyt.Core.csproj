@@ -75,14 +75,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Services\ApiService.cs" />
-    <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\CredentialsService.cs" />
-    <Compile Include="Services\DateTimeProviderService.cs" />
-    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\Impl\ApiService.cs" />
+    <Compile Include="Services\Impl\AuthenticationService.cs" />
+    <Compile Include="Services\Impl\CredentialsService.cs" />
+    <Compile Include="Services\Impl\DateTimeProviderService.cs" />
+    <Compile Include="Services\Impl\EmailService.cs" />
+    <Compile Include="Services\Impl\ShareService.cs" />
+    <Compile Include="Services\IPathHelper.cs" />
     <Compile Include="Services\IRedirectService.cs" />
-    <Compile Include="Services\NotificationServiceForDebug.cs" />
-    <Compile Include="Services\HashService.cs" />
+    <Compile Include="Services\Impl\NotificationServiceForDebug.cs" />
+    <Compile Include="Services\Impl\HashService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Secutity\IFormsAuthentication.cs" />
     <Compile Include="Secutity\TrackyFormsAuthentication.cs" />
@@ -92,8 +94,10 @@
     <Compile Include="Services\IHashService.cs" />
     <Compile Include="Services\IApiService.cs" />
     <Compile Include="Services\INotificationService.cs" />
-    <Compile Include="Services\NotificationService.cs" />
-    <Compile Include="Services\RedirectService.cs" />
+    <Compile Include="Services\Impl\NotificationService.cs" />
+    <Compile Include="Services\Impl\RedirectService.cs" />
+    <Compile Include="Services\Impl\PathHelper.cs" />
+    <Compile Include="Services\IShareService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

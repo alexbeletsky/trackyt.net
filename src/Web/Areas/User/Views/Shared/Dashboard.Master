@@ -42,6 +42,8 @@
         <div id="logo">
         </div>
         <div id="navigation-container">
+            <a id="share-tasks" href="/share/link">Share</a>
+            <span> | </span>
             <%: Html.ActionLink("Faq", "faq", new { area = "", controller = "home" }, new { id = "faq" })%>            
             <span> | </span>
             <a id="show-account-details" href="show/account/details">Account</a>

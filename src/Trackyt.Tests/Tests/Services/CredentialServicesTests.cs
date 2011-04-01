@@ -7,6 +7,7 @@ using Trackyt.Core.Services;
 using Moq;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.DataModel;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Services
 {

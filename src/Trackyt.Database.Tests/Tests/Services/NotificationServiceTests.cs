@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Trackyt.Core.DAL.Repositories.Impl;
 using Trackyt.Core.Services;
 using Trackyt.Core.Tests.Framework;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Database.Tests.Tests.Services
 {

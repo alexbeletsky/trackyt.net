@@ -8,6 +8,7 @@ using Web.API.v11.Controllers;
 using Web.API.v11.Model;
 using Web.Infrastructure.Exceptions;
 using SharpTestsEx;
+using Trackyt.Core.DAL.DataModel;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.API
 {
@@ -23,7 +24,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(0);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             // act / assert
             Assert.That(api, Is.Not.Null);
@@ -38,9 +40,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             api.Start(token, 1);
@@ -61,9 +64,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act 
             api.Start(token, 1);
@@ -85,11 +89,12 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             var currentDate = DateTime.UtcNow;
             date.Setup(d => d.UtcNow).Returns(currentDate);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act 
             api.Start(token, 1);
@@ -110,9 +115,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             api.Start(token, 1);
@@ -135,11 +141,13 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             var currentDate = DateTime.UtcNow;
             date.Setup(d => d.UtcNow).Returns(currentDate);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
+
 
             // act 
             api.Start(token, 1);
@@ -162,11 +170,12 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             var currentDate = DateTime.UtcNow;
             date.Setup(d => d.UtcNow).Returns(currentDate);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             api.Start(token, 1);
@@ -190,11 +199,12 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             var currentDate = DateTime.UtcNow;
             date.Setup(d => d.UtcNow).Returns(currentDate);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             api.Start(token, 1);
@@ -220,10 +230,11 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             date.Setup(d => d.UtcNow).Returns(DateTime.UtcNow);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             var results = api.All(token) as JsonResult;
@@ -243,10 +254,11 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             date.Setup(d => d.UtcNow).Returns(DateTime.UtcNow);
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act 
             var results = api.All(token) as JsonResult;
@@ -267,9 +279,11 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken("bad_token")).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken("bad_token")).Returns(new User { Id = userId });
+
 
             // act 
             var results = api.All("bad_token") as JsonResult;
@@ -287,7 +301,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             // act
             api.Authenticate(null, "");
@@ -303,7 +318,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             // act
             api.Authenticate("aa", null);
@@ -318,7 +334,8 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
             service.Setup(s => s.GetApiToken("email", "password")).Returns((string)null);
 
@@ -327,7 +344,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]        
+        [ExpectedException(typeof(Exception))]        
         public void All_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -336,9 +353,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Throws(new Exception());
 
             // act
             api.All(token);
@@ -354,9 +372,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Add("bad_token", "");
@@ -372,9 +391,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Add(token, "");
@@ -382,7 +402,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
+        [ExpectedException(typeof(Exception))]
         public void Add_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -391,9 +411,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Throws(new Exception());
 
             // act
             api.Add(token, "desc");
@@ -410,9 +431,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Delete("bad_token", 0);
@@ -428,9 +450,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Delete(token, -1);
@@ -438,7 +461,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
 
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
+        [ExpectedException(typeof(Exception))]
         public void Delete_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -447,9 +470,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Delete(token, 0);
@@ -465,9 +489,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act
             api.Delete(token, 333);
@@ -483,9 +508,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Start("bad_token", 0);
@@ -502,16 +528,17 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Start(token, -1);
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
+        [ExpectedException(typeof(Exception))]
         public void Start_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -520,9 +547,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Start(token, 0);
@@ -538,9 +566,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
 
             // act
             api.Start(token, 333);
@@ -556,9 +585,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Stop("bad_token", 0);
@@ -575,16 +605,17 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0 });
 
             // act
             api.Stop(token, -1);
         }
 
         [Test]
-        [ExpectedException(typeof(UserNotAuthorizedException))]
+        [ExpectedException(typeof(Exception))]
         public void Stop_CheckAuthentication_ExceptionThrown()
         {
             // arrange
@@ -593,9 +624,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = 0});
 
             // act
             api.Stop(token, 0);
@@ -611,85 +643,14 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.Stop(token, 333);
         }
-
-        //[Test]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void StartAll_CheckArgumentsBadToken_ExceptionThrown()
-        //{
-        //    // arrange
-        //    var userId = 100;
-        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-        //    var date = new Mock<IDateTimeProviderService>();
-        //    var service = new Mock<IApiService>();
-        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
-
-        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
-
-        //    // act
-        //    api.StartAll("bad_token");
-        //}
-
-        //[Test]
-        //[ExpectedException(typeof(UserNotAuthorizedException))]
-        //public void StartAll_CheckAuthentication_ExceptionThrown()
-        //{
-        //    // arrange
-        //    var userId = 100;
-        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-        //    var date = new Mock<IDateTimeProviderService>();
-        //    var service = new Mock<IApiService>();
-        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
-
-        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
-
-        //    // act
-        //    api.StartAll(token);
-        //}
-
-        //[Test]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void StopAll_CheckArgumentsBadToken_ExceptionThrown()
-        //{
-        //    // arrange
-        //    var userId = 100;
-        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-        //    var date = new Mock<IDateTimeProviderService>();
-        //    var service = new Mock<IApiService>();
-        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
-
-        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
-
-        //    // act
-        //    api.StopAll("bad_token");
-        //}
-
-        //[Test]
-        //[ExpectedException(typeof(UserNotAuthorizedException))]
-        //public void StopAll_CheckAuthentication_ExceptionThrown()
-        //{
-        //    // arrange
-        //    var userId = 100;
-        //    var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
-        //    var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
-        //    var date = new Mock<IDateTimeProviderService>();
-        //    var service = new Mock<IApiService>();
-        //    var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
-
-        //    service.Setup(s => s.GetUserIdByApiToken(token)).Returns(0);
-
-        //    // act
-        //    api.StopAll(token);
-        //}
 
         [Test]
         public void UpdatePosition_UpdateTaskPosition()
@@ -700,9 +661,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePosition(token, 1, 100);
@@ -721,9 +683,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdateDescription(token, 1, "new description");
@@ -742,9 +705,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePlannedDate(token, 1, "01-01-2011");
@@ -763,9 +727,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePlannedDate(token, 1, "12-12-2011");
@@ -785,9 +750,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePlannedDate(token, 1, "12-17-2011");
@@ -802,9 +768,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePlannedDate(token, 1, "12-12-2011");
@@ -824,9 +791,10 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
             var date = new Mock<IDateTimeProviderService>();
             var service = new Mock<IApiService>();
-            var api = new ApiV11Controller(service.Object, repository.Object, date.Object);
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
 
-            service.Setup(s => s.GetUserIdByApiToken(token)).Returns(userId);
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId});
 
             // act
             api.UpdatePlannedDate(token, 1, "12-12-2011");

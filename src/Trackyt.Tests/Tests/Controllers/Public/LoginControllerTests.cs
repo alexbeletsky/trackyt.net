@@ -10,6 +10,7 @@ using Moq;
 using Web.Infrastructure.Security;
 using Trackyt.Core.Services;
 using SharpTestsEx;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Controllers.Public
 {
