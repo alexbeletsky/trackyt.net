@@ -17,6 +17,7 @@ api.prototype = (function () {
                         url: this.url + this.token + method,
                         type: type,
                         processData: false,
+                        cache: false,
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(data),
                         dataType: 'json',
