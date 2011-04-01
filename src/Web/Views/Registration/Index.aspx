@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
     <link href="../../Content/public-login.css?ver=1012" rel="stylesheet" type="text/css" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/Tracky/controller.registration.js") + "?ver=1012" %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Controllers/controller.registration.js") + "?ver=1012" %>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />

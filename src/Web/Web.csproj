@@ -185,8 +185,8 @@
     <Content Include="Content\Images\public\rss.png" />
     <Content Include="Content\share.css" />
     <Content Include="DatepickerTests.htm" />
-    <Content Include="Scripts\Admin\control.editposts.js" />
-    <Content Include="Scripts\Admin\controller.editposts.js" />
+    <Content Include="Scripts\Controls\control.editposts.js" />
+    <Content Include="Scripts\Controllers\controller.editposts.js" />
     <Content Include="Scripts\ga.js" />
     <Content Include="FunctionalTests.html" />
     <Content Include="Scripts\jquery-ui-1.8.10.custom.min.js" />
@@ -210,10 +210,9 @@
     <Content Include="Scripts\Tests\framework\qunit\qunit.js" />
     <Content Include="Scripts\Tests\unit\tests.control.editposts.js" />
     <Content Include="Scripts\Tests\unit\tests.control.tasks.js" />
-    <Content Include="Scripts\Tracky\api.js" />
-    <Content Include="Scripts\Tracky\controller.account.js" />
-    <Content Include="Scripts\Tracky\controller.tasks.js" />
-    <Content Include="Scripts\Tracky\control.tasks.js" />
+    <Content Include="Scripts\Api\api.js" />
+    <Content Include="Scripts\Controllers\controller.dashboard.js" />
+    <Content Include="Scripts\Controls\control.tasks.js" />
     <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.controller.registration.js" />
     <Content Include="Views\Error\GenericError.aspx" />
@@ -238,7 +237,7 @@
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
-    <Content Include="Scripts\Tracky\controller.registration.js" />
+    <Content Include="Scripts\Controllers\controller.registration.js" />
     <Content Include="Views\Shared\ApiImplementations.ascx" />
     <Content Include="Views\Shared\ApiTableOfContent.ascx" />
     <Content Include="Views\Shared\Copyright.ascx" />
