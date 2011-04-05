@@ -1,0 +1,141 @@
+﻿/* Login and registration styles */
+
+html
+{
+    min-height: 100%;
+    background: #FAF9D8; /* old browsers */
+    background: -moz-linear-gradient(top, #FAF9D8 0%, #eeeeee 58%, #eeeeee 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAF9D8), color-stop(58%,#eeeeee), color-stop(100%,#eeeeee)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FAF9D8', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+    background-repeat:no-repeat;
+}
+
+body
+{
+    font-family: Verdana, Georgia, Serif;
+    font-size: 12px;    
+    color: #192832;
+    height: 100%;
+}
+
+a
+{
+    color: #5e7225;    
+}
+
+p
+{
+    margin: 0px 4px 10px 4px;
+    color: #5e7225;
+    padding: 2;
+    font-size: 10px;
+}
+
+#container
+{
+    margin: 100px auto;    
+    width: 490px;
+    height: auto;
+    
+    background:none repeat scroll 0 0 #FFFFFF;
+    border:1px solid #A7A7A7;
+    clear:both;
+    position:relative;
+    z-index:100;   
+
+     -webkit-box-shadow: rgba(0,0,0,0.5) 0px 0px 30px;
+     -moz-box-shadow: rgba(0,0,0,0.5) 0px 0px 30px;
+     box-shadow: rgba(0,0,0,0.5) 0px 0px 30px;    
+}
+
+#content
+{
+    background:none repeat scroll 0 0 #FFFFFF;
+    border:6px solid #c5e178 !important;
+    clear:both;
+    padding:20px;
+    position:relative;
+    z-index:100;
+}
+
+#content h1 
+{
+    display:block;
+    /*
+    border-bottom:1px solid #A7A7A7;
+    */    
+    font-size:20px;
+}
+
+#else
+{
+    display: block;
+    padding: 20px 18px 10px 10px;
+    font-size: 12px;
+}
+
+form
+{
+    border-top:1px solid #A7A7A7;
+}
+
+.left
+{
+    float: left;
+}
+
+fieldset
+{
+    border-style:none;
+}
+
+fieldset div
+{
+    display: block;
+    width: 80%;
+    margin: 5px;
+}
+
+fieldset input
+{
+    border:2px solid #c5e178 !important;
+    height: 24px;
+    width: 100%;   
+}
+
+label
+{
+    display: block;
+    padding-bottom:5px;
+}
+
+input#submit-button
+{
+    margin-top: 20px;
+    border:1px solid #c5e178 !important;    
+    width: 90px;
+    height: 30px;
+        
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(255,255,255,1);
+    line-height: 1;
+    
+    background: #F2F2F2; /* old browsers */
+    background: -moz-linear-gradient(top, #F2F2F2 33%, #BCBCBC 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(33%,#F2F2F2), color-stop(100%,#BCBCBC)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F2F2F2', endColorstr='#BCBCBC',GradientType=0 ); /* ie */
+}
+
+.validation-summary-errors
+{
+    font-size: smaller;
+    color: #e9282b;
+}
+
+.clear
+{
+    clear: both;
+}

@@ -7,6 +7,7 @@ using Trackyt.Core.Services;
 using Moq;
 using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.DataModel;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Services
 {
@@ -38,13 +39,14 @@ namespace Trackyt.Core.Tests.Tests.Services
             var service = new ApiService(repository.Object, hash.Object);
 
             // act
-            var result = service.GetUserIdByApiToken("23211");
+            var result = service.GetUserByApiToken("23211");
 
             // assert
-            Assert.That(result, Is.EqualTo(2));
+            Assert.That(result.Id, Is.EqualTo(2));
         }
 
         [Test]
+        [ExpectedException(typeof(Exception))]
         public void Authenticate_Fail()
         {
             // arrange
@@ -57,10 +59,9 @@ namespace Trackyt.Core.Tests.Tests.Services
             var service = new ApiService(repository.Object, hash.Object);
 
             // act
-            var result = service.GetUserIdByApiToken("12346");
+            var result = service.GetUserByApiToken("12346");
 
             // assert
-            Assert.That(result, Is.EqualTo(0));
         }
 
         [Test]

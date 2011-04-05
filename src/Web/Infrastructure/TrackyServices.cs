@@ -4,7 +4,7 @@ using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.Repositories.Impl;
 using Trackyt.Core.Security;
 using Trackyt.Core.Services;
-using Web.Infrastructure.Helpers;
+using Trackyt.Core.Services.Impl;
 
 namespace Web.Infrastructure
 {
@@ -28,6 +28,7 @@ namespace Web.Infrastructure
             Bind<ICredentialsService>().To<CredentialsService>();
             Bind<ICredentialsRepository>().To<CredentialsRepository>();
             Bind<IRedirectService>().To<RedirectService>();
+            Bind<IShareService>().To<ShareService>();
         }
     }
 }

@@ -15,8 +15,12 @@ namespace Trackyt.Core.DAL.Extensions
 
         public static IQueryable<Task> WithUserId(this IQueryable<Task> tasks, int id)
         {
-            return tasks.Where(t => t.UserId == id);
+            return tasks.Where(t => t.UserId == id && !t.Done);
         }
 
+        public static IQueryable<Task> WithUserIdAndDone(this IQueryable<Task> tasks, int id)
+        {
+            return tasks.Where(t => t.UserId == id && t.Done);
+        }
     }
 }

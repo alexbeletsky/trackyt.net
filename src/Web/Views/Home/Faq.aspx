@@ -72,13 +72,13 @@ trackyt.net is a simple, small and smart web application. Its primary goal is to
                 <li id="OpenSource">
                     <strong>Are you open source?</strong>
                     <p>
-                    Yes. The sources of Trackyt.net is fully available on <a href="http://github.com">github</a> in our <a href= "https://github.com/alexanderbeletsky/trackyourtasks.net">repository</a>. We are happy if you fork repository, learn, fix a bug, add wiki page or do any contribution you can. Having a source code make you available to build the application and host it on local server for internal usage. In the same time, we will not be happy to see the same site (exact design and/or functionality) somewhere in internet.
+                    Yes. The sources of Trackyt.net is fully available on <a href="http://github.com">github</a> in our <a href= "https://github.com/alexanderbeletsky/trackyt.net">repository</a>. We are happy if you fork repository, learn, fix a bug, add wiki page or do any contribution you can. Having a source code make you available to build the application and host it on local server for internal usage. In the same time, we will not be happy to see the same site (exact design and/or functionality) somewhere in internet.
                     </p>
                 </li>
                 <li id="IE">
                     <strong>Do you support Internet Explorer?</strong>
                     <p>
-                    No, we don't. We do testing and provide best support for Firefox and Chrome. Currently we do not want to spend to much time to find workaround of numerous IE bugs and violations of standards. If you think that support of IE is vital for you, please contact us <a href="mailto:support@trackyt.net">support@trackyt.net</a>.
+                    Recently, we've provided support for IE9. We do testing and provide best support for Firefox and Chrome. Currently we do not want to spend to much time to find workaround of numerous IE bugs and violations of standards. If you think that support of lower IE versions is vital for you, please contact us <a href="mailto:support@trackyt.net">support@trackyt.net</a>.
                     </p>
                 </li>
                 <li id="Help">

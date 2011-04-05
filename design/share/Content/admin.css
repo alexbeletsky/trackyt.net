@@ -1,0 +1,162 @@
+﻿body {
+  color:#555;
+  font-family:Tahoma;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  text-align:left;
+  text-transform: normal;
+  letter-spacing: normal;
+  background-color:#fff;
+  margin:0px;
+  padding:0px;
+}
+
+h2 
+{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    text-align:left;
+    text-transform: normal;    
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: Red;
+}
+
+.editor-field #Title
+{
+    width: 440px;
+}
+
+.editor-field #Body
+{
+    width: 800px;
+    height: 180px;
+}
+
+
+#navigation-container 
+{
+    display: block;
+    background-color: #000000;
+    height: 55px;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px auto;
+
+    -webkit-box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;
+    -moz-box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;
+    box-shadow: rgba(0,0,0,0.2) 0px 6px 0px;	
+}
+
+#navigation-container #logo
+{
+    float:left;
+    position: relative;
+    color: #FFFFF0;
+    font-weight:bold;
+    padding: 0;
+    margin: 1em 1em 0 1em;
+    width: auto;
+}
+
+#navigation-container #navigation
+{
+    float: right;
+    position: relative;
+    padding: 0;
+    margin: 0 2em;
+    width: auto;
+}
+
+#navigation-container #navigation a
+{
+    color: #FFFFF0;    
+}
+
+#navigation-container #navigation ul
+{
+}
+
+#navigation-container #navigation ul li
+{ 
+    display: inline; 
+    margin-right: 10px; 
+}
+
+ul, ol 
+{
+    list-style: none;
+}
+
+#submenu-container
+{
+    display: block;
+    height: 80px;
+    overflow: hidden;
+    width: 100%;
+    padding: 5px auto;    
+}
+
+#submenu-container #submenu
+{
+    float: right;
+    position: relative;
+    padding: 20px 20px 5px 20px;
+    font-size: 20px;
+    display: block;
+}
+ 
+#submenu-container #submenu ul li
+{
+    display: inline;
+    margin-right: 40px;
+}
+
+#submenu-container #submenu a
+{
+    color: Gray;
+}
+
+#content
+{
+    padding-left: 20px;
+}
+
+span .green
+{
+    color: Green;
+    font-weight: bolder;
+}
+
+span .red
+{
+    color: Red;
+    font-weight: bolder;
+}
+
+#table-container table
+{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 1.2em;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+#table-container table td, #table-container table th 
+{
+    border: solid 1px black;
+    padding: 15px;
+}
+
+
+#table-container table tr:nth-of-type(odd) {
+  background-color:#ccc;
+}

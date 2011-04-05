@@ -82,8 +82,10 @@
     <Compile Include="Tests\Controllers\Public\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Public\RegistrationControllerTests.cs" />
     <Compile Include="Tests\Controllers\User\DashboardTests.cs" />
+    <Compile Include="Tests\Controllers\User\ShareControllerTests.cs" />
     <Compile Include="Tests\Helpers\BlogPostsHelperTests.cs" />
     <Compile Include="Tests\Helpers\PagerHtmlExtensionTests.cs" />
+    <Compile Include="Tests\Helpers\TasksExtensionsTests.cs" />
     <Compile Include="Tests\Mocks\RegistrationViewMock.cs" />
     <Compile Include="Tests\Mocks\TasksRepositoryMock.cs" />
     <Compile Include="Tests\Mocks\UsersRepositoryMock.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Tests\Services\HashServiceTests.cs" />
     <Compile Include="Tests\Services\NotificationServiceTests.cs" />
     <Compile Include="Tests\Services\RedirectServicesTests.cs" />
+    <Compile Include="Tests\Services\ShareServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Trackyt.Core\Trackyt.Core.csproj">

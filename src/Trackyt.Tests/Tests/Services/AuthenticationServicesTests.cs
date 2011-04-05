@@ -9,6 +9,7 @@ using Web.Infrastructure.Security;
 using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.Security;
 using Trackyt.Core.Services;
+using Trackyt.Core.Services.Impl;
 
 namespace Trackyt.Core.Tests.Tests.Services
 {

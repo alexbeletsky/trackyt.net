@@ -8,8 +8,9 @@ html, body
     /* 5e6c78 */ 
     background-color: #5a748a;
     background-image: url('Images/dashboard/back.png');
+    
     font-family: Verdana, Georgia, Serif;
-    font-size: 14px;
+    font-size: 12px;
     color: #424242;
     
     margin: 0;
@@ -113,13 +114,11 @@ footer, .push {
 {
     position: relative;
     height: auto;
-    min-height: 75px;
+    min-height: 45px;
     width: 100%;
     background-color: #252628;
     
-    color: #1cbcff;
-    font-family: Verdana, Arial, Serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 #logo
@@ -138,24 +137,24 @@ footer, .push {
 #navigation-container a
 {
     text-decoration: none;
-    color: inherit;
+    color: #1cbcff;
 }
 
 #container
 {
     position: relative;
     display: block;
-    width: 885px;
+    width: 925px;
     height: auto;
     min-height: 600px;
     margin:0 auto;
-    margin-top: -40px;
-    padding-top: 40px;
+    margin-top: -10px;
+    padding-top: 20px;
     background-color: #e7e6de;
         
-     -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
-     -moz-box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
-     box-shadow: rgba(0,0,0,0.8) 0px 0px 30px;
+     -webkit-box-shadow: rgba(0,0,0,0.9) 0px 0px 35px;
+     -moz-box-shadow: rgba(0,0,0,0.9) 0px 0px 35px;
+     box-shadow: rgba(0,0,0,0.9) 0px 0px 35px;
 
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -166,11 +165,10 @@ footer, .push {
 
 #new-task-control
 {
-    width: 760px;
-    height: 100px;
+    width: 860px;
     margin:0 auto;
     /* 3d4a59 */
-    background-color: #425565;
+    background-color: #5f798f;
     opacity: 0.6;
     
     border: 1px solid #2f3439;
@@ -192,31 +190,30 @@ footer, .push {
 {
     display: block;
     position: relative;
-    width: 600px;
-    height: 35px;
+    width: 90%;
+    height: auto;
     margin:0 auto;
-    margin-top: 24px;
+    margin-top: 22px;
 }
 
 #new-task-container input
 {
     height: 100%;
-    margin-right: 5px;
 }
 
 #task-description
 {
-    width: 500px;
+    width: 100%;
     border: 0px none;
+    opacity: 0.6;
     
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;        
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;        
     
     -moz-box-shadow: inset 0 0 1x 1px #888;
     -webkit-box-shadow: inset 0 0 1px 1px#888;
     box-shadow: inset 0 0 1px 1px #888;
-
 }
 
 #operation-controls
@@ -246,7 +243,7 @@ footer, .push {
 
 #tasks
 {
-    width: 730px;
+    width: 90%;
     height: auto;
     margin:0 auto;
     margin-bottom: 20px;
@@ -269,7 +266,7 @@ footer, .push {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B4F7B4), color-stop(100%,#48B555)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B4F7B4', endColorstr='#48B555',GradientType=0 ); /* ie */
 
-    margin-top: 3px;
+    margin-top: 4px;
     padding: 1px;
     
     width: 100%;
@@ -316,7 +313,7 @@ footer, .push {
     top: 7px;
     
     height: auto;
-    width: 400px;
+    width: 485px;
     
     float: left;
     font-size: 16px;
@@ -329,7 +326,7 @@ footer, .push {
 
 .task #description-edit
 {
-    width: 90%;
+    width: 95%;
     opacity: 0.6;
     
     -moz-border-radius: 10px;
@@ -339,7 +336,7 @@ footer, .push {
 
 .task input#description-edit  
 {
-    padding: 2px;
+    padding: 2px 10px 2px 10px;
 }
 
 .task .plantodate
@@ -425,6 +422,23 @@ footer, .push {
     opacity: 0.6;
 }
 
+.task .done a
+{
+    float:right;    
+    height: 32px;
+    width: 32px;
+    
+    background-image: url('Images/dashboard/tick.png');
+    opacity: 0.3;
+}
+
+.task .done a:hover 
+{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+
 .task .planned
 {
     position: relative;
@@ -479,7 +493,7 @@ footer, .push {
 
 input#task-description
 {
-    padding: 4px;
+    padding: 2px 10px 2px 10px;
     font-size:x-large;
 }
 
@@ -513,4 +527,86 @@ input#task-description
 .clear
 {
     clear: both;
+}
+
+#projects 
+{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    top: 12px;
+    margin: 0 0 20px 0;
+}
+
+.project
+{
+    float: left;
+    margin-right: 6px;
+    width: auto;
+}
+
+#projects a
+{
+    /*
+    background-color: #00bd0d;    
+    border: 1px solid #355631;
+    */
+    
+    color: #cdffd1;
+    padding: 1px 4px 1px 4px;
+    font-size: 10px;    
+}
+
+.share-link
+{
+    display: inline-block;
+    float: right;
+    position: relative;
+    top: 28px;
+    left: 140px;
+
+    border:1px solid #999999; 
+    color: #0A4202;
+    
+    -webkit-box-shadow: rgba(0,0,0,0.9) 0px 0px 5px;
+    -moz-box-shadow: rgba(0,0,0,0.9) 0px 0px 5px;
+    box-shadow: rgba(0,0,0,0.9) 0px 0px 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;        
+    
+    background: #767e84;
+    padding: 12px;
+    width: auto;
+ 
+    color: #dadada;
+    
+    opacity: 0.9;
+    
+    z-index: 1000 !important; 
+}
+
+.share-link input
+{
+    width: 490px;
+    height: 24px;
+    padding: 1px;
+    margin-right: 6px;            
+    
+    color: #55504a;
+    
+    -moz-box-shadow: inset 0 0 1x 1px #888;
+    -webkit-box-shadow: inset 0 0 1px 1px#888;
+    box-shadow: inset 0 0 1px 1px #888;
+
+}
+
+.share-link .share-link-close:hover
+{
+    cursor: pointer;
+}
+
+.share-link span
+{
 }

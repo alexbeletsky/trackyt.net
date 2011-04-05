@@ -14,14 +14,15 @@ namespace Web.API.v11.Model
 
     public class TaskDescriptor
     {
-        public int id { set; get; }
-        public string description { set; get; }
-        public int? status { set; get; }
-        public DateTime? createdDate { set; get; }
-        public DateTime? startedDate { set; get; }
-        public DateTime? stoppedDate { set; get; }
-        public DateTime? plannedDate { set; get; }
-        public int spent { set; get; }
+        public int id { get; set; }
+        public string description { get; set; }
+        public int? status { get; set; }
+        public DateTime? createdDate { get; set; }
+        public DateTime? startedDate { get; set; }
+        public DateTime? stoppedDate { get; set; }
+        public DateTime? plannedDate { get; set; }
+        public int spent { get; set; }
         public int position { get; set; }
+        public bool done { get; set; }
     }
 }

@@ -17,15 +17,17 @@ namespace Web.API.v11.Controllers
     [HandleJsonError]
     public class ApiV11Controller : Controller
     {
-        private IApiService _api;
-        private ITasksRepository _tasks;
-        private IDateTimeProviderService _dateTime;
+        private IApiService _apiService;
+        private ITasksRepository _tasksRepository;
+        private IDateTimeProviderService _dateTimeService;
+        private IShareService _shareService;
 
-        public ApiV11Controller(IApiService auth, ITasksRepository repository, IDateTimeProviderService date)
+        public ApiV11Controller(IApiService auth, ITasksRepository repository, IDateTimeProviderService date, IShareService shareService)
         {
-            _api = auth;
-            _tasks = repository;
-            _dateTime = date;
+            _apiService = auth;
+            _tasksRepository = repository;
+            _dateTimeService = date;
+            _shareService = shareService;
         }
 
         [HttpPost]
@@ -35,7 +37,7 @@ namespace Web.API.v11.Controllers
             CheckArgumentNotNullOrEmpty(password, "password");
 
             var success = true;
-            var apiToken = _api.GetApiToken(email, password);
+            var apiToken = _apiService.GetApiToken(email, password);
 
             if (apiToken == null)
             {
@@ -58,7 +60,7 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
             
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var tasks = CreateTasksList(userId);
 
             return Json(
@@ -70,6 +72,23 @@ namespace Web.API.v11.Controllers
                 JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult Total(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var tasks = CreateTasksList(userId);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { total = tasks.Count }
+                },
+                JsonRequestBehavior.AllowGet);
+        }
+
         // POST tasks/add
         [HttpPost]
         public JsonResult Add(string apiToken, string description)
@@ -77,9 +96,9 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentNotNullOrEmpty(description, "description");
 
-            var userId = GetUserIdByApiToken(apiToken);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = new Task { Description = description, UserId = userId, Status = (int)TaskStatus.None };
-            _tasks.Save(task);
+            _tasksRepository.Save(task);
 
             return Json(
                 new
@@ -96,11 +115,11 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
-            _tasks.Delete(task);
+            _tasksRepository.Delete(task);
 
             return Json(
                 new
@@ -118,8 +137,8 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
             StartAndSave(task);
@@ -140,8 +159,8 @@ namespace Web.API.v11.Controllers
             CheckArgumentApiToken(apiToken);
             CheckArgumentLessThanZero(taskId, "taskId");
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
             StopAndSave(task);
@@ -156,49 +175,53 @@ namespace Web.API.v11.Controllers
 
 
         // PUT tasks/start/all
-
+        // TODO: remove this API call
         [HttpPut]
         public JsonResult StartAll(string apiToken)
         {
-            CheckArgumentApiToken(apiToken);
+            //CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var allTasks = _tasks.Tasks.WithUserId(userId);
+            //var userId = GetUserIdByApiToken(apiToken);
+            //var allTasks = _tasks.Tasks.WithUserId(userId);
 
-            foreach (var task in allTasks)
-            {
-                StartAndSave(task);
-            }
+            //foreach (var task in allTasks)
+            //{
+            //    StartAndSave(task);
+            //}
 
-            return Json(
-                new
-                {
-                    success = true,
-                    data = (string)null
-                });
+            //return Json(
+            //    new
+            //    {
+            //        success = true,
+            //        data = (string)null
+            //    });
+
+            throw new NotSupportedException();
         }
 
         // PUT tasks/stop/all
-
+        // TODO: remove this API call
         [HttpPut]
         public JsonResult StopAll(string apiToken)
         {
-            CheckArgumentApiToken(apiToken);
+            //CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var allTasks = _tasks.Tasks.WithUserId(userId);
+            //var userId = GetUserIdByApiToken(apiToken);
+            //var allTasks = _tasks.Tasks.WithUserId(userId);
 
-            foreach (var task in allTasks)
-            {
-                StopAndSave(task);
-            }
+            //foreach (var task in allTasks)
+            //{
+            //    StopAndSave(task);
+            //}
 
-            return Json(
-                new
-                {
-                    success = true,
-                    data = (string)null
-                });
+            //return Json(
+            //    new
+            //    {
+            //        success = true,
+            //        data = (string)null
+            //    });
+
+            throw new NotSupportedException();
         }
 
         [HttpPut]
@@ -206,13 +229,13 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
 
             task.Position = position;
-            _tasks.Save(task);
+            _tasksRepository.Save(task);
 
             return Json(
                 new
@@ -227,13 +250,13 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
             
             task.Description = description;
-            _tasks.Save(task);
+            _tasksRepository.Save(task);
 
             return Json(
                 new
@@ -248,8 +271,8 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = GetUserIdByApiToken(apiToken);
-            var task = _tasks.Tasks.WithId(taskId);
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
 
@@ -261,7 +284,7 @@ namespace Web.API.v11.Controllers
             {
                 task.PlannedDate = DateTime.ParseExact(plannedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             }
-            _tasks.Save(task);
+            _tasksRepository.Save(task);
 
             return Json(
                 new
@@ -271,9 +294,87 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        [HttpGet]
+        public ActionResult Done(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var tasks = CreateDoneTasksList(userId);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { tasks = tasks }
+                },
+                JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPut]
+        public ActionResult Done(string apiToken, int taskId)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var task = _tasksRepository.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+
+            task.Done = true;
+            _tasksRepository.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { task = CreateTaskDescriptor(task) }
+                });
+        }
+
+        [HttpGet]
+        public ActionResult TotalDone(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { totalDone = _tasksRepository.Tasks.WithUserIdAndDone(userId).Count() }
+                },
+                JsonRequestBehavior.AllowGet
+            );
+        }
+
+        [HttpGet]
+        public ActionResult ShareLink(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var user = _apiService.GetUserByApiToken(apiToken);
+            var shareLink = _shareService.CreateShareLink(user.Email);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { link = shareLink }
+                },
+                JsonRequestBehavior.AllowGet
+                );
+        }
+
         private IList<TaskDescriptor> CreateTasksList(int userId)
         {
-            return _tasks.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();
+            return _tasksRepository.Tasks.WithUserId(userId).Select(t => CreateTaskDescriptor(t)).ToList();
+        }
+
+        private IList<TaskDescriptor> CreateDoneTasksList(int userId)
+        {
+            return _tasksRepository.Tasks.WithUserIdAndDone(userId).Select(t => CreateTaskDescriptor(t)).ToList();
         }
 
         private TaskDescriptor CreateTaskDescriptor(Task t)
@@ -288,7 +389,8 @@ namespace Web.API.v11.Controllers
                 plannedDate = t.PlannedDate,
                 status = t.Status,
                 spent = GetTaskActualWork(t),
-                position = t.Position
+                position = t.Position,
+                done = t.Done
             };
         }
 
@@ -298,7 +400,7 @@ namespace Web.API.v11.Controllers
 
             if (t.Status == (int)TaskStatus.Started)
             {
-                actualWork += GetDifferenceInSeconds(t.StartedDate, _dateTime.UtcNow);
+                actualWork += GetDifferenceInSeconds(t.StartedDate, _dateTimeService.UtcNow);
             }
 
             return actualWork;
@@ -313,7 +415,7 @@ namespace Web.API.v11.Controllers
 
             if (stop == null)
             {
-                return Convert.ToInt32(Math.Floor((_dateTime.UtcNow - start).Value.TotalSeconds));
+                return Convert.ToInt32(Math.Floor((_dateTimeService.UtcNow - start).Value.TotalSeconds));
             }
 
             return Convert.ToInt32(Math.Floor((stop - start).Value.TotalSeconds));
@@ -324,9 +426,9 @@ namespace Web.API.v11.Controllers
             if (task.Status == (int)TaskStatus.None || task.Status == (int)TaskStatus.Stopped)
             {
                 task.Status = (int)TaskStatus.Started;
-                task.StartedDate = _dateTime.UtcNow;
+                task.StartedDate = _dateTimeService.UtcNow;
                 task.StoppedDate = null;
-                _tasks.Save(task);
+                _tasksRepository.Save(task);
             }
         }
 
@@ -335,10 +437,10 @@ namespace Web.API.v11.Controllers
             if (task.Status == (int)TaskStatus.Started)
             {
                 task.Status = (int)TaskStatus.Stopped;
-                task.StoppedDate = _dateTime.UtcNow;
+                task.StoppedDate = _dateTimeService.UtcNow;
                 task.ActualWork += GetDifferenceInSeconds(task.StartedDate, task.StoppedDate);
 
-                _tasks.Save(task);
+                _tasksRepository.Save(task);
             }
         }
 
@@ -364,18 +466,6 @@ namespace Web.API.v11.Controllers
             {
                 throw new ArgumentException("Provided value could not be less than zero.", name);
             }
-        }
-
-        private int GetUserIdByApiToken(string apiToken)
-        {
-            var userId = _api.GetUserIdByApiToken(apiToken);
-
-            if (userId == 0)
-            {
-                throw new UserNotAuthorizedException();
-            }
-
-            return userId;
         }
 
         // TODO: get rid of that check. Repository must throw such exception, in case of task does not exist
