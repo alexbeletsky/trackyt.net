@@ -22,7 +22,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Api/api.js") + "?ver=1012" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controls/control.tasks.js") + "?ver=1012" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controllers/controller.dashboard.js") + "?ver=1012" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Api/api.js") + "?ver=1013" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controls/control.tasks.js") + "?ver=1013" %>"></script>
+    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controllers/controller.dashboard.js") + "?ver=1013" %>"></script>
 </asp:Content>
