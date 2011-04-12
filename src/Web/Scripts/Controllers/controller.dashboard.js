@@ -69,12 +69,29 @@
     // Task control handlers
 
     $('.moveontop').live('click', function () {
-        $(this).parent().slideUp(function () {
+        var task = $(this).parent();
+        
+        // fix: if calendar is visible, it would be removed before moving the task
+        removeDatetimeDiv();
+
+        if (isTaskOnTop(task)) {
+            return;
+        }
+
+        task.slideUp(function () {
             $(this).prependTo('#tasks').slideDown(function () {
                 updateAfterSort();
             });
         });
     });
+
+    function isTaskOnTop(task) {
+        var tasks = element.children('.task');
+
+        var topTaskId = $(tasks[0]).attr('id');
+        var currentTaskId = $(task).attr('id');
+        return topTaskId == currentTaskId;
+    }
 
     $('.description').live('dblclick', function () {
         var value = $(this).html();
@@ -93,28 +110,29 @@
                 dateFormat: 'dd-mm-yy',
                 minDate: 0,
                 onSelect: function (date, inst) {
-                    //me.parent().find('.planned').html(date);
-                    $('#ui-datepicker-div').remove();
+                    removeDatetimeDiv();
+
                     control.setTaskPlannedDate(me.parent().attr('id'), date);
                     updateTaskPlannedDateCallback(me.parent().attr('id'), date);
                 }
             });
-
             $('.ui-datepicker').append('<div class="clear"><div class="clean">Not planned</div><div class="close">X</div></div>');
             $('.ui-datepicker div.clean').die();
             $('.ui-datepicker div.close').die();
             $('.ui-datepicker div.clean').live('click', function () {
-                //me.parent().find('.planned').html('');
-
-                $('#ui-datepicker-div').remove();
+                removeDatetimeDiv();                
                 control.setTaskPlannedDate(me.parent().attr('id'), '');
                 updateTaskPlannedDateCallback(me.parent().attr('id'), '');
             });
             $('.ui-datepicker div.close').live('click', function () {
-                $('#ui-datepicker-div').remove();
+                removeDatetimeDiv();
             });
         }
     });
+
+    function removeDatetimeDiv() {
+        $('#ui-datepicker-div').remove();
+    }
 
     function saveTaskEdit() {
         var currentDescription = $('#description-edit').val();
@@ -144,9 +162,9 @@
     }
 
     $('#description-edit').live('keyup', function (e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13) {      //enter
             saveTaskEdit();
-        } if (e.keyCode == 27) {
+        } if (e.keyCode == 27) {    // esc
             cancelTaskEdit();
         }
     });
