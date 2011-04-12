@@ -57,13 +57,33 @@
         }
     });
 
-    $('.done, .all').live('click', function () {
+
+    $('.done').live('click', function () {
         var method = $(this).attr('href');
+        
+        showActions();
         loadTasks(method);
 
         return false; 
     });
 
+
+    $('.all').live('click', function () {
+        var method = $(this).attr('href');
+        
+        hideActions();
+        loadTasks(method);
+
+        return false; 
+    });
+
+    $('.actions-delete-all-done').live('click', function () {
+        var method =  $(this).attr('href');
+
+        deleteAllDoneTasks(method);
+
+        return false;
+    });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
@@ -342,7 +362,35 @@
 
     }
 
+    function deleteAllDoneTasks(method) {
+        $.blockUI();
+        a.call(method, 'DELETE', undefined, function (r) {
+            if (r.success) {
+                control.removeAll();
+                updateDone();
+            }
+
+            $.unblockUI();
+        });
+    }
+
+    function showActions() {
+        $('#actions').show();
+    }
+
+    function hideActions() {
+        $('#actions').hide();
+    }
+
+    function initActions() {
+        hideActions();
+
+        $('#action-delete-all').append('<a href="/tasks/delete/alldone" class="actions-delete-all-done">Delete all</a>');
+        $('#action-delete-all').append('<a href="/tasks/undo/all" class="actions-undo-all">Undo all</a>');
+    }
+
     function controllerInit() {
+        initActions();        
         makeSortable();
         updateDone();
 

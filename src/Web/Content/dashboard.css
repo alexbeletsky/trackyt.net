@@ -531,30 +531,30 @@ input#task-description
     clear: both;
 }
 
-#projects 
+.context 
 {
     display: inline-block;
     position: relative;
-    width: 100%;
     top: 12px;
     margin: 0 0 20px 0;
 }
 
-.project
+
+.context-item
 {
     float: left;
     margin-right: 6px;
     width: auto;
 }
 
-#projects a
+
+.context a
 {
     /*
     background-color: #00bd0d;    
     border: 1px solid #355631;
     */
-    
-    color: #cdffd1;
+    color: #88ebd4;
     padding: 1px 4px 1px 4px;
     font-size: 10px;    
 }

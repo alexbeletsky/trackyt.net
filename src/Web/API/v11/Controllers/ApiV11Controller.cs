@@ -129,6 +129,27 @@ namespace Web.API.v11.Controllers
                 });
         }
 
+        [HttpDelete]
+        public JsonResult DeleteAllDone(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var userId = _apiService.GetUserByApiToken(apiToken).Id;
+            var tasks = _tasksRepository.Tasks.WithUserIdAndDone(userId);
+
+            foreach (var task in tasks)
+            {
+                _tasksRepository.Delete(task);
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = ""
+                });
+        }
+
         // PUT tasks/start
 
         [HttpPut]

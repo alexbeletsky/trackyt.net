@@ -9,10 +9,15 @@
             <div id="new-task-container">
                 <input id="task-description" type="text" placeholder="New task description" />
                 
-                <div id="projects">
-                    <div class="project" id="project-all"></div>                    
-                    <div class="project" id="project-done"></div>
+                <div class="context" id="summary">
+                    <div class="context-item" id="project-all"></div>                    
+                    <div class="context-item" id="project-done"></div>
                 </div>
+                <div class="context right" id="actions">
+                    <div class="context-item" id="action-delete-all"></div>                    
+                    <div class="context-item" id="action-undo-all"></div>                    
+                </div>
+                <div class="clear"></div>
             </div>
             </div>  
         <div id="tasks">

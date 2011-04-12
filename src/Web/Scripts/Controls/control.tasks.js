@@ -106,6 +106,11 @@ tasksControl.prototype = (function () {
                 this.div.slideUp(function () { me.div.remove(); });
             },
 
+            // same remove method but with out visual effect, that is more suitable for remove all operation
+            removeQuick: function () {
+                this.div.remove();
+            },
+
             start: function () {
                 this.sections['timer'].run();
             },
@@ -347,6 +352,12 @@ tasksControl.prototype = (function () {
         stopAll: function () {
             for (var t in this.tasks) {
                 this.tasks[t].stop();
+            }
+        },
+
+        removeAll: function () {
+            for (var t in this.tasks) {
+                this.tasks[t].removeQuick();
             }
         },
 

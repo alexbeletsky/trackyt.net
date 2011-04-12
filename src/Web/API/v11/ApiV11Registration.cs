@@ -94,6 +94,13 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
+            context.MapRoute(
+                "ApiV11_tasks_deletealldone",
+                "api/v1.1/{apiToken}/tasks/delete/alldone",
+                new { controller = "ApiV11", action = "DeleteAllDone" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
 
             //API v1 map
             context.MapRoute(
