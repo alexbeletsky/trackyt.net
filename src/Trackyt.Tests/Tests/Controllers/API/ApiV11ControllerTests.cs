@@ -804,5 +804,26 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             var task = ApiTestsCommonSetup.SubmittedTasks[0];
             task.PlannedDate.Should().Be(null);
         }
+
+        [Test]
+        public void DeleteAllDone_DeletesAllDoneTasks()
+        {
+            // arrange
+            var userId = 100;
+            var token = "4a891b4d0bb22f83482f9fb5bafeb4b8";
+            var repository = ApiTestsCommonSetup.SetupMockRepository(userId);
+            var date = new Mock<IDateTimeProviderService>();
+            var service = new Mock<IApiService>();
+            var shareService = new Mock<IShareService>();
+            var api = new ApiV11Controller(service.Object, repository.Object, date.Object, shareService.Object);
+
+            service.Setup(s => s.GetUserByApiToken(token)).Returns(new User { Id = userId });
+
+            // act
+            api.DeleteAllDone(token);
+            
+            // assert
+            ApiTestsCommonSetup.DeletedTasks.Count.Should().Be(1);
+        }
     }
 }

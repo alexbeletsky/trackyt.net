@@ -35,6 +35,7 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
                     new Task { Id = 4, Description = "Task3", ActualWork = 0, Number = 4, UserId = userId + 1 },
                     new Task { Id = 5, Description = "Task3", ActualWork = 7, Number = 1, UserId = userId + 2 },
                     new Task { Id = 6, Description = "Task3", ActualWork = 4, Number = 1, UserId = userId + 3 },
+                    new Task { Id = 7, Description = "DoneTask1", UserId = userId, Done = true }
                 }.AsQueryable()
                 );
 
@@ -43,7 +44,6 @@ namespace Trackyt.Core.Tests.Tests.Controllers.API
             DeletedTasks.Clear();
             repository.Setup(f => f.Save(It.IsAny<Task>())).Callback((Task t) =>
             {
-                //assign id for new tasks
                 if (t.Id == 0)
                 {
                     t.Id = index++;
