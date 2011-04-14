@@ -1,4 +1,13 @@
-﻿$(function () {
+﻿/// <reference path="../jquery-1.4.1-vsdoc.js" />
+/// <reference path="../jquery-ui.js" />
+/// <reference path="../jquery.blockUI.js" />
+/// <reference path="../jquery.confirm.js" />
+/// <reference path="../json2.js" />
+/// <reference path="../Api/api.js" />
+/// <reference path="../Controls/control.tasks.js" />
+/// <reference path="../Controls/control.editposts.js" />
+
+$(function () {
     // Global config
     $.blockUI.defaults.message = null;
 
@@ -79,8 +88,19 @@
 
     $('.actions-delete-all-done').live('click', function () {
         var method =  $(this).attr('href');
-
-        deleteAllDoneTasks(method);
+        $.confirm({
+            message: 'Are you sure to delete all done task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        deleteAllDoneTasks(method);
+                    }
+                },
+                No: {
+                
+                }
+            },
+        });
 
         return false;
     });
@@ -363,14 +383,11 @@
     }
 
     function deleteAllDoneTasks(method) {
-        $.blockUI();
         a.call(method, 'DELETE', undefined, function (r) {
             if (r.success) {
                 control.removeAll();
                 updateDone();
             }
-
-            $.unblockUI();
         });
     }
 
