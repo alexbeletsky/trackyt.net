@@ -68,15 +68,21 @@ namespace Web.API.v11
                 new string[] { "Web.API.v11.Controllers" }
             );
 
-
             context.MapRoute(
-                "ApiV11_tasks_done",
-                "api/v1.1/{apiToken}/tasks/done/{taskId}",
-                new { controller = "ApiV11", action = "Done", taskId = UrlParameter.Optional },
+                "ApiV11_tasks_putdone",
+                "api/v1.1/{apiToken}/tasks/done",
+                new { controller = "ApiV11", action = "Done" },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
             );
 
+            context.MapRoute(
+                "ApiV11_tasks_getdone",
+                "api/v1.1/{apiToken}/tasks/done/{taskId}",
+                new { controller = "ApiV11", action = "Done" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
 
             context.MapRoute(
                 "ApiV11_tasks_totaldone",
@@ -98,6 +104,22 @@ namespace Web.API.v11
                 "ApiV11_tasks_deletealldone",
                 "api/v1.1/{apiToken}/tasks/delete/alldone",
                 new { controller = "ApiV11", action = "DeleteAllDone" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
+            context.MapRoute(
+                "ApiV11_tasks_undoall",
+                "api/v1.1/{apiToken}/tasks/undo/all",
+                new { controller = "ApiV11", action = "UndoAll" },
+                new { apiToken = @"[a-fA-F\d]{32}" },
+                new string[] { "Web.API.v11.Controllers" }
+            );
+
+            context.MapRoute(
+                "ApiV11_tasks_undo",
+                "api/v1.1/{apiToken}/tasks/undo/{taskId}",
+                new { controller = "ApiV11", action = "Undo" },
                 new { apiToken = @"[a-fA-F\d]{32}" },
                 new string[] { "Web.API.v11.Controllers" }
             );

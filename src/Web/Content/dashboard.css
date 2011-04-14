@@ -277,14 +277,10 @@ footer, .push {
     z-index: -1000;
 }
 
-.task span
-{
-}
-
 .task span a
 {
     color: #0069EA;
-    text-indent: -50000px;    
+    text-indent: 50000px;    
     text-decoration: none;
 }
 
@@ -435,6 +431,21 @@ footer, .push {
 }
 
 .task .done a:hover 
+{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.task .undo a
+{
+    float: left;
+    height: 32px;
+    width: 32px;
+    background-image: url('Images/dashboard/undo.png');
+    opacity: 0.3;    
+}
+
+.task .undo a:hover 
 {
     cursor: pointer;
     opacity: 0.6;

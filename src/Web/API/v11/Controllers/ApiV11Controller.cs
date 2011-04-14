@@ -337,7 +337,6 @@ namespace Web.API.v11.Controllers
         {
             CheckArgumentApiToken(apiToken);
 
-            var userId = _apiService.GetUserByApiToken(apiToken).Id;
             var task = _tasksRepository.Tasks.WithId(taskId);
 
             CheckTaskNotNull(taskId, task);
@@ -386,6 +385,50 @@ namespace Web.API.v11.Controllers
                 },
                 JsonRequestBehavior.AllowGet
                 );
+        }
+
+        [HttpPut]
+        public ActionResult Undo(string apiToken, int taskId)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var task = _tasksRepository.Tasks.WithId(taskId);
+
+            CheckTaskNotNull(taskId, task);
+
+            task.Done = false;
+            _tasksRepository.Save(task);
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { task = CreateTaskDescriptor(task) }
+                });
+        }
+
+        [HttpPut]
+        public ActionResult UndoAll(string apiToken)
+        {
+            CheckArgumentApiToken(apiToken);
+
+            var user = _apiService.GetUserByApiToken(apiToken);
+            var tasks = _tasksRepository.Tasks.WithUserIdAndDone(user.Id);
+
+            foreach (var task in tasks)
+            {
+                task.Done = false;
+                _tasksRepository.Save(task);
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    data = new { tasks = tasks }
+                }
+                );
+
         }
 
         private IList<TaskDescriptor> CreateTasksList(int userId)

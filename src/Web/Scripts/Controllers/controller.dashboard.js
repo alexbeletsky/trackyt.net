@@ -105,6 +105,26 @@ $(function () {
         return false;
     });
 
+    $('.actions-undo-all').live('click', function () {
+        var method =  $(this).attr('href');
+        $.confirm({
+            message: 'Are you sure to undo all task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        undoAllTasks(method);
+                    }
+                },
+                No: {
+                
+                }
+            },
+        });
+
+        return false;
+    });
+
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Task control handlers
 
@@ -256,6 +276,7 @@ $(function () {
         return false;
     });
 
+    // TODO: done/undo have identical code, must be to to common method
     $('.done a').live('click', function () {
         var method = $(this).attr('href');
 
@@ -269,6 +290,21 @@ $(function () {
         });        
 
         return false;
+    });
+
+    $('.undo a').live('click', function () {
+        var method = $(this).attr('href');
+
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.removeTask(r.data.task.id);
+                
+                updateAll();
+                updateDone();
+            }
+        });        
+
+        return false;        
     });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -386,6 +422,16 @@ $(function () {
         a.call(method, 'DELETE', undefined, function (r) {
             if (r.success) {
                 control.removeAll();
+                updateDone();
+            }
+        });
+    }
+
+    function undoAllTasks(method) {
+        a.call(method, 'PUT', undefined, function (r) {
+            if (r.success) {
+                control.removeAll();
+                updateAll();
                 updateDone();
             }
         });
