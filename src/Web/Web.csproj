@@ -116,6 +116,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Helpers\BlogPostsHelper.cs" />
     <Compile Include="Helpers\BlogPostProcessor.cs" />
+    <Compile Include="Helpers\Extensions\UrlContentWithVersionExtension.cs" />
     <Compile Include="Infrastructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrastructure\Exceptions\UserNotAuthorized.cs" />
     <Compile Include="Infrastructure\TrackyNotificationServiceProvider.cs" />

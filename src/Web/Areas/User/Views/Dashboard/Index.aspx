@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Trackyt.net | Dashboard" Language="C#" MasterPageFile="~/Areas/User/Views/Shared/Dashboard.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+<%@ Import Namespace="Web.Helpers.Extensions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <%: Html.TextBox("apiToken", ViewData["ApiToken"], new { type = "hidden" }) %>
@@ -27,7 +28,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Api/api.js") + "?ver=1013" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controls/control.tasks.js") + "?ver=1013" %>"></script>
-    <script type="text/javascript" src="<%: Url.Content("~/Scripts/Controllers/controller.dashboard.js") + "?ver=1013" %>"></script>
+    <script type="text/javascript" src="<%: Url.ContentWithVersion("~/Scripts/Api/api.js") %>"></script>
+    <script type="text/javascript" src="<%: Url.ContentWithVersion("~/Scripts/Controls/control.tasks.js") %>"></script>
+    <script type="text/javascript" src="<%: Url.ContentWithVersion("~/Scripts/Controllers/controller.dashboard.js") %>"></script>
 </asp:Content>

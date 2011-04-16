@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/Admin/Views/Shared/BlogManagement.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+<%@ Import Namespace = "Web.Helpers.Extensions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     Search: <input id="post-name" />
@@ -7,6 +8,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%: Url.Content("~/Scripts/Controls/control.editposts.js") + "?ver=1013"%>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/Controllers/controller.editposts.js") + "?ver=1013"%>" type="text/javascript"></script>
+    <script src="<%: Url.ContentWithVersion("~/Scripts/Controls/control.editposts.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.ContentWithVersion("~/Scripts/Controllers/controller.editposts.js") %>" type="text/javascript"></script>
 </asp:Content>
