@@ -280,7 +280,7 @@ footer, .push {
 .task span a
 {
     color: #0069EA;
-    text-indent: 50000px;    
+    text-indent: -50000px;    
     text-decoration: none;
 }
 
