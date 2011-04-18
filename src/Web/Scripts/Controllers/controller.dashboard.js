@@ -1,4 +1,13 @@
-﻿$(function () {
+﻿/// <reference path="../jquery-1.4.1-vsdoc.js" />
+/// <reference path="../jquery-ui.js" />
+/// <reference path="../jquery.blockUI.js" />
+/// <reference path="../jquery.confirm.js" />
+/// <reference path="../json2.js" />
+/// <reference path="../Api/api.js" />
+/// <reference path="../Controls/control.tasks.js" />
+/// <reference path="../Controls/control.editposts.js" />
+
+$(function () {
     // Global config
     $.blockUI.defaults.message = null;
 
@@ -57,11 +66,62 @@
         }
     });
 
-    $('.done, .all').live('click', function () {
+
+    $('.done').live('click', function () {
         var method = $(this).attr('href');
+        
+        showActions();
         loadTasks(method);
 
         return false; 
+    });
+
+
+    $('.all').live('click', function () {
+        var method = $(this).attr('href');
+        
+        hideActions();
+        loadTasks(method);
+
+        return false; 
+    });
+
+    $('.actions-delete-all-done').live('click', function () {
+        var method =  $(this).attr('href');
+        $.confirm({
+            message: 'Are you sure to delete all done task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        deleteAllDoneTasks(method);
+                    }
+                },
+                No: {
+                
+                }
+            },
+        });
+
+        return false;
+    });
+
+    $('.actions-undo-all').live('click', function () {
+        var method =  $(this).attr('href');
+        $.confirm({
+            message: 'Are you sure to undo all task?',
+            buttons: {
+                Yes: {
+                    action: function () {
+                        undoAllTasks(method);
+                    }
+                },
+                No: {
+                
+                }
+            },
+        });
+
+        return false;
     });
 
 
@@ -69,12 +129,29 @@
     // Task control handlers
 
     $('.moveontop').live('click', function () {
-        $(this).parent().slideUp(function () {
+        var task = $(this).parent();
+        
+        // fix: if calendar is visible, it would be removed before moving the task
+        removeDatetimeDiv();
+
+        if (isTaskOnTop(task)) {
+            return;
+        }
+
+        task.slideUp(function () {
             $(this).prependTo('#tasks').slideDown(function () {
                 updateAfterSort();
             });
         });
     });
+
+    function isTaskOnTop(task) {
+        var tasks = element.children('.task');
+
+        var topTaskId = $(tasks[0]).attr('id');
+        var currentTaskId = $(task).attr('id');
+        return topTaskId == currentTaskId;
+    }
 
     $('.description').live('dblclick', function () {
         var value = $(this).html();
@@ -93,28 +170,29 @@
                 dateFormat: 'dd-mm-yy',
                 minDate: 0,
                 onSelect: function (date, inst) {
-                    //me.parent().find('.planned').html(date);
-                    $('#ui-datepicker-div').remove();
+                    removeDatetimeDiv();
+
                     control.setTaskPlannedDate(me.parent().attr('id'), date);
                     updateTaskPlannedDateCallback(me.parent().attr('id'), date);
                 }
             });
-
             $('.ui-datepicker').append('<div class="clear"><div class="clean">Not planned</div><div class="close">X</div></div>');
             $('.ui-datepicker div.clean').die();
             $('.ui-datepicker div.close').die();
             $('.ui-datepicker div.clean').live('click', function () {
-                //me.parent().find('.planned').html('');
-
-                $('#ui-datepicker-div').remove();
+                removeDatetimeDiv();                
                 control.setTaskPlannedDate(me.parent().attr('id'), '');
                 updateTaskPlannedDateCallback(me.parent().attr('id'), '');
             });
             $('.ui-datepicker div.close').live('click', function () {
-                $('#ui-datepicker-div').remove();
+                removeDatetimeDiv();
             });
         }
     });
+
+    function removeDatetimeDiv() {
+        $('#ui-datepicker-div').remove();
+    }
 
     function saveTaskEdit() {
         var currentDescription = $('#description-edit').val();
@@ -144,9 +222,9 @@
     }
 
     $('#description-edit').live('keyup', function (e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13) {      //enter
             saveTaskEdit();
-        } if (e.keyCode == 27) {
+        } if (e.keyCode == 27) {    // esc
             cancelTaskEdit();
         }
     });
@@ -198,6 +276,7 @@
         return false;
     });
 
+    // TODO: done/undo have identical code, must be to to common method
     $('.done a').live('click', function () {
         var method = $(this).attr('href');
 
@@ -211,6 +290,21 @@
         });        
 
         return false;
+    });
+
+    $('.undo a').live('click', function () {
+        var method = $(this).attr('href');
+
+        a.call(method, 'PUT', null, function (r) {
+            if (r.success) {
+                control.removeTask(r.data.task.id);
+                
+                updateAll();
+                updateDone();
+            }
+        });        
+
+        return false;        
     });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -324,7 +418,42 @@
 
     }
 
+    function deleteAllDoneTasks(method) {
+        a.call(method, 'DELETE', undefined, function (r) {
+            if (r.success) {
+                control.removeAll();
+                updateDone();
+            }
+        });
+    }
+
+    function undoAllTasks(method) {
+        a.call(method, 'PUT', undefined, function (r) {
+            if (r.success) {
+                control.removeAll();
+                updateAll();
+                updateDone();
+            }
+        });
+    }
+
+    function showActions() {
+        $('#actions').show();
+    }
+
+    function hideActions() {
+        $('#actions').hide();
+    }
+
+    function initActions() {
+        hideActions();
+
+        $('#action-delete-all').append('<a href="/tasks/delete/alldone" class="actions-delete-all-done">Delete all</a>');
+        $('#action-delete-all').append('<a href="/tasks/undo/all" class="actions-undo-all">Undo all</a>');
+    }
+
     function controllerInit() {
+        initActions();        
         makeSortable();
         updateDone();
 

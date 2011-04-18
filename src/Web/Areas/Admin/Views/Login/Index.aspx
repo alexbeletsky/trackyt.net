@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Web.Areas.Admin.Models.AdminLogin>" %>
+<%@ Import Namespace = "Web.Helpers.Extensions" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Admin | Login</title>
-    <link href="../../../../Content/admin-login.css?ver=1013" rel="stylesheet" type="text/css" />
+    <link href="<%: Url.ContentWithVersion("~/Content/admin.css") %>" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="admin-login">

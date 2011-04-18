@@ -45,7 +45,7 @@ tasksControl.prototype = (function () {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // private members
 
-    // class task definition
+    // class task
     function task(control, t) {
         var me = this;
 
@@ -57,8 +57,16 @@ tasksControl.prototype = (function () {
 
         this.sections = [];
 
-        this.sections['moveontop'] = new moveOnTop(this, t);
+        //TODO: UGLY, using if/else for done tasks is ugly, have to be refactored to use another class instead
+
+        if (t.done) {
+            this.sections['undo'] = new undo(this, t);
+        } else {
+            this.sections['moveontop'] = new moveOnTop(this, t);
+        }
+
         this.sections['description'] = new description(this, t);
+
 
         if (t.done) {
             this.sections['remove'] = new remove(this, t);
@@ -106,6 +114,11 @@ tasksControl.prototype = (function () {
                 this.div.slideUp(function () { me.div.remove(); });
             },
 
+            // same remove method but with out visual effect, that is more suitable for remove all operation
+            removeQuick: function () {
+                this.div.remove();
+            },
+
             start: function () {
                 this.sections['timer'].run();
             },
@@ -126,12 +139,12 @@ tasksControl.prototype = (function () {
 
     })();
 
-    // class moveOnTop definition
+    // class moveOnTop
     function moveOnTop(task, t) {
-        task.div.append('<span class="moveontop"></span>');
+        task.div.append('<span class="moveontop" title="Move on top"></span>');
     }
 
-    // class description definition
+    // class description
     function description(task, t) {
         this.description = t.description;
         this.ref = 'description-' + t.id;
@@ -151,10 +164,10 @@ tasksControl.prototype = (function () {
     })();
 
     function plantodate(task, t) {
-        task.div.append('<span class="plantodate"></div>');
+        task.div.append('<span class="plantodate" title="Plan to date"></div>');
     }
 
-    // class timer definition
+    // class timer
     function timer(task, t) {
         this.status = t.status;
         this.spent = t.spent;
@@ -183,7 +196,7 @@ tasksControl.prototype = (function () {
             $('#' + this.ref).html(this.format());
         }
 
-        task.div.append('<span id="' + this.ref + '" class="timer">' + this.format() + '</span>');
+        task.div.append('<span id="' + this.ref + '" class="timer" title="Timer">' + this.format() + '</span>');
     }
 
     // class timer members
@@ -244,26 +257,35 @@ tasksControl.prototype = (function () {
         }
     })();
 
+    // class start
     function start(task, t) {
         this.ref = 'start-' + t.id;
-        task.div.append('<span id="' + this.ref + '" class="start"><a href="/tasks/start/' + task.id + '" title="Start">Start</a></span>');
+        task.div.append('<span id="' + this.ref + '" class="start" title="Start"><a href="/tasks/start/' + task.id + '" title="Start">Start</a></span>');
     }
 
     start.prototype = enableDisable;
 
+    // class stop
     function stop(task, t) {
         this.ref = 'stop-' + t.id;
-        task.div.append('<span id="' + this.ref + '" class="stop"><a href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>');
+        task.div.append('<span id="' + this.ref + '" class="stop" title="Stop"><a href="/tasks/stop/' + task.id + '" title="Stop">Stop</a></span>');
     }
 
     stop.prototype = enableDisable;
 
+    // class remove
     function remove(task, t) {
-        task.div.append('<span class="delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>');
+        task.div.append('<span class="delete" title="Delete"><a href="/tasks/delete/' + task.id + '" title="Delete">Delete</a></span>');
     }
 
+    // class done
     function done(task, t) {
-        task.div.append('<span class="done"><a href="/tasks/done/' + task.id + '" title="Done">Done</a></span>');
+        task.div.append('<span class="done" title="Done"><a href="/tasks/done/' + task.id + '" title="Done">Done</a></span>');
+    }
+
+    // class undo 
+    function undo(task, t) {
+        task.div.append('<span class="undo" title="Undo"><a href="/tasks/undo/' + task.id + '" title="Undo">Undo</a></span>');
     }
 
     function planned(task, t) {
@@ -347,6 +369,12 @@ tasksControl.prototype = (function () {
         stopAll: function () {
             for (var t in this.tasks) {
                 this.tasks[t].stop();
+            }
+        },
+
+        removeAll: function () {
+            for (var t in this.tasks) {
+                this.tasks[t].removeQuick();
             }
         },
 

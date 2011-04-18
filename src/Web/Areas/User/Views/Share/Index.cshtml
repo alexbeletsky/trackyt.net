@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
 }
-
 @model IList<Trackyt.Core.DAL.DataModel.Task>
+@using Web.Helpers.Extensions
            
 <!doctype html>
 <html lang="en" class="no-js">
@@ -14,7 +14,7 @@
     <meta name="description" content="trackyt.net shared tasks page">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../Content/share.css?ver=1013" rel="stylesheet" type="text/css" />
+    <link href="@Url.ContentWithVersion("../../Content/share.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="container">

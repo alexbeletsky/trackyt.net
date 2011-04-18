@@ -116,6 +116,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Helpers\BlogPostsHelper.cs" />
     <Compile Include="Helpers\BlogPostProcessor.cs" />
+    <Compile Include="Helpers\Extensions\UrlContentWithVersionExtension.cs" />
     <Compile Include="Infrastructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrastructure\Exceptions\UserNotAuthorized.cs" />
     <Compile Include="Infrastructure\TrackyNotificationServiceProvider.cs" />
@@ -180,6 +181,7 @@
     <Content Include="Content\Images\dashboard\delete.png" />
     <Content Include="Content\Images\dashboard\stop.png" />
     <Content Include="Content\Images\dashboard\tick.png" />
+    <Content Include="Content\Images\dashboard\undo.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\public\footer-backround.png" />
     <Content Include="Content\Images\public\rss.png" />

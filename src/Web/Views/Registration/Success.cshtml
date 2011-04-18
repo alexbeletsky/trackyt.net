@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@using Web.Helpers.Extensions
 
 <!DOCTYPE html>
 
@@ -10,7 +11,7 @@
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
 
-    <link href="../Content/public-login.css?ver=1013" rel="stylesheet" type="text/css" />
+    <link href="@(Url.ContentWithVersion("~/Content/public-login.css"))" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="content">
