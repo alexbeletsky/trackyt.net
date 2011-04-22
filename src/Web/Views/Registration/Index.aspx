@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <link href="<%: Url.ContentWithVersion("~/Content/public-login.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery-1.4.4.min.js") %>" type="text/javascript"></script>
     <script src="<%: Url.ContentWithVersion("~/Scripts/Controllers/controller.registration.js")%>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />

@@ -1,4 +1,4 @@
-﻿/// <reference path="../jquery-1.4.1-vsdoc.js" />
+﻿/// <reference path="../jquery-1.4.4-vsdoc.js" />
 /// <reference path="../jquery-ui.js" />
 /// <reference path="../jquery.blockUI.js" />
 /// <reference path="../jquery.confirm.js" />

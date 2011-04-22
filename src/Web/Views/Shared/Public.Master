@@ -7,7 +7,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="<%: Url.ContentWithVersion("~/Content/public.css") %>" type="text/css" media="all" />
 
-    <script src="<%: Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery-1.4.4.min.js") %>" type="text/javascript"></script>
     <script src="<%: Url.Content("~/Scripts/ga.js") %>" type="text/javascript"></script>
 
     <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
