@@ -1,0 +1,203 @@
+﻿<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+
+    <link type="text/css" rel="stylesheet" href="Content/dashboard.css?ver=101486">
+    <link type="text/css" rel="stylesheet" href="Content/confirm.css?ver=101486">
+    <link type="text/css" rel="stylesheet" href="Content/custom-theme/jquery-ui-1.8.10.custom.css">
+<!--    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="/master/Scripts/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.confirm.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="Scripts/json2.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.postJson.js"></script>
+    <script type="text/javascript" src="Scripts/ga.js"></script>-->
+    <link type="image/x-icon" href="../Content/Images/favicon.ico" rel="shortcut icon">
+    <link type="image/ico" href="../Content/Images/favicon.ico" rel="icon">
+    <title>Trackyt.net | Dashboard </title>
+</head>
+<body>
+    <!-- <div class="wrapper"> -->
+        <div id="account-details" style="display: none;">
+            <fieldset>
+                <div id="apitoken">
+                    <label for="apitoken-value">
+                        Api Token:</label>
+                    <span id="apitoken-value">f2ef201c8cb43e1bab432f6b04b824e0</span>
+                </div>
+                <div id="email">
+                    <label for="email-value">
+                        Email:</label>
+                    <span id="email-value">tracky@tracky.net</span>
+                </div>
+            </fieldset>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="top">
+            <div id="logo">
+            </div>
+            <div id="navigation-container">
+                <a href="/share/link" id="share-tasks">Share</a> <span>| </span><a id="faq" href="/master/home/faq">
+                    Faq</a> <span>| </span><a href="show/account/details" id="show-account-details">Account</a>
+                <span>| </span><a id="sign-out" href="/master/">Sign Out</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <input type="hidden" value="f2ef201c8cb43e1bab432f6b04b824e0" name="apiToken" id="apiToken"/>
+            <input type="hidden" value="/master/API/v1.1/" name="api" id="api"/>
+
+            <div id="projects-area">
+                <div id="projects-control">
+                    <div id="projects-control-inner">
+                        <input type="text" value="" placeholder="search task..." id="search-task-input" />
+
+                        <div id="projects-container">
+                            <span class="title">Tasks</span>
+                            <div class="summary">
+                                <span class="item clear current"><span class="name">All</span><span class="count">12</span></span>
+                                <span class="item clear"><span class="name">Done</span><span class="count">4455</span></span>
+                            </div>
+
+                            <div class="margin-8-px"></div>
+                            <span class="title">Projects</span>
+                            <div class="summary">
+                                <span class="item clear"><span class="name">Large Lists</span><span class="count">5</span></span>
+                                <span class="item clear"><span class="name">Blog</span><span class="count">15</span></span>
+                                <span class="item clear"><span class="name">trackyt.net</span><span class="count">15</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tasks-area">
+                <div id="tasks-area-inner">
+                    <div id="task-description-control">
+                        <div id="task-description-control-inner">
+                            <h2>I'm going to work on</h2>
+                            <input type="text" placeholder="task description goes here..." />
+                        </div>
+                    </div>
+                                <div id="tasks" class="ui-sortable">
+                <div class="task" id="task-152">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-152">
+                        dfgdfg</span><span title="Done" class="done"><a title="Done" href="/tasks/done/152">Done</a></span><span
+                            title="Stop" class="stop" id="stop-152" style="display: none;"><a title="Stop" href="/tasks/stop/152">Stop</a></span><span
+                                title="Start" class="start" id="start-152"><a title="Start" href="/tasks/start/152">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-152">0:00:00</span><span class="planned" id="planned-152">20-04-2011</span></div>
+                <div class="task" id="task-149">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-149">
+                        fghfgh</span><span title="Done" class="done"><a title="Done" href="/tasks/done/149">Done</a></span><span
+                            title="Stop" class="stop" id="stop-149" style="display: none;"><a title="Stop" href="/tasks/stop/149">Stop</a></span><span
+                                title="Start" class="start" id="start-149"><a title="Start" href="/tasks/start/149">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-149">0:00:00</span><span class="planned" id="planned-149">24-04-2011</span></div>
+                <div class="task" id="task-148">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-148">
+                        fghgfh</span><span title="Done" class="done"><a title="Done" href="/tasks/done/148">Done</a></span><span
+                            title="Stop" class="stop" id="stop-148" style="display: none;"><a title="Stop" href="/tasks/stop/148">Stop</a></span><span
+                                title="Start" class="start" id="start-148"><a title="Start" href="/tasks/start/148">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-148">0:00:00</span><span class="planned" id="planned-148"></span></div>
+                <div class="task" id="task-154">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-154">
+                        for undo</span><span title="Done" class="done"><a title="Done" href="/tasks/done/154">Done</a></span><span
+                            title="Stop" class="stop" id="stop-154" style="display: none;"><a title="Stop" href="/tasks/stop/154">Stop</a></span><span
+                                title="Start" class="start" id="start-154"><a title="Start" href="/tasks/start/154">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-154">0:00:14</span><span class="planned" id="planned-154"></span></div>
+            </div>
+                </div>
+            </div>
+<!--            <div id="new-task-control">
+                <div id="new-task-container">
+                    <input type="text" placeholder="New task description" id="task-description">
+                    <div id="summary" class="context">
+                        <div id="project-all" class="context-item">
+                            <a href="/tasks/all" class="all">All (4)</a></div>
+                        <div id="project-done" class="context-item">
+                            <a href="/tasks/done" class="done">Done (0)</a></div>
+                    </div>
+                    <div id="actions" class="context right" style="display: none;">
+                        <div id="action-delete-all" class="context-item">
+                            <a class="actions-delete-all-done" href="/tasks/delete/alldone">Delete all</a><a
+                                class="actions-undo-all" href="/tasks/undo/all">Undo all</a></div>
+                        <div id="action-undo-all" class="context-item">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div id="tasks" class="ui-sortable">
+                <div class="task" id="task-152">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-152">
+                        dfgdfg</span><span title="Done" class="done"><a title="Done" href="/tasks/done/152">Done</a></span><span
+                            title="Stop" class="stop" id="stop-152" style="display: none;"><a title="Stop" href="/tasks/stop/152">Stop</a></span><span
+                                title="Start" class="start" id="start-152"><a title="Start" href="/tasks/start/152">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-152">0:00:00</span><span class="planned" id="planned-152">20-04-2011</span></div>
+                <div class="task" id="task-149">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-149">
+                        fghfgh</span><span title="Done" class="done"><a title="Done" href="/tasks/done/149">Done</a></span><span
+                            title="Stop" class="stop" id="stop-149" style="display: none;"><a title="Stop" href="/tasks/stop/149">Stop</a></span><span
+                                title="Start" class="start" id="start-149"><a title="Start" href="/tasks/start/149">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-149">0:00:00</span><span class="planned" id="planned-149">24-04-2011</span></div>
+                <div class="task" id="task-148">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-148">
+                        fghgfh</span><span title="Done" class="done"><a title="Done" href="/tasks/done/148">Done</a></span><span
+                            title="Stop" class="stop" id="stop-148" style="display: none;"><a title="Stop" href="/tasks/stop/148">Stop</a></span><span
+                                title="Start" class="start" id="start-148"><a title="Start" href="/tasks/start/148">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-148">0:00:00</span><span class="planned" id="planned-148"></span></div>
+                <div class="task" id="task-154">
+                    <span title="Move on top" class="moveontop"></span><span class="description" id="description-154">
+                        for undo</span><span title="Done" class="done"><a title="Done" href="/tasks/done/154">Done</a></span><span
+                            title="Stop" class="stop" id="stop-154" style="display: none;"><a title="Stop" href="/tasks/stop/154">Stop</a></span><span
+                                title="Start" class="start" id="start-154"><a title="Start" href="/tasks/start/154">Start</a></span><span
+                                    title="Plan to date" class="plantodate"></span><span title="Timer" class="timer"
+                                        id="timer-154">0:00:14</span><span class="planned" id="planned-154"></span></div>
+            </div>-->
+        </div>
+        <!-- <div class="push"></div> -->
+    <!-- </div> -->
+<!-- 
+    <div id="footer">
+       <div id="navigation-footer">
+            <div class="navigation-footer-block left">
+                <ul>
+                    <li class="home"><a href="/master/">home</a></li>
+                    <li class="product-tour"><a href="#">product tour</a></li>
+                    <li class="blog"><a href="/master/blog">blog</a></li>
+                </ul>
+            </div>
+            <div class="navigation-footer-block left">
+                <ul>
+                    <li class="register bold"><a href="/master/registration">register now!</a></li>
+                    <li class="login"><a href="/master/login">login</a></li>
+                </ul>
+            </div>
+            <div class="navigation-footer-block left">
+                <ul>
+                    <li class="api bold"><a href="/master/home/apiV11">api</a></li>
+                    <li class="opensource"><a href="/master/home/faq#OpenSource">open source</a></li>
+                    <li class="faq"><a href="/master/home/faq">faq</a></li>
+                </ul>
+            </div>
+            <div class="navigation-footer-block right">
+                <ul>
+                    <li class="twitter bold"><a href="http://twitter.com/#!/trackytnet">@trackytnet </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    -->
+</body>
+</html>
