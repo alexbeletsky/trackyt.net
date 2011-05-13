@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="maincontent" runat="server">
     <div id="screenshot">
         <div id="slogan">
-            Track Your Tasks
+            Track Your Tasks on .NET
         </div>
         <div id="info">
             <p class="dark big">
