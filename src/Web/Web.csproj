@@ -14,6 +14,7 @@
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -226,7 +227,7 @@
     <Content Include="Views\Home\ApiV10.aspx" />
     <Content Include="Views\Home\ApiV11.aspx" />
     <Content Include="Views\Home\Faq.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
+    <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Registration\Index.aspx" />
     <Content Include="Areas\User\Views\Dashboard\Index.aspx" />
@@ -246,10 +247,10 @@
     <Content Include="Scripts\Controllers\controller.registration.js" />
     <Content Include="Views\Shared\ApiImplementations.ascx" />
     <Content Include="Views\Shared\ApiTableOfContent.ascx" />
-    <Content Include="Views\Shared\Copyright.ascx" />
-    <Content Include="Views\Shared\Footer.ascx" />
+    <None Include="Views\Shared\Copyright.cshtml" />
+    <None Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\LastArticleFromBlog.ascx" />
-    <Content Include="Views\Shared\Navigation.ascx" />
+    <None Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -331,6 +332,7 @@
     <Content Include="Views\Shared\Api.Master" />
     <Content Include="Views\Registration\Mobile.cshtml" />
     <Content Include="Views\Registration\Success.cshtml" />
+    <Content Include="Views\Shared\_PublicLayout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

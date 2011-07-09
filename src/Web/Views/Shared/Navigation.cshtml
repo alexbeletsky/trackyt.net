@@ -1,0 +1,17 @@
+﻿<div id="navigation">
+    <ul class="right">
+        <li class="login">
+            @Html.ActionLink("Sign In", "index", new { area = "", controller = "login" })
+        </li>
+    </ul>
+    <ul class="left">
+        <li class="home">
+            @Html.ActionLink("Home", "index", new { area = "", controller = "home" })
+        </li>
+        <li class="blog">
+            @Html.ActionLink("Blog", "index", new { area = "blog", controller = "posts" })
+        </li>
+    </ul>
+</div>
+<div class="navigation-line">
+</div>
