@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Trackyt.net | Sign In";
+}
+@model Web.Models.LoginModel
+@using Web.Helpers.Extensions
+
+<!DOCTYPE html>
+<html>
+<head id="Head1" runat="server">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.ContentWithVersion("~/Content/public-login.css")" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            <h1 class="left">
+                Sign In
+            </h1>
+            <span id="else" class="left">or @Html.ActionLink("Sign Up", "index", "registration")</span>
+            <div class="clear">
+            </div>
+            <p>
+                If you are already our customer, please log in. If you are new, please proceed and
+                create new account
+            </p>
+            @using (Html.BeginForm("login", "login", FormMethod.Post, new { id = "login_form" })) {
+                @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+                <fieldset>
+                    <div id="email-container">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email)
+                    </div>
+                    <div id="password-container">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.TextBoxFor(m => m.Password, new { type = "password" })
+                    </div>
+                    <p>
+                        <input id="submit-button" type="submit" value="Login »" />
+                    </p>
+                </fieldset>
+            }
+        </div>
+    </div>
+</body>
+</html>
