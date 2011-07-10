@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Trackyt.net | Dashboard";
+    Layout = "~/Areas/User/Views/Shared/_DashboardLayout.cshtml";
+}
+@using Web.Helpers.Extensions
+
+@section Head {
+    <script type="text/javascript" src="@Url.ContentWithVersion("~/Scripts/Api/api.js")"></script>
+    <script type="text/javascript" src="@Url.ContentWithVersion("~/Scripts/Controls/control.tasks.js")"></script>
+    <script type="text/javascript" src="@Url.ContentWithVersion("~/Scripts/Controllers/controller.dashboard.js")"></script>
+}
+
+@Html.TextBox("apiToken", ViewData["ApiToken"], new { type = "hidden" })
+@Html.TextBox("api", ViewData["Api"], new { type = "hidden" })
+
+<div id="container">
+    <div id="new-task-control">
+        <div id="new-task-container">
+            <input id="task-description" type="text" placeholder="New task description" />
+            <div class="context" id="summary">
+                <div class="context-item" id="project-all">
+                </div>
+                <div class="context-item" id="project-done">
+                </div>
+            </div>
+            <div class="context right" id="actions">
+                <div class="context-item" id="action-delete-all">
+                </div>
+                <div class="context-item" id="action-undo-all">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div id="tasks">
+    </div>
+</div>
