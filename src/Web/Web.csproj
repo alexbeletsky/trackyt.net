@@ -160,10 +160,10 @@
     <Content Include="Areas\Admin\Views\UserManagement\Summary.aspx" />
     <Content Include="Areas\Admin\Views\UserManagement\Table.aspx" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
-    <Content Include="Areas\Blog\Views\Posts\Index.aspx" />
-    <Content Include="Areas\Blog\Views\Rss\Feed.aspx" />
+    <None Include="Areas\Blog\Views\Posts\Index.cshtml" />
+    <None Include="Areas\Blog\Views\Rss\Feed.cshtml" />
     <Content Include="Areas\Blog\Views\Shared\Pager.ascx" />
-    <Content Include="Areas\Blog\Views\Posts\PostByUrl.aspx" />
+    <None Include="Areas\Blog\Views\Posts\PostByUrl.cshtml" />
     <Content Include="Content\confirm.css" />
     <Content Include="Content\custom-theme\images\ui-bg_diagonals-thick_60_eeeeee_40x40.png" />
     <Content Include="Content\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -222,14 +222,14 @@
     <Content Include="Scripts\Controls\control.tasks.js" />
     <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.controller.registration.js" />
-    <Content Include="Views\Error\GenericError.aspx" />
+    <None Include="Views\Error\GenericError.cshtml" />
     <None Include="Views\Home\ApiV10.cshtml" />
     <None Include="Views\Home\ApiV11.cshtml" />
-    <Content Include="Views\Home\Faq.aspx" />
+    <None Include="Views\Home\Faq.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\Index.aspx" />
-    <Content Include="Views\Registration\Index.aspx" />
-    <Content Include="Areas\User\Views\Dashboard\Index.aspx" />
+    <None Include="Views\Login\Index.cshtml" />
+    <None Include="Views\Registration\Index.cshtml" />
+    <None Include="Areas\User\Views\Dashboard\Index.cshtml" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\dashboard.css" />
@@ -293,9 +293,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Public.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -317,7 +314,7 @@
     <Content Include="Areas\Admin\Views\Shared\BlogManagement.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\User\Views\Shared\Dashboard.Master" />
+    <None Include="Areas\User\Views\Shared\_DashboardLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
