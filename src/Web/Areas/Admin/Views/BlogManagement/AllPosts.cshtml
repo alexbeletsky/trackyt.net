@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";   
+    Layout = "~/Areas/Admin/Views/Shared/_BlogManagementLayout.cshtml";
+}
+@using Web.Helpers.Extensions
+
+@section Head {
+    <script src="@Url.ContentWithVersion("~/Scripts/Controls/control.editposts.js")" type="text/javascript"></script>
+    <script src="@Url.ContentWithVersion("~/Scripts/Controllers/controller.editposts.js")" type="text/javascript"></script>
+}
+
+Search: <input id="post-name" />
+<div id="edit-posts-table"></div>
+<div id="edit-posts-pager"></div>
+
+

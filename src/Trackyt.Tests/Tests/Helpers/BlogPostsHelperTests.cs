@@ -105,6 +105,5 @@ namespace Trackyt.Core.Tests.Tests.Helpers
             // assert
             Assert.That(postBody, Is.EqualTo("<p>First.</p><p>Second.</p>"));
         }
-
     }
 }

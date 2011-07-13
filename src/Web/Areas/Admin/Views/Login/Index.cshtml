@@ -1,0 +1,19 @@
+﻿@model Web.Areas.Admin.Models.AdminLogin
+@using Web.Helpers.Extensions
+<!DOCTYPE>
+<html>
+<head>
+    <title>Admin | Login</title>
+    <link href="@Url.ContentWithVersion("~/Content/admin.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="admin-login">
+        <div class="admin-login-box">
+            @using (Html.BeginForm("login", "login")) {
+                @Html.TextBoxFor(m => m.Password, new { type = "password" })
+                <input id="login" value="Login" type="submit" />
+            }
+        </div>
+    </div>
+</body>
+</html>

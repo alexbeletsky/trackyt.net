@@ -1,0 +1,36 @@
+﻿@using Web.Helpers.Extensions;
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.ContentWithVersion("~/Content/public.css")" type="text/css" media="all" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ga.js")" type="text/javascript"></script>
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/Content/Images/favicon.ico" type="image/ico" />
+    @RenderSection(name: "Head", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        <div id="navigation-container">
+            @Html.Partial("Navigation")
+        </div>
+        <div class="clear">
+        </div>
+        <div id="main-container">
+            @RenderBody()
+        </div>
+        <div class="push">
+        </div>
+    </div>
+    <div id="footer">
+        @Html.Partial("Footer")
+        <div class="clear">
+        </div>
+        <div id="copyright">
+            @Html.Partial("Copyright")
+        </div>
+    </div>
+</body>
+</html>

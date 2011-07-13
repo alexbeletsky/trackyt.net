@@ -1,0 +1,41 @@
+﻿<div id="navigation-footer">
+    <div class="navigation-footer-block left">
+        <ul>
+            <li class="home">
+                @Html.ActionLink("home", "index", new { area = "", controller = "home" })
+            </li>
+            <li class="product-tour"><a href="#">product tour</a> </li>
+            <li class="blog">
+                @Html.ActionLink("blog", "index", new { area = "blog", controller = "posts" })
+            </li>
+        </ul>
+    </div>
+    <div class="navigation-footer-block left">
+        <ul>
+            <li class="register bold">
+                @Html.ActionLink("register now!", "index", new { area = "", controller = "registration" })
+            </li>
+            <li class="login">
+                @Html.ActionLink("login", "index", new { area = "", controller = "login" })
+            </li>
+        </ul>
+    </div>
+    <div class="navigation-footer-block left">
+        <ul>
+            <li class="api bold">
+                @Html.ActionLink("api", "apiV11", new { area = "", controller = "home" })
+            </li>
+            <li class="opensource"><a href="@Url.Action("faq", new { area = "", controller = "home" })#OpenSource">
+                open source</a> </li>
+            <li class="faq">
+                @Html.ActionLink("faq", "faq", new { area = "", controller = "home" })
+            </li>
+        </ul>
+    </div>
+    <div class="navigation-footer-block right">
+        <ul>
+            <li class="twitter bold"><a href="http://twitter.com/#!/trackytnet">@@trackytnet</a>
+            </li>
+        </ul>
+    </div>
+</div>

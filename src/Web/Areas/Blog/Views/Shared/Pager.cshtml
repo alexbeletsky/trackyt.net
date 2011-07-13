@@ -1,0 +1,4 @@
+﻿@model Web.Areas.Blog.Models.BlogPosts
+@using Web.Helpers.Extensions
+
+@Html.Pager(Url.Action("Page", "Posts", new { area = "Blog", id="{0}"}), Model.TotalPages, Model.CurrentPage)

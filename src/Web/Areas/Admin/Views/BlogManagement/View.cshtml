@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_BlogManagementLayout.cshtml";
+}
+@model Trackyt.Core.DAL.DataModel.BlogPost
+<h2>@Model.Title
+</h2>
+<h5>
+    Published on: @Model.CreatedDate.ToShortDateString() By: @Model.CreatedBy
+</h5>
+<div>
+    @MvcHtmlString.Create(Model.Body)
+</div>
+</span>
+<div>
+    @Html.ActionLink("Back to posts", "allposts")
+</div>

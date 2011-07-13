@@ -1,0 +1,207 @@
+﻿@{
+    ViewBag.Title = "Tracyt.net API";
+    Layout = "~/Views/Shared/_ApiLayout.cshtml";
+}
+<div class="content api">
+    <h2>
+        Response format</h2>
+    <p>
+        Response is a valid JSON string of such format:
+    </p>
+    <pre>
+                <code>{ "success":true, "data": {} }</code>
+            </pre>
+    <p>
+        Each response body contains <code>success</code> and <code>data</code> elements.
+        <code>success</code> would refer to operation status, such as <code>true</code>
+        for success operations, <code>false</code> for failed ones. <code>data</code> actual
+        content depends on type of call.
+    </p>
+    <h2>
+        Authentication</h2>
+    <p>
+        We use api-token based authentication model. User is responsible to provide login
+        credentials, as email and password and receive token. Token is static and being
+        generated during sign up procedure. It is used as argument for any of API calls
+        that required authorization. API token is private information and should not be
+        shared with any other persons or applications. Users are able to get their tokens
+        on a Dashboard/Account section.
+    </p>
+    <h3>
+        authenticate method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/authenticate</li>
+        <li>Type: POST</li>
+        <li>Payload: JSON object <code>{ email: 'trackyt@trackyt.net', password: '111111' }</code></li>
+        <li>Response: if authentication is successful data will contain api token, otherwise
+            null returned</li>
+    </ul>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -H "Content-type: application/json" -d "{\"email\":\"trackyt@trackyt.net\",\"password\":\"111111\"}"
+            -X POST http://trackyt.net/api/v1.1/authenticate </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":{"apiToken":"af005f695d300d0dfebbd574a4b1c0fa"}} </code>
+    </pre>
+    <h2>
+        Tasks</h2>
+    <p>
+        Tasks are primary Trackyt objects. It is possible to add new, start, stop and delete
+        task. For group operations there are start all and stop all methods.
+    </p>
+    <h3>
+        get all tasks method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/all</li>
+        <li>Type: GET</li>
+        <li>Payload: none</li>
+        <li>Response: list of all tasks belong to user</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+                <code>$ curl http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/all
+                </code>
+            </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":{"tasks":[{"id":10,"description":"create new design","sta
+            tus":1,"createdDate":"\/Date(1293761554670)\/","startedDate":"\/Date(12937615990
+            60)\/","stoppedDate":null,"spent":177},{"id":11,"description":"code review","sta
+            tus":1,"createdDate":"\/Date(1293761560740)\/","startedDate":"\/Date(12937615998
+            31)\/","stoppedDate":null,"spent":176},{"id":12,"description":"v.1.0.2 code inte
+            gration","status":0,"createdDate":"\/Date(1293761596817)\/","startedDate":null,"
+            stoppedDate":null,"spent":0}]}} </code>
+    </pre>
+    <h3>
+        add task method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/add</li>
+        <li>Type: POST</li>
+        <li>Payload: JSON object <code>{ description: 'new task 1' };</code></li>
+        <li>Response: descriptor of newly created task</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+        <code>$ curl -H "Content-type: application/json" -d "{\"description\":\"new task 1\"}"
+            -X POST http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/add
+</code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":{"task":{"id":15,"description":"new task 1","status":0,"c
+            reatedDate":"\/Date(1293769445244)\/","startedDate":null,"stoppedDate":null,"spe
+            nt":0}}} </code>
+    </pre>
+    <h3>
+        delete task method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/delete/15</li>
+        <li>Type: DELETE</li>
+        <li>Payload: none</li>
+        <li>Response: deletion confirmation</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+        <code>curl -X DELETE http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/delete/15
+        </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":{"id":15}} </code>
+    </pre>
+    <h3>
+        start task method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/14</li>
+        <li>Type: PUT</li>
+        <li>Payload: none</li>
+        <li>Response: start confirmation</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+        <code>$ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/14
+        </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":{"task":{"id":14,"description":"one more","status":1,"createdDate":"\/Date(1298355048965)\/","startedDate":"\/Date(1298362917541)\/","stoppedDate":null,"spent":50}}}
+        </code>
+    </pre>
+    <h3>
+        stop task method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/15</li>
+        <li>Type: PUT</li>
+        <li>Payload: none</li>
+        <li>Response: stop confirmation</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+        <code>$ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/14
+        </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+                <code>{"success":true,"data":{"task":{"id":14,"description":"one more","status":2,"createdDate":"\/Date(1298355048965)\/","startedDate":"\/Date(1298362917541)\/","stoppedDate":"\/Date(1298362987440)\/","spent":50}}}
+                </code>
+            </pre>
+    <h3>
+        start all tasks method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/all</li>
+        <li>Type: PUT</li>
+        <li>Payload: none</li>
+        <li>Response: start all confirmation</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+        <code>curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/start/all
+        </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":null} </code>
+    </pre>
+    <h3>
+        stop all tasks method</h3>
+    <ul>
+        <li>URL: http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/all</li>
+        <li>Type: PUT</li>
+        <li>Payload: none</li>
+        <li>Response: stop all confirmation</li>
+    </ul>
+    <p>
+        Request:
+    </p>
+    <pre>
+    <code>$ curl -H "Content-Length: 0" -X PUT http://trackyt.net/api/v1.1/af005f695d300d0dfebbd574a4b1c0fa/tasks/stop/all
+    </code>
+            </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{"success":true,"data":null} </code>
+    </pre>
+</div>

@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Tracyt.net API";
+    Layout = "~/Views/Shared/_ApiLayout.cshtml";
+}
+<div class="content api">
+    <p style="font-size: x-small; margin-left: 20px">
+        * - current version of API uses ASP.net Forms Authentication mechanism to authenticate
+        users. That makes it a bit non convenient to use from not .NET applications. API-token
+        model will be implemented in nearest versions, please follow our <%: Html.ActionLink("blog",
+        "index", new { area = "blog", controller = "posts" }) %> for updates.
+    </p>
+    <h2>
+        Response format</h2>
+    <p>
+        Response is a valid JSON string of such format:
+    </p>
+    <pre>
+        <code>{ "success":true, "data": {} }</code>
+    </pre>
+    <p>
+        Each response body contains <code>success</code> and <code>data</code> elements.
+        <code>success</code> would refer to operation status, such as <code>true</code>
+        for success operations, <code>false</code> for failed ones. <code>data</code> actual
+        content depends on type of call.
+    </p>
+    <h2>
+        Authentication</h2>
+    <p>
+        Before usage of any API methods, you need to authenticate yourself. This can be
+        done via HTTP POST. After successful authentication a session is created using a
+        cookie. Cookie contains .ASPXAUTH token for authentication. For <code>CURL</code>-based
+        application you should store it to file and refer it for all API calls. In case
+        of successful authentication response will contain <code>userId</code> - id of User,
+        that's used as argument for all API call.
+    </p>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -F "email=test@trackyt.net" -F "password=mypass" -c trackyt.cookie -X POST
+            http://www.trackyt.net/api/v1/authenticate</code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{ "success": true, "data": {"userId": "18"} }</code>
+    </pre>
+    <p>
+        Failed response:</p>
+    <pre>
+        <code>{ "success": false, "data": {"userId": null} }</code>
+    </pre>
+    <p>
+    </p>
+    <h2>
+        Get all tasks</h2>
+    <p>
+        <code>getalltasks</code> call is used to retrieve all current tasks from users task
+        list.
+    </p>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -b trackyt.cookie -H "Content-Length: 0" -X POST http://www.trackyt.net/api/v1/getalltasks/18
+        </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{ "success":true, "data": {"tasks": [ {"Id":54,"Number":0,"Description":"Fix CSS
+            issue","ActualWork":1123}, {"Id":55,"Number":1,"Description":"Do a peer review rev.
+            12998","ActualWork":945}, {"Id":56,"Number":2,"Description":"Refactoring of registration
+            code","ActualWork":0} ] } }</code>
+    </pre>
+    <p>
+        Fields:
+        <ul>
+            <li><code>Id</code> - task id, new tasks must have <code>Id = 0</code>, after submit
+                <code>Id</code> will be renewed with actual value from database. Client <strong>should
+                    not change</strong> <code>Id</code> of task.</li>
+            <li>Number - sequence number of task in tasks list</li>
+            <li>Description - description of the task</li>
+            <li>ActualWork - effort spend for task in seconds</li>
+        </ul>
+    </p>
+    <h2>
+        Submit tasks</h2>
+    <p>
+        <code>submit</code> used both for creation of new tasks and update of existing ones.
+        In case if <code>Id</code> is <code>0</code>, new task will be created, otherwise
+        task will be updated.
+    </p>
+    <h3>
+        Create task</h3>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -b trackyt.cookie -H "Content-type: application/json" -d "[{\"Id\":0,\"Number\":6,\"Description\":\"New
+            task\",\"ActualWork\":0}]" http://www.trackyt.net/api/v1/submit/18 </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{ "success" : true, "data" : {"newTasks":1,"updatedTasks":0,"deletedTasks":0}
+            }</code>
+    </pre>
+    <p>
+    </p>
+    <h3>
+        Update task</h3>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -x localhost:8888 -b trackyt.cookie -H "Content-type: application/json" -d "[{\"Id\":60,\"Number\":6,\"Description\":\"New task\",\"ActualWork\":100}]" http://www.trackyt.net/api/v1/submit/18 </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{ "success" : true, "data" : {"newTasks":0,"updatedTasks":1,"deletedTasks":0}}</code>
+    </pre>
+    <p>
+    </p>
+    <h2>
+        Delete tasks</h2>
+    <p>
+        <code>delete</code> used for tasks deletion. It receives the list of task <code>Id</code>s
+        need to be deleted.
+    </p>
+    <p>
+        Request:</p>
+    <pre>
+        <code>$ curl -x trackyt.cookie -H "Content-type: application/json" -d "[{\"Id\":60}]" http://www.trackyt.net/api/v1/delete/18 </code>
+    </pre>
+    <p>
+        Response:</p>
+    <pre>
+        <code>{ "success" : true, "data" : { "newTasks" : 0, "updatedTasks" : 0, "deletedTasks": 1 } }</code>
+    </pre>
+</div>
