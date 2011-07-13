@@ -144,26 +144,26 @@
   <ItemGroup>
     <Content Include="ApiTests.html" />
     <Content Include="App_Readme\glimpse.readme.txt" />
-    <None Include="Areas\Admin\Views\BlogManagement\AddPost.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\AllPosts.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Deleted.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Index.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Posted.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Summary.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\Updated.cshtml" />
-    <None Include="Areas\Admin\Views\BlogManagement\View.cshtml" />
-    <None Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
-    <None Include="Areas\Admin\Views\TaskManagement\Summary.cshtml" />
-    <None Include="Areas\Admin\Views\UserManagement\Index.cshtml" />
-    <None Include="Areas\Admin\Views\UserManagement\Summary.cshtml" />
-    <None Include="Areas\Admin\Views\UserManagement\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\AddPost.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\AllPosts.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Deleted.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Posted.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\Updated.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogManagement\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskManagement\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Summary.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Table.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
-    <None Include="Areas\Blog\Views\Posts\Index.cshtml" />
-    <None Include="Areas\Blog\Views\Rss\Feed.cshtml" />
-    <None Include="Areas\Blog\Views\Shared\Pager.cshtml" />
-    <None Include="Areas\Blog\Views\Posts\PostByUrl.cshtml" />
+    <Content Include="Areas\Blog\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Blog\Views\Rss\Feed.cshtml" />
+    <Content Include="Areas\Blog\Views\Shared\Pager.cshtml" />
+    <Content Include="Areas\Blog\Views\Posts\PostByUrl.cshtml" />
     <Content Include="Content\confirm.css" />
     <Content Include="Content\custom-theme\images\ui-bg_diagonals-thick_60_eeeeee_40x40.png" />
     <Content Include="Content\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -222,14 +222,14 @@
     <Content Include="Scripts\Controls\control.tasks.js" />
     <Content Include="UnitTests.html" />
     <Content Include="Scripts\Tests\unit\tests.controller.registration.js" />
-    <None Include="Views\Error\GenericError.cshtml" />
-    <None Include="Views\Home\ApiV10.cshtml" />
-    <None Include="Views\Home\ApiV11.cshtml" />
-    <None Include="Views\Home\Faq.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\Login\Index.cshtml" />
-    <None Include="Views\Registration\Index.cshtml" />
-    <None Include="Areas\User\Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Error\GenericError.cshtml" />
+    <Content Include="Views\Home\ApiV10.cshtml" />
+    <Content Include="Views\Home\ApiV11.cshtml" />
+    <Content Include="Views\Home\Faq.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Areas\User\Views\Dashboard\Index.cshtml" />
     <Content Include="Content\admin-login.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\dashboard.css" />
@@ -244,12 +244,12 @@
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\jquery.postJson.js" />
     <Content Include="Scripts\Controllers\controller.registration.js" />
-    <None Include="Views\Shared\ApiImplementations.cshtml" />
-    <None Include="Views\Shared\ApiTableOfContent.cshtml" />
-    <None Include="Views\Shared\Copyright.cshtml" />
-    <None Include="Views\Shared\Footer.cshtml" />
-    <None Include="Views\Home\LastArticleFromBlog.cshtml" />
-    <None Include="Views\Shared\Navigation.cshtml" />
+    <Content Include="Views\Shared\ApiImplementations.cshtml" />
+    <Content Include="Views\Shared\ApiTableOfContent.cshtml" />
+    <Content Include="Views\Shared\Copyright.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Home\LastArticleFromBlog.cshtml" />
+    <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -305,27 +305,27 @@
     <Content Include="Areas\Blog\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Shared\_UserManagementLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_UserManagementLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Shared\_BlogManagementLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_BlogManagementLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\User\Views\Shared\_DashboardLayout.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_DashboardLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Shared\_TaskManagementLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_TaskManagementLayout.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Areas\User\Views\Share\Index.cshtml" />
     <Content Include="Areas\User\Views\Share\Error.cshtml" />
-    <None Include="Scripts\Tests\framework\funcunit\envjs" />
-    <None Include="Scripts\Tests\framework\funcunit\envjs.bat" />
-    <None Include="Scripts\Tests\framework\funcunit\README" />
-    <None Include="Scripts\Tests\framework\funcunit\run.bat" />
-    <None Include="Views\Shared\_ApiLayout.cshtml" />
+    <Content Include="Scripts\Tests\framework\funcunit\envjs" />
+    <Content Include="Scripts\Tests\framework\funcunit\envjs.bat" />
+    <Content Include="Scripts\Tests\framework\funcunit\README" />
+    <Content Include="Scripts\Tests\framework\funcunit\run.bat" />
+    <Content Include="Views\Shared\_ApiLayout.cshtml" />
     <Content Include="Views\Registration\Mobile.cshtml" />
     <Content Include="Views\Registration\Success.cshtml" />
     <Content Include="Views\Shared\_PublicLayout.cshtml" />
