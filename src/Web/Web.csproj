@@ -144,25 +144,25 @@
   <ItemGroup>
     <Content Include="ApiTests.html" />
     <Content Include="App_Readme\glimpse.readme.txt" />
-    <Content Include="Areas\Admin\Views\BlogManagement\AddPost.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\AllPosts.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Deleted.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Edit.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Index.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Posted.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Summary.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\Updated.aspx" />
-    <Content Include="Areas\Admin\Views\BlogManagement\View.aspx" />
-    <Content Include="Areas\Admin\Views\Login\Index.aspx" />
-    <Content Include="Areas\Admin\Views\Dashboard\Index.aspx" />
-    <Content Include="Areas\Admin\Views\TaskManagement\Summary.aspx" />
-    <Content Include="Areas\Admin\Views\UserManagement\Index.aspx" />
-    <Content Include="Areas\Admin\Views\UserManagement\Summary.aspx" />
-    <Content Include="Areas\Admin\Views\UserManagement\Table.aspx" />
+    <None Include="Areas\Admin\Views\BlogManagement\AddPost.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\AllPosts.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Deleted.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Index.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Posted.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Summary.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\Updated.cshtml" />
+    <None Include="Areas\Admin\Views\BlogManagement\View.cshtml" />
+    <None Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <None Include="Areas\Admin\Views\TaskManagement\Summary.cshtml" />
+    <None Include="Areas\Admin\Views\UserManagement\Index.cshtml" />
+    <None Include="Areas\Admin\Views\UserManagement\Summary.cshtml" />
+    <None Include="Areas\Admin\Views\UserManagement\Table.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.ascx" />
     <None Include="Areas\Blog\Views\Posts\Index.cshtml" />
     <None Include="Areas\Blog\Views\Rss\Feed.cshtml" />
-    <Content Include="Areas\Blog\Views\Shared\Pager.ascx" />
+    <None Include="Areas\Blog\Views\Shared\Pager.cshtml" />
     <None Include="Areas\Blog\Views\Posts\PostByUrl.cshtml" />
     <Content Include="Content\confirm.css" />
     <Content Include="Content\custom-theme\images\ui-bg_diagonals-thick_60_eeeeee_40x40.png" />
@@ -305,19 +305,19 @@
     <Content Include="Areas\Blog\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\Admin.Master" />
+    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\UserManagement.Master" />
+    <None Include="Areas\Admin\Views\Shared\_UserManagementLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\BlogManagement.Master" />
+    <None Include="Areas\Admin\Views\Shared\_BlogManagementLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Areas\User\Views\Shared\_DashboardLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Shared\TaskManagement.Master" />
+    <None Include="Areas\Admin\Views\Shared\_TaskManagementLayout.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Areas\User\Views\Share\Index.cshtml" />
     <Content Include="Areas\User\Views\Share\Error.cshtml" />

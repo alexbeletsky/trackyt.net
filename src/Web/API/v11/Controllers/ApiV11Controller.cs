@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using Trackyt.Core.DAL.DataModel;
 using Trackyt.Core.DAL.Extensions;
 using Trackyt.Core.DAL.Repositories;
@@ -10,7 +10,6 @@ using Trackyt.Core.Services;
 using Web.API.v11.Model;
 using Web.Infrastructure.Error;
 using Web.Infrastructure.Exceptions;
-using System.Globalization;
 
 namespace Web.API.v11.Controllers
 {

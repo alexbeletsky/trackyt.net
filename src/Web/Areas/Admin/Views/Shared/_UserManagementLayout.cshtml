@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div id="submenu-container">
+    <div id="submenu">
+        <ul>
+            <li>@Html.ActionLink("Summary", "summary")</li>
+            <li>@Html.ActionLink("All users", "table")</li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    @RenderBody()
+</div>

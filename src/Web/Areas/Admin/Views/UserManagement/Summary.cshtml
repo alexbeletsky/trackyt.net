@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Admin | User Management";
+    Layout = "~/Areas/Admin/Views/Shared/_UserManagementLayout.cshtml";
+}
+@model Web.Areas.Admin.Models.UserSummaryModel
+<div id="summary-container">
+    <span>We currently have <span class="green">@Model.TotalRegisteredUsers</span> total
+        registered users! <span class="red">@Model.TempUsers</span> of them are with temporal
+        registration. </span>
+</div>

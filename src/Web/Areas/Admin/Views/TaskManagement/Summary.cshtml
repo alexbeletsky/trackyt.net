@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_TaskManagementLayout.cshtml";
+}
+@model Web.Areas.Admin.Models.TaskSummaryModel
+    <div id="summary-container">
+        <span>
+            We currently have <span class="green">@Model.TotalTasks</span> created tasks. Users totally logged <span class="green">@Model.TotalLoggedTime seconds</span>.
+        </span>
+    </div>

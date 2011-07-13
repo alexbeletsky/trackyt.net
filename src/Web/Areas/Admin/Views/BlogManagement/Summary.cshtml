@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_BlogManagementLayout.cshtml";
+}
+@model Web.Areas.Admin.Models.BlogSummaryModel
+<div id="summary-container">
+    <span>We currently have <span class="green">@Model.TotalPosts</span> total blog posts!
+    </span>
+</div>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Admin | Admin Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_BlogManagementLayout.cshtml";
+}
+@model Trackyt.Core.DAL.DataModel.BlogPost
+<span>Congratulations! New blog post has been <span class="green">successfully</span>
+    updated.
+    @Html.ActionLink("View post", "postbyurl", new { area = "blog", controller = "posts", url = Model.Url })
+</span>
+<div>
+    @Html.ActionLink("Back to posts", "allposts")
+</div>
