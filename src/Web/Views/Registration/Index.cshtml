@@ -3,6 +3,8 @@
 }
 @model Web.Models.RegisterUserModel
 @using Web.Helpers.Extensions
+@using Microsoft.Web.Helpers
+
 <!DOCTYPE html>
 <html>
 <head id="Head1" runat="server">
@@ -16,16 +18,15 @@
 <body>
     <div id="container">
         <div id="content">
-            <h1 class="left">
-                Sign Up</h1>
-            <span id="else" class="left">or @Html.ActionLink("Start now", "quickstart", "registration", new { id = "start-now" })</span>
-            <div class="clear">
-            </div>
-            <p>
+            <h1 class="left">Sign Up</h1>
+            @*<span id="else" class="left">or @Html.ActionLink("Start now", "quickstart", "registration", new { id = "start-now" })</span>*@
+            <div class="clear"></div>
+@*            <p>
                 If you are just in hurry or have doubts you are free to skip registration. You can
                 start using application with <a href = "@Url.Action("Faq", new { area = "", controller = "Home" })#TempReg">
                     temporary account</a> created for you
             </p>
+*@
             @using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { id = "signup_form" })) {
 
                 <div id="PasswordValidationMessage" class="validation-summary-errors">
@@ -45,8 +46,10 @@
                         @Html.LabelFor(m => m.ConfirmPassword)
                         @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "password" })
                     </div>
+    
                 </fieldset>                
 
+                @ReCaptcha.GetHtml(theme: "clean")
                 <input id="submit-button" type="submit" value="Signup" />
             }
         </div>
