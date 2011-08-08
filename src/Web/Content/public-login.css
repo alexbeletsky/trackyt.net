@@ -34,7 +34,7 @@ p
 #container
 {
     margin: 100px auto;    
-    width: 490px;
+    width: 500px;
     height: auto;
     
     background:none repeat scroll 0 0 #FFFFFF;
@@ -93,7 +93,6 @@ fieldset div
 {
     display: block;
     width: 80%;
-    margin: 5px;
 }
 
 fieldset input
@@ -111,7 +110,7 @@ label
 
 input#submit-button
 {
-    margin-top: 20px;
+    margin-top: 14px;
     border:1px solid #c5e178 !important;    
     width: 90px;
     height: 30px;

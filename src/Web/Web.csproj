@@ -45,6 +45,9 @@
       <HintPath>..\packages\Glimpse.0.79\lib\net40\Glimpse.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\packages\microsoft-web-helpers.1.15\lib\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\lib\MvcFutures\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
@@ -192,6 +195,7 @@
     <Content Include="Content\Images\public\rss.png" />
     <Content Include="Content\share.css" />
     <Content Include="DatepickerTests.htm" />
+    <Content Include="Release Notes - Microsoft.Web.Helpers.txt" />
     <Content Include="Scripts\Controls\control.editposts.js" />
     <Content Include="Scripts\Controllers\controller.editposts.js" />
     <Content Include="Scripts\ga.js" />
@@ -329,6 +333,9 @@
     <Content Include="Views\Registration\Mobile.cshtml" />
     <Content Include="Views\Registration\Success.cshtml" />
     <Content Include="Views\Shared\_PublicLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

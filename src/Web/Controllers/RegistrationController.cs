@@ -7,6 +7,7 @@ using Trackyt.Core.Security;
 using Trackyt.Core.Services;
 using System;
 using Web.Models;
+using Microsoft.Web.Helpers;
 
 namespace Web.Controllers
 {
@@ -28,18 +29,6 @@ namespace Web.Controllers
             return View();
         }
         
-        [HttpGet]
-        public ActionResult QuickStart()
-        {
-            var postfix = DateTime.Now.ToFileTimeUtc().ToString().Substring(12);
-            var email = "temp" + postfix + "@trackyt.net";
-            var password = email;
-
-            _auth.RegisterTemporaryUser(email, password);
-
-            return _redirect.ToDashboard(email);
-        }
-
         [HttpGet]
         public ActionResult Mobile()
         {
@@ -66,6 +55,11 @@ namespace Web.Controllers
 
         private ActionResult RegiterWithAction(RegisterUserModel model, Func<ActionResult> successAction, Func<ActionResult> defaultAction)
         {
+            if (!_auth.ValidateCaptcha()) {
+                ModelState.AddModelError("", "Sorry, we failed to validate your captcha. Please try again.");                
+                defaultAction.Invoke();
+            }
+
             if (ModelState.IsValid)
             {
                 var email = model.Email;

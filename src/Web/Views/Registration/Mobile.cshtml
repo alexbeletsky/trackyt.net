@@ -3,6 +3,7 @@
 }
 @model Web.Models.RegisterUserModel
 @using Web.Helpers.Extensions
+@using Microsoft.Web.Helpers
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,7 @@
                     @Html.TextBoxFor(m => m.ConfirmPassword, new { type = "password" })
                 </div>
             </fieldset>                
+            @ReCaptcha.GetHtml(theme: "clean")
             <input id="submit-button" type="submit" value="Signup"/>      
         }
     </div>

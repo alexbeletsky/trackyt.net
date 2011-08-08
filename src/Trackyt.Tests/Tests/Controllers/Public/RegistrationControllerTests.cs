@@ -61,6 +61,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(true);
             auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
@@ -86,6 +87,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(false);
 
             //act
@@ -114,70 +116,70 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Throws(new Exception());
-
 
             //act / post
             var result = controller.Register(model) as ViewResult;
         }
 
-        [Test]
-        public void QuickStart_Get_Success_Temp_User_Created()
-        {
-            // arrange
-            var auth = new Mock<IAuthenticationService>();
-            var notification = new Mock<INotificationService>();
-            var redirect = new RedirectService();
-            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
+        //[Test]
+        //public void QuickStart_Get_Success_Temp_User_Created()
+        //{
+        //    // arrange
+        //    var auth = new Mock<IAuthenticationService>();
+        //    var notification = new Mock<INotificationService>();
+        //    var redirect = new RedirectService();
+        //    var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
-            //act
-            var resuts = controller.QuickStart() as RedirectResult;
+        //    //act
+        //    var resuts = controller.QuickStart() as RedirectResult;
 
-            //post
-            auth.Verify(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>()));
-        }
+        //    //post
+        //    auth.Verify(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>()));
+        //}
 
-        [Test]
-        public void QuickStart_Get_Success_Temp_User_Name_Is_Unique()
-        {
-            // arrange
-            var auth = new Mock<IAuthenticationService>();
-            var notification = new Mock<INotificationService>();
-            var redirect = new RedirectService();
-            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
+        //[Test]
+        //public void QuickStart_Get_Success_Temp_User_Name_Is_Unique()
+        //{
+        //    // arrange
+        //    var auth = new Mock<IAuthenticationService>();
+        //    var notification = new Mock<INotificationService>();
+        //    var redirect = new RedirectService();
+        //    var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
-            var users = new List<dynamic>();
-            auth.Setup(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>())).Callback(
-                (string e, string p) =>
-                { users.Add(new { Email = e, Password = p, Temp = true }); }
-            );
+        //    var users = new List<dynamic>();
+        //    auth.Setup(a => a.RegisterTemporaryUser(It.IsAny<string>(), It.IsAny<string>())).Callback(
+        //        (string e, string p) =>
+        //        { users.Add(new { Email = e, Password = p, Temp = true }); }
+        //    );
 
-            //act
-            controller.QuickStart();
-            Thread.Sleep(100);
-            controller.QuickStart();
+        //    //act
+        //    controller.QuickStart();
+        //    Thread.Sleep(100);
+        //    controller.QuickStart();
 
-            //post
-            var groups = users.GroupBy(u => u.Email).Count();
+        //    //post
+        //    var groups = users.GroupBy(u => u.Email).Count();
 
-            Assert.That(groups >= 2, Is.True, "each registered users must have unique email");
-        }
+        //    Assert.That(groups >= 2, Is.True, "each registered users must have unique email");
+        //}
 
-        [Test]
-        public void QuickStart_Get_Success_Redirected_To_Dashboard()
-        {
-            // arrange
-            var auth = new Mock<IAuthenticationService>();
-            var notification = new Mock<INotificationService>();
-            var redirect = new RedirectService();
-            var controller = new RegistrationController(auth.Object, notification.Object, redirect);
+        //[Test]
+        //public void QuickStart_Get_Success_Redirected_To_Dashboard()
+        //{
+        //    // arrange
+        //    var auth = new Mock<IAuthenticationService>();
+        //    var notification = new Mock<INotificationService>();
+        //    var redirect = new RedirectService();
+        //    var controller = new RegistrationController(auth.Object, notification.Object, redirect);
 
-            //act
-            var result = controller.QuickStart() as RedirectResult;
+        //    //act
+        //    var result = controller.QuickStart() as RedirectResult;
 
-            //post
-            result.Url.Should().StartWith("~/user/");
-        }
+        //    //post
+        //    result.Url.Should().StartWith("~/user/");
+        //}
 
         [Test]
         public void Register_NewUserRegistered_EmailSent()
@@ -193,6 +195,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 Password = "111111"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "111111")).Returns(true);
 
             //act
@@ -235,6 +238,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(true);
             auth.Setup(a => a.Authenticate("a@a.com", "password")).Returns(true);
 
@@ -261,6 +265,7 @@ namespace Trackyt.Core.Tests.Controllers.Public
                 ConfirmPassword = "password"
             };
 
+            auth.Setup(a => a.ValidateCaptcha()).Returns(true);
             auth.Setup(a => a.RegisterNewUser("a@a.com", "password")).Returns(false);
 
             var result = controller.Register(model) as ViewResult;

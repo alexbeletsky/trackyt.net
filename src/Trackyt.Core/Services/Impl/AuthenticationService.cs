@@ -6,6 +6,7 @@ using Trackyt.Core.DAL.Repositories;
 using Trackyt.Core.DAL.Extensions;
 using Trackyt.Core.Security;
 using Trackyt.Core.DAL.DataModel;
+using Microsoft.Web.Helpers;
 
 namespace Trackyt.Core.Services.Impl
 {
@@ -85,6 +86,10 @@ namespace Trackyt.Core.Services.Impl
         {
             _users.Save(user);
             Authenticate(email, password);
+        }
+
+        public bool ValidateCaptcha() {
+            return ReCaptcha.Validate(privateKey: "6Lcc58YSAAAAANpVZwOBTg1q1E2lj2VJ7ULpnANy");
         }
     }
 }

@@ -13,5 +13,6 @@ namespace Trackyt.Core.Services
         //bool RegisterNewUser(string email, string password, bool temp);
         bool RegisterNewUser(string email, string password);
         bool RegisterTemporaryUser(string email, string password);
+        bool ValidateCaptcha();
     }
 }
