@@ -91,9 +91,6 @@
     <Reference Include="System.Web.Helpers" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SolutionVersion.cs">
-      <Link>Properties\SolutionVersion.cs</Link>
-    </Compile>
     <Compile Include="API\v11\ApiV11Registration.cs" />
     <Compile Include="API\v11\Controllers\ApiV11Controller.cs" />
     <Compile Include="API\v11\Model\DeleteOperationResult.cs" />

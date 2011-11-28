@@ -67,9 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SolutionVersion.cs">
-      <Link>Properties\SolutionVersion.cs</Link>
-    </Compile>
     <Compile Include="Tests\Controllers\Admin\BlogManagementControllerTests.cs" />
     <Compile Include="Tests\Controllers\Admin\LoginControllerTests.cs" />
     <Compile Include="Tests\Controllers\Admin\TaskManagementControllerTests.cs" />

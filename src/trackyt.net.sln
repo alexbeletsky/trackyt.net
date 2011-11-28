@@ -16,9 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trackyt.Database.Tests", "Trackyt.Database.Tests\Trackyt.Database.Tests.csproj", "{486CFA8B-9C56-482C-BA2D-7304634A4BC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version", "Version", "{F77EEDA0-B761-475F-B724-757A1FDEA4A4}"
-	ProjectSection(SolutionItems) = preProject
-		SolutionVersion.cs = SolutionVersion.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Upgrade", "Upgrade", "{1A405510-C6D4-4BF5-BBA7-5AD8CABDA05F}"
 EndProject

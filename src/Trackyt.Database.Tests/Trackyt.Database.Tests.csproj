@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SolutionVersion.cs">
-      <Link>Properties\SolutionVersion.cs</Link>
-    </Compile>
     <Compile Include="Framework\DbSetup.cs" />
     <Compile Include="Framework\FixtureInit.cs" />
     <Compile Include="HttpSimulator\HttpSimulator.cs" />
