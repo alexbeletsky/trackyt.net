@@ -1,1 +1,0 @@
-envjs.bat tests/index.html

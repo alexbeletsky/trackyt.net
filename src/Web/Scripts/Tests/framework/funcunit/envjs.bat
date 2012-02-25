@@ -1,31 +1,19 @@
 @echo off
+:: this file is a batch script that invokes loader.bat
+:: ex: funcunit/envjs cookbook/qunit.html
 
-SETLOCAL ENABLEDELAYEDEXPANSION
+:: relative path to this script
+set BASE=%~dps0
+set CMD=%0
 
-set BASE=%0
+:: classpath
+SET CP=%BASE%java/selenium-java-client-driver.jar;%BASE%../steal/rhino/js.jar
 
-set BASE=%BASE:envjs=%
+:: load the run.js file
+SET LOADPATH=%BASE%scripts/run.js
 
-set BASE=%BASE:.bat=%
+:: call js.bat
+CALL %BASE%../steal/rhino/loader.bat %1 %2 %3 %4 %5 %6
 
-
-if not "%BASE%" == "" ( set BASE=%BASE:\=/% )
-
-:: trim spaces
-for /f "tokens=1*" %%A in ("%BASE%") do SET BASE=%%A
-
-SET CP=%BASE%selenium/selenium-java-client-driver.jar;%BASE%selenium/js.jar
-
-SET ARGS=[
-
-for /f "tokens=1,2,3,4,5,6 delims= " %%a in ("%*") do SET ARGS=!ARGS!'%%a','%%b','%%c','%%d','%%e','%%f'
-
-for %%a in (",''=") do ( call set ARGS=%%ARGS:%%~a%% )
-
-for /f "tokens=1*" %%A in ("%ARGS%") do SET ARGS=%%A
-
-SET ARGS=%ARGS%,'%BASE%']
-
-set ARGS=%ARGS:\=/%
-
-java -Xss1024k -cp %CP% org.mozilla.javascript.tools.shell.Main -opt -1 -e _args=%ARGS% -e load('%BASE%selenium/run.js')
+:: report errors to CI/build wrapper(s)
+if errorlevel 1 exit 1

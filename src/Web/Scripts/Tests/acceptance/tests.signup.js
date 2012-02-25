@@ -1,4 +1,4 @@
-﻿module("sign up functionality tests", {
+module("sign up functionality tests", {
     setup: function () {
         S.open("Registration");
     }

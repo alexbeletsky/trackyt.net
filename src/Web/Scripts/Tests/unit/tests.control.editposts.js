@@ -1,4 +1,4 @@
-﻿$(function () {
+$(function () {
 
     module("test editposttable control",
         {

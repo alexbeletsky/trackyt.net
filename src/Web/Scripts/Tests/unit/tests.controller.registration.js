@@ -1,4 +1,4 @@
-﻿$(function () {
+$(function () {
     module("registration-validation tests",
         {
             setup: function () {
